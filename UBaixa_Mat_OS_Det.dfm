@@ -1,0 +1,421 @@
+object frmBaixa_Mat_OS_Det: TfrmBaixa_Mat_OS_Det
+  Left = 208
+  Top = 135
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'frmBaixa_Mat_OS_Det'
+  ClientHeight = 472
+  ClientWidth = 1080
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnClose = FormClose
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object SMDBGrid5: TSMDBGrid
+    Left = 0
+    Top = 0
+    Width = 1080
+    Height = 398
+    Align = alClient
+    Ctl3D = False
+    DataSource = DMBaixa_Mat_OS.dsOrdemServico_Mat
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Verdana'
+    Font.Style = []
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    ParentCtl3D = False
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Style = []
+    OnDblClick = SMDBGrid5DblClick
+    Flat = True
+    BandsFont.Charset = DEFAULT_CHARSET
+    BandsFont.Color = clWindowText
+    BandsFont.Height = -11
+    BandsFont.Name = 'MS Sans Serif'
+    BandsFont.Style = []
+    Groupings = <>
+    GridStyle.Style = gsCustom
+    GridStyle.OddColor = clWindow
+    GridStyle.EvenColor = clWindow
+    TitleHeight.PixelCount = 24
+    FooterColor = clBtnFace
+    ExOptions = [eoENTERlikeTAB, eoKeepSelection, eoStandardPopup, eoBLOBEditor, eoTitleWordWrap]
+    OnGetCellParams = SMDBGrid5GetCellParams
+    RegistryKey = 'Software\Scalabium'
+    RegistrySection = 'SMDBGrid'
+    WidthOfIndicator = 11
+    DefaultRowHeight = 17
+    ScrollBars = ssHorizontal
+    ColCount = 10
+    RowCount = 2
+    Columns = <
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'ITEM_MAT'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Item'
+        Title.Color = 13500315
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Width = 35
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ID_PRODUTO'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'ID Material'
+        Title.Color = 13500315
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Width = 65
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'REFERENCIA'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Ref. Material'
+        Title.Color = 13500315
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Width = 108
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NOME'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Nome Material'
+        Title.Color = 13500315
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Width = 341
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'UNIDADE'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Unidade'
+        Title.Color = 13500315
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Width = 55
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'QTD'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Consumo'
+        Title.Color = 13500315
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Width = 86
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'QTD_ESTOQUE'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Qtd. J'#225' Baixado Estoque'
+        Title.Color = 13500315
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Width = 96
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'QTD_ESTOQUE_PEND'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Qtd. N'#227'o Baixada'
+        Title.Color = 13500315
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Width = 104
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DESC_TIPO'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Tipo'
+        Title.Color = 13500315
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Width = 132
+        Visible = True
+      end>
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 398
+    Width = 1080
+    Height = 38
+    Align = alBottom
+    Color = 16760767
+    TabOrder = 1
+    object Label1: TLabel
+      Left = 8
+      Top = 9
+      Width = 477
+      Height = 15
+      Caption = 
+        'Duplo Clique ou Enter no Material para Selecionar          ESC p' +
+        'ara sair sem selecionar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 436
+    Width = 1080
+    Height = 36
+    Align = alBottom
+    TabOrder = 2
+    object btnInserir: TNxButton
+      Left = 19
+      Top = 3
+      Width = 200
+      Height = 30
+      Caption = 'Novo Material'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Arial'
+      Font.Style = []
+      Glyph.Data = {
+        F6060000424DF606000000000000360000002800000018000000180000000100
+        180000000000C006000000000000000000000000000000000000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDF7F8E9DEE096898D695A6040383D4434
+        3C6A5B6196898EEADEE0FDF6F8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE7E2E38D8383121512001C15005750
+        19948D26B5B01DB5B20F968F005751001C131315128E8285E7E2E2FFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBEB4B63837350040321D
+        AC963CFFEF3FFFFF46FFFF4DFFFF47FFFF45FFFF43FFFF3EFFF01BAF97003E33
+        383636BFB4B5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFADA3A51919
+        19117C6529F3CC36FFDE44F3DA3EEDDA31F1E031F3E639F0E536F1DF3AEFDD3E
+        F2DC37FEDF2FF2CC0E7C651C1B1AB0A2A5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        BDB4B9191A181D8C6E30FCCB2AE5BA2DE4BE2AE8C729EACF22EED81FEFDB23ED
+        DA22EFD926EAD22BE6C82FE1C028E5BB28FFCA158F6C1B1917BFB4B7FFFFFFFF
+        FFFFFFFFFFE6E2E43936371674502CF6B617D59F25D8AB1BDEB50CE2B759E5CF
+        AAF3EEABF1EBABF1EBA9F3ED59E5CE0EE0B81ADEB721DAAD16D7A125F7B31373
+        50393635E6E3E4FFFFFFFFFFFF8D838801371B2FD99413D59218D09B19D6A413
+        DAAA00DBAB74E0CBFFF5F8FFF4F6FFF4F6FFF4F872E2C900DCAC10D9AA17D6A4
+        17D19B18D4932CD99700361D8E8489FFFFFFFCF9FC13171223915428DA8B15CA
+        8918D09218D49713D79D00D7A067DDC3FBF5F6F5F4F4F5F4F4FCF4F765DEC500
+        D8A318D6A01CD29A16D0951ACA8A25DA8D189358131513FCF8FBE9E2E7000C00
+        39D28020C77616C5810EC7810ACA8507CE8A00CB8D60D5B7FBF5F7F6F4F4F6F4
+        F4FBF5F760D6B900CD8F05CF8D0AC9850EC88118C67E24C67635D480000B00EA
+        E1E5979094003A0F2FDB7F17C06C2DC57F69CEA675D3B16DD4B064D3B2A4DCCD
+        F8F4F5F4F4F4F4F4F4F8F3F5A3DBCB60D2B169D5B172D3B063CEA22AC67C1FBD
+        6C36DB7B0039109592946B626711692A32D06F1AB86248C783DCECE4FFF8FDFC
+        F4F8FCF4F7F8F3F5F5F4F4F3F4F4F3F4F4F5F4F4F8F3F5FBF5F6FBF4F8FFF8FD
+        DAECE34BC6841EB66730CE6F11672A656269403D3E1D81392BC96120B75D47C0
+        80D6E9E1FFF7FBF5F4F4F5F4F4F5F4F4F4F4F3F3F4F4F3F4F4F4F4F3F5F4F4F5
+        F4F4F5F4F4FFF7FCDAE9E04CC27F23B65E36C76424833A463F3E464142227B30
+        45C25F31B75653BF79DBEAE0FFF7FCF5F4F5F5F5F5F5F4F4F3F4F4F3F4F3F3F4
+        F3F4F4F4F5F4F5F5F5F5F5F4F5FFF7FCDBE8E252C17E2BB85839C35B19812B44
+        3D40696364105E1841C55533B9545EC27EDEEAE2FEF9FDFAF5FAFAF6F9F6F5F7
+        F5F4F5F3F4F3F3F4F3F5F4F5F6F5F7FAF6F9FAF5F9FEF9FEDCE9E15DC07C39B7
+        563FC658106419686269989095002D004DC8534EB95E55B96972B87C76B78474
+        B9866BB27EA3C7ADF8F6F7F4F4F4F4F4F4F7F6F7A3C6AB6BB17C72B88376B783
+        73B78053B8684FBA5D49C8530031009A949AE9E4E90000004BB64861BE635ABA
+        664ABB5A45B95E45BC6138B95984C996FAF6F9F5F4F5F5F4F5FAF6F986C7963C
+        B65949BD6044BB5C4CB95D59B9635FBE5E49B649000100E9E3E9FCFAFC111311
+        20701963C55A6DC17368BE6E69C0746AC2755FBF6C98CEA1FAF5F8F5F3F5F5F3
+        F5F9F5F995CEA05DC06D6CC27766C27069BF6D73C17162C659226F1B121510FC
+        F9FCFFFFFF8E868F00220051AD397DCD717FC2787BC17477C5776BC073A8CFAB
+        FFFBFFFEFAFFFEFAFFFFFBFFA5D2A96BBF7076C47874C3747BC4797CCB734EAE
+        3B0022008E888FFFFFFFFFFFFFE6E3E735353518490671CA5591D2878DC88485
+        C88083C77BA6CBA0D0DBD0CFDCCECEDACDD2DAD0A2C8A183C57D88C87C8ECA85
+        8FD38571C9561B4B08333634E4E3E6FFFFFFFFFFFFFFFFFFBDB7BE181616265C
+        137FD060A4DE98A6D49D9FCD8C99CC8D8FC58C92C98796C68793C78C97C98C9D
+        CE90A4D39CA7DE9786CE602E5C13161617BBB8BEFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFAEA8AF17161618460369B246ADE38EC2E6AEB9DEB1B0DCADB5DCA6BDD7
+        ACB8DBAABBE0ADBBE6B2A6E2926CB0461E4502151618ACA7B0FFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFBEB8BE353532001A002E65147FBE53A8E282
+        B9EA9EC0E8ACC5ECA8BCEA9EACE1847CBC57276712001900333532BCB8BFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E5E78E87910D
+        130C000000001D00184C002C6B15286B1117480200190000000010160C8B8692
+        E5E5E7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFDFAFDE8E4EC939399636A63403E4048404262666392919AEA
+        E4EDFDFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      GlyphSpacing = 5
+      ParentFont = False
+      TabOrder = 0
+      Transparent = True
+      OnClick = btnInserirClick
+    end
+    object btnInutilizar: TNxButton
+      Left = 221
+      Top = 3
+      Width = 200
+      Height = 30
+      Caption = 'N'#227'o Utilizar o Material'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Arial'
+      Font.Style = []
+      Glyph.Data = {
+        AE060000424DAE06000000000000360000002800000017000000170000000100
+        1800000000007806000000000000000000000000000000000000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFEDECE4C8C7B9706E6B39384207081E0000220706
+        1D3B3A4274736FCCCCBFEEEEE8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+        0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7E7C631F1D2C0000500000810005A3
+        000EB4000DB10007AB00009200006C00003C22222A83836EFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFF1F0E93C3B2F00005F000FBE00
+        15BD0013B6000BB20006B30003B50003B00005A700069E00029A000092000040
+        3E3E35F3F3EDFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFEAE9E11C1D210003
+        950021D80015BB0007BF0000C50000C60000C60000C50000C60000C90000C800
+        02B50002990000A10000651E1E21EDEDE7FFFFFFFFFFFF000000FFFFFFFFFFFF
+        363427000AA50025D70017C10000CD0000CB0000C90000CD0000C90000C90000
+        C90000CD0000CD0000D30000CF00029B00019400006C38382EFFFFFFFFFFFF00
+        0000FFFFFF6B6549000286002AE7001DC90000D50908C18180B88E8EBD0C0DB9
+        0000D30000D20000D21214B77A7BB44344AD0000C90000E100039B00009D0000
+        4F6D6D55FFFFFF000000E4E1D80A0F3A0028E70023D00003D40000D28385E1FF
+        FFFFFFFFFFDFE0E90709BC0000D71416BCE8E9ECFFFFFFFFFFFF6364D70000D4
+        0000D40003940000970A0A26E4E4DC000000ABA69800047D002FE80016D70000
+        DA0000D78C8CEEFFFFFFFEFEFDFFFFFFCDCEEC2327BAD7D8EEFFFFFFFEFEFDFF
+        FFFF8F8FED0000D70000E10003B5000399000046ABAB9D0000005C5960001BC8
+        0031E40005DE0000E00000E00808DEBEBEF6FFFFFFFDFDFDFFFFFFFFFFFFFFFF
+        FFFDFDFDFFFFFFC8C8F70C0CDF0000DF0000E40001D700069500007E5B5A5C00
+        00002024330030F60031E20000E20000E40000E30000E20A0AE2C9C9FAFFFFFE
+        FDFDFDFEFEFEFDFDFDFFFFFED7D6FC1313E30000E20000E30000E50000E80007
+        980000A11D1C28000000000830003AFF002EE40000E80000E80000E80000E900
+        00E83338DDEEEFF9FFFFFEFDFDFDFFFFFEEFF1F93034DE0000E70000E90000E8
+        0000E80000EF000AA00007AF00001F000000000B32003CFF0033E70000EC0000
+        EC0000EC0000EB2932E2E9EDF6FFFFFFFDFDFDFFFFFDFDFDFDFFFFFFDFE3F41C
+        24E10000EC0000EC0000ED0000F1000CA0000CB400022200000000072F003AFF
+        0039EC0008EE0000F00000F0202BEBE5ECF8FFFFFFFEFEFDFFFFFEFFFFFEFFFF
+        FEFEFEFDFFFFFFDEE4F71925EA0000F00000F40002E8000FA0000CB700002000
+        00001D1C28002CF0003CF60020EF0000F30000F39998F9FFFFFFFDFDFDFFFFFF
+        B4B4FB0000F1A9A9FBFFFFFFFEFEFDFFFFFF9595F90000F30000FB000BCC0012
+        A70006AD21202B0000005B5653001BB7003FFF0036EF0004F60000F65050F7FF
+        FFFFFFFFFFCFCFFD0505F50000F50000F4C8C8FCFFFFFEFFFFFF7374F80000F7
+        0001F60012B30014B400008A5C5A5A000000AAA898000051003EFF003DF5002F
+        F10000FA0000F92828F94949FA0101F80000F90000F90000F90000F85858F94B
+        4BFA0000F90000FF0015C30018B20015BF000049ADAC9D000000E4E4DC0A0518
+        0019CE0045FF003EF3002AF20001FB0000FD0000F90000FA0000FA0000FA0000
+        FA0000FA0000FA0000FF0000FC0015D1001DB4001CC00005B00A0822E3E3DC00
+        0000FFFFFF6C6B5300004D002EF10043FF003DF30036EF0011F70000FF0000FF
+        0000FF0000FE0000FF0000FF0000FF000AEE0021CA0021C2001FC40013CA0000
+        556C6C53FFFFFF000000FFFFFFFFFFFF38372B0000700023E30042FF003CF700
+        3EEE0038EB0021EF0015F20011F40013EF001CE6002AD2002ACB0025CE0025CD
+        0012C800007837362BFFFFFFFFFFFF000000FFFFFFFFFFFFECECE51E1D1F0000
+        720017E40038F60043FD003BF3003AEC0037E60035E10032DD0030DA002DD800
+        2FD90023D1000DD60000791C1B1EEBEBE4FFFFFFFFFFFF000000FFFFFFFFFFFF
+        FFFFFFF2F2EB3D3D310000530000C0000EE2002DF70035F40035ED0034E90031
+        E4002CE40024E50009D90000C20000573D3C31F1F1EAFFFFFFFFFFFFFFFFFF00
+        0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF82826722212E00005A0000A20000E1
+        0002FF0004FF0001FF0000E20000A500005C21202E808065FFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEEEEE5CB
+        CBBA73736D3A3A4707062F00003107062F3A3A4771716DCACAB8EDEDE5FFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000}
+      GlyphSpacing = 5
+      ParentFont = False
+      TabOrder = 1
+      Transparent = True
+      OnClick = btnInutilizarClick
+    end
+  end
+end

@@ -1,0 +1,175 @@
+object frmProcesso_ES_OS: TfrmProcesso_ES_OS
+  Left = 242
+  Top = 166
+  Width = 928
+  Height = 480
+  Caption = 'frmProcesso_ES_OS'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object SMDBGrid2: TSMDBGrid
+    Left = 0
+    Top = 0
+    Width = 912
+    Height = 442
+    Align = alClient
+    Ctl3D = False
+    DataSource = DMProcesso_ES.DSOS_Proc
+    Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
+    ParentCtl3D = False
+    ReadOnly = True
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Style = []
+    OnKeyDown = SMDBGrid2KeyDown
+    Flat = True
+    BandsFont.Charset = DEFAULT_CHARSET
+    BandsFont.Color = clWindowText
+    BandsFont.Height = -11
+    BandsFont.Name = 'MS Sans Serif'
+    BandsFont.Style = []
+    Groupings = <>
+    GridStyle.Style = gsCustom
+    GridStyle.OddColor = clWindow
+    GridStyle.EvenColor = clWindow
+    TitleHeight.PixelCount = 24
+    FooterColor = clBtnFace
+    ExOptions = [eoENTERlikeTAB, eoKeepSelection, eoStandardPopup, eoBLOBEditor, eoTitleWordWrap]
+    OnGetCellParams = SMDBGrid2GetCellParams
+    RegistryKey = 'Software\Scalabium'
+    RegistrySection = 'SMDBGrid'
+    WidthOfIndicator = 11
+    DefaultRowHeight = 16
+    ScrollBars = ssHorizontal
+    ColCount = 7
+    RowCount = 2
+    Columns = <
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'ITEM_PROC'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Item'
+        Title.Color = 16762566
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Width = 60
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'ORDEM'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Ordem'
+        Title.Color = 16762566
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'RETRABALHO'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Retrabalho'
+        Title.Color = 16762566
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NOME_PROCESSO'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Processo'
+        Title.Color = 16762566
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Width = 326
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NOME_SERVICO_OS'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Servi'#231'o OS'
+        Title.Color = 16762566
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Width = 237
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DTCONCLUIDO'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Concluido'
+        Title.Color = 16762566
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Visible = True
+      end>
+  end
+end

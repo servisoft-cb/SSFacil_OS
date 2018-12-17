@@ -1,0 +1,156 @@
+unit UDMImpOrdemServico;
+
+interface
+
+uses
+  SysUtils, Classes, FMTBcd, frxClass, frxDBSet, DB, DBClient, Provider,
+  SqlExpr, frxChBox, frxExportMail, frxExportPDF, frxOLE, frxBarcode;
+
+
+type
+  TDMImpOrdemServico = class(TDataModule)
+    frxReport1: TfrxReport;
+    frxPDFExport1: TfrxPDFExport;
+    frxMailExport1: TfrxMailExport;
+    frxCheckBoxObject1: TfrxCheckBoxObject;
+    sdsOSImp: TSQLDataSet;
+    dspOSImp: TDataSetProvider;
+    cdsOSImp: TClientDataSet;
+    dsOSImp: TDataSource;
+    sdsOsImp_Proc: TSQLDataSet;
+    dspOsImp_Proc: TDataSetProvider;
+    cdsOsImp_Proc: TClientDataSet;
+    dsOsImp_Proc: TDataSource;
+    frxOsImp_Proc: TfrxDBDataset;
+    cdsOSImpID: TIntegerField;
+    cdsOSImpNUM_OS: TIntegerField;
+    cdsOSImpNUM_NOTA: TIntegerField;
+    cdsOSImpSERIE_NOTA: TIntegerField;
+    cdsOSImpID_CLIENTE: TIntegerField;
+    cdsOSImpDTEMISSAO: TDateField;
+    cdsOSImpDTRECEBIMENTO: TDateField;
+    cdsOSImpDT_AGENDA: TDateField;
+    cdsOSImpQTD_DIAS_ENT: TIntegerField;
+    cdsOSImpFIL_NOME: TStringField;
+    cdsOSImpNOME_INTERNO: TStringField;
+    cdsOSImpCLI_NOME: TStringField;
+    cdsOSImpCLI_FANTASIA: TStringField;
+    cdsOSImpID_PRODUTO: TIntegerField;
+    cdsOSImpQTD: TIntegerField;
+    cdsOSImpDM: TFloatField;
+    cdsOSImpREFERENCIA: TStringField;
+    cdsOSImpNOME_PRODUTO: TStringField;
+    cdsOSImpOBS: TMemoField;
+    cdsOSImpOBS_CONDENTRADA: TMemoField;
+    cdsOSImpNUM_ORCAMENTO: TIntegerField;
+    cdsOSImpDESC_TIPO_SERVICO: TStringField;
+    frxOSImp: TfrxDBDataset;
+    cdsOsImp_ProcID: TIntegerField;
+    cdsOsImp_ProcITEM: TIntegerField;
+    cdsOsImp_ProcITEM_PROC: TIntegerField;
+    cdsOsImp_ProcID_PROCESSO: TIntegerField;
+    cdsOsImp_ProcQTD_HORAS: TFloatField;
+    cdsOsImp_ProcDTENTREGA: TDateField;
+    cdsOsImp_ProcOBS: TMemoField;
+    cdsOsImp_ProcQTD: TIntegerField;
+    cdsOsImp_ProcID_SERVICO_OS: TIntegerField;
+    cdsOsImp_ProcNOME_PROCESSO: TStringField;
+    cdsOsImp_ProcTERCEIRO: TStringField;
+    cdsOsImp_ProcNOME_SERVICO_OS: TStringField;
+    cdsOsImp_ProcTERCEIRO_SER: TStringField;
+    cdsOsImp_ProcVLR_HORA: TFloatField;
+    sdsOSImp_Mat: TSQLDataSet;
+    dspOSImp_Mat: TDataSetProvider;
+    cdsOSImp_Mat: TClientDataSet;
+    dsOSImp_Mat: TDataSource;
+    frxOSImp_Mat: TfrxDBDataset;
+    cdsOSImp_MatID: TIntegerField;
+    cdsOSImp_MatITEM: TIntegerField;
+    cdsOSImp_MatITEM_MAT: TIntegerField;
+    cdsOSImp_MatID_PRODUTO: TIntegerField;
+    cdsOSImp_MatQTD: TFloatField;
+    cdsOSImp_MatVLR_UNITARIO: TFloatField;
+    cdsOSImp_MatVLR_TOTAL: TFloatField;
+    cdsOSImp_MatQTD_RESTANTE: TFloatField;
+    cdsOSImp_MatQTD_FATURADO: TFloatField;
+    cdsOSImp_MatFATURAR: TStringField;
+    cdsOSImp_MatQTD_AFATURAR: TFloatField;
+    cdsOSImp_MatNOME: TStringField;
+    cdsOSImp_MatREFERENCIA: TStringField;
+    cdsOsImp_ProcCODBARRA: TStringField;
+    cdsOSImp_MatUNIDADE: TStringField;
+    cdsOSImpRASTREABILIDADE: TStringField;
+    cdsOSImpDESCRICAO_SERVICO: TStringField;
+    cdsOsImp_ProcORDEM: TIntegerField;
+    cdsOSImp_MatCODBARRA: TStringField;
+    cdsOsImp_ProcRETRABALHO: TStringField;
+    cdsOsImp_ProcDESC_RETRABALHO: TStringField;
+    cdsOSImpNOME_CONTATO: TStringField;
+    cdsOSImpEMAIL_NFE: TStringField;
+    cdsOSImpENDERECO: TStringField;
+    cdsOSImpCIDADE: TStringField;
+    cdsOSImpUF: TStringField;
+    cdsOSImpTELEFONE: TStringField;
+    sdsOSImp_Itens: TSQLDataSet;
+    dspOSImp_Itens: TDataSetProvider;
+    cdsOSImp_Itens: TClientDataSet;
+    dsOSImp_Itens: TDataSource;
+    cdsOSImp_ItensESCOPO: TMemoField;
+    frxOSItem_Itens: TfrxDBDataset;
+    sdsOSImp_Custo: TSQLDataSet;
+    dspOSImp_Custo: TDataSetProvider;
+    cdsOSImp_Custo: TClientDataSet;
+    dsOSImp_Custo: TDataSource;
+    cdsOSImp_CustoPRECO: TFloatField;
+    frxOSImp_Custo: TfrxDBDataset;
+    cdsOSImp_CustoPRAZO_DIAS: TIntegerField;
+    cdsOSImpTIPO_FRETE: TStringField;
+    cdsOSImp_ItensOBS: TMemoField;
+    sdsOSImp_Ass: TSQLDataSet;
+    dspOSImp_Ass: TDataSetProvider;
+    cdsOSImp_Ass: TClientDataSet;
+    dsOSImp_Ass: TDataSource;
+    cdsOSImp_AssID: TIntegerField;
+    cdsOSImp_AssITEM: TIntegerField;
+    cdsOSImp_AssID_FUNCIONARIO: TIntegerField;
+    cdsOSImp_AssNOME: TStringField;
+    cdsOSImp_AssEMAIL: TStringField;
+    cdsOSImp_AssDDD: TIntegerField;
+    cdsOSImp_AssFONE: TStringField;
+    cdsOSImp_AssFUNCAO: TStringField;
+    frxOSImp_Ass: TfrxDBDataset;
+    qFilial: TSQLQuery;
+    qFilialENDLOGO: TStringField;
+    cdsOSImpDTINICIO: TDateField;
+    procedure frxReport1Preview(Sender: TObject);
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DMImpOrdemServico: TDMImpOrdemServico;
+
+implementation
+
+uses DmdDatabase;
+
+{$R *.dfm}
+
+procedure TDMImpOrdemServico.frxReport1Preview(Sender: TObject);
+begin
+  if (FileExists(qFilialENDLOGO.AsString)) then
+  begin
+    if frxReport1.FindComponent('Picture1')<> nil then
+      TfrxPictureView(frxReport1.FindComponent('Picture1')).Picture.LoadFromFile(qFilialENDLOGO.AsString);
+  end;
+end;
+
+procedure TDMImpOrdemServico.DataModuleCreate(Sender: TObject);
+begin
+  qFilial.Open;
+end;
+
+end.
