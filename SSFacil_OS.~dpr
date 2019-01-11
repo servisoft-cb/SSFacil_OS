@@ -90,7 +90,8 @@ uses
   ApiIbpt in '..\ssfacil\ApiIbpt.pas',
   uLkJSON in '..\ssfacil\lkJSON-1.07\uLkJSON.pas',
   UCadOrdemServico_Lib in 'UCadOrdemServico_Lib.pas' {frmCadOrdemServico_Lib},
-  uConsAgenda in '..\ssfacil\uConsAgenda.pas' {frmConsAgenda};
+  uConsAgenda in '..\ssfacil\uConsAgenda.pas' {frmConsAgenda},
+  UDMCadAgenda in '..\ssfacil\UDMCadAgenda.pas' {DMCadAgenda: TDataModule};
 
 {$R *.res}
 

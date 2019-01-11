@@ -3,12 +3,11 @@ unit UCadOrdemServico;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, Buttons, Grids, SMDBGrid, UDMCadOrdemServico,
-  DB, DBGrids, ExtCtrls, StdCtrls, FMTBcd, SqlExpr, RzTabs, Mask, DBCtrls, ToolEdit, CurrEdit, RxLookup, RxDBComb, Menus,
-  RXDBCtrl, RzEdit, RzDBEdit, RzButton, UEscolhe_Filial, UCBase, RzPanel, dbXPress, NxCollection, StrUtils,
-  DateUtils, ComCtrls, RzDTP, RzDBDTP, RzLstBox, RzChkLst,
-  SMBox, ToolWin, SMToolBar, NxScrollControl, NxToolBox, UCadOrdemServico_Proc, UCadOrdemServico_Mat, UCadOrdemServico_Terc,
-  ImgList, NxEdit;
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, Buttons, Grids, SMDBGrid, UDMCadOrdemServico, SMBox,
+  DB, DBGrids, ExtCtrls, StdCtrls, FMTBcd, SqlExpr, RzTabs, Mask, DBCtrls, ToolEdit, CurrEdit, RxLookup, RxDBComb, Menus, NxEdit,
+  RXDBCtrl, RzEdit, RzDBEdit, RzButton, UEscolhe_Filial, UCBase, RzPanel, dbXPress, NxCollection, StrUtils, DateUtils, ComCtrls,
+  RzDTP, RzDBDTP, RzLstBox, RzChkLst, ToolWin, SMToolBar, NxScrollControl, NxToolBox, UCadOrdemServico_Proc, UCadOrdemServico_Mat,
+  UCadOrdemServico_Terc, ImgList;
 
 type
   TfrmCadOrdemServico = class(TForm)
@@ -212,14 +211,6 @@ type
     btnEncerrar_OS: TNxButton;
     TS_Encerramento: TRzTabSheet;
     Panel16: TPanel;
-    Shape14: TShape;
-    Label55: TLabel;
-    Shape15: TShape;
-    Label56: TLabel;
-    Shape16: TShape;
-    Label57: TLabel;
-    Shape17: TShape;
-    Label58: TLabel;
     DBMemo2: TDBMemo;
     Label54: TLabel;
     Label59: TLabel;
@@ -318,7 +309,7 @@ type
     { Private declarations }
     vTipoNotaAnt: String;
     vID_Cliente_Ant: Integer;
-    vQtd_Ant : Integer;
+    vQtd_Ant: Integer;
 
     fDMCadOrdemServico: TDMCadOrdemServico;
     ffrmEscolhe_Filial: TfrmEscolhe_Filial;
@@ -348,18 +339,17 @@ type
 
     procedure prc_Abrir_cdsOrdemServico_Enc;
 
-    function fnc_Existe_Baixa(Ordem : Integer) : Boolean;
+    function fnc_Existe_Baixa(Ordem: Integer): Boolean;
 
     procedure prc_VerBaixas;
-    function fnc_Verifica_Baixa_Proc(Num_OS, Ordem : Integer) : Boolean;
-    function fnc_Encerrar(ID : Integer) : Boolean;
+    function fnc_Verifica_Baixa_Proc(Num_OS, Ordem: Integer): Boolean;
+    function fnc_Encerrar(ID: Integer): Boolean;
 
   public
     { Public declarations }
     cTXTStream: TMemoryStream;
     cXMLStream: TMemoryStream;
     sXMLNFSe: TMemoryStream;
-
   end;
 
 var
@@ -433,8 +423,7 @@ begin
 
   if not (fDMCadOrdemServico.cdsOrdemServico_Itens.State in [dsEdit,dsInsert]) then
     fDMCadOrdemServico.cdsOrdemServico_Itens.Edit;
-  if (vQtd_Ant <> fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsInteger) or (fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.IsNull)
-    or (fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsInteger <= 0) then
+  if (vQtd_Ant <> fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsInteger) or (fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.IsNull) then
     fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsInteger := fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsInteger;
 
   fDMCadOrdemServico.prc_Gravar;
@@ -496,8 +485,8 @@ end;
 
 procedure TfrmCadOrdemServico.FormShow(Sender: TObject);
 var
-  i : Integer;
-  vData : TDateTime;
+  i: Integer;
+  vData: TDateTime;
 begin
   fDMCadOrdemServico := TDMCadOrdemServico.Create(Self);
 
@@ -558,14 +547,14 @@ begin
                                       + ' AND ((CLI.NOME LIKE ' + QuotedStr('%'+Edit2.Text+'%') + ')'
                                       + ' OR (CLI.FANTASIA LIKE ' + QuotedStr('%'+Edit2.Text+'%') + '))';
     case ComboBox1.ItemIndex of
-      1 : fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('1');
-      2 : fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('2');
-      3 : fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('3');
-      4 : fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('4');
-      5 : fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('5');
-      6 : fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('6');
-      7 : fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('8');
-      8 : fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('9');
+      1: fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('1');
+      2: fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('2');
+      3: fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('3');
+      4: fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('4');
+      5: fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('5');
+      6: fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('6');
+      7: fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('8');
+      8: fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText + ' AND OS.STATUS = ' + QuotedStr('9');
     end;
 
   end;
@@ -1265,7 +1254,7 @@ end;
 procedure TfrmCadOrdemServico.N1Click(Sender: TObject);
 var
  Reg: TBookMark;
- vAux : Integer;
+ vAux: Integer;
 begin
   if not(fDMCadOrdemServico.cdsOrdemServico.State in [dsEdit,dsInsert]) then
   begin
@@ -1327,7 +1316,7 @@ begin
   LockWindowUpDate(0);
 end;
 
-function TfrmCadOrdemServico.fnc_Existe_Baixa(Ordem : Integer) : Boolean;
+function TfrmCadOrdemServico.fnc_Existe_Baixa(Ordem: Integer): Boolean;
 begin
   Result := False;
   fDMCadOrdemServico.qVerifica_Baixa.Close;
@@ -1425,11 +1414,11 @@ end;
 
 procedure TfrmCadOrdemServico.btnCalcular_CustoClick(Sender: TObject);
 var
-  vVlrProcesso : Real;
-  vVlrProcesso_Ret : Real;
-  vVlrMaterial : Real;
-  vVlrMaterial_Prev : Real;
-  vVlrTerceiro : Real;
+  vVlrProcesso: Real;
+  vVlrProcesso_Ret: Real;
+  vVlrMaterial: Real;
+  vVlrMaterial_Prev: Real;
+  vVlrTerceiro: Real;
 begin
   vVlrProcesso := 0;
   vVlrProcesso_Ret := 0;
@@ -1511,8 +1500,8 @@ end;
 
 procedure TfrmCadOrdemServico.prc_Montar_Ordem;
 var
-  vItemAux : Integer;
-  vOrdem : Integer;
+  vItemAux: Integer;
+  vOrdem: Integer;
 begin
   vItemAux := fDMCadOrdemServico.cdsOrdemServico_ProcITEM_PROC.AsInteger;
   vOrdem   := 0;
@@ -1533,7 +1522,7 @@ end;
 procedure TfrmCadOrdemServico.btnEncerrar_OSClick(Sender: TObject);
 var
   ffrmCadOrdemServico_Enc: TfrmCadOrdemServico_Enc;
-  vIDAux : Integer;
+  vIDAux: Integer;
 begin
   if not(fDMCadOrdemServico.cdsOrdemServico_Consulta.Active) or (fDMCadOrdemServico.cdsOrdemServico_ConsultaID.AsInteger <= 0) then
   begin
@@ -1589,10 +1578,10 @@ end;
 
 procedure TfrmCadOrdemServico.btnRetrabalhoClick(Sender: TObject);
 var
-  vID_Processo : Integer;
-  vDTEntrega : TDateTime;
-  vObs : WideString;
-  vID_OS_Servico : Integer;
+  vID_Processo: Integer;
+  vDTEntrega: TDateTime;
+  vObs: WideString;
+  vID_OS_Servico: Integer;
 begin
   if fDMCadOrdemServico.cdsOrdemServico_ProcITEM_PROC.AsInteger <= 0 then
   begin
@@ -1643,7 +1632,7 @@ end;
 procedure TfrmCadOrdemServico.NxButton1Click(Sender: TObject);
 var
   fDMCopiarOrc: TDMCopiarOrc;
-  x : integer;
+  x: integer;
 begin
   if fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsInteger <= 0 then
     exit;
@@ -1734,10 +1723,10 @@ begin
       while not fDMCopiarOrc.cdsOrc_Setor_Proc.Eof do
       begin
         fDMCadOrdemServico.prc_Inserir_Proc;
-        fDMCadOrdemServico.cdsOrdemServico_ProcID_PROCESSO.AsInteger := fDMCopiarOrc.cdsOrc_Setor_ProcID_PROCESSO.AsInteger;
+        fDMCadOrdemServico.cdsOrdemServico_ProcID_PROCESSO.AsInteger  := fDMCopiarOrc.cdsOrc_Setor_ProcID_PROCESSO.AsInteger;
         fDMCadOrdemServico.cdsOrdemServico_ProcNOME_PROCESSO.AsString := fDMCopiarOrc.cdsOrc_Setor_ProcDESCRICAO.AsString;
         fDMCadOrdemServico.cdsOrdemServico_ProcQTD_HORAS.AsFloat := fDMCopiarOrc.cdsOrc_Setor_ProcTOTAL_HORA.AsFloat;
-        fDMCadOrdemServico.cdsOrdemServico_ProcID_PROCESSO.AsInteger := fDMCopiarOrc.cdsOrc_Setor_ProcID_PROCESSO.AsInteger;
+        fDMCadOrdemServico.cdsOrdemServico_ProcID_PROCESSO.AsInteger  := fDMCopiarOrc.cdsOrc_Setor_ProcID_PROCESSO.AsInteger;
         fDMCadOrdemServico.cdsOrdemServico_Proc.Post;
         fDMCopiarOrc.cdsOrc_Setor_Proc.Next;
       end;
@@ -1754,7 +1743,7 @@ begin
   vQtd_Ant         := fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsInteger;
 end;
 
-function TfrmCadOrdemServico.fnc_Encerrar(ID : Integer): Boolean;
+function TfrmCadOrdemServico.fnc_Encerrar(ID: Integer): Boolean;
 var
   sds: TSQLDataSet;
 begin
@@ -1801,7 +1790,6 @@ begin
   ffrmCadOrdemServico_Lib.fDMCadOrdemServico := fDMCadOrdemServico;
   ffrmCadOrdemServico_Lib.ShowModal;
   FreeAndNil(ffrmCadOrdemServico_Lib);
-
 end;
 
 end.

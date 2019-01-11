@@ -30,9 +30,9 @@ object frmCadProduto: TfrmCadProduto
   object RzPageControl1: TRzPageControl
     Left = 0
     Top = 0
-    Width = 911
-    Height = 614
-    ActivePage = TS_Cadastro
+    Width = 919
+    Height = 621
+    ActivePage = TS_Consulta
     ActivePageDefault = TS_Consulta
     Align = alClient
     BackgroundColor = 16759929
@@ -40,7 +40,7 @@ object frmCadProduto: TfrmCadProduto
     FlatColor = clGray
     ParentBackgroundColor = False
     TabColors.Shadow = clSilver
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     OnChange = RzPageControl1Change
     FixedDimension = 19
@@ -48,9 +48,9 @@ object frmCadProduto: TfrmCadProduto
       Caption = 'Tela de Consulta'
       object SMDBGrid1: TSMDBGrid
         Left = 0
-        Top = 105
-        Width = 907
-        Height = 395
+        Top = 101
+        Width = 915
+        Height = 406
         Align = alClient
         Ctl3D = False
         DataSource = dmCadProduto.dsProduto_Consulta
@@ -84,7 +84,7 @@ object frmCadProduto: TfrmCadProduto
         WidthOfIndicator = 23
         DefaultRowHeight = 17
         ScrollBars = ssHorizontal
-        ColCount = 8
+        ColCount = 9
         RowCount = 2
         Columns = <
           item
@@ -117,7 +117,7 @@ object frmCadProduto: TfrmCadProduto
           item
             Expanded = False
             FieldName = 'NCM'
-            Width = 98
+            Width = 87
             Visible = True
           end
           item
@@ -132,21 +132,28 @@ object frmCadProduto: TfrmCadProduto
             Title.Caption = 'Unidade'
             Width = 48
             Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'NOME_CLIENTE'
+            Title.Caption = 'Cliente'
+            Visible = True
           end>
       end
       object Panel2: TPanel
         Left = 0
         Top = 0
-        Width = 907
-        Height = 34
+        Width = 915
+        Height = 30
         Align = alTop
         Color = clSilver
         TabOrder = 1
         object btnInserir: TNxButton
-          Left = 4
-          Top = 2
+          Left = 1
+          Top = 1
           Width = 154
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Inserir'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -217,10 +224,11 @@ object frmCadProduto: TfrmCadProduto
           OnClick = btnInserirClick
         end
         object btnExcluir: TNxButton
-          Left = 157
-          Top = 2
+          Left = 155
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Excluir'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -292,10 +300,11 @@ object frmCadProduto: TfrmCadProduto
           OnClick = btnExcluirClick
         end
         object btnPesquisar: TNxButton
-          Left = 309
-          Top = 2
+          Left = 308
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Pesquisar'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -366,8 +375,8 @@ object frmCadProduto: TfrmCadProduto
       end
       object StaticText1: TStaticText
         Left = 0
-        Top = 574
-        Width = 907
+        Top = 581
+        Width = 915
         Height = 17
         Align = alBottom
         BorderStyle = sbsSunken
@@ -382,8 +391,8 @@ object frmCadProduto: TfrmCadProduto
       end
       object pnlCons_Produto: TPanel
         Left = 0
-        Top = 34
-        Width = 907
+        Top = 30
+        Width = 915
         Height = 71
         Align = alTop
         Color = clSilver
@@ -521,7 +530,7 @@ object frmCadProduto: TfrmCadProduto
         end
         object ComboBox2: TComboBox
           Left = 73
-          Top = 46
+          Top = 45
           Width = 165
           Height = 21
           Style = csDropDownList
@@ -539,8 +548,8 @@ object frmCadProduto: TfrmCadProduto
       end
       object DBMemo2: TDBMemo
         Left = 0
-        Top = 500
-        Width = 907
+        Top = 507
+        Width = 915
         Height = 74
         Align = alBottom
         Color = 13948116
@@ -558,16 +567,17 @@ object frmCadProduto: TfrmCadProduto
       object Panel1: TPanel
         Left = 0
         Top = 0
-        Width = 907
-        Height = 36
+        Width = 915
+        Height = 30
         Align = alTop
         Color = 8404992
         TabOrder = 0
         object btnAlterar: TNxButton
-          Left = 4
-          Top = 4
+          Left = 1
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Alterar'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -636,10 +646,11 @@ object frmCadProduto: TfrmCadProduto
           OnClick = btnAlterarClick
         end
         object btnCancelar: TNxButton
-          Left = 310
-          Top = 4
+          Left = 154
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Cancelar'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -708,10 +719,11 @@ object frmCadProduto: TfrmCadProduto
           OnClick = btnCancelarClick
         end
         object btnConfirmar: TNxButton
-          Left = 157
-          Top = 4
+          Left = 307
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Confirmar'
           Enabled = False
           Font.Charset = DEFAULT_CHARSET
@@ -783,18 +795,18 @@ object frmCadProduto: TfrmCadProduto
       end
       object pnlCadastro: TPanel
         Left = 0
-        Top = 36
-        Width = 907
-        Height = 555
+        Top = 30
+        Width = 915
+        Height = 568
         Align = alClient
         Enabled = False
         TabOrder = 1
         DesignSize = (
-          907
-          555)
+          915
+          568)
         object Label1: TLabel
           Left = 55
-          Top = 61
+          Top = 59
           Width = 31
           Height = 13
           Alignment = taRightJustify
@@ -820,7 +832,7 @@ object frmCadProduto: TfrmCadProduto
         end
         object Label7: TLabel
           Left = 31
-          Top = 44
+          Top = 41
           Width = 55
           Height = 13
           Alignment = taRightJustify
@@ -960,8 +972,8 @@ object frmCadProduto: TfrmCadProduto
           Caption = 'Tipo Registro:'
         end
         object Label14: TLabel
-          Left = 30
-          Top = 119
+          Left = 31
+          Top = 117
           Width = 55
           Height = 13
           Alignment = taRightJustify
@@ -969,7 +981,7 @@ object frmCadProduto: TfrmCadProduto
         end
         object Label15: TLabel
           Left = 20
-          Top = 137
+          Top = 135
           Width = 66
           Height = 13
           Alignment = taRightJustify
@@ -1116,7 +1128,7 @@ object frmCadProduto: TfrmCadProduto
           OnExit = RxDBComboBox7Exit
         end
         object DBEdit12: TDBEdit
-          Left = 88
+          Left = 89
           Top = 111
           Width = 117
           Height = 19
@@ -1128,7 +1140,7 @@ object frmCadProduto: TfrmCadProduto
           TabOrder = 5
         end
         object DBEdit13: TDBEdit
-          Left = 88
+          Left = 89
           Top = 129
           Width = 117
           Height = 19
@@ -1182,7 +1194,7 @@ object frmCadProduto: TfrmCadProduto
           TabOrder = 10
         end
         object DBMemo1: TDBMemo
-          Left = 88
+          Left = 89
           Top = 168
           Width = 521
           Height = 89
@@ -1193,13 +1205,304 @@ object frmCadProduto: TfrmCadProduto
           ScrollBars = ssVertical
           TabOrder = 11
         end
+        object RzPageControl2: TRzPageControl
+          Left = 1
+          Top = 302
+          Width = 913
+          Height = 265
+          ActivePage = TabSheet1
+          Align = alBottom
+          TabIndex = 0
+          TabOrder = 12
+          FixedDimension = 19
+          object TabSheet1: TRzTabSheet
+            Caption = 'Dados do Gerador'
+            OnEnter = TabSheet1Enter
+            object Label4: TLabel
+              Left = 52
+              Top = 61
+              Width = 98
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Fabricante do Motor:'
+            end
+            object Label11: TLabel
+              Left = 96
+              Top = 41
+              Width = 54
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Montadora:'
+            end
+            object Label12: TLabel
+              Left = 93
+              Top = 97
+              Width = 57
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'N'#186' de S'#233'rie:'
+            end
+            object Label13: TLabel
+              Left = 105
+              Top = 115
+              Width = 45
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Pot'#234'ncia:'
+            end
+            object Label16: TLabel
+              Left = 72
+              Top = 133
+              Width = 78
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Ano Fabrica'#231#227'o:'
+            end
+            object Label20: TLabel
+              Left = 476
+              Top = 39
+              Width = 90
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'N'#186' de S'#233'rie Equip.:'
+            end
+            object Label21: TLabel
+              Left = 457
+              Top = 59
+              Width = 109
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Fabricante do Gerador:'
+            end
+            object Label22: TLabel
+              Left = 468
+              Top = 95
+              Width = 98
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'N'#186' de S'#233'rie Gerador:'
+            end
+            object Label23: TLabel
+              Left = 528
+              Top = 77
+              Width = 38
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Modelo:'
+            end
+            object Label24: TLabel
+              Left = 496
+              Top = 113
+              Width = 70
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Modelo USCA:'
+            end
+            object Label26: TLabel
+              Left = 527
+              Top = 131
+              Width = 39
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Tens'#227'o:'
+            end
+            object Label27: TLabel
+              Left = 112
+              Top = 79
+              Width = 38
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Modelo:'
+            end
+            object Label28: TLabel
+              Left = 115
+              Top = 21
+              Width = 35
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Cliente:'
+            end
+            object RxDBLookupCombo1: TRxDBLookupCombo
+              Left = 153
+              Top = 53
+              Width = 224
+              Height = 21
+              DropDownCount = 8
+              DropDownWidth = 500
+              Ctl3D = False
+              DataField = 'ID_FABRICANTE_MOTOR'
+              DataSource = dmCadProduto.dsProdutoGerador
+              LookupField = 'ID'
+              LookupDisplay = 'NOME'
+              LookupSource = dmCadProduto.dsFabricanteMotor
+              ParentCtl3D = False
+              TabOrder = 2
+            end
+            object RxDBLookupCombo4: TRxDBLookupCombo
+              Left = 153
+              Top = 33
+              Width = 224
+              Height = 21
+              DropDownCount = 8
+              DropDownWidth = 500
+              Ctl3D = False
+              DataField = 'ID_MOTADORA'
+              DataSource = dmCadProduto.dsProdutoGerador
+              LookupField = 'ID'
+              LookupDisplay = 'NOME'
+              LookupSource = dmCadProduto.dsMarca_Montadora
+              ParentCtl3D = False
+              TabOrder = 1
+            end
+            object DBEdit1: TDBEdit
+              Left = 153
+              Top = 91
+              Width = 224
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'NRO_SERIE'
+              DataSource = dmCadProduto.dsProdutoGerador
+              ParentCtl3D = False
+              TabOrder = 3
+            end
+            object DBEdit3: TDBEdit
+              Left = 153
+              Top = 109
+              Width = 224
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'POTENCIA'
+              DataSource = dmCadProduto.dsProdutoGerador
+              ParentCtl3D = False
+              TabOrder = 4
+            end
+            object DBEdit5: TDBEdit
+              Left = 153
+              Top = 127
+              Width = 120
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'ANO_FABR'
+              DataSource = dmCadProduto.dsProdutoGerador
+              ParentCtl3D = False
+              TabOrder = 5
+            end
+            object DBEdit10: TDBEdit
+              Left = 569
+              Top = 33
+              Width = 224
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'NRO_SERIE_EQUIP'
+              DataSource = dmCadProduto.dsProdutoGerador
+              ParentCtl3D = False
+              TabOrder = 6
+            end
+            object RxDBLookupCombo5: TRxDBLookupCombo
+              Left = 569
+              Top = 51
+              Width = 224
+              Height = 21
+              DropDownCount = 8
+              DropDownWidth = 500
+              Ctl3D = False
+              DataField = 'ID_FABRICANTE_GERADOR'
+              DataSource = dmCadProduto.dsProdutoGerador
+              LookupField = 'ID'
+              LookupDisplay = 'NOME'
+              LookupSource = dmCadProduto.dsFabircanteGerador
+              ParentCtl3D = False
+              TabOrder = 7
+            end
+            object DBEdit11: TDBEdit
+              Left = 569
+              Top = 89
+              Width = 224
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'NRO_SERIE_GERADOR'
+              DataSource = dmCadProduto.dsProdutoGerador
+              ParentCtl3D = False
+              TabOrder = 9
+            end
+            object DBEdit14: TDBEdit
+              Left = 569
+              Top = 71
+              Width = 224
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'MODELO_GERADOR'
+              DataSource = dmCadProduto.dsProdutoGerador
+              ParentCtl3D = False
+              TabOrder = 8
+            end
+            object DBEdit15: TDBEdit
+              Left = 569
+              Top = 107
+              Width = 224
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'MODELO_USCA'
+              DataSource = dmCadProduto.dsProdutoGerador
+              ParentCtl3D = False
+              TabOrder = 10
+            end
+            object DBEdit16: TDBEdit
+              Left = 569
+              Top = 125
+              Width = 120
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'TENSAO'
+              DataSource = dmCadProduto.dsProdutoGerador
+              ParentCtl3D = False
+              TabOrder = 11
+            end
+            object DBEdit17: TDBEdit
+              Left = 153
+              Top = 73
+              Width = 224
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'MODELO'
+              DataSource = dmCadProduto.dsProdutoGerador
+              ParentCtl3D = False
+              TabOrder = 12
+            end
+            object RxDBLookupCombo6: TRxDBLookupCombo
+              Left = 153
+              Top = 13
+              Width = 640
+              Height = 21
+              DropDownCount = 15
+              DropDownWidth = 500
+              Ctl3D = False
+              DataField = 'ID_CLIENTE'
+              DataSource = dmCadProduto.dsProduto
+              LookupField = 'CODIGO'
+              LookupDisplay = 'NOME'
+              LookupSource = dmCadProduto.dsCliente
+              ParentCtl3D = False
+              TabOrder = 0
+            end
+          end
+        end
       end
     end
   end
   object StaticText2: TStaticText
     Left = 0
-    Top = 614
-    Width = 911
+    Top = 621
+    Width = 919
     Height = 17
     Align = alBottom
     Caption = 'F2 Pesquisar'

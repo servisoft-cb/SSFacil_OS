@@ -95,7 +95,7 @@ UnitOutputDir=C:\Delphi7\SSFacil\DCU
 PackageDLLOutputDir=
 PackageDCPOutputDir=
 SearchPath=
-Packages=vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;dsnapcon;vcldb;soaprtl;VclSmp;dbexpress;dbxcds;webdsnap;websnap;adortl;bdertl;vcldbx;ibxpress;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;IntrawebDB_50_70;Intraweb_50_70;dclOfficeXP;DJCL70;PacoteCJV;qrpt;RLibWinD7vcl;ACBrComum;ACBr_SPED;ACBrDiversos;synapse;ACBrTCP;ACBr_TEFD;RaizeComponentsVcl;RaizeComponentsVclDb;ACBr_Boleto;teeqr
+Packages=vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;dsnapcon;vcldb;soaprtl;VclSmp;dbexpress;dbxcds;webdsnap;websnap;adortl;bdertl;vcldbx;ibxpress;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;IntrawebDB_50_70;Intraweb_50_70;dclOfficeXP;RLibWinD7vcl;teeqr;qrpt;RxBDE7;RxDB7;RxCtl7;NxCollectionRun_d7;NxCommonRun_d7;NxCollectionDsgn_d7;NxCommonDsgn_d7;NxDBGridRun_d7;NxGridRun_d7;NxGridDsgn_d7;NxInspectorRun_d7;NxInspectorDsgn_d7;inetdb;DJCL70;SMCmpntD7;JVCL200_R70;ACBrDiversos;ACBrComum;ACBr_Boleto;synapse;RaizeComponentsVcl;RaizeComponentsVclDb;ACBr_BoletoFC_Fortes;ACBr_CTe;PCN2;ACBrCapicom;ACBrOpenSSL;ACBr_Convenio115;ACBr_SAT;ACBrCTeDacteRLpkg;ACBrMDFeDAMDFeRLpkg;ACBr_MDFe;ACBrNFeDanfeRLpkg;ACBr_NFe2;ACBrNFeDanfeRV;ACBrSerial;ACBrNFSeDanfseRLpkg;ACBr_NFSe;ACBr_SAT_Extrato_Fortes;ACBr_SAT_Extrato_ESCPOS;ACBr_GNRE;ACBr_LFD;ACBr_PAF;ACBr_SPED;ACBr_SEF2;ACBr_Sintegra;ACBrTCP;ACBr_TEFD;UserControlD7_RT;frxTee7;frxIBX7;frxe7;frxDBX7;frx7;frxDB7;frxBDE7;frxADO7;UCDBXD7;TMSD7PERS;TMSD7
 Conditionals=
 DebugSourceDirs=
 UsePackages=0
@@ -111,11 +111,11 @@ ProjectLang=
 RootDir=C:\Program Files (x86)\Borland\Delphi7\Bin\
 [Version Info]
 IncludeVerInfo=1
-AutoIncBuild=1
+AutoIncBuild=0
 MajorVer=1
 MinorVer=0
 Release=0
-Build=20
+Build=19
 Debug=0
 PreRelease=0
 Special=0
@@ -126,7 +126,7 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=
 FileDescription=
-FileVersion=1.0.0.20
+FileVersion=1.0.0.19
 InternalName=
 LegalCopyright=
 LegalTrademarks=
@@ -135,10 +135,21 @@ ProductName=
 ProductVersion=1.0.0.0
 Comments=
 [Excluded Packages]
-C:\Program Files (x86)\FastReports\FastReport 5\LibD7\dclfrxcs7.bpl=FastReport 5.0 Client/Server Components
 C:\Program Files (x86)\FastReports\FastReport 5\LibD7\dclfrxbde7.bpl=FastReport 5.0 BDE Components
+D:\Componentes7\pacotecjvd7sf\PacoteCJV.bpl=Pacote de Componentes CJV
+C:\Program Files (x86)\FastReports\FastReport 5\LibD7\dclfrxcs7.bpl=FastReport 5.0 Client/Server Components
+c:\program files (x86)\borland\delphi7\Projects\Bpl\RLBoletoD7.bpl=RLBoleto (by Produsys Sistemas e Internet
+c:\program files (x86)\borland\delphi7\Projects\Bpl\ZMstr191D7.bpl=ZipMaster 1.9.1 
+c:\program files (x86)\borland\delphi7\Projects\Bpl\Dclqrt50.bpl=QuickReport Components
+C:\Acbr\Lib\Delphi\LibD7\ACBrNFeDanfeFRpkg.bpl=ACBr - DANFe em FastReport - (http://www.projetoacbr.com.br/)
+C:\Acbr\Lib\Delphi\LibD7\ACBrCTeDacteFRpkg.bpl=ACBr - DACTe em FastReport - (http://www.projetoacbr.com.br/)
+C:\Acbr\Lib\Delphi\LibD7\ACBrNFSeDanfseFRpkg.bpl=ACBr - DANFSe em FastReport - (http://www.projetoacbr.com.br/)
+C:\Acbr\Lib\Delphi\LibD7\ACBr_BoletoFC_FR.bpl=ACBr - Boleto Impressão em  FastReport - (http://www.projetoacbr.com.br/)
+C:\Acbr\Lib\Delphi\LibD7\ACBrMDFeDAMDFEFRpkg.bpl=ACBr - DAMDFe em FastReport - (http://www.projetoacbr.com.br/)
+C:\Acbr\Lib\Delphi\LibD7\ACBrGNREGuiaFRpkg.bpl=ACBr - GNRE Impressão da Guia em FastReport - (http://www.projetoacbr.com.br/)
+C:\Acbr\Lib\Delphi\LibD7\ACBrGNREGuiaRLpkg.bpl=ACBr - GNRE Impressão em FortesReport - (http://www.projectoacbr.com.br/)
+c:\program files (x86)\borland\delphi7\Projects\Bpl\ZComponentDesign70.bpl=Zeos Database Components
 C:\Program Files (x86)\FastReports\FastReport 5\LibD7\dclfsbde7.bpl=FastScript 1.9 BDE Components
-c:\program files (x86)\borland\delphi7\Bin\DBWEBXPRT.BPL=Borland Web Wizard Package
 [HistoryLists\hlUnitAliases]
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;

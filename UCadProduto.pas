@@ -3,12 +3,10 @@ unit UCadProduto;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, Buttons, Grids, SMDBGrid, UDMCadProduto, DB,
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, Buttons, Grids, SMDBGrid, UDMCadProduto, DB, Menus, 
   UCadUnidade, UCadNCM, UCBase, StdCtrls, DBCtrls, RxDBComb, RxLookup, RXDBCtrl, ToolEdit, CurrEdit, ExtCtrls, RzTabs, dbXPress,
-  RzPanel, Mask, NxCollection, DBVGrids, DBGrids, SqlExpr, DBAdvGrid,
-  AdvDBLookupComboBox, ComCtrls, RzChkLst, RzLstBox, ExtDlgs,
-  Menus, USenha, 
-  Variants;
+  RzPanel, Mask, NxCollection, DBVGrids, DBGrids, SqlExpr, DBAdvGrid, AdvDBLookupComboBox, ComCtrls, RzChkLst, RzLstBox, ExtDlgs,
+  USenha, Variants;
 
 type
   TfrmCadProduto = class(TForm)
@@ -68,6 +66,34 @@ type
     DBEdit9: TDBEdit;
     Label2: TLabel;
     DBMemo1: TDBMemo;
+    RzPageControl2: TRzPageControl;
+    TabSheet1: TRzTabSheet;
+    Label4: TLabel;
+    RxDBLookupCombo1: TRxDBLookupCombo;
+    RxDBLookupCombo4: TRxDBLookupCombo;
+    Label11: TLabel;
+    Label12: TLabel;
+    DBEdit1: TDBEdit;
+    Label13: TLabel;
+    DBEdit3: TDBEdit;
+    Label16: TLabel;
+    DBEdit5: TDBEdit;
+    Label20: TLabel;
+    DBEdit10: TDBEdit;
+    Label21: TLabel;
+    RxDBLookupCombo5: TRxDBLookupCombo;
+    Label22: TLabel;
+    DBEdit11: TDBEdit;
+    Label23: TLabel;
+    DBEdit14: TDBEdit;
+    Label24: TLabel;
+    DBEdit15: TDBEdit;
+    Label26: TLabel;
+    DBEdit16: TDBEdit;
+    Label27: TLabel;
+    DBEdit17: TDBEdit;
+    Label28: TLabel;
+    RxDBLookupCombo6: TRxDBLookupCombo;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -101,6 +127,7 @@ type
     procedure RxDBComboBox7Enter(Sender: TObject);
     procedure DBEdit58Enter(Sender: TObject);
     procedure DBEdit2Exit(Sender: TObject);
+    procedure TabSheet1Enter(Sender: TObject);
   private
     { Private declarations }
     fDMCadProduto: TDMCadProduto;
@@ -120,7 +147,6 @@ type
 
     procedure prc_Posiciona_Produto;
     procedure prc_Habilita;
-
   public
     { Public declarations }
     vID_Produto_Local: Integer;
@@ -298,6 +324,8 @@ var
 begin
   fDMCadProduto := TDMCadProduto.Create(Self);
   oDBUtils.SetDataSourceProperties(Self, fDMCadProduto);
+  fDMCadProduto.qParametros.Open;
+  fDMCadProduto.cdsCliente.Open;
 
   for i := 1 to SMDBGrid1.ColCount - 2 do
   begin
@@ -307,11 +335,20 @@ begin
     if (SMDBGrid1.Columns[i].FieldName = 'OBS') then
       SMDBGrid1.Columns[i].Visible := (fDMCadProduto.qParametros_ProdMOSTRAR_OBS_CONSULTA.AsString = 'S');
   end;
-  DBMemo2.Visible     := (fDMCadProduto.qParametros_ProdMOSTRAR_OBS_CONSULTA.AsString = 'S');
+  DBMemo2.Visible := (fDMCadProduto.qParametros_ProdMOSTRAR_OBS_CONSULTA.AsString = 'S');
 
   vTipo_Consulta_Produto_Padrao := trim(fDMCadProduto.qParametros_UsuarioTIPO_CONSULTA_PRODUTO_PADRAO.AsString);
   if vTipo_Consulta_Produto_Padrao = '' then
     vTipo_Consulta_Produto_Padrao := trim(fDMCadProduto.qParametrosTIPO_CONSULTA_PRODUTO_PADRAO.AsString);
+
+  RzPageControl2.Visible := False;
+  if fDMCadProduto.qParametros_ProdGERADORES_ELETRICOS.AsString = 'S' then
+  begin
+    fDMCadProduto.cdsMarca_Montadora.Open;
+    fDMCadProduto.cdsFabircanteGerador.Open;
+    fDMCadProduto.cdsFabricanteMotor.Open;
+    RzPageControl2.Visible := True;
+  end;
 
   if (trim(vTipo_Consulta_Produto_Padrao) = '') then
     ComboBox2.ItemIndex := 6
@@ -404,12 +441,11 @@ begin
 
   fDMCadProduto.cdsProduto.Edit;
 
-  DBEdit2.ReadOnly       := not(fDMCadProduto.cdsProdutoCRIADO_OS.AsString = 'S');
-  DBEdit7.ReadOnly       := not(fDMCadProduto.cdsProdutoCRIADO_OS.AsString = 'S');
-
-  DBEdit7.SetFocus;
-
   prc_Habilita;
+
+  DBEdit2.ReadOnly := not(fDMCadProduto.cdsProdutoCRIADO_OS.AsString = 'S');
+  DBEdit7.ReadOnly := not(fDMCadProduto.cdsProdutoCRIADO_OS.AsString = 'S');
+  DBEdit7.SetFocus;
 end;
 
 procedure TfrmCadProduto.btnConfirmarClick(Sender: TObject);
@@ -534,7 +570,7 @@ end;
 
 procedure TfrmCadProduto.btnPesquisarClick(Sender: TObject);
 begin
-   pnlCons_Produto.Visible := not(pnlCons_Produto.Visible);
+  pnlCons_Produto.Visible := not(pnlCons_Produto.Visible);
   if pnlCons_Produto.Visible then
     edtNome.SetFocus
 end;
@@ -581,8 +617,8 @@ begin
     fDMCadProduto.cdsProdutoREFERENCIA_SEQ.AsInteger := vAux;
     fDMCadProduto.cdsProdutoREFERENCIA.AsString      := fDMCadProduto.cdsProdutoTIPO_REG.AsString + '.' +FormatFloat('000000',fDMCadProduto.cdsProdutoREFERENCIA_SEQ.AsInteger);
   end;
-  if ((trim(DBEdit7.Text) <> '') and ((trim(fDMCadProduto.cdsProdutoREFERENCIA_PADRAO.AsString) = '')) or (fDMCadProduto.cdsProduto.State in [dsInsert])
-     or (DBEdit7.Text <> vReferencia_Ant)) then
+  if ((trim(DBEdit7.Text) <> '') and ((trim(fDMCadProduto.cdsProdutoREFERENCIA_PADRAO.AsString) = '')) or
+     (fDMCadProduto.cdsProduto.State in [dsInsert]) or (DBEdit7.Text <> vReferencia_Ant)) then
     fDMCadProduto.cdsProdutoREFERENCIA_PADRAO.AsString := DBEdit7.Text;
   if (trim(DBEdit7.Text) <> '') and (Copy(DBEdit7.Text,1,2) <> fDMCadProduto.cdsProdutoTIPO_REG.AsString + '.') then
     fDMCadProduto.cdsProdutoREFERENCIA_SEQ.AsInteger := 0;
@@ -610,6 +646,16 @@ procedure TfrmCadProduto.DBEdit2Exit(Sender: TObject);
 begin
   if copy(fdmCadProduto.cdsProdutoNOME.AsString,1,1) = ' ' then
     fdmCadProduto.cdsProdutoNOME.AsString := TrimLeft(fdmCadProduto.cdsProdutoNOME.AsString);
+end;
+
+procedure TfrmCadProduto.TabSheet1Enter(Sender: TObject);
+begin
+  if (fDMCadProduto.cdsProduto.State in [dsInsert,dsEdit]) and
+     (fDMCadProduto.cdsProdutoGerador.IsEmpty) then
+  begin
+    fDMCadProduto.cdsProdutoGerador.Insert;
+    fDMCadProduto.cdsProdutoGeradorID.AsInteger := fDMCadProduto.cdsProdutoID.AsInteger;
+  end;
 end;
 
 end.

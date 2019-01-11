@@ -1,7 +1,7 @@
 object frmCadOrdemServico: TfrmCadOrdemServico
   Left = 218
   Top = 16
-  Width = 933
+  Width = 1047
   Height = 692
   Caption = 'Ordem de Servi'#231'o'
   Color = clBtnFace
@@ -22,9 +22,9 @@ object frmCadOrdemServico: TfrmCadOrdemServico
   object RzPageControl1: TRzPageControl
     Left = 0
     Top = 0
-    Width = 925
+    Width = 1039
     Height = 661
-    ActivePage = TS_Consulta
+    ActivePage = TabSheet1
     ActivePageDefault = TS_Consulta
     Align = alClient
     BackgroundColor = 16752448
@@ -32,7 +32,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
     FlatColor = clGray
     ParentBackgroundColor = False
     TabColors.Shadow = clSilver
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 0
     OnChange = RzPageControl1Change
     FixedDimension = 19
@@ -40,9 +40,9 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       Caption = 'Consulta'
       object SMDBGrid1: TSMDBGrid
         Left = 0
-        Top = 121
-        Width = 921
-        Height = 476
+        Top = 117
+        Width = 1035
+        Height = 480
         Align = alClient
         BorderStyle = bsNone
         Ctl3D = False
@@ -154,6 +154,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'ENTREGUE'
             Title.Alignment = taCenter
             Title.Caption = 'Entregue'
+            Width = 64
             Visible = True
           end
           item
@@ -169,6 +170,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'NUM_ORCAMENTO'
             Title.Alignment = taCenter
             Title.Caption = 'N'#186' Or'#231'amento'
+            Width = 64
             Visible = True
           end
           item
@@ -184,6 +186,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'PRODUZIDO'
             Title.Alignment = taCenter
             Title.Caption = 'Produzido'
+            Width = 64
             Visible = True
           end
           item
@@ -205,8 +208,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       end
       object pnlPesquisa: TPanel
         Left = 0
-        Top = 34
-        Width = 921
+        Top = 30
+        Width = 1035
         Height = 87
         Align = alTop
         Color = clSilver
@@ -435,7 +438,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object StaticText1: TStaticText
         Left = 0
         Top = 621
-        Width = 921
+        Width = 1035
         Height = 17
         Align = alBottom
         BorderStyle = sbsSunken
@@ -451,16 +454,17 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object Panel11: TPanel
         Left = 0
         Top = 0
-        Width = 921
-        Height = 34
+        Width = 1035
+        Height = 30
         Align = alTop
         Color = clSilver
         TabOrder = 1
         object btnInserir: TNxButton
-          Left = 3
-          Top = 3
+          Left = 1
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Inserir'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -531,10 +535,11 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           OnClick = btnInserirClick
         end
         object btnExcluir: TNxButton
-          Left = 156
-          Top = 3
+          Left = 154
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Excluir'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -605,10 +610,11 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           OnClick = btnExcluirClick
         end
         object btnPesquisar: TNxButton
-          Left = 462
-          Top = 3
+          Left = 460
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Pesquisar'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -677,10 +683,11 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           OnClick = btnPesquisarClick
         end
         object btnImprimir: TNxButton
-          Left = 309
-          Top = 3
+          Left = 307
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Imprimir'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -750,9 +757,10 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         end
         object btnEncerrar_OS: TNxButton
           Left = 751
-          Top = 3
+          Top = 1
           Width = 133
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Encerrar OS'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -814,10 +822,11 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           OnClick = btnEncerrar_OSClick
         end
         object btnLiberar: TNxButton
-          Left = 614
-          Top = 3
+          Left = 613
+          Top = 1
           Width = 138
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Liberar Fat'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -834,7 +843,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object Panel4: TPanel
         Left = 0
         Top = 597
-        Width = 921
+        Width = 1035
         Height = 24
         Align = alBottom
         Color = clSilver
@@ -948,16 +957,17 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object Panel1: TPanel
         Left = 0
         Top = 0
-        Width = 921
-        Height = 34
+        Width = 1035
+        Height = 30
         Align = alTop
         Color = 8404992
         TabOrder = 0
         object btnAlterar: TNxButton
-          Left = 4
-          Top = 3
+          Left = 1
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Alterar'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1026,10 +1036,11 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           OnClick = btnAlterarClick
         end
         object btnConfirmar: TNxButton
-          Left = 157
-          Top = 3
+          Left = 307
+          Top = 1
           Width = 143
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Confirmar'
           Enabled = False
           Font.Charset = DEFAULT_CHARSET
@@ -1099,10 +1110,11 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           OnClick = btnConfirmarClick
         end
         object btnCancelar: TNxButton
-          Left = 310
-          Top = 3
+          Left = 154
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Cancelar'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1173,8 +1185,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       end
       object pnlCadastro: TPanel
         Left = 0
-        Top = 34
-        Width = 921
+        Top = 30
+        Width = 1035
         Height = 241
         Align = alTop
         Enabled = False
@@ -1182,7 +1194,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         object pnlNota: TPanel
           Left = 1
           Top = 1
-          Width = 919
+          Width = 1033
           Height = 28
           Align = alTop
           Color = clSilver
@@ -1231,7 +1243,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         object pnlCliente: TPanel
           Left = 1
           Top = 29
-          Width = 919
+          Width = 1033
           Height = 211
           Align = alClient
           BevelInner = bvLowered
@@ -1239,8 +1251,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           TabOrder = 1
           OnExit = pnlClienteExit
           object Label2: TLabel
-            Left = 491
-            Top = 39
+            Left = 499
+            Top = 35
             Width = 119
             Height = 13
             Caption = 'F2 para pesquisar Cliente'
@@ -1252,15 +1264,15 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             ParentFont = False
           end
           object Label18: TLabel
-            Left = 5
-            Top = 57
+            Left = 13
+            Top = 53
             Width = 80
             Height = 13
             Alignment = taRightJustify
             Caption = 'Dt.Recebimento:'
           end
           object Label14: TLabel
-            Left = 688
+            Left = 696
             Top = 16
             Width = 33
             Height = 13
@@ -1268,16 +1280,16 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             Caption = 'N'#186' OS:'
           end
           object Label22: TLabel
-            Left = 50
-            Top = 39
+            Left = 58
+            Top = 35
             Width = 35
             Height = 13
             Alignment = taRightJustify
             Caption = 'Cliente:'
           end
           object SpeedButton1: TSpeedButton
-            Left = 462
-            Top = 30
+            Left = 470
+            Top = 26
             Width = 23
             Height = 22
             Hint = 'Atualiza tabela de cliente'
@@ -1326,8 +1338,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             OnClick = SpeedButton1Click
           end
           object Label3: TLabel
-            Left = 4
-            Top = 75
+            Left = 12
+            Top = 71
             Width = 81
             Height = 13
             Alignment = taRightJustify
@@ -1340,8 +1352,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             ParentFont = False
           end
           object Label1: TLabel
-            Left = 9
-            Top = 93
+            Left = 17
+            Top = 89
             Width = 76
             Height = 13
             Alignment = taRightJustify
@@ -1354,8 +1366,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             ParentFont = False
           end
           object Label4: TLabel
-            Left = 178
-            Top = 75
+            Left = 186
+            Top = 71
             Width = 27
             Height = 13
             Alignment = taRightJustify
@@ -1368,8 +1380,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             ParentFont = False
           end
           object Label29: TLabel
-            Left = 549
-            Top = 65
+            Left = 324
+            Top = 54
             Width = 24
             Height = 13
             Alignment = taRightJustify
@@ -1382,7 +1394,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             ParentFont = False
           end
           object Label37: TLabel
-            Left = 15
+            Left = 23
             Top = 15
             Width = 70
             Height = 13
@@ -1396,7 +1408,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             ParentFont = False
           end
           object Label65: TLabel
-            Left = 236
+            Left = 244
             Top = 13
             Width = 114
             Height = 13
@@ -1408,9 +1420,58 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             Font.Style = []
             ParentFont = False
           end
+          object NxButton1: TNxButton
+            Left = 209
+            Top = 4
+            Width = 29
+            Height = 24
+            Hint = 'Copiar o Or'#231'amento'
+            Glyph.Data = {
+              AA040000424DAA04000000000000360000002800000013000000130000000100
+              18000000000074040000610F0000610F00000000000000000000FDFDFFFDFBFE
+              FFFEFFFFFFFFFFFFFFF8F2EAEBCFC1D08A74AF5C43AA4F36B05949C9897AE7D1
+              C9F8F2EDFFFFFFFFFFFAFEFEFCFFFAFCFFFDFF000000FAFFFEFAFDFDFFFFFFFF
+              FFFAC8B5AA94371F872907B15F31DE8C5BE99765E38C5FB15E31812A068F381E
+              CAB7A7FFFFFAFFFFFCFFFDFEFEFDFD000000FDFEFEFEFFFDFCF4E9AB776F7D2B
+              12D97950FFAD76FFB579FFB276FFB97CFBB174FFB77AFFAE74D67B4E7D2C10B1
+              7E70FFF9EBFFFFFEFDFDFB000000FFFFFCFFFFF8A97A6B8D3921F49063F8A068
+              EEA262EFA463F9A666FAA96AEBA765EEA661F5A262F69D64F0926691341FAF7F
+              71FFFFFAFEFFFA000000FFFFFFCDB9AC822609E48551F69A58F29958F79E60FA
+              A067FE9F66FFA568F6A566F7A164F99A61F6995BF29358E985597B250BCAB7A8
+              FFFFFF000000F6F2EE7F341ECC6435F29058C57035B06538AF673EB16742B76A
+              47B46944AA6A3FAF6942B36442B2673ABF6D38ED8D5BC45E33963A1FF9F6EA00
+              0000F0D2C8721A00EC8952B25026AB775EE6C7B9DABFB1D8BEB1D9BCB5D7BCB7
+              D3C0B0D5C0B1DBBCB3E6C7BAA27A5EB45524F28650801C00EFDCC4000000E08D
+              74963713EC8755831E00FFFFF7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFF7841E00F785539D340EE09F86000000C46442AD4B1F
+              E2794AA74420AC6F59FFF6E6F3E5D9F2E5DBF8E2E1FBDFE4F7E1E1F8E2E0FBE2
+              DDFFF1EEA5705EAD451BEC7A4AB1451BC36B53000000AF572AB5571ED6712FE4
+              804DA744264F00004B03004B04005003005304005104004D04004C05004D0000
+              A3482EE47F47DC6D33C65525BA573E000000C66444AB4612DB7631AE4F1ABD79
+              5DFFEFEEFFE2E4FFE1E0FFE1DEFFE1DDFFE1DDFFE1DDFFE3DEFFF0ECB5755FB0
+              4F19E27336AB3D0AC26F53000000EA897F952903E17C3C7C2400FFFFF8FFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB7F1B00E877
+              41922A00DDA088000000F0CFCE6B0C00DA7136B75727A36F51E7BEB3DDB7A8DE
+              B8A2D8B5A4D8B6A7DBB6A7DBB6A5DDB9A4E6C1AE9E7050C15C26DE69357A0C00
+              F2DCD0000000F7F2F3873921A83C0AF68C56D67549B35F3FB6653FBC6A3EBB6D
+              43B56A41B96842BA6841B6643AB26337D17946F1874CAB3A0BA43B23FBF1EF00
+              0000FFFFFFD4BAB07A0F00C55726FFA168F1AB70F2AD71FAB071FFB272FFB174
+              FFB17AFCAC78F5A36EF2A46AF69E63CA592A6D0F00CEBBB1FFFFFF000000FFFF
+              FFFFFFFDC0857B721200C8602EF9A469FBB270F9B670FFB871FFBB77FDB277FB
+              AC72FFAD74FFA368C15E2A741000C38780FFFFFFFFFCFF000000FFFEF9FFFFFE
+              FEF4EFC08279700700AA4318DC864DF0AC6BFFB978FFBF83FFB57EF2A06BDF83
+              4DAD3E13730A00C5887BFFF8F4FFFFFFFDFBFF000000FDFDFBFBFDFCFFFFFEFF
+              FFFBD4BBB28C3B285A03007F2406A0421BAE4C259A401A8029075C0700883A26
+              D5BCB2FFFFFEFFFEFFFEFCFEFEFEFE000000F8FEFEFBFEFDFFFCFBFFFFFFFFFF
+              FFFAEEEEEFD4D0EF9288DD6656CA543FD16952E99783EFD7C9F9F6F1FFFFFFF8
+              FFFFF8FDFEFEFFFEFEFDF5000000}
+            TabOrder = 1
+            TabStop = False
+            OnClick = NxButton1Click
+          end
           object DBDateEdit1: TDBDateEdit
-            Left = 87
-            Top = 51
+            Left = 95
+            Top = 47
             Width = 90
             Height = 19
             DataField = 'DTRECEBIMENTO'
@@ -1423,7 +1484,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             StartOfWeek = Sun
           end
           object DBEdit1: TDBEdit
-            Left = 722
+            Left = 730
             Top = 10
             Width = 121
             Height = 19
@@ -1443,8 +1504,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             TabOrder = 10
           end
           object RxDBLookupCombo3: TRxDBLookupCombo
-            Left = 87
-            Top = 31
+            Left = 95
+            Top = 27
             Width = 374
             Height = 21
             DropDownCount = 15
@@ -1461,8 +1522,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             OnKeyDown = RxDBLookupCombo3KeyDown
           end
           object DBEdit2: TDBEdit
-            Left = 87
-            Top = 69
+            Left = 95
+            Top = 65
             Width = 89
             Height = 19
             Ctl3D = False
@@ -1478,8 +1539,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             TabOrder = 4
           end
           object DBEdit5: TDBEdit
-            Left = 87
-            Top = 87
+            Left = 95
+            Top = 83
             Width = 89
             Height = 19
             CharCase = ecUpperCase
@@ -1496,7 +1557,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             TabOrder = 6
           end
           object RzGroupBox1: TRzGroupBox
-            Left = 88
+            Left = 96
             Top = 112
             Width = 408
             Height = 37
@@ -1618,8 +1679,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             end
           end
           object DBEdit3: TDBEdit
-            Left = 207
-            Top = 69
+            Left = 215
+            Top = 65
             Width = 42
             Height = 19
             CharCase = ecUpperCase
@@ -1636,8 +1697,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             TabOrder = 5
           end
           object RxDBComboBox1: TRxDBComboBox
-            Left = 575
-            Top = 58
+            Left = 350
+            Top = 47
             Width = 145
             Height = 21
             Style = csDropDownList
@@ -1663,7 +1724,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object RzGroupBox2: TRzGroupBox
             Left = 2
             Top = 154
-            Width = 915
+            Width = 1029
             Height = 55
             Align = alBottom
             BorderColor = clBlue
@@ -1684,7 +1745,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             OnEnter = RzGroupBox2Enter
             object Label30: TLabel
               Left = 9
-              Top = 21
+              Top = 17
               Width = 70
               Height = 13
               Alignment = taRightJustify
@@ -1698,7 +1759,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             end
             object Label32: TLabel
               Left = 53
-              Top = 40
+              Top = 35
               Width = 26
               Height = 13
               Alignment = taRightJustify
@@ -1712,7 +1773,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             end
             object Label33: TLabel
               Left = 256
-              Top = 39
+              Top = 35
               Width = 23
               Height = 13
               Alignment = taRightJustify
@@ -1750,7 +1811,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             end
             object DBEdit9: TDBEdit
               Left = 82
-              Top = 32
+              Top = 29
               Width = 113
               Height = 19
               CharCase = ecUpperCase
@@ -1775,7 +1836,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             end
             object DBEdit10: TDBEdit
               Left = 282
-              Top = 31
+              Top = 29
               Width = 111
               Height = 19
               CharCase = ecUpperCase
@@ -1787,7 +1848,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             end
           end
           object DBEdit11: TDBEdit
-            Left = 87
+            Left = 95
             Top = 9
             Width = 114
             Height = 19
@@ -1805,66 +1866,17 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             TabOrder = 0
             OnKeyDown = DBEdit11KeyDown
           end
-          object NxButton1: TNxButton
-            Left = 201
-            Top = 3
-            Width = 34
-            Height = 27
-            Hint = 'Copiar o Or'#231'amento'
-            Glyph.Data = {
-              AA040000424DAA04000000000000360000002800000013000000130000000100
-              18000000000074040000610F0000610F00000000000000000000FDFDFFFDFBFE
-              FFFEFFFFFFFFFFFFFFF8F2EAEBCFC1D08A74AF5C43AA4F36B05949C9897AE7D1
-              C9F8F2EDFFFFFFFFFFFAFEFEFCFFFAFCFFFDFF000000FAFFFEFAFDFDFFFFFFFF
-              FFFAC8B5AA94371F872907B15F31DE8C5BE99765E38C5FB15E31812A068F381E
-              CAB7A7FFFFFAFFFFFCFFFDFEFEFDFD000000FDFEFEFEFFFDFCF4E9AB776F7D2B
-              12D97950FFAD76FFB579FFB276FFB97CFBB174FFB77AFFAE74D67B4E7D2C10B1
-              7E70FFF9EBFFFFFEFDFDFB000000FFFFFCFFFFF8A97A6B8D3921F49063F8A068
-              EEA262EFA463F9A666FAA96AEBA765EEA661F5A262F69D64F0926691341FAF7F
-              71FFFFFAFEFFFA000000FFFFFFCDB9AC822609E48551F69A58F29958F79E60FA
-              A067FE9F66FFA568F6A566F7A164F99A61F6995BF29358E985597B250BCAB7A8
-              FFFFFF000000F6F2EE7F341ECC6435F29058C57035B06538AF673EB16742B76A
-              47B46944AA6A3FAF6942B36442B2673ABF6D38ED8D5BC45E33963A1FF9F6EA00
-              0000F0D2C8721A00EC8952B25026AB775EE6C7B9DABFB1D8BEB1D9BCB5D7BCB7
-              D3C0B0D5C0B1DBBCB3E6C7BAA27A5EB45524F28650801C00EFDCC4000000E08D
-              74963713EC8755831E00FFFFF7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-              FFFFFFFFFFFFFFFFFFFFF7841E00F785539D340EE09F86000000C46442AD4B1F
-              E2794AA74420AC6F59FFF6E6F3E5D9F2E5DBF8E2E1FBDFE4F7E1E1F8E2E0FBE2
-              DDFFF1EEA5705EAD451BEC7A4AB1451BC36B53000000AF572AB5571ED6712FE4
-              804DA744264F00004B03004B04005003005304005104004D04004C05004D0000
-              A3482EE47F47DC6D33C65525BA573E000000C66444AB4612DB7631AE4F1ABD79
-              5DFFEFEEFFE2E4FFE1E0FFE1DEFFE1DDFFE1DDFFE1DDFFE3DEFFF0ECB5755FB0
-              4F19E27336AB3D0AC26F53000000EA897F952903E17C3C7C2400FFFFF8FFFFFF
-              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB7F1B00E877
-              41922A00DDA088000000F0CFCE6B0C00DA7136B75727A36F51E7BEB3DDB7A8DE
-              B8A2D8B5A4D8B6A7DBB6A7DBB6A5DDB9A4E6C1AE9E7050C15C26DE69357A0C00
-              F2DCD0000000F7F2F3873921A83C0AF68C56D67549B35F3FB6653FBC6A3EBB6D
-              43B56A41B96842BA6841B6643AB26337D17946F1874CAB3A0BA43B23FBF1EF00
-              0000FFFFFFD4BAB07A0F00C55726FFA168F1AB70F2AD71FAB071FFB272FFB174
-              FFB17AFCAC78F5A36EF2A46AF69E63CA592A6D0F00CEBBB1FFFFFF000000FFFF
-              FFFFFFFDC0857B721200C8602EF9A469FBB270F9B670FFB871FFBB77FDB277FB
-              AC72FFAD74FFA368C15E2A741000C38780FFFFFFFFFCFF000000FFFEF9FFFFFE
-              FEF4EFC08279700700AA4318DC864DF0AC6BFFB978FFBF83FFB57EF2A06BDF83
-              4DAD3E13730A00C5887BFFF8F4FFFFFFFDFBFF000000FDFDFBFBFDFCFFFFFEFF
-              FFFBD4BBB28C3B285A03007F2406A0421BAE4C259A401A8029075C0700883A26
-              D5BCB2FFFFFEFFFEFFFEFCFEFEFEFE000000F8FEFEFBFEFDFFFCFBFFFFFFFFFF
-              FFFAEEEEEFD4D0EF9288DD6656CA543FD16952E99783EFD7C9F9F6F1FFFFFFF8
-              FFFFF8FDFEFEFFFEFEFDF5000000}
-            TabOrder = 1
-            TabStop = False
-            OnClick = NxButton1Click
-          end
         end
       end
       object RzPageControl2: TRzPageControl
         Left = 0
-        Top = 275
-        Width = 921
-        Height = 363
-        ActivePage = TS_CondEntrada
+        Top = 271
+        Width = 1035
+        Height = 367
+        ActivePage = TS_Processos
         ActivePageDefault = TS_CondEntrada
         Align = alClient
-        TabIndex = 0
+        TabIndex = 1
         TabOrder = 2
         OnChange = RzPageControl2Change
         FixedDimension = 19
@@ -1873,7 +1885,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel8: TPanel
             Left = 0
             Top = 218
-            Width = 917
+            Width = 1031
             Height = 25
             Align = alTop
             BevelOuter = bvNone
@@ -1896,8 +1908,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object DBMemo6: TDBMemo
             Left = 0
             Top = 243
-            Width = 917
-            Height = 97
+            Width = 1031
+            Height = 101
             Align = alClient
             BevelInner = bvNone
             BevelOuter = bvNone
@@ -1911,7 +1923,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel9: TPanel
             Left = 0
             Top = 49
-            Width = 917
+            Width = 1031
             Height = 25
             Align = alTop
             BevelOuter = bvNone
@@ -1934,7 +1946,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object DBMemo7: TDBMemo
             Left = 0
             Top = 74
-            Width = 917
+            Width = 1031
             Height = 144
             Align = alTop
             BevelInner = bvNone
@@ -1949,7 +1961,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel10: TPanel
             Left = 0
             Top = 0
-            Width = 917
+            Width = 1031
             Height = 25
             Align = alTop
             BevelOuter = bvNone
@@ -1972,7 +1984,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel12: TPanel
             Left = 0
             Top = 25
-            Width = 917
+            Width = 1031
             Height = 24
             Align = alTop
             TabOrder = 0
@@ -1994,9 +2006,9 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           Caption = 'Processos'
           object SMDBGrid2: TSMDBGrid
             Left = 0
-            Top = 32
-            Width = 917
-            Height = 205
+            Top = 30
+            Width = 1031
+            Height = 211
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Proc
@@ -2030,7 +2042,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             DefaultRowHeight = 17
             ScrollBars = ssHorizontal
             ColCount = 10
-            RowCount = 3
+            RowCount = 2
             Columns = <
               item
                 Alignment = taCenter
@@ -2109,15 +2121,15 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel5: TPanel
             Left = 0
             Top = 0
-            Width = 917
-            Height = 32
+            Width = 1031
+            Height = 30
             Align = alTop
             BevelOuter = bvNone
             Color = 16756912
             TabOrder = 0
             object Label34: TLabel
               Left = 443
-              Top = 16
+              Top = 12
               Width = 79
               Height = 13
               Alignment = taRightJustify
@@ -2131,7 +2143,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             end
             object SpeedButton5: TSpeedButton
               Left = 779
-              Top = 7
+              Top = 3
               Width = 23
               Height = 22
               Hint = 'Atualiza tabela Unidade'
@@ -2180,56 +2192,56 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               OnClick = SpeedButton5Click
             end
             object Shape3: TShape
-              Left = 915
+              Left = 907
               Top = 1
               Width = 35
               Height = 15
               Brush.Color = clMoneyGreen
             end
             object Label39: TLabel
-              Left = 953
+              Left = 945
               Top = 2
               Width = 47
               Height = 13
               Caption = 'Realizado'
             end
             object Shape4: TShape
-              Left = 915
+              Left = 907
               Top = 15
               Width = 35
               Height = 15
               Brush.Color = clAqua
             end
             object Label40: TLabel
-              Left = 953
+              Left = 945
               Top = 16
               Width = 37
               Height = 13
               Caption = 'Iniciado'
             end
             object Shape9: TShape
-              Left = 1027
+              Left = 1011
               Top = 1
               Width = 35
               Height = 15
               Brush.Color = clYellow
             end
             object Label47: TLabel
-              Left = 1065
+              Left = 1049
               Top = 3
               Width = 30
               Height = 13
               Caption = 'Pausa'
             end
             object Shape12: TShape
-              Left = 1027
+              Left = 1011
               Top = 15
               Width = 35
               Height = 15
               Brush.Color = 157
             end
             object Label52: TLabel
-              Left = 1064
+              Left = 1048
               Top = 16
               Width = 104
               Height = 13
@@ -2237,10 +2249,11 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             end
             object btnInserir_Proc: TNxButton
               Left = 0
-              Top = 1
+              Top = 0
               Width = 109
-              Height = 28
+              Height = 30
               Hint = 'Inserir um novo processo'
+              Align = alLeft
               Caption = 'Inserir'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -2314,11 +2327,12 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               OnClick = btnInserir_ProcClick
             end
             object btnExcluir_Proc: TNxButton
-              Left = 216
-              Top = 1
+              Left = 218
+              Top = 0
               Width = 109
-              Height = 28
+              Height = 30
               Hint = 'Excluir o processo selecionado'
+              Align = alLeft
               Caption = 'Excluir'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -2392,11 +2406,12 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               OnClick = btnExcluir_ProcClick
             end
             object btnAlterar_Proc: TNxButton
-              Left = 108
-              Top = 1
+              Left = 109
+              Top = 0
               Width = 109
-              Height = 28
+              Height = 30
               Hint = 'Alterar o processo selecionado'
+              Align = alLeft
               Caption = 'Alterar'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -2467,7 +2482,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             end
             object RxDBLookupCombo5: TRxDBLookupCombo
               Left = 524
-              Top = 8
+              Top = 4
               Width = 254
               Height = 21
               DropDownCount = 15
@@ -2484,7 +2499,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             end
             object btnGerar_Automatico: TNxButton
               Left = 802
-              Top = 5
+              Top = 0
               Width = 100
               Height = 25
               Hint = 'Gerar autom'#225'tico os servi'#231'os'
@@ -2497,10 +2512,11 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               OnClick = btnGerar_AutomaticoClick
             end
             object btnRetrabalho: TNxButton
-              Left = 334
-              Top = 1
+              Left = 327
+              Top = 0
               Width = 97
-              Height = 28
+              Height = 30
+              Align = alLeft
               Caption = 'Retrabalho'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -2519,8 +2535,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           end
           object NxFlipPanel1: TNxFlipPanel
             Left = 0
-            Top = 237
-            Width = 917
+            Top = 241
+            Width = 1031
             Height = 103
             Align = alBottom
             Caption = 'Obs do Processo'
@@ -2559,7 +2575,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             object DBMemo5: TDBMemo
               Left = 0
               Top = 18
-              Width = 917
+              Width = 1031
               Height = 85
               Align = alClient
               BevelInner = bvNone
@@ -2578,7 +2594,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel6: TPanel
             Left = 0
             Top = 0
-            Width = 917
+            Width = 1031
             Height = 32
             Align = alTop
             BevelOuter = bvNone
@@ -2857,8 +2873,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object SMDBGrid5: TSMDBGrid
             Left = 0
             Top = 32
-            Width = 917
-            Height = 308
+            Width = 1031
+            Height = 312
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Mat
@@ -2966,17 +2982,18 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel7: TPanel
             Left = 0
             Top = 0
-            Width = 917
-            Height = 32
+            Width = 1031
+            Height = 28
             Align = alTop
             BevelOuter = bvNone
             Color = 10485759
             TabOrder = 0
             object btnInserir_Terc: TNxButton
               Left = 0
-              Top = 1
+              Top = 0
               Width = 109
               Height = 28
+              Align = alLeft
               Caption = 'Inserir'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -3050,10 +3067,11 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               OnClick = btnInserir_TercClick
             end
             object btnExcluir_Terc: TNxButton
-              Left = 216
-              Top = 1
+              Left = 218
+              Top = 0
               Width = 109
               Height = 28
+              Align = alLeft
               Caption = 'Excluir'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -3127,10 +3145,11 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               OnClick = btnExcluir_TercClick
             end
             object btnAlterar_Terc: TNxButton
-              Left = 108
-              Top = 1
+              Left = 109
+              Top = 0
               Width = 109
               Height = 28
+              Align = alLeft
               Caption = 'Alterar'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -3202,9 +3221,9 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           end
           object SMDBGrid6: TSMDBGrid
             Left = 0
-            Top = 32
-            Width = 917
-            Height = 308
+            Top = 28
+            Width = 1031
+            Height = 316
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Terc
@@ -3268,9 +3287,9 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           Caption = 'Realizado'
           object SMDBGrid7: TSMDBGrid
             Left = 0
-            Top = 32
-            Width = 917
-            Height = 308
+            Top = 30
+            Width = 1031
+            Height = 314
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsCons_Baixa
@@ -3423,8 +3442,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel13: TPanel
             Left = 0
             Top = 0
-            Width = 917
-            Height = 32
+            Width = 1031
+            Height = 30
             Align = alTop
             BevelOuter = bvNone
             Color = 10724305
@@ -3458,10 +3477,11 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               Caption = 'Falta finalizar'
             end
             object btnConsultar_Realizado: TNxButton
-              Left = 1
-              Top = 2
+              Left = 0
+              Top = 0
               Width = 56
               Height = 30
+              Align = alLeft
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -16
@@ -3529,10 +3549,11 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               OnClick = btnConsultar_RealizadoClick
             end
             object btnAlterar_Realizado: TNxButton
-              Left = 57
-              Top = 2
+              Left = 56
+              Top = 0
               Width = 56
               Height = 30
+              Align = alLeft
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -16
@@ -3606,17 +3627,18 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel14: TPanel
             Left = 0
             Top = 0
-            Width = 917
-            Height = 32
+            Width = 1031
+            Height = 30
             Align = alTop
             BevelOuter = bvNone
             Color = 13619175
             TabOrder = 0
             object btnConsultar_Pausa: TNxButton
-              Left = 1
-              Top = 2
+              Left = 0
+              Top = 0
               Width = 56
               Height = 30
+              Align = alLeft
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -16
@@ -3686,9 +3708,9 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           end
           object SMDBGrid8: TSMDBGrid
             Left = 0
-            Top = 32
-            Width = 917
-            Height = 308
+            Top = 30
+            Width = 1031
+            Height = 314
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsCons_Pausa
@@ -3885,18 +3907,19 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel15: TPanel
             Left = 0
             Top = 0
-            Width = 917
-            Height = 32
+            Width = 1031
+            Height = 30
             Align = alTop
             BevelOuter = bvNone
             Color = 16756912
             TabOrder = 0
             object btnCalcular_Custo: TNxButton
               Left = 0
-              Top = 1
+              Top = 0
               Width = 118
               Height = 30
               Hint = 'Inserir um novo processo'
+              Align = alLeft
               Caption = 'Calcular'
               Down = True
               Font.Charset = DEFAULT_CHARSET
@@ -4051,69 +4074,13 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel16: TPanel
             Left = 0
             Top = 0
-            Width = 917
-            Height = 340
+            Width = 1031
+            Height = 344
             Align = alClient
             BevelOuter = bvNone
             Color = 16756912
             Enabled = False
             TabOrder = 0
-            object Shape14: TShape
-              Left = 915
-              Top = 1
-              Width = 35
-              Height = 15
-              Brush.Color = clMoneyGreen
-            end
-            object Label55: TLabel
-              Left = 953
-              Top = 2
-              Width = 47
-              Height = 13
-              Caption = 'Realizado'
-            end
-            object Shape15: TShape
-              Left = 915
-              Top = 15
-              Width = 35
-              Height = 15
-              Brush.Color = clAqua
-            end
-            object Label56: TLabel
-              Left = 953
-              Top = 16
-              Width = 37
-              Height = 13
-              Caption = 'Iniciado'
-            end
-            object Shape16: TShape
-              Left = 1027
-              Top = 1
-              Width = 35
-              Height = 15
-              Brush.Color = clYellow
-            end
-            object Label57: TLabel
-              Left = 1065
-              Top = 3
-              Width = 30
-              Height = 13
-              Caption = 'Pausa'
-            end
-            object Shape17: TShape
-              Left = 1027
-              Top = 15
-              Width = 35
-              Height = 15
-              Brush.Color = 157
-            end
-            object Label58: TLabel
-              Left = 1064
-              Top = 16
-              Width = 104
-              Height = 13
-              Caption = 'Aguardando Corre'#231#227'o'
-            end
             object Label54: TLabel
               Left = 24
               Top = 136
@@ -4308,7 +4275,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               Left = 104
               Top = 288
               Width = 249
-              Height = 19
+              Height = 24
               Ctl3D = False
               DataField = 'USUARIO'
               DataSource = DMCadOrdemServico.dsOrdemServico_Enc
@@ -4330,7 +4297,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object RzPageControl3: TRzPageControl
         Left = 0
         Top = 201
-        Width = 921
+        Width = 1035
         Height = 437
         ActivePage = TS_Acessorios
         Align = alClient
@@ -4344,7 +4311,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object DBMemo1: TDBMemo
             Left = 0
             Top = 0
-            Width = 917
+            Width = 1031
             Height = 414
             Align = alClient
             DataField = 'ACESSORIOS'
@@ -4365,7 +4332,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object SMDBGrid4: TSMDBGrid
             Left = 0
             Top = 0
-            Width = 917
+            Width = 1031
             Height = 414
             Align = alClient
             Ctl3D = False
@@ -4492,7 +4459,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object SMDBGrid3: TSMDBGrid
             Left = 0
             Top = 0
-            Width = 917
+            Width = 1031
             Height = 414
             Align = alClient
             Ctl3D = False
@@ -4623,7 +4590,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object Panel2: TPanel
         Left = 0
         Top = 0
-        Width = 921
+        Width = 1035
         Height = 30
         Align = alTop
         Color = clSilver
@@ -4716,7 +4683,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object Panel3: TPanel
         Left = 0
         Top = 30
-        Width = 921
+        Width = 1035
         Height = 171
         Align = alTop
         TabOrder = 2

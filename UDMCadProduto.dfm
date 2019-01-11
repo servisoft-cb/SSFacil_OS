@@ -1,10 +1,10 @@
 object dmCadProduto: TdmCadProduto
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 104
-  Top = 4
-  Height = 713
-  Width = 1244
+  Left = 74
+  Top = 12
+  Height = 662
+  Width = 1097
   object sdsProduto: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
@@ -819,6 +819,9 @@ object dmCadProduto: TdmCadProduto
       FieldName = 'CRIADO_OS'
       Size = 1
     end
+    object cdsProdutosdsProdutoGerador: TDataSetField
+      FieldName = 'sdsProdutoGerador'
+    end
   end
   object dsProduto: TDataSource
     DataSet = cdsProduto
@@ -832,21 +835,21 @@ object dmCadProduto: TdmCadProduto
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
-    Left = 728
-    Top = 560
+    Left = 632
+    Top = 448
   end
   object dspUnidade: TDataSetProvider
     DataSet = sdsUnidade
-    Left = 760
-    Top = 560
+    Left = 664
+    Top = 448
   end
   object cdsUnidade: TClientDataSet
     Aggregates = <>
     IndexFieldNames = 'UNIDADE'
     Params = <>
     ProviderName = 'dspUnidade'
-    Left = 792
-    Top = 560
+    Left = 696
+    Top = 448
     object cdsUnidadeUNIDADE: TStringField
       FieldName = 'UNIDADE'
       Required = True
@@ -862,8 +865,8 @@ object dmCadProduto: TdmCadProduto
   end
   object dsUnidade: TDataSource
     DataSet = cdsUnidade
-    Left = 824
-    Top = 560
+    Left = 728
+    Top = 448
   end
   object sdsNCM: TSQLDataSet
     NoMetadata = True
@@ -872,21 +875,21 @@ object dmCadProduto: TdmCadProduto
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
-    Left = 728
-    Top = 59
+    Left = 632
+    Top = 3
   end
   object dspNCM: TDataSetProvider
     DataSet = sdsNCM
-    Left = 760
-    Top = 59
+    Left = 664
+    Top = 3
   end
   object cdsNCM: TClientDataSet
     Aggregates = <>
     IndexFieldNames = 'NCM'
     Params = <>
     ProviderName = 'dspNCM'
-    Left = 792
-    Top = 59
+    Left = 696
+    Top = 3
     object cdsNCMID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -902,8 +905,8 @@ object dmCadProduto: TdmCadProduto
   end
   object dsNCM: TDataSource
     DataSet = cdsNCM
-    Left = 824
-    Top = 59
+    Left = 728
+    Top = 3
   end
   object sdsOrigem_Prod: TSQLDataSet
     NoMetadata = True
@@ -912,21 +915,21 @@ object dmCadProduto: TdmCadProduto
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
-    Left = 728
-    Top = 144
+    Left = 632
+    Top = 88
   end
   object dspOrigem_Prod: TDataSetProvider
     DataSet = sdsOrigem_Prod
-    Left = 760
-    Top = 144
+    Left = 664
+    Top = 88
   end
   object cdsOrigem_Prod: TClientDataSet
     Aggregates = <>
     IndexFieldNames = 'ORIGEM'
     Params = <>
     ProviderName = 'dspOrigem_Prod'
-    Left = 792
-    Top = 144
+    Left = 696
+    Top = 88
     object cdsOrigem_ProdORIGEM: TStringField
       FieldName = 'ORIGEM'
       Required = True
@@ -939,8 +942,8 @@ object dmCadProduto: TdmCadProduto
   end
   object dsOrigem_Prod: TDataSource
     DataSet = cdsOrigem_Prod
-    Left = 824
-    Top = 144
+    Left = 728
+    Top = 88
   end
   object qReferencia: TSQLQuery
     MaxBlobSize = -1
@@ -956,8 +959,8 @@ object dmCadProduto: TdmCadProduto
       'WHERE REFERENCIA = :REFERENCIA'
       '')
     SQLConnection = dmDatabase.scoDados
-    Left = 904
-    Top = 128
+    Left = 808
+    Top = 72
     object qReferenciaREFERENCIA: TStringField
       FieldName = 'REFERENCIA'
     end
@@ -975,21 +978,21 @@ object dmCadProduto: TdmCadProduto
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
-    Left = 728
-    Top = 188
+    Left = 632
+    Top = 132
   end
   object dspFornecedor: TDataSetProvider
     DataSet = sdsFornecedor
-    Left = 760
-    Top = 188
+    Left = 664
+    Top = 132
   end
   object cdsFornecedor: TClientDataSet
     Aggregates = <>
     IndexFieldNames = 'NOME'
     Params = <>
     ProviderName = 'dspFornecedor'
-    Left = 792
-    Top = 188
+    Left = 696
+    Top = 132
     object cdsFornecedorCODIGO: TIntegerField
       FieldName = 'CODIGO'
       Required = True
@@ -1001,8 +1004,8 @@ object dmCadProduto: TdmCadProduto
   end
   object dsFornecedor: TDataSource
     DataSet = cdsFornecedor
-    Left = 824
-    Top = 188
+    Left = 728
+    Top = 132
   end
   object sdsMaterial: TSQLDataSet
     NoMetadata = True
@@ -1014,21 +1017,21 @@ object dmCadProduto: TdmCadProduto
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
-    Left = 728
-    Top = 236
+    Left = 632
+    Top = 180
   end
   object dspMaterial: TDataSetProvider
     DataSet = sdsMaterial
-    Left = 760
-    Top = 236
+    Left = 664
+    Top = 180
   end
   object cdsMaterial: TClientDataSet
     Aggregates = <>
     IndexFieldNames = 'NOME'
     Params = <>
     ProviderName = 'dspMaterial'
-    Left = 792
-    Top = 236
+    Left = 696
+    Top = 180
     object cdsMaterialID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -1053,8 +1056,8 @@ object dmCadProduto: TdmCadProduto
   end
   object dsMaterial: TDataSource
     DataSet = cdsMaterial
-    Left = 824
-    Top = 236
+    Left = 728
+    Top = 180
   end
   object qParametros: TSQLQuery
     MaxBlobSize = -1
@@ -1063,8 +1066,8 @@ object dmCadProduto: TdmCadProduto
       'SELECT *'
       'FROM PARAMETROS')
     SQLConnection = dmDatabase.scoDados
-    Left = 912
-    Top = 336
+    Left = 816
+    Top = 280
     object qParametrosID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -1307,21 +1310,21 @@ object dmCadProduto: TdmCadProduto
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
-    Left = 728
-    Top = 289
+    Left = 632
+    Top = 233
   end
   object dspGrupo: TDataSetProvider
     DataSet = sdsGrupo
-    Left = 760
-    Top = 289
+    Left = 664
+    Top = 233
   end
   object cdsGrupo: TClientDataSet
     Aggregates = <>
     IndexFieldNames = 'CODIGO'
     Params = <>
     ProviderName = 'dspGrupo'
-    Left = 792
-    Top = 289
+    Left = 696
+    Top = 233
     object cdsGrupoID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -1350,8 +1353,8 @@ object dmCadProduto: TdmCadProduto
   end
   object dsGrupo: TDataSource
     DataSet = cdsGrupo
-    Left = 824
-    Top = 289
+    Left = 728
+    Top = 233
   end
   object sdsProduto_Consulta: TSQLDataSet
     NoMetadata = True
@@ -1361,25 +1364,20 @@ object dmCadProduto: TdmCadProduto
       'PRO.complemento, PRO.preco_custo,'#13#10'PRO.preco_venda, PRO.unidade,' +
       'PRO.ca, PRO.INATIVO, PRO.ID_GRUPO, PRO.TIPO_REG, PRO.ESTOQUE, PR' +
       'O.ID_NCM,'#13#10'PRO.ORIGEM_PROD, PRO.PERC_MARGEMLUCRO, PRO.LOCALIZACA' +
-      'O, PRO.ID_MARCA, PRO.COD_BARRA,'#13#10'PRO.SPED_TIPO_ITEM, PRO.cod_ANT' +
-      ', PRO.OBS, PRO.PRECO_CUSTO_TOTAL, '#13#10'NCM.NCM, MARCA.NOME NOMEMARC' +
-      'A, GRUPO.NOME NOMEGRUPO, GRUPO.CODIGO COD_GRUPO,'#13#10'PV.PLACA, PV.N' +
-      'UM_CHASSI, PV.NUM_RENAVAM, PV.ANO_FAB, PV.ANO_MOD, PV.MOTORIZACA' +
-      'O, PV.NOME_COR,'#13#10'PV.MARCA MARCA_VEICULO, PV.MODELO MODELO_VEICUL' +
-      'O, PV.COMBUSTIVEL, PV.ESPECIE, PV.DT_ENTRADA, '#13#10#13#10'PV.DT_VENDA, G' +
-      'RUPO.COD_PRINCIPAL, LI.AUTOR, LI.DTLANCAMENTO, LI.PAGINA, LI.SEL' +
-      'O, LI.CICLO,'#13#10#13#10'CASE'#13#10'   WHEN (PRO.TIPO_REG = '#39'P'#39') then '#39'Produto' +
-      #39#13#10'   WHEN (PRO.TIPO_REG = '#39'M'#39') THEN '#39'Material'#39#13#10'   WHEN (PRO.TI' +
-      'PO_REG = '#39'N'#39') THEN '#39'Outros'#39#13#10'   WHEN (PRO.TIPO_REG = '#39'C'#39') THEN '#39 +
-      'Material Consumo'#39#13#10'   WHEN (PRO.TIPO_REG = '#39'I'#39') THEN '#39'Imobilizad' +
-      'o'#39#13#10'   WHEN (PRO.TIPO_REG = '#39'S'#39') THEN '#39'Semiacabado'#39#13#10'ELSE '#39#39#13#10' E' +
-      'ND AS TIPO_REG_DESCRICAO,'#13#10#13#10'(SELECT SUM(E2.QTD) QTDGERAL FROM E' +
-      'STOQUE_ATUAL E2'#13#10'                    WHERE E2.ID_PRODUTO = PRO.I' +
-      'D) QTD_ESTOQUE'#13#10'FROM PRODUTO PRO'#13#10'LEFT JOIN TAB_NCM NCM ON (PRO.' +
-      'ID_NCM = NCM.ID)'#13#10'LEFT JOIN MARCA ON (PRO.ID_MARCA = MARCA.ID)'#13#10 +
-      'LEFT JOIN GRUPO ON (PRO.ID_GRUPO = GRUPO.ID)'#13#10'LEFT JOIN PRODUTO_' +
-      'VEICULO PV ON (PRO.ID = PV.ID)'#13#10'LEFT JOIN PRODUTO_LIVRO LI ON (P' +
-      'RO.ID = LI.ID)'#13#10
+      'O, PRO.ID_MARCA, PRO.COD_BARRA, PRO.SPED_TIPO_ITEM,'#13#10'PRO.cod_ANT' +
+      ', PRO.OBS, PRO.PRECO_CUSTO_TOTAL, NCM.NCM, MARCA.NOME NOMEMARCA,' +
+      ' GRUPO.NOME NOMEGRUPO,'#13#10'GRUPO.CODIGO COD_GRUPO, GRUPO.COD_PRINCI' +
+      'PAL,'#13#10#13#10'CASE'#13#10'   WHEN (PRO.TIPO_REG = '#39'P'#39') then '#39'Produto'#39#13#10'   WH' +
+      'EN (PRO.TIPO_REG = '#39'M'#39') THEN '#39'Material'#39#13#10'   WHEN (PRO.TIPO_REG =' +
+      ' '#39'N'#39') THEN '#39'Outros'#39#13#10'   WHEN (PRO.TIPO_REG = '#39'C'#39') THEN '#39'Material' +
+      ' Consumo'#39#13#10'   WHEN (PRO.TIPO_REG = '#39'I'#39') THEN '#39'Imobilizado'#39#13#10'   W' +
+      'HEN (PRO.TIPO_REG = '#39'S'#39') THEN '#39'Semiacabado'#39#13#10'ELSE '#39#39#13#10' END AS TI' +
+      'PO_REG_DESCRICAO, P.NOME NOME_CLIENTE,'#13#10#13#10'(SELECT SUM(E2.QTD) QT' +
+      'DGERAL FROM ESTOQUE_ATUAL E2'#13#10'                    WHERE E2.ID_PR' +
+      'ODUTO = PRO.ID) QTD_ESTOQUE'#13#10'FROM PRODUTO PRO'#13#10'LEFT JOIN TAB_NCM' +
+      ' NCM ON (PRO.ID_NCM = NCM.ID)'#13#10'LEFT JOIN MARCA ON (PRO.ID_MARCA ' +
+      '= MARCA.ID)'#13#10'LEFT JOIN GRUPO ON (PRO.ID_GRUPO = GRUPO.ID)'#13#10'LEFT ' +
+      'JOIN PESSOA P ON (P.CODIGO = PRO.ID_CLIENTE)'
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
@@ -1476,69 +1474,6 @@ object dmCadProduto: TdmCadProduto
       FieldName = 'COD_BARRA'
       Size = 14
     end
-    object cdsProduto_ConsultaPLACA: TStringField
-      Alignment = taCenter
-      DisplayLabel = 'Placa'
-      FieldName = 'PLACA'
-      Size = 8
-    end
-    object cdsProduto_ConsultaNUM_CHASSI: TStringField
-      DisplayLabel = 'N'#186' Chassi'
-      FieldName = 'NUM_CHASSI'
-    end
-    object cdsProduto_ConsultaNUM_RENAVAM: TStringField
-      DisplayLabel = 'N'#186' Renavam'
-      FieldName = 'NUM_RENAVAM'
-      Size = 10
-    end
-    object cdsProduto_ConsultaANO_FAB: TIntegerField
-      DisplayLabel = 'Ano Fabrica'#231#227'o'
-      FieldName = 'ANO_FAB'
-    end
-    object cdsProduto_ConsultaANO_MOD: TIntegerField
-      DisplayLabel = 'Ano Modelo'
-      FieldName = 'ANO_MOD'
-    end
-    object cdsProduto_ConsultaMOTORIZACAO: TStringField
-      DisplayLabel = 'Motoriza'#231#227'o'
-      FieldName = 'MOTORIZACAO'
-      Size = 10
-    end
-    object cdsProduto_ConsultaNOME_COR: TStringField
-      DisplayLabel = 'Cor'
-      FieldName = 'NOME_COR'
-      Size = 30
-    end
-    object cdsProduto_ConsultaMARCA_VEICULO: TStringField
-      DisplayLabel = 'Marca Veiculo'
-      FieldName = 'MARCA_VEICULO'
-      Size = 25
-    end
-    object cdsProduto_ConsultaMODELO_VEICULO: TStringField
-      DisplayLabel = 'Modelo'
-      FieldName = 'MODELO_VEICULO'
-      Size = 25
-    end
-    object cdsProduto_ConsultaCOMBUSTIVEL: TStringField
-      DisplayLabel = 'Combust'#237'vel'
-      FieldName = 'COMBUSTIVEL'
-      Size = 25
-    end
-    object cdsProduto_ConsultaESPECIE: TStringField
-      DisplayLabel = 'Esp'#233'cie'
-      FieldName = 'ESPECIE'
-      Size = 25
-    end
-    object cdsProduto_ConsultaDT_ENTRADA: TDateField
-      Alignment = taCenter
-      DisplayLabel = 'Data Entrada'
-      FieldName = 'DT_ENTRADA'
-    end
-    object cdsProduto_ConsultaDT_VENDA: TDateField
-      Alignment = taCenter
-      DisplayLabel = 'Data Venda'
-      FieldName = 'DT_VENDA'
-    end
     object cdsProduto_ConsultaQTD_ESTOQUE: TFMTBCDField
       FieldName = 'QTD_ESTOQUE'
       DisplayFormat = '0.000##'
@@ -1568,24 +1503,6 @@ object dmCadProduto: TdmCadProduto
       FixedChar = True
       Size = 16
     end
-    object cdsProduto_ConsultaAUTOR: TStringField
-      FieldName = 'AUTOR'
-      Size = 70
-    end
-    object cdsProduto_ConsultaDTLANCAMENTO: TDateField
-      FieldName = 'DTLANCAMENTO'
-    end
-    object cdsProduto_ConsultaPAGINA: TIntegerField
-      FieldName = 'PAGINA'
-    end
-    object cdsProduto_ConsultaSELO: TStringField
-      FieldName = 'SELO'
-      Size = 40
-    end
-    object cdsProduto_ConsultaCICLO: TStringField
-      FieldName = 'CICLO'
-      Size = 30
-    end
     object cdsProduto_ConsultaCOD_ANT: TStringField
       FieldName = 'COD_ANT'
       Size = 10
@@ -1598,6 +1515,10 @@ object dmCadProduto: TdmCadProduto
     object cdsProduto_ConsultaPRECO_CUSTO_TOTAL: TFloatField
       FieldName = 'PRECO_CUSTO_TOTAL'
       DisplayFormat = '0.000##'
+    end
+    object cdsProduto_ConsultaNOME_CLIENTE: TStringField
+      FieldName = 'NOME_CLIENTE'
+      Size = 60
     end
   end
   object dsProduto_Consulta: TDataSource
@@ -1613,21 +1534,21 @@ object dmCadProduto: TdmCadProduto
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
-    Left = 576
-    Top = 374
+    Left = 480
+    Top = 318
   end
   object dspCliente: TDataSetProvider
     DataSet = sdsCliente
-    Left = 608
-    Top = 374
+    Left = 512
+    Top = 318
   end
   object cdsCliente: TClientDataSet
     Aggregates = <>
     IndexFieldNames = 'NOME'
     Params = <>
     ProviderName = 'dspCliente'
-    Left = 640
-    Top = 374
+    Left = 544
+    Top = 318
     object cdsClienteCODIGO: TIntegerField
       FieldName = 'CODIGO'
       Required = True
@@ -1639,8 +1560,8 @@ object dmCadProduto: TdmCadProduto
   end
   object dsCliente: TDataSource
     DataSet = cdsCliente
-    Left = 672
-    Top = 374
+    Left = 576
+    Top = 318
   end
   object qParametros_Usuario: TSQLQuery
     MaxBlobSize = -1
@@ -1655,8 +1576,8 @@ object dmCadProduto: TdmCadProduto
       'FROM PARAMETROS_USUARIO'
       'WHERE USUARIO = :USUARIO')
     SQLConnection = dmDatabase.scoDados
-    Left = 976
-    Top = 368
+    Left = 880
+    Top = 312
     object qParametros_UsuarioID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -1695,8 +1616,8 @@ object dmCadProduto: TdmCadProduto
       'FROM PESSOA'
       'WHERE CODIGO = :CODIGO')
     SQLConnection = dmDatabase.scoDados
-    Left = 1000
-    Top = 232
+    Left = 904
+    Top = 176
     object qFornecedorCODIGO: TIntegerField
       FieldName = 'CODIGO'
       Required = True
@@ -1725,8 +1646,8 @@ object dmCadProduto: TdmCadProduto
       'ON P.id = C.id'
       'WHERE P.ID = :ID')
     SQLConnection = dmDatabase.scoDados
-    Left = 960
-    Top = 272
+    Left = 864
+    Top = 216
     object qMaterialID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -1774,8 +1695,8 @@ object dmCadProduto: TdmCadProduto
       'FROM TAB_NCM'
       'WHERE ID = :ID')
     SQLConnection = dmDatabase.scoDados
-    Left = 1000
-    Top = 184
+    Left = 904
+    Top = 128
     object qNCMID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -1793,12 +1714,12 @@ object dmCadProduto: TdmCadProduto
     Params = <>
     SQLConnection = dmDatabase.scoDados
     Left = 208
-    Top = 527
+    Top = 471
   end
   object dspLinha: TDataSetProvider
     DataSet = sdsLinha
     Left = 240
-    Top = 527
+    Top = 471
   end
   object cdsLinha: TClientDataSet
     Aggregates = <>
@@ -1806,7 +1727,7 @@ object dmCadProduto: TdmCadProduto
     Params = <>
     ProviderName = 'dspLinha'
     Left = 272
-    Top = 527
+    Top = 471
     object cdsLinhaID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -1830,7 +1751,7 @@ object dmCadProduto: TdmCadProduto
   object dsLinha: TDataSource
     DataSet = cdsLinha
     Left = 304
-    Top = 527
+    Top = 471
   end
   object qParametros_Est: TSQLQuery
     MaxBlobSize = -1
@@ -1839,8 +1760,8 @@ object dmCadProduto: TdmCadProduto
       'SELECT *'
       'FROM PARAMETROS_EST')
     SQLConnection = dmDatabase.scoDados
-    Left = 1056
-    Top = 392
+    Left = 960
+    Top = 336
     object qParametros_EstID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -1858,8 +1779,8 @@ object dmCadProduto: TdmCadProduto
       'SELECT ID, USA_OPCAO_IMP_COD_CLI, GRAVAR_TAB_TAMANHO'
       'FROM PARAMETROS_NFE')
     SQLConnection = dmDatabase.scoDados
-    Left = 1072
-    Top = 336
+    Left = 976
+    Top = 280
     object qParametros_NFeID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -1882,8 +1803,8 @@ object dmCadProduto: TdmCadProduto
       'SELECT *'
       'FROM PARAMETROS_PROD')
     SQLConnection = dmDatabase.scoDados
-    Left = 1096
-    Top = 208
+    Left = 1000
+    Top = 152
     object qParametros_ProdUSA_PRODUTO_FILIAL: TStringField
       FieldName = 'USA_PRODUTO_FILIAL'
       FixedChar = True
@@ -1942,6 +1863,11 @@ object dmCadProduto: TdmCadProduto
       FixedChar = True
       Size = 1
     end
+    object qParametros_ProdGERADORES_ELETRICOS: TStringField
+      FieldName = 'GERADORES_ELETRICOS'
+      FixedChar = True
+      Size = 1
+    end
   end
   object qParametros_Geral: TSQLQuery
     MaxBlobSize = -1
@@ -1950,8 +1876,8 @@ object dmCadProduto: TdmCadProduto
       'SELECT *'
       'FROM PARAMETROS_GERAL')
     SQLConnection = dmDatabase.scoDados
-    Left = 944
-    Top = 552
+    Left = 848
+    Top = 440
     object qParametros_GeralID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -1961,5 +1887,232 @@ object dmCadProduto: TdmCadProduto
       FixedChar = True
       Size = 1
     end
+  end
+  object sdsProdutoGerador: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 'SELECT * FROM PRODUTO_GERADOR'
+    DataSource = dsmProduto
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = dmDatabase.scoDados
+    Left = 50
+    Top = 112
+    object sdsProdutoGeradorID: TIntegerField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sdsProdutoGeradorID_MOTADORA: TIntegerField
+      FieldName = 'ID_MOTADORA'
+    end
+    object sdsProdutoGeradorID_FABRICANTE_MOTOR: TIntegerField
+      FieldName = 'ID_FABRICANTE_MOTOR'
+    end
+    object sdsProdutoGeradorMODELO: TStringField
+      FieldName = 'MODELO'
+      Size = 30
+    end
+    object sdsProdutoGeradorNRO_SERIE: TStringField
+      FieldName = 'NRO_SERIE'
+      Size = 30
+    end
+    object sdsProdutoGeradorPOTENCIA: TStringField
+      FieldName = 'POTENCIA'
+    end
+    object sdsProdutoGeradorANO_FABR: TSmallintField
+      FieldName = 'ANO_FABR'
+    end
+    object sdsProdutoGeradorNRO_SERIE_EQUIP: TStringField
+      FieldName = 'NRO_SERIE_EQUIP'
+      Size = 30
+    end
+    object sdsProdutoGeradorID_FABRICANTE_GERADOR: TIntegerField
+      FieldName = 'ID_FABRICANTE_GERADOR'
+    end
+    object sdsProdutoGeradorMODELO_GERADOR: TStringField
+      FieldName = 'MODELO_GERADOR'
+      Size = 30
+    end
+    object sdsProdutoGeradorNRO_SERIE_GERADOR: TStringField
+      FieldName = 'NRO_SERIE_GERADOR'
+      Size = 30
+    end
+    object sdsProdutoGeradorMODELO_USCA: TStringField
+      FieldName = 'MODELO_USCA'
+    end
+    object sdsProdutoGeradorTENSAO: TStringField
+      FieldName = 'TENSAO'
+      Size = 10
+    end
+  end
+  object dsmProduto: TDataSource
+    DataSet = sdsProduto
+    Left = 16
+    Top = 64
+  end
+  object cdsProdutoGerador: TClientDataSet
+    Aggregates = <>
+    DataSetField = cdsProdutosdsProdutoGerador
+    Params = <>
+    Left = 114
+    Top = 112
+    object cdsProdutoGeradorID: TIntegerField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsProdutoGeradorID_MOTADORA: TIntegerField
+      FieldName = 'ID_MOTADORA'
+    end
+    object cdsProdutoGeradorID_FABRICANTE_MOTOR: TIntegerField
+      FieldName = 'ID_FABRICANTE_MOTOR'
+    end
+    object cdsProdutoGeradorMODELO: TStringField
+      FieldName = 'MODELO'
+      Size = 30
+    end
+    object cdsProdutoGeradorNRO_SERIE: TStringField
+      FieldName = 'NRO_SERIE'
+      Size = 30
+    end
+    object cdsProdutoGeradorPOTENCIA: TStringField
+      FieldName = 'POTENCIA'
+    end
+    object cdsProdutoGeradorANO_FABR: TSmallintField
+      FieldName = 'ANO_FABR'
+    end
+    object cdsProdutoGeradorNRO_SERIE_EQUIP: TStringField
+      FieldName = 'NRO_SERIE_EQUIP'
+      Size = 30
+    end
+    object cdsProdutoGeradorID_FABRICANTE_GERADOR: TIntegerField
+      FieldName = 'ID_FABRICANTE_GERADOR'
+    end
+    object cdsProdutoGeradorMODELO_GERADOR: TStringField
+      FieldName = 'MODELO_GERADOR'
+      Size = 30
+    end
+    object cdsProdutoGeradorNRO_SERIE_GERADOR: TStringField
+      FieldName = 'NRO_SERIE_GERADOR'
+      Size = 30
+    end
+    object cdsProdutoGeradorMODELO_USCA: TStringField
+      FieldName = 'MODELO_USCA'
+    end
+    object cdsProdutoGeradorTENSAO: TStringField
+      FieldName = 'TENSAO'
+      Size = 10
+    end
+  end
+  object dsProdutoGerador: TDataSource
+    DataSet = cdsProdutoGerador
+    Left = 146
+    Top = 112
+  end
+  object sdsMarca_Montadora: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 'SELECT ID, NOME FROM MARCA'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = dmDatabase.scoDados
+    Left = 48
+    Top = 191
+  end
+  object dspMarca_Montadora: TDataSetProvider
+    DataSet = sdsMarca_Montadora
+    Left = 80
+    Top = 191
+  end
+  object cdsMarca_Montadora: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspMarca_Montadora'
+    Left = 112
+    Top = 191
+    object cdsMarca_MontadoraID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object cdsMarca_MontadoraNOME: TStringField
+      FieldName = 'NOME'
+      Size = 40
+    end
+  end
+  object dsMarca_Montadora: TDataSource
+    DataSet = cdsMarca_Montadora
+    Left = 144
+    Top = 191
+  end
+  object sdsFabricanteMotor: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 'SELECT ID, NOME FROM MARCA'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = dmDatabase.scoDados
+    Left = 48
+    Top = 239
+  end
+  object dspFabricanteMotor: TDataSetProvider
+    DataSet = sdsFabricanteMotor
+    Left = 80
+    Top = 239
+  end
+  object cdsFabricanteMotor: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspFabricanteMotor'
+    Left = 112
+    Top = 239
+    object IntegerField1: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object StringField1: TStringField
+      FieldName = 'NOME'
+      Size = 40
+    end
+  end
+  object dsFabricanteMotor: TDataSource
+    DataSet = cdsFabricanteMotor
+    Left = 144
+    Top = 239
+  end
+  object sdsFabircanteGerador: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 'SELECT ID, NOME FROM MARCA'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = dmDatabase.scoDados
+    Left = 48
+    Top = 287
+  end
+  object dspFabircanteGerador: TDataSetProvider
+    DataSet = sdsFabircanteGerador
+    Left = 80
+    Top = 287
+  end
+  object cdsFabircanteGerador: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspFabircanteGerador'
+    Left = 112
+    Top = 287
+    object IntegerField2: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object StringField2: TStringField
+      FieldName = 'NOME'
+      Size = 40
+    end
+  end
+  object dsFabircanteGerador: TDataSource
+    DataSet = cdsFabircanteGerador
+    Left = 144
+    Top = 287
   end
 end

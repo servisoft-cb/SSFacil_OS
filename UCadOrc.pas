@@ -5,10 +5,9 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, Buttons, Grids, SMDBGrid, UDMCadOrdemServico,
   DB, DBGrids, ExtCtrls, StdCtrls, FMTBcd, SqlExpr, RzTabs, Mask, DBCtrls, ToolEdit, CurrEdit, RxLookup, RxDBComb, Menus,
-  RXDBCtrl, RzEdit, RzDBEdit, RzButton, UEscolhe_Filial, UCBase, RzPanel, dbXPress, NxCollection, StrUtils,
-  DateUtils, ComCtrls, RzDTP, RzDBDTP, RzLstBox, RzChkLst,
-  SMBox, ToolWin, SMToolBar, NxScrollControl, NxToolBox, UCadOrdemServico_Mat, UCadOrdemServico_Terc,
-  ImgList, NxEdit, RzDBGrid;
+  RXDBCtrl, RzEdit, RzDBEdit, RzButton, UEscolhe_Filial, UCBase, RzPanel, dbXPress, NxCollection, StrUtils, DateUtils, RzDTP,
+  RzDBDTP, RzLstBox, RzChkLst, SMBox, ToolWin, SMToolBar, NxScrollControl, NxToolBox, UCadOrdemServico_Mat, ImgList, NxEdit, 
+  UCadOrdemServico_Terc, ComCtrls, RzDBGrid;
 
 type
   TfrmCadOrc = class(TForm)
@@ -271,8 +270,7 @@ type
     { Public declarations }
     cTXTStream: TMemoryStream;
     cXMLStream: TMemoryStream;
-    sXMLNFSe: TMemoryStream;
-
+    sXMLNFSe: TMemoryStream;                                                                                                 
   end;
 
 var
@@ -280,9 +278,8 @@ var
 
 implementation
 
-uses DmdDatabase, rsDBUtils, uUtilPadrao, USel_Pessoa, USel_Produto,
-  UDMImpOrdemServico, UCadProduto, USel_Setor_Proc2, USel_Ensaio,
-  UCadOrc_Custo, UCadOrc_Aprov, USel_Funcionario, uCadPessoa;
+uses DmdDatabase, rsDBUtils, uUtilPadrao, USel_Pessoa, USel_Produto, UDMImpOrdemServico, UCadProduto, USel_Setor_Proc2,
+  USel_Ensaio, UCadOrc_Custo, UCadOrc_Aprov, USel_Funcionario, uCadPessoa;
 
 
 {$R *.dfm}

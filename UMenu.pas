@@ -47,15 +47,16 @@ type
     ServioOS1: TMenuItem;
     CadastrodeParadas1: TMenuItem;
     CadastrodeProdutos1: TMenuItem;
-    Image1: TImage;
     ToolButton4: TToolButton;
     CadastrodeTestesEnsaio1: TMenuItem;
     CadastrodeMotivos1: TMenuItem;
+    Label1: TLabel;
+    Label2: TLabel;
+    ToolButton5: TToolButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure EfetuarLogoff1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-    procedure ToolButton5Click(Sender: TObject);
     procedure UserControl1AfterLogin(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ToolButton2Click(Sender: TObject);
@@ -69,6 +70,7 @@ type
     procedure CadastrodeTestesEnsaio1Click(Sender: TObject);
     procedure ToolButton4Click(Sender: TObject);
     procedure CadastrodeMotivos1Click(Sender: TObject);
+    procedure ToolButton5Click(Sender: TObject);
   private
     { Private declarations }
     procedure prc_Habilita_Menu;
@@ -166,11 +168,6 @@ begin
     CanClose := False
   else
     CanClose := True;
-end;
-
-procedure TfMenu.ToolButton5Click(Sender: TObject);
-begin
-  Close;
 end;
 
 procedure TfMenu.GetBuildInfo(exeName: String; var V1, V2, V3, V4: word);
@@ -281,6 +278,11 @@ end;
 procedure TfMenu.CadastrodeMotivos1Click(Sender: TObject);
 begin
   OpenForm(TfrmCadMotivo,wsMaximized,'');
+end;
+
+procedure TfMenu.ToolButton5Click(Sender: TObject);
+begin
+  CadastrodeProdutos1Click(Sender);
 end;
 
 initialization

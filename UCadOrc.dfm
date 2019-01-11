@@ -24,7 +24,7 @@ object frmCadOrc: TfrmCadOrc
     Top = 0
     Width = 925
     Height = 661
-    ActivePage = TS_Cadastro
+    ActivePage = TS_Consulta
     ActivePageDefault = TS_Consulta
     Align = alClient
     BackgroundColor = 16752448
@@ -32,7 +32,7 @@ object frmCadOrc: TfrmCadOrc
     FlatColor = clGray
     ParentBackgroundColor = False
     TabColors.Shadow = clSilver
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     OnChange = RzPageControl1Change
     FixedDimension = 19
@@ -40,9 +40,9 @@ object frmCadOrc: TfrmCadOrc
       Caption = 'Consulta'
       object SMDBGrid1: TSMDBGrid
         Left = 0
-        Top = 121
+        Top = 117
         Width = 921
-        Height = 500
+        Height = 504
         Align = alClient
         BorderStyle = bsNone
         Ctl3D = False
@@ -141,7 +141,7 @@ object frmCadOrc: TfrmCadOrc
       end
       object pnlPesquisa: TPanel
         Left = 0
-        Top = 34
+        Top = 30
         Width = 921
         Height = 87
         Align = alTop
@@ -188,29 +188,29 @@ object frmCadOrc: TfrmCadOrc
           Caption = 'Final:'
         end
         object Shape1: TShape
-          Left = 608
-          Top = 32
+          Left = 528
+          Top = 48
           Width = 25
           Height = 17
           Brush.Color = 16777143
         end
         object Label23: TLabel
-          Left = 635
-          Top = 36
+          Left = 555
+          Top = 52
           Width = 46
           Height = 13
           Caption = 'Aprovado'
         end
         object Shape2: TShape
-          Left = 608
-          Top = 48
+          Left = 528
+          Top = 64
           Width = 25
           Height = 17
           Brush.Color = clRed
         end
         object Label29: TLabel
-          Left = 635
-          Top = 52
+          Left = 555
+          Top = 68
           Width = 69
           Height = 13
           Caption = 'N'#227'o Aprovado'
@@ -369,15 +369,16 @@ object frmCadOrc: TfrmCadOrc
         Left = 0
         Top = 0
         Width = 921
-        Height = 34
+        Height = 30
         Align = alTop
         Color = clSilver
         TabOrder = 1
         object btnInserir: TNxButton
-          Left = 3
-          Top = 3
+          Left = 1
+          Top = 1
           Width = 133
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Inserir'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -448,10 +449,11 @@ object frmCadOrc: TfrmCadOrc
           OnClick = btnInserirClick
         end
         object btnExcluir: TNxButton
-          Left = 156
-          Top = 3
+          Left = 134
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Excluir'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -522,10 +524,11 @@ object frmCadOrc: TfrmCadOrc
           OnClick = btnExcluirClick
         end
         object btnPesquisar: TNxButton
-          Left = 462
-          Top = 3
+          Left = 440
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Pesquisar'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -594,10 +597,11 @@ object frmCadOrc: TfrmCadOrc
           OnClick = btnPesquisarClick
         end
         object btnImprimir: TNxButton
-          Left = 309
-          Top = 3
+          Left = 287
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Imprimir'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -666,10 +670,11 @@ object frmCadOrc: TfrmCadOrc
           OnClick = btnImprimirClick
         end
         object btnAprovar: TNxButton
-          Left = 615
-          Top = 3
+          Left = 593
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Aprovar'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -738,15 +743,16 @@ object frmCadOrc: TfrmCadOrc
         Left = 0
         Top = 0
         Width = 921
-        Height = 34
+        Height = 30
         Align = alTop
         Color = 8404992
         TabOrder = 0
         object btnAlterar: TNxButton
-          Left = 4
-          Top = 3
+          Left = 1
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Alterar'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -815,10 +821,11 @@ object frmCadOrc: TfrmCadOrc
           OnClick = btnAlterarClick
         end
         object btnConfirmar: TNxButton
-          Left = 157
-          Top = 3
+          Left = 307
+          Top = 1
           Width = 139
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Confirmar'
           Enabled = False
           Font.Charset = DEFAULT_CHARSET
@@ -888,10 +895,11 @@ object frmCadOrc: TfrmCadOrc
           OnClick = btnConfirmarClick
         end
         object btnCancelar: TNxButton
-          Left = 310
-          Top = 3
+          Left = 154
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Cancelar'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -962,7 +970,7 @@ object frmCadOrc: TfrmCadOrc
       end
       object pnlCadastro: TPanel
         Left = 0
-        Top = 34
+        Top = 30
         Width = 921
         Height = 143
         Align = alTop
@@ -1334,14 +1342,14 @@ object frmCadOrc: TfrmCadOrc
       end
       object RzPageControl2: TRzPageControl
         Left = 0
-        Top = 177
+        Top = 173
         Width = 921
-        Height = 461
-        ActivePage = TS_Produto
+        Height = 465
+        ActivePage = TS_CondEntrada
         ActivePageDefault = TS_Produto
         Align = alClient
         UseColoredTabs = True
-        TabIndex = 0
+        TabIndex = 6
         TabOrder = 2
         FixedDimension = 19
         object TS_Produto: TRzTabSheet
@@ -1350,7 +1358,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 0
             Width = 917
-            Height = 438
+            Height = 442
             Align = alClient
             Color = 16771022
             Enabled = False
@@ -1539,7 +1547,7 @@ object frmCadOrc: TfrmCadOrc
             end
             object Label20: TLabel
               Left = 33
-              Top = 276
+              Top = 280
               Width = 46
               Height = 13
               Alignment = taRightJustify
@@ -1917,17 +1925,18 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 0
             Width = 917
-            Height = 32
+            Height = 28
             Align = alTop
             BevelOuter = bvNone
             Color = 16756912
             TabOrder = 0
             object btnSelSetor: TNxButton
-              Left = 1
-              Top = 1
+              Left = 0
+              Top = 0
               Width = 224
               Height = 28
               Hint = 'Selecionar Setor/Processo'
+              Align = alLeft
               Caption = 'Selecionar Setores / Processos'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -1944,11 +1953,12 @@ object frmCadOrc: TfrmCadOrc
               OnClick = btnSelSetorClick
             end
             object btnExcluir_Setor: TNxButton
-              Left = 226
-              Top = 1
+              Left = 224
+              Top = 0
               Width = 113
               Height = 28
               Hint = 'Excluir Setor'
+              Align = alLeft
               Caption = 'Excluir Setor'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -2046,9 +2056,9 @@ object frmCadOrc: TfrmCadOrc
           end
           object Panel3: TPanel
             Left = 0
-            Top = 177
+            Top = 173
             Width = 917
-            Height = 24
+            Height = 28
             Align = alTop
             BevelOuter = bvNone
             Color = 16756912
@@ -2067,10 +2077,12 @@ object frmCadOrc: TfrmCadOrc
               ParentFont = False
             end
             object btnExcluir_Setor_Proc: TNxButton
-              Left = 2
+              Left = 0
               Top = 0
               Width = 119
+              Height = 28
               Hint = 'Excluir Processo'
+              Align = alLeft
               Caption = 'Excluir Processo'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -2089,7 +2101,7 @@ object frmCadOrc: TfrmCadOrc
           end
           object RzDBGrid1: TRzDBGrid
             Left = 0
-            Top = 32
+            Top = 28
             Width = 917
             Height = 145
             Align = alTop
@@ -2157,58 +2169,59 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 0
             Width = 917
-            Height = 32
+            Height = 28
             Align = alTop
             BevelOuter = bvNone
             Color = 12910472
             TabOrder = 0
             object Shape5: TShape
-              Left = 466
-              Top = 2
+              Left = 386
+              Top = 6
               Width = 35
               Height = 15
               Brush.Color = clMoneyGreen
             end
             object Label43: TLabel
-              Left = 503
-              Top = 3
+              Left = 423
+              Top = 7
               Width = 38
               Height = 13
               Caption = 'Baixado'
             end
             object Label44: TLabel
-              Left = 503
-              Top = 17
+              Left = 535
+              Top = 7
               Width = 79
               Height = 13
               Caption = 'Baixado a menor'
             end
             object Shape7: TShape
-              Left = 466
-              Top = 16
+              Left = 498
+              Top = 6
               Width = 35
               Height = 15
               Brush.Color = clAqua
             end
             object Shape8: TShape
-              Left = 642
-              Top = 1
+              Left = 634
+              Top = 5
               Width = 35
               Height = 15
               Brush.Color = clRed
             end
             object Label45: TLabel
-              Left = 679
-              Top = 3
+              Left = 671
+              Top = 7
               Width = 75
               Height = 13
               Caption = 'Baixado a maior'
             end
             object btnInserir_Mat: TNxButton
               Left = 0
-              Top = 1
-              Width = 109
+              Top = 0
+              Width = 121
               Height = 28
+              Align = alLeft
               Caption = 'Inserir'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -2282,10 +2295,11 @@ object frmCadOrc: TfrmCadOrc
               OnClick = btnInserir_MatClick
             end
             object btnExcluir_Mat: TNxButton
-              Left = 216
-              Top = 1
-              Width = 109
+              Left = 242
+              Top = 0
+              Width = 121
               Height = 28
+              Align = alLeft
               Caption = 'Excluir'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -2359,10 +2373,11 @@ object frmCadOrc: TfrmCadOrc
               OnClick = btnExcluir_MatClick
             end
             object btnAlterar_Mat: TNxButton
-              Left = 108
-              Top = 1
-              Width = 109
+              Left = 121
+              Top = 0
+              Width = 121
               Height = 28
+              Align = alLeft
               Caption = 'Alterar'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -2434,9 +2449,9 @@ object frmCadOrc: TfrmCadOrc
           end
           object SMDBGrid5: TSMDBGrid
             Left = 0
-            Top = 32
+            Top = 28
             Width = 917
-            Height = 406
+            Height = 414
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Mat
@@ -2559,16 +2574,17 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 0
             Width = 917
-            Height = 32
+            Height = 30
             Align = alTop
             BevelOuter = bvNone
             Color = 10485759
             TabOrder = 0
             object btnInserir_Terc: TNxButton
               Left = 0
-              Top = 1
-              Width = 109
-              Height = 28
+              Top = 0
+              Width = 121
+              Height = 30
+              Align = alLeft
               Caption = 'Inserir'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -2642,10 +2658,11 @@ object frmCadOrc: TfrmCadOrc
               OnClick = btnInserir_TercClick
             end
             object btnExcluir_Terc: TNxButton
-              Left = 216
-              Top = 1
-              Width = 109
-              Height = 28
+              Left = 242
+              Top = 0
+              Width = 121
+              Height = 30
+              Align = alLeft
               Caption = 'Excluir'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -2718,10 +2735,11 @@ object frmCadOrc: TfrmCadOrc
               Transparent = True
             end
             object btnAlterar_Terc: TNxButton
-              Left = 108
-              Top = 1
-              Width = 109
-              Height = 28
+              Left = 121
+              Top = 0
+              Width = 121
+              Height = 30
+              Align = alLeft
               Caption = 'Alterar'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
@@ -2793,9 +2811,9 @@ object frmCadOrc: TfrmCadOrc
           end
           object SMDBGrid6: TSMDBGrid
             Left = 0
-            Top = 32
+            Top = 30
             Width = 917
-            Height = 406
+            Height = 412
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Terc
@@ -2997,7 +3015,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 32
             Width = 917
-            Height = 406
+            Height = 410
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Ensaio
@@ -3082,7 +3100,7 @@ object frmCadOrc: TfrmCadOrc
           object Panel5: TPanel
             Left = 0
             Top = 0
-            Width = 909
+            Width = 917
             Height = 25
             Align = alTop
             BevelOuter = bvNone
@@ -3105,8 +3123,8 @@ object frmCadOrc: TfrmCadOrc
           object dbMemoEscopo: TDBMemo
             Left = 0
             Top = 25
-            Width = 909
-            Height = 405
+            Width = 917
+            Height = 417
             Align = alClient
             BevelInner = bvNone
             BevelOuter = bvNone
@@ -3262,7 +3280,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 68
             Width = 917
-            Height = 173
+            Height = 177
             Align = alClient
             BevelInner = bvNone
             BevelOuter = bvNone
@@ -3276,7 +3294,7 @@ object frmCadOrc: TfrmCadOrc
           end
           object Panel9: TPanel
             Left = 0
-            Top = 241
+            Top = 245
             Width = 917
             Height = 31
             Align = alBottom
@@ -3327,7 +3345,7 @@ object frmCadOrc: TfrmCadOrc
           end
           object SMDBGrid3: TSMDBGrid
             Left = 0
-            Top = 272
+            Top = 276
             Width = 917
             Height = 166
             Align = alBottom

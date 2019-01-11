@@ -260,7 +260,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     Top = 8
   end
   object cdsOrdemServico: TClientDataSet
-    Active = True
     Aggregates = <>
     IndexFieldNames = 'ID'
     Params = <>
@@ -1142,7 +1141,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Itens: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServicosdsOrdemServico_Itens
     IndexFieldNames = 'ID;ITEM'
@@ -1739,7 +1737,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Mat: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Mat
     IndexFieldNames = 'ID;ITEM;ITEM_MAT'
@@ -2976,7 +2973,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Proc: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Proc
     IndexFieldNames = 'ID;ITEM;ORDEM;ITEM_PROC'
@@ -3278,7 +3274,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Terc: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Terc
     IndexFieldNames = 'ID;ITEM;ITEM_TERC'
@@ -3870,7 +3865,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Setor: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Setor
     IndexFieldNames = 'ID;ITEM;ITEM_SETOR'
@@ -3997,7 +3991,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Setor_Proc: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_SetorsdsOrdemServico_Setor_Proc
     IndexFieldNames = 'ID;ITEM;ITEM_SETOR;ITEM_PROC'
@@ -4177,7 +4170,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Ensaio: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Ensaio
     Params = <>
@@ -4362,7 +4354,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Custo: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServicosdsOrdemServico_Custo
     Params = <>
@@ -4565,7 +4556,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Ass: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServicosdsOrdemServico_Ass
     IndexFieldNames = 'ID;ITEM'
@@ -4702,7 +4692,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Lib: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Lib
     IndexFieldNames = 'ID;ITEM;ITEM_LIB'
