@@ -1503,10 +1503,6 @@ object dmCadProduto: TdmCadProduto
       FixedChar = True
       Size = 16
     end
-    object cdsProduto_ConsultaCICLO: TStringField
-      FieldName = 'CICLO'
-      Size = 30
-    end
     object cdsProduto_ConsultaCOD_ANT: TStringField
       FieldName = 'COD_ANT'
       Size = 10

@@ -301,7 +301,6 @@ type
     qParametrosUSA_PRODUTO_FORNECEDOR: TStringField;
     qParametrosUSA_PRODUTO_LOCALIZACAO: TStringField;
     qParametrosEMPRESA_LIVRARIA: TStringField;
-    cdsProduto_ConsultaCICLO: TStringField;
     sdsProdutoID_CONTA_ORCAMENTO: TIntegerField;
     cdsProdutoID_CONTA_ORCAMENTO: TIntegerField;
     qParametrosUSA_CONTA_ORCAMENTO: TStringField;

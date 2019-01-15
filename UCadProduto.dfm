@@ -535,7 +535,9 @@ object frmCadProduto: TfrmCadProduto
           Height = 21
           Style = csDropDownList
           ItemHeight = 13
+          ItemIndex = 0
           TabOrder = 3
+          Text = 'Produto'
           Items.Strings = (
             'Produto'
             'Material'
