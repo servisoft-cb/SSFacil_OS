@@ -70,6 +70,7 @@ type
     procedure CadastrodeTestesEnsaio1Click(Sender: TObject);
     procedure ToolButton4Click(Sender: TObject);
     procedure CadastrodeMotivos1Click(Sender: TObject);
+    procedure ToolButton5Click(Sender: TObject);
   private
     { Private declarations }
     procedure prc_Habilita_Menu;
@@ -277,6 +278,11 @@ end;
 procedure TfMenu.CadastrodeMotivos1Click(Sender: TObject);
 begin
   OpenForm(TfrmCadMotivo,wsMaximized,'');
+end;
+
+procedure TfMenu.ToolButton5Click(Sender: TObject);
+begin
+  CadastrodeProdutos1Click(Sender);
 end;
 
 initialization

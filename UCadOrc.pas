@@ -166,6 +166,37 @@ type
     RxDBComboBox1: TRxDBComboBox;
     DBCheckBox1: TDBCheckBox;
     SpeedButton4: TSpeedButton;
+    TS_Gerador: TRzTabSheet;
+    Panel10: TPanel;
+    Label17: TLabel;
+    DBEdit17: TDBEdit;
+    btIncluiProduto: TSpeedButton;
+    btBuscaProduto: TSpeedButton;
+    DBEdit21: TDBEdit;
+    Label38: TLabel;
+    Label39: TLabel;
+    Label40: TLabel;
+    Label46: TLabel;
+    Label47: TLabel;
+    Label48: TLabel;
+    Label49: TLabel;
+    Label50: TLabel;
+    Label51: TLabel;
+    Label52: TLabel;
+    Label53: TLabel;
+    Label55: TLabel;
+    RxDBLookupCombo2: TRxDBLookupCombo;
+    RxDBLookupCombo5: TRxDBLookupCombo;
+    DBEdit26: TDBEdit;
+    DBEdit27: TDBEdit;
+    DBEdit28: TDBEdit;
+    DBEdit29: TDBEdit;
+    RxDBLookupCombo6: TRxDBLookupCombo;
+    DBEdit30: TDBEdit;
+    DBEdit31: TDBEdit;
+    DBEdit32: TDBEdit;
+    DBEdit33: TDBEdit;
+    DBEdit34: TDBEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
@@ -233,6 +264,9 @@ type
     procedure cbTipoProdutoExit(Sender: TObject);
     procedure DBCheckBox1Click(Sender: TObject);
     procedure SpeedButton4Click(Sender: TObject);
+    procedure DBEdit17KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure DBEdit21Exit(Sender: TObject);
   private
     { Private declarations }
     vTipoNotaAnt: String;
@@ -345,14 +379,14 @@ begin
     fDMCadOrdemServico.cdsOrdemServico_Itens.Edit;
 
   case cbTipoRevestimento.ItemIndex of
-    0 : fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_REVESTIMENTO.AsString := 'CRO';
-    1 : fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_REVESTIMENTO.AsString := 'CES';
-    2 : fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_REVESTIMENTO.AsString := 'MET';
-    3 : fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_REVESTIMENTO.AsString := 'MCR';
+    0: fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_REVESTIMENTO.AsString := 'CRO';
+    1: fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_REVESTIMENTO.AsString := 'CES';
+    2: fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_REVESTIMENTO.AsString := 'MET';
+    3: fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_REVESTIMENTO.AsString := 'MCR';
   end;
   case cbTipoProduto.ItemIndex of
-    0 : fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_PROD.AsString := 'C';
-    1 : fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_PROD.AsString := 'R';
+    0: fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_PROD.AsString := 'C';
+    1: fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_PROD.AsString := 'R';
     else fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_PROD.AsString := '';
   end;
   if cbTipoRevestimento.ItemIndex < 0 then
@@ -420,8 +454,8 @@ end;
 
 procedure TfrmCadOrc.FormShow(Sender: TObject);
 var
-  i : Integer;
-  vData : TDateTime;
+  i: Integer;
+  vData: TDateTime;
 begin
   fDMCadOrdemServico := TDMCadOrdemServico.Create(Self);
 
@@ -439,6 +473,20 @@ begin
   end;
 
   btnCusto.Visible := (fDMCadOrdemServico.qParametros_UsuarioMOSTRAR_CUSTO_OS.AsString = 'S');
+
+  fDMCadOrdemServico.qParametros_Prod.Active := True;
+  if fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString = 'S' then
+  begin
+    TS_Produto.TabVisible := False;
+    TS_Gerador.TabVisible := True;
+    RzPageControl2.ActivePage := TS_Gerador;
+    fDMCadOrdemServico.cdsFabricanteGerador.Open;
+    fDMCadOrdemServico.cdsMarca_Montadora.Open;
+    fDMCadOrdemServico.cdsFabricanteMotor.Open;
+    fDMCadOrdemServico.cdsProdutoGerador.Open;
+  end
+  else
+    TS_Produto.TabVisible := True;     
 end;
 
 procedure TfrmCadOrc.prc_Consultar(ID: Integer);
@@ -958,7 +1006,7 @@ procedure TfrmCadOrc.btnImprimirClick(Sender: TObject);
 var
   vArq: String;
   fDMImpOrdemServico: TDMImpOrdemServico;
-  vTipo_Frete : String;
+  vTipo_Frete: String;
 begin
   fDMImpOrdemServico := TDMImpOrdemServico.Create(Self);
 
@@ -1182,7 +1230,7 @@ end;
 procedure TfrmCadOrc.btnAprovarClick(Sender: TObject);
 var
   ffrmCadOrc_Aprov: TfrmCadOrc_Aprov;
-  vIDAux : Integer;
+  vIDAux: Integer;
 begin
   if not(fDMCadOrdemServico.cdsOrdemServico_Consulta.Active) or (fDMCadOrdemServico.cdsOrdemServico_ConsultaID.AsInteger <= 0) then
     exit;
@@ -1270,8 +1318,8 @@ end;
 procedure TfrmCadOrc.cbTipoProdutoExit(Sender: TObject);
 begin
   case cbTipoProduto.ItemIndex of
-    0 : fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_PROD.AsString := 'C';
-    1 : fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_PROD.AsString := 'R';
+    0: fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_PROD.AsString := 'C';
+    1: fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_PROD.AsString := 'R';
     else fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_PROD.AsString := '';
   end;
 end;
@@ -1291,6 +1339,27 @@ begin
   ffrmCadPessoa := TfrmCadPessoa.Create(self);
   ffrmCadPessoa.ShowModal;
   FreeAndNil(ffrmCadPessoa);
+end;
+
+procedure TfrmCadOrc.DBEdit17KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Key = vk_Return) then
+  begin
+    DBEdit21Exit(Sender);
+  end;
+  if (Key = Vk_F2) then
+    btBuscaProduto.Click;
+end;
+
+procedure TfrmCadOrc.DBEdit21Exit(Sender: TObject);
+begin
+  fDMCadOrdemServico.cdsProduto.IndexFieldNames := 'ID';
+  if fDMCadOrdemServico.cdsProduto.FindKey([DbEdit21.Text]) then
+  begin
+    fDMCadOrdemServico.cdsOrdemServico_ItensNOME_PRODUTO.AsString := fDMCadOrdemServico.cdsProdutoNOME.AsString;
+    fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsInteger         := 1;
+  end;
 end;
 
 end.

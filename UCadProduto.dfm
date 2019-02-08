@@ -1416,7 +1416,6 @@ object frmCadProduto: TfrmCadProduto
               DataSource = dmCadProduto.dsProdutoGerador
               LookupField = 'ID'
               LookupDisplay = 'NOME'
-              LookupSource = dmCadProduto.dsFabircanteGerador
               ParentCtl3D = False
               TabOrder = 7
             end

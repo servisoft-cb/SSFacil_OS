@@ -345,7 +345,7 @@ begin
   if fDMCadProduto.qParametros_ProdGERADORES_ELETRICOS.AsString = 'S' then
   begin
     fDMCadProduto.cdsMarca_Montadora.Open;
-    fDMCadProduto.cdsFabircanteGerador.Open;
+    fDMCadProduto.cdsFabricanteGerador.Open;
     fDMCadProduto.cdsFabricanteMotor.Open;
     RzPageControl2.Visible := True;
   end;

@@ -273,6 +273,7 @@ object fMenu: TfMenu
       Top = 274
       Caption = 'Produtos'
       ImageIndex = 2
+      OnClick = ToolButton5Click
     end
   end
   object MainMenu1: TMainMenu

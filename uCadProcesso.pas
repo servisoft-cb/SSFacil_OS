@@ -3,8 +3,8 @@ unit UCadProcesso;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, Buttons, Grids, SMDBGrid, UDMCadSetor, Mask, 
-  db, RxDBComb, UCBase, StdCtrls, DBCtrls, ExtCtrls, RzTabs, DBGrids, ToolEdit, CurrEdit, NxCollection, RzPanel;
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, Buttons, Grids, SMDBGrid, Mask, uCadSetor,
+  UCBase, StdCtrls, DBCtrls, NxCollection, ExtCtrls, DBGrids, RzTabs, db, RxDBComb, ToolEdit, CurrEdit, RzPanel, UDMCadSetor;
 
 type
   TfrmCadProcesso = class(TForm)

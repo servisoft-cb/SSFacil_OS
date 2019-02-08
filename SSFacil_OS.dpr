@@ -91,7 +91,9 @@ uses
   uLkJSON in '..\ssfacil\lkJSON-1.07\uLkJSON.pas',
   UCadOrdemServico_Lib in 'UCadOrdemServico_Lib.pas' {frmCadOrdemServico_Lib},
   uConsAgenda in '..\ssfacil\uConsAgenda.pas' {frmConsAgenda},
-  UDMCadAgenda in '..\ssfacil\UDMCadAgenda.pas' {DMCadAgenda: TDataModule};
+  UDMCadAgenda in '..\ssfacil\UDMCadAgenda.pas' {DMCadAgenda: TDataModule},
+  UCadSetor in '..\ssfacil\uCadSetor.pas' {frmCadSetor},
+  UCadSetor_Proc in '..\ssfacil\UCadSetor_Proc.pas' {frmCadSetor_Proc};
 
 {$R *.res}
 

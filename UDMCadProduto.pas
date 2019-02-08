@@ -444,12 +444,12 @@ type
     IntegerField1: TIntegerField;
     StringField1: TStringField;
     dsFabricanteMotor: TDataSource;
-    sdsFabircanteGerador: TSQLDataSet;
-    dspFabircanteGerador: TDataSetProvider;
-    cdsFabircanteGerador: TClientDataSet;
+    sdsFabricanteGerador: TSQLDataSet;
+    dspFabricanteGerador: TDataSetProvider;
+    cdsFabricanteGerador: TClientDataSet;
     IntegerField2: TIntegerField;
     StringField2: TStringField;
-    dsFabircanteGerador: TDataSource;
+    dsFabricanteGerador: TDataSource;
     qParametros_ProdGERADORES_ELETRICOS: TStringField;
     cdsProduto_ConsultaNOME_CLIENTE: TStringField;
     procedure DataModuleCreate(Sender: TObject);

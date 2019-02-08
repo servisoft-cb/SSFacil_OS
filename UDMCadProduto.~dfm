@@ -1891,10 +1891,15 @@ object dmCadProduto: TdmCadProduto
   object sdsProdutoGerador: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
-    CommandText = 'SELECT * FROM PRODUTO_GERADOR'
+    CommandText = 'SELECT * FROM PRODUTO_GERADOR WHERE ID = :ID'
     DataSource = dsmProduto
     MaxBlobSize = -1
-    Params = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end>
     SQLConnection = dmDatabase.scoDados
     Left = 50
     Top = 112

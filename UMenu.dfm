@@ -196,7 +196,7 @@ object fMenu: TfMenu
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 80
+    Left = 96
     Top = 96
     Width = 144
     Height = 30
@@ -209,7 +209,7 @@ object fMenu: TfMenu
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 80
+    Left = 96
     Top = 8
     Width = 275
     Height = 89
@@ -224,12 +224,12 @@ object fMenu: TfMenu
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 59
+    Width = 73
     Height = 449
     Align = alLeft
     AutoSize = True
     ButtonHeight = 68
-    ButtonWidth = 59
+    ButtonWidth = 73
     Caption = 'ToolBar1'
     Images = ImageList1
     ShowCaptions = True
@@ -271,7 +271,7 @@ object fMenu: TfMenu
     object ToolButton5: TToolButton
       Left = 0
       Top = 274
-      Caption = 'Produtos'
+      Caption = 'Prod. / Equip.'
       ImageIndex = 2
       OnClick = ToolButton5Click
     end

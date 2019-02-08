@@ -180,7 +180,7 @@ object frmCadOrdemServico_Proc: TfrmCadOrdemServico_Proc
     Color = 8404992
     TabOrder = 5
     object BitBtn1: TBitBtn
-      Left = 256
+      Left = 255
       Top = 8
       Width = 102
       Height = 25
@@ -263,7 +263,7 @@ object frmCadOrdemServico_Proc: TfrmCadOrdemServico_Proc
     Top = 8
     Width = 417
     Height = 21
-    DropDownCount = 8
+    DropDownCount = 15
     DataField = 'ID_PROCESSO'
     DataSource = DMCadOrdemServico.dsOrdemServico_Proc
     LookupField = 'ID'
@@ -276,7 +276,7 @@ object frmCadOrdemServico_Proc: TfrmCadOrdemServico_Proc
     Top = 30
     Width = 415
     Height = 21
-    DropDownCount = 8
+    DropDownCount = 15
     DataField = 'ID_SERVICO_OS'
     DataSource = DMCadOrdemServico.dsOrdemServico_Proc
     LookupField = 'ID'

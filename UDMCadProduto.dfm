@@ -2085,7 +2085,7 @@ object dmCadProduto: TdmCadProduto
     Left = 144
     Top = 239
   end
-  object sdsFabircanteGerador: TSQLDataSet
+  object sdsFabricanteGerador: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
     CommandText = 'SELECT ID, NOME FROM MARCA'
@@ -2095,15 +2095,15 @@ object dmCadProduto: TdmCadProduto
     Left = 48
     Top = 287
   end
-  object dspFabircanteGerador: TDataSetProvider
-    DataSet = sdsFabircanteGerador
+  object dspFabricanteGerador: TDataSetProvider
+    DataSet = sdsFabricanteGerador
     Left = 80
     Top = 287
   end
-  object cdsFabircanteGerador: TClientDataSet
+  object cdsFabricanteGerador: TClientDataSet
     Aggregates = <>
     Params = <>
-    ProviderName = 'dspFabircanteGerador'
+    ProviderName = 'dspFabricanteGerador'
     Left = 112
     Top = 287
     object IntegerField2: TIntegerField
@@ -2115,8 +2115,8 @@ object dmCadProduto: TdmCadProduto
       Size = 40
     end
   end
-  object dsFabircanteGerador: TDataSource
-    DataSet = cdsFabircanteGerador
+  object dsFabricanteGerador: TDataSource
+    DataSet = cdsFabricanteGerador
     Left = 144
     Top = 287
   end

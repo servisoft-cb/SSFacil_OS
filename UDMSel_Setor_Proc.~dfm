@@ -11,8 +11,8 @@ object DMSel_Setor_Proc: TDMSel_Setor_Proc
     CommandText = 
       'SELECT S.ID, S.NOME NOME_SETOR, SP.item, SP.ordem, SP.id_process' +
       'o, SP.vlr_hora,S.ORDEM_ORC,'#13#10'P.NOME NOME_PROCESSO'#13#10'FROM SETOR S'#13 +
-      #10'INNER JOIN SETOR_PROC SP ON (S.ID = SP.ID)'#13#10'INNER JOIN PROCESSO' +
-      ' P ON (SP.ID_PROCESSO = P.ID)'#13#10'WHERE S.MOSTRAR_ORC = '#39'S'#39#13#10
+      #10'INNER JOIN SETOR_PROC SP'#13#10'ON S.ID = SP.ID'#13#10'INNER JOIN PROCESSO ' +
+      'P'#13#10'ON SP.ID_PROCESSO = P.ID'#13#10'WHERE S.MOSTRAR_ORC = '#39'S'#39#13#10
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados

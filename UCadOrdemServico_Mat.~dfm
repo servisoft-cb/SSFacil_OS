@@ -89,7 +89,7 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
     Top = 7
     Width = 441
     Height = 21
-    DropDownCount = 15
+    DropDownCount = 8
     Ctl3D = False
     DataField = 'ID_PRODUTO'
     DataSource = DMCadOrdemServico.dsOrdemServico_Mat
