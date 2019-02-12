@@ -1038,7 +1038,18 @@ begin
   fDMImpOrdemServico.sdsOSImp_Ass.ParamByName('ID').AsInteger := fDMCadOrdemServico.cdsOrdemServico_ConsultaID.AsInteger;
   fDMImpOrdemServico.cdsOSImp_Ass.Open;
 
-  vArq := ExtractFilePath(Application.ExeName) + 'Relatorios\ORC_Supercrom.fr3';
+  fDMImpOrdemServico.qRelatorios.Close;
+  fDMImpOrdemServico.qRelatorios.ParamByName('F1').AsInteger := fDMCadOrdemServico.cdsOrdemServico_ConsultaFILIAL.AsInteger;
+  fDMImpOrdemServico.qRelatorios.ParamByName('T1').AsInteger := 1;
+  fDMImpOrdemServico.qRelatorios.ParamByName('P1').AsInteger := 1;
+  fDMImpOrdemServico.qRelatorios.Open;
+
+  if not fDMImpOrdemServico.qRelatorios.IsEmpty then
+    vArq := ExtractFilePath(Application.ExeName) + fDMImpOrdemServico.qRelatoriosCAMINHO.AsString
+  else
+    vArq := ExtractFilePath(Application.ExeName) + 'Relatorios\ORC_Supercrom.fr3';
+  fDMImpOrdemServico.qRelatorios.Close;
+
   if FileExists(vArq) then
     fDMImpOrdemServico.frxReport1.Report.LoadFromFile(vArq)
   else

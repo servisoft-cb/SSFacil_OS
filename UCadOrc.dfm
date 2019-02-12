@@ -24,7 +24,7 @@ object frmCadOrc: TfrmCadOrc
     Top = 0
     Width = 925
     Height = 661
-    ActivePage = TS_Cadastro
+    ActivePage = TS_Consulta
     ActivePageDefault = TS_Consulta
     Align = alClient
     BackgroundColor = 16752448
@@ -32,7 +32,7 @@ object frmCadOrc: TfrmCadOrc
     FlatColor = clGray
     ParentBackgroundColor = False
     TabColors.Shadow = clSilver
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     OnChange = RzPageControl1Change
     FixedDimension = 19
@@ -1345,11 +1345,11 @@ object frmCadOrc: TfrmCadOrc
         Top = 173
         Width = 921
         Height = 465
-        ActivePage = TS_Setor
+        ActivePage = TS_Produto
         ActivePageDefault = TS_Produto
         Align = alClient
         UseColoredTabs = True
-        TabIndex = 2
+        TabIndex = 0
         TabOrder = 2
         FixedDimension = 19
         object TS_Produto: TRzTabSheet
