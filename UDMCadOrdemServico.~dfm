@@ -5235,18 +5235,18 @@ object DMCadOrdemServico: TDMCadOrdemServico
     ProviderName = 'dspProduto'
     Left = 960
     Top = 161
-    object IntegerField4: TIntegerField
+    object cdsProdutoID: TIntegerField
       FieldName = 'ID'
       Required = True
     end
-    object StringField7: TStringField
+    object cdsProdutoREFERENCIA: TStringField
       FieldName = 'REFERENCIA'
     end
-    object StringField8: TStringField
+    object cdsProdutoNOME: TStringField
       FieldName = 'NOME'
       Size = 100
     end
-    object StringField9: TStringField
+    object cdsProdutoINATIVO: TStringField
       FieldName = 'INATIVO'
       FixedChar = True
       Size = 1

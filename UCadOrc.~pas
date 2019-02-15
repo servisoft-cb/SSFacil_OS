@@ -1039,13 +1039,13 @@ begin
   fDMImpOrdemServico.cdsOSImp_Ass.Open;
 
   fDMImpOrdemServico.qRelatorios.Close;
-  fDMImpOrdemServico.qRelatorios.ParamByName('F1').AsInteger := fDMCadOrdemServico.cdsOrdemServicoFILIAL.AsInteger;
+  fDMImpOrdemServico.qRelatorios.ParamByName('F1').AsInteger := fDMCadOrdemServico.cdsOrdemServico_ConsultaFILIAL.AsInteger;
   fDMImpOrdemServico.qRelatorios.ParamByName('T1').AsInteger := 1;
   fDMImpOrdemServico.qRelatorios.ParamByName('P1').AsInteger := 1;
   fDMImpOrdemServico.qRelatorios.Open;
 
   if not fDMImpOrdemServico.qRelatorios.IsEmpty then
-    vArq := ExtractFilePath(Application.ExeName) + fDMImpOrdemServico.qRelatoriosCAMINHO.AsString
+    vArq := fDMImpOrdemServico.qRelatoriosCAMINHO.AsString
   else
     vArq := ExtractFilePath(Application.ExeName) + 'Relatorios\ORC_Supercrom.fr3';
   fDMImpOrdemServico.qRelatorios.Close;

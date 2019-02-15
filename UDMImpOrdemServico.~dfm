@@ -1,9 +1,9 @@
 object DMImpOrdemServico: TDMImpOrdemServico
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 287
-  Top = 102
-  Height = 398
+  Left = 372
+  Top = 83
+  Height = 520
   Width = 643
   object frxReport1: TfrxReport
     Tag = 1
@@ -15,7 +15,7 @@ object DMImpOrdemServico: TDMImpOrdemServico
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43066.746810972200000000
-    ReportOptions.LastChange = 43508.496866284720000000
+    ReportOptions.LastChange = 43509.658278043980000000
     ScriptLanguage = 'PascalScript'
     StoreInDFM = False
     OnPreview = frxReport1Preview
@@ -103,7 +103,6 @@ object DMImpOrdemServico: TDMImpOrdemServico
     Top = 22
   end
   object cdsOSImp: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspOSImp'
@@ -579,7 +578,7 @@ object DMImpOrdemServico: TDMImpOrdemServico
       'OBS=OBS')
     DataSource = dsOSImp_Itens
     BCDToCurrency = False
-    Left = 192
+    Left = 208
     Top = 168
   end
   object sdsOSImp_Custo: TSQLDataSet
@@ -605,6 +604,7 @@ object DMImpOrdemServico: TDMImpOrdemServico
     Top = 216
   end
   object cdsOSImp_Custo: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspOSImp_Custo'
@@ -657,6 +657,7 @@ object DMImpOrdemServico: TDMImpOrdemServico
     Top = 264
   end
   object cdsOSImp_Ass: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspOSImp_Ass'
@@ -769,7 +770,12 @@ object DMImpOrdemServico: TDMImpOrdemServico
   object sdsProdutoGerador: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
-    CommandText = 'SELECT * FROM PRODUTO_GERADOR'#13#10'WHERE ID = :ID_PRODUTO'
+    CommandText = 
+      'SELECT PG.*, M1.NOME NOME_MONTADORA, M2.NOME NOME_FABR_MOTOR, M3' +
+      '.NOME NOME_FABR_GERADOR'#13#10'FROM PRODUTO_GERADOR PG'#13#10'LEFT JOIN MARC' +
+      'A M1 ON (PG.ID_MOTADORA = M1.ID)'#13#10'LEFT JOIN MARCA M2 ON (PG.ID_F' +
+      'ABRICANTE_MOTOR = M2.ID)'#13#10'LEFT JOIN MARCA M3 ON (PG.ID_FABRICANT' +
+      'E_GERADOR = M3.ID)'#13#10'WHERE PG.ID = :ID_PRODUTO'
     DataSource = dsmOSImp
     MaxBlobSize = -1
     Params = <
@@ -840,6 +846,21 @@ object DMImpOrdemServico: TDMImpOrdemServico
       FieldName = 'TENSAO'
       Size = 10
     end
+    object cdsProdutoGeradorNOME_MONTADORA: TStringField
+      FieldName = 'NOME_MONTADORA'
+      ProviderFlags = []
+      Size = 40
+    end
+    object cdsProdutoGeradorNOME_FABR_MOTOR: TStringField
+      FieldName = 'NOME_FABR_MOTOR'
+      ProviderFlags = []
+      Size = 40
+    end
+    object cdsProdutoGeradorNOME_FABR_GERADOR: TStringField
+      FieldName = 'NOME_FABR_GERADOR'
+      ProviderFlags = []
+      Size = 40
+    end
   end
   object dsProdutoGerador: TDataSource
     DataSet = cdsProdutoGerador
@@ -862,10 +883,201 @@ object DMImpOrdemServico: TDMImpOrdemServico
       'MODELO_GERADOR=MODELO_GERADOR'
       'NRO_SERIE_GERADOR=NRO_SERIE_GERADOR'
       'MODELO_USCA=MODELO_USCA'
-      'TENSAO=TENSAO')
+      'TENSAO=TENSAO'
+      'NOME_MONTADORA=NOME_MONTADORA'
+      'NOME_FABR_MOTOR=NOME_FABR_MOTOR'
+      'NOME_FABR_GERADOR=NOME_FABR_GERADOR')
     DataSource = dsProdutoGerador
     BCDToCurrency = False
     Left = 144
     Top = 312
+  end
+  object sdsOrcSetor: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 
+      'SELECT OSS.*, S.NOME NOME_SETOR'#13#10'FROM ORDEMSERVICO_SETOR OSS'#13#10'IN' +
+      'NER JOIN SETOR S ON (OSS.ID_SETOR = S.ID)'#13#10'WHERE OSS.ID = :ID'#13#10' ' +
+      ' AND OSS.ITEM = :ITEM'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+        Size = 4
+      end
+      item
+        DataType = ftInteger
+        Name = 'ITEM'
+        ParamType = ptInput
+        Size = 4
+      end>
+    SQLConnection = dmDatabase.scoDados
+    Left = 40
+    Top = 360
+  end
+  object cdsOrcSetor: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspOrcSetor'
+    AfterScroll = cdsOrcSetorAfterScroll
+    Left = 104
+    Top = 360
+    object cdsOrcSetorID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object cdsOrcSetorITEM: TIntegerField
+      FieldName = 'ITEM'
+      Required = True
+    end
+    object cdsOrcSetorITEM_SETOR: TIntegerField
+      FieldName = 'ITEM_SETOR'
+      Required = True
+    end
+    object cdsOrcSetorID_SETOR: TIntegerField
+      FieldName = 'ID_SETOR'
+    end
+    object cdsOrcSetorTOTAL_HORA: TFloatField
+      FieldName = 'TOTAL_HORA'
+    end
+    object cdsOrcSetorVLR_TOTAL: TFloatField
+      FieldName = 'VLR_TOTAL'
+    end
+    object cdsOrcSetorNOME_SETOR: TStringField
+      FieldName = 'NOME_SETOR'
+    end
+  end
+  object dsOrcSetor: TDataSource
+    DataSet = cdsOrcSetor
+    Left = 144
+    Top = 360
+  end
+  object frxOrcSetor: TfrxDBDataset
+    UserName = 'frxOrcSetor'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'ID=ID'
+      'ITEM=ITEM'
+      'ITEM_SETOR=ITEM_SETOR'
+      'ID_SETOR=ID_SETOR'
+      'TOTAL_HORA=TOTAL_HORA'
+      'VLR_TOTAL=VLR_TOTAL'
+      'NOME_SETOR=NOME_SETOR')
+    DataSource = dsOrcSetor
+    BCDToCurrency = False
+    Left = 184
+    Top = 360
+  end
+  object sdsOrcSetorProc: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 
+      'SELECT OSSP.*, P.NOME NOME_PROCESSO'#13#10'FROM ORDEMSERVICO_SETOR_PRO' +
+      'C OSSP'#13#10'INNER JOIN PROCESSO P ON (OSSP.ID_PROCESSO = P.ID)'#13#10'WHER' +
+      'E OSSP.ID = :ID'#13#10' AND OSSP.ITEM = :ITEM'#13#10' AND ITEM_SETOR = :ITEM' +
+      '_SETOR'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'ITEM'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'ITEM_SETOR'
+        ParamType = ptInput
+      end>
+    SQLConnection = dmDatabase.scoDados
+    Left = 40
+    Top = 408
+  end
+  object cdsOrcSetorProc: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspOrcSetorProc'
+    Left = 104
+    Top = 408
+    object cdsOrcSetorProcID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object cdsOrcSetorProcITEM: TIntegerField
+      FieldName = 'ITEM'
+      Required = True
+    end
+    object cdsOrcSetorProcITEM_SETOR: TIntegerField
+      FieldName = 'ITEM_SETOR'
+      Required = True
+    end
+    object cdsOrcSetorProcITEM_PROC: TIntegerField
+      FieldName = 'ITEM_PROC'
+      Required = True
+    end
+    object cdsOrcSetorProcID_PROCESSO: TIntegerField
+      FieldName = 'ID_PROCESSO'
+    end
+    object cdsOrcSetorProcDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 150
+    end
+    object cdsOrcSetorProcTOTAL_HORA: TFloatField
+      FieldName = 'TOTAL_HORA'
+    end
+    object cdsOrcSetorProcVLR_HORA: TFloatField
+      FieldName = 'VLR_HORA'
+    end
+    object cdsOrcSetorProcVLR_TOTAL: TFloatField
+      FieldName = 'VLR_TOTAL'
+    end
+    object cdsOrcSetorProcNOME_PROCESSO: TStringField
+      FieldName = 'NOME_PROCESSO'
+      Size = 30
+    end
+  end
+  object dsOrcSetorProc: TDataSource
+    DataSet = cdsOrcSetorProc
+    Left = 144
+    Top = 408
+  end
+  object frxOrcSetorProc: TfrxDBDataset
+    UserName = 'frxOrcSetorProc'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'ID=ID'
+      'ITEM=ITEM'
+      'ITEM_SETOR=ITEM_SETOR'
+      'ITEM_PROC=ITEM_PROC'
+      'ID_PROCESSO=ID_PROCESSO'
+      'DESCRICAO=DESCRICAO'
+      'TOTAL_HORA=TOTAL_HORA'
+      'VLR_HORA=VLR_HORA'
+      'VLR_TOTAL=VLR_TOTAL')
+    DataSource = dsOrcSetorProc
+    BCDToCurrency = False
+    Left = 184
+    Top = 408
+  end
+  object dsmOSImp_Itens: TDataSource
+    DataSet = sdsOSImp_Itens
+    Left = 168
+    Top = 168
+  end
+  object dspOrcSetor: TDataSetProvider
+    DataSet = sdsOrcSetor
+    Left = 72
+    Top = 360
+  end
+  object dspOrcSetorProc: TDataSetProvider
+    DataSet = sdsOrcSetorProc
+    Left = 72
+    Top = 408
   end
 end

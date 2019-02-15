@@ -1083,12 +1083,12 @@ type
     StringField5: TStringField;
     dspProduto: TDataSetProvider;
     cdsProduto: TClientDataSet;
-    IntegerField4: TIntegerField;
-    StringField7: TStringField;
-    StringField8: TStringField;
-    StringField9: TStringField;
     dsProduto: TDataSource;
     cdsProdutosdsProdutoGerador: TDataSetField;
+    cdsProdutoID: TIntegerField;
+    cdsProdutoREFERENCIA: TStringField;
+    cdsProdutoNOME: TStringField;
+    cdsProdutoINATIVO: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure dspOrdemServicoUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError;

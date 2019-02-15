@@ -143,8 +143,40 @@ type
     cdsProdutoGeradorMODELO_USCA: TStringField;
     cdsProdutoGeradorTENSAO: TStringField;
     frxProdutoGerador: TfrxDBDataset;
+    cdsProdutoGeradorNOME_MONTADORA: TStringField;
+    cdsProdutoGeradorNOME_FABR_MOTOR: TStringField;
+    cdsProdutoGeradorNOME_FABR_GERADOR: TStringField;
+    sdsOrcSetor: TSQLDataSet;
+    cdsOrcSetor: TClientDataSet;
+    dsOrcSetor: TDataSource;
+    frxOrcSetor: TfrxDBDataset;
+    cdsOrcSetorID: TIntegerField;
+    cdsOrcSetorITEM: TIntegerField;
+    cdsOrcSetorITEM_SETOR: TIntegerField;
+    cdsOrcSetorID_SETOR: TIntegerField;
+    cdsOrcSetorTOTAL_HORA: TFloatField;
+    cdsOrcSetorVLR_TOTAL: TFloatField;
+    sdsOrcSetorProc: TSQLDataSet;
+    cdsOrcSetorProc: TClientDataSet;
+    dsOrcSetorProc: TDataSource;
+    cdsOrcSetorNOME_SETOR: TStringField;
+    cdsOrcSetorProcID: TIntegerField;
+    cdsOrcSetorProcITEM: TIntegerField;
+    cdsOrcSetorProcITEM_SETOR: TIntegerField;
+    cdsOrcSetorProcITEM_PROC: TIntegerField;
+    cdsOrcSetorProcID_PROCESSO: TIntegerField;
+    cdsOrcSetorProcDESCRICAO: TStringField;
+    cdsOrcSetorProcTOTAL_HORA: TFloatField;
+    cdsOrcSetorProcVLR_HORA: TFloatField;
+    cdsOrcSetorProcVLR_TOTAL: TFloatField;
+    frxOrcSetorProc: TfrxDBDataset;
+    dsmOSImp_Itens: TDataSource;
+    dspOrcSetor: TDataSetProvider;
+    dspOrcSetorProc: TDataSetProvider;
+    cdsOrcSetorProcNOME_PROCESSO: TStringField;
     procedure frxReport1Preview(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
+    procedure cdsOrcSetorAfterScroll(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -172,6 +204,15 @@ end;
 procedure TDMImpOrdemServico.DataModuleCreate(Sender: TObject);
 begin
   qFilial.Open;
+end;
+
+procedure TDMImpOrdemServico.cdsOrcSetorAfterScroll(DataSet: TDataSet);
+begin
+  cdsOrcSetorProc.Close;
+  sdsOrcSetorProc.ParamByName('ID').AsInteger         := cdsOrcSetorID.AsInteger;
+  sdsOrcSetorProc.ParamByName('ITEM').AsInteger       := cdsOrcSetorITEM.AsInteger;
+  sdsOrcSetorProc.ParamByName('ITEM_SETOR').AsInteger := cdsOrcSetorITEM_SETOR.AsInteger;
+  cdsOrcSetorProc.Open;
 end;
 
 end.
