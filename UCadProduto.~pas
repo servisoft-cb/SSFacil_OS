@@ -128,6 +128,9 @@ type
     procedure DBEdit58Enter(Sender: TObject);
     procedure DBEdit2Exit(Sender: TObject);
     procedure TabSheet1Enter(Sender: TObject);
+    procedure RxDBLookupCombo4Enter(Sender: TObject);
+    procedure RxDBLookupCombo1Enter(Sender: TObject);
+    procedure RxDBLookupCombo5Enter(Sender: TObject);
   private
     { Private declarations }
     fDMCadProduto: TDMCadProduto;
@@ -345,7 +348,7 @@ begin
   if fDMCadProduto.qParametros_ProdGERADORES_ELETRICOS.AsString = 'S' then
   begin
     fDMCadProduto.cdsMarca_Montadora.Open;
-    fDMCadProduto.cdsFabircanteGerador.Open;
+    fDMCadProduto.cdsFabricanteGerador.Open;
     fDMCadProduto.cdsFabricanteMotor.Open;
     RzPageControl2.Visible := True;
   end;
@@ -656,6 +659,21 @@ begin
     fDMCadProduto.cdsProdutoGerador.Insert;
     fDMCadProduto.cdsProdutoGeradorID.AsInteger := fDMCadProduto.cdsProdutoID.AsInteger;
   end;
+end;
+
+procedure TfrmCadProduto.RxDBLookupCombo4Enter(Sender: TObject);
+begin
+  fdmCadProduto.cdsMarca_Montadora.IndexFieldNames := 'NOME';
+end;
+
+procedure TfrmCadProduto.RxDBLookupCombo1Enter(Sender: TObject);
+begin
+  fdmCadProduto.cdsFabricanteMotor.IndexFieldNames := 'NOME';
+end;
+
+procedure TfrmCadProduto.RxDBLookupCombo5Enter(Sender: TObject);
+begin
+  fdmCadProduto.cdsFabricanteGerador.IndexFieldNames := 'NOME';
 end;
 
 end.

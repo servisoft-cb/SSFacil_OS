@@ -16,6 +16,8 @@ type
     btnConfBaixa: TNxButton;
     NxButton1: TNxButton;
     SpeedButton5: TSpeedButton;
+    Label3: TLabel;
+    DBEdit2: TDBEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure RxDBLookupCombo1Exit(Sender: TObject);
@@ -62,7 +64,10 @@ begin
   if RxDBLookupCombo1.Text <> '' then
   begin
     fDMCadOrdemServico.cdsMaterial.Locate('ID',fDMCadOrdemServico.cdsOrdemServico_MatID_PRODUTO.AsInteger,[loCaseInsensitive]);
-    fDMCadOrdemServico.cdsOrdemServico_MatVLR_UNITARIO.AsFloat := fDMCadOrdemServico.cdsMaterialPRECO_CUSTO.AsFloat;
+    if fDMCadOrdemServico.qParametros_SerPRECO_CUSTO_MATERIAL.AsString = 'S' then
+      fDMCadOrdemServico.cdsOrdemServico_MatVLR_UNITARIO.AsFloat := fDMCadOrdemServico.cdsMaterialPRECO_CUSTO.AsFloat
+    else
+      fDMCadOrdemServico.cdsOrdemServico_MatVLR_UNITARIO.AsFloat := fDMCadOrdemServico.cdsMaterialPRECO_VENDA.AsFloat;
   end;
 end;
 
@@ -117,12 +122,14 @@ end;
 
 procedure TfrmCadOrdemServico_Mat.DBEdit1Exit(Sender: TObject);
 begin
-  fDMCadOrdemServico.cdsOrdemServico_MatVLR_TOTAL.AsFloat := fnc_Calcular(fDMCadOrdemServico.cdsOrdemServico_MatVLR_UNITARIO.AsFloat,fDMCadOrdemServico.cdsOrdemServico_MatQTD.AsFloat);
+  fDMCadOrdemServico.cdsOrdemServico_MatVLR_TOTAL.AsFloat := fnc_Calcular(fDMCadOrdemServico.cdsOrdemServico_MatVLR_UNITARIO.AsFloat,
+                                                                          fDMCadOrdemServico.cdsOrdemServico_MatQTD.AsFloat);
 end;
 
 procedure TfrmCadOrdemServico_Mat.DBEdit2Exit(Sender: TObject);
 begin
-  fDMCadOrdemServico.cdsOrdemServico_MatVLR_TOTAL.AsFloat := fnc_Calcular(fDMCadOrdemServico.cdsOrdemServico_MatVLR_UNITARIO.AsFloat,fDMCadOrdemServico.cdsOrdemServico_MatQTD.AsFloat);
+  fDMCadOrdemServico.cdsOrdemServico_MatVLR_TOTAL.AsFloat := fnc_Calcular(fDMCadOrdemServico.cdsOrdemServico_MatVLR_UNITARIO.AsFloat,
+                                                                          fDMCadOrdemServico.cdsOrdemServico_MatQTD.AsFloat);
 end;
 
 procedure TfrmCadOrdemServico_Mat.SpeedButton5Click(Sender: TObject);

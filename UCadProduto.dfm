@@ -32,7 +32,7 @@ object frmCadProduto: TfrmCadProduto
     Top = 0
     Width = 919
     Height = 621
-    ActivePage = TS_Consulta
+    ActivePage = TS_Cadastro
     ActivePageDefault = TS_Consulta
     Align = alClient
     BackgroundColor = 16759929
@@ -40,7 +40,7 @@ object frmCadProduto: TfrmCadProduto
     FlatColor = clGray
     ParentBackgroundColor = False
     TabColors.Shadow = clSilver
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     OnChange = RzPageControl1Change
     FixedDimension = 19
@@ -137,6 +137,7 @@ object frmCadProduto: TfrmCadProduto
             Expanded = False
             FieldName = 'NOME_CLIENTE'
             Title.Caption = 'Cliente'
+            Width = 64
             Visible = True
           end>
       end
@@ -1329,8 +1330,7 @@ object frmCadProduto: TfrmCadProduto
               Top = 53
               Width = 224
               Height = 21
-              DropDownCount = 8
-              DropDownWidth = 500
+              DropDownCount = 12
               Ctl3D = False
               DataField = 'ID_FABRICANTE_MOTOR'
               DataSource = dmCadProduto.dsProdutoGerador
@@ -1339,14 +1339,14 @@ object frmCadProduto: TfrmCadProduto
               LookupSource = dmCadProduto.dsFabricanteMotor
               ParentCtl3D = False
               TabOrder = 2
+              OnEnter = RxDBLookupCombo1Enter
             end
             object RxDBLookupCombo4: TRxDBLookupCombo
               Left = 153
               Top = 33
               Width = 224
               Height = 21
-              DropDownCount = 8
-              DropDownWidth = 500
+              DropDownCount = 12
               Ctl3D = False
               DataField = 'ID_MOTADORA'
               DataSource = dmCadProduto.dsProdutoGerador
@@ -1355,6 +1355,7 @@ object frmCadProduto: TfrmCadProduto
               LookupSource = dmCadProduto.dsMarca_Montadora
               ParentCtl3D = False
               TabOrder = 1
+              OnEnter = RxDBLookupCombo4Enter
             end
             object DBEdit1: TDBEdit
               Left = 153
@@ -1409,15 +1410,16 @@ object frmCadProduto: TfrmCadProduto
               Top = 51
               Width = 224
               Height = 21
-              DropDownCount = 8
-              DropDownWidth = 500
+              DropDownCount = 12
               Ctl3D = False
               DataField = 'ID_FABRICANTE_GERADOR'
               DataSource = dmCadProduto.dsProdutoGerador
               LookupField = 'ID'
               LookupDisplay = 'NOME'
+              LookupSource = dmCadProduto.dsFabricanteGerador
               ParentCtl3D = False
               TabOrder = 7
+              OnEnter = RxDBLookupCombo5Enter
             end
             object DBEdit11: TDBEdit
               Left = 569
@@ -1485,7 +1487,6 @@ object frmCadProduto: TfrmCadProduto
               Width = 640
               Height = 21
               DropDownCount = 15
-              DropDownWidth = 500
               Ctl3D = False
               DataField = 'ID_CLIENTE'
               DataSource = dmCadProduto.dsProduto

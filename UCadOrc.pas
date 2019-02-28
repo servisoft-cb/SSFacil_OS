@@ -1371,6 +1371,8 @@ end;
 procedure TfrmCadOrc.DBEdit21Exit(Sender: TObject);
 begin
   fDMCadOrdemServico.cdsProduto.IndexFieldNames := 'ID';
+  fDMCadOrdemServico.cdsProduto.Close;
+  fDMCadOrdemServico.cdsProduto.Open;
   if fDMCadOrdemServico.cdsProduto.FindKey([DbEdit21.Text]) then
   begin
     fDMCadOrdemServico.cdsOrdemServico_ItensNOME_PRODUTO.AsString := fDMCadOrdemServico.cdsProdutoNOME.AsString;

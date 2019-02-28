@@ -84,6 +84,14 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
     Margin = 0
     OnClick = SpeedButton5Click
   end
+  object Label3: TLabel
+    Left = 55
+    Top = 51
+    Width = 31
+    Height = 13
+    Alignment = taRightJustify
+    Caption = 'Pre'#231'o:'
+  end
   object RxDBLookupCombo1: TRxDBLookupCombo
     Left = 88
     Top = 7
@@ -264,5 +272,17 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
       Transparent = True
       OnClick = NxButton1Click
     end
+  end
+  object DBEdit2: TDBEdit
+    Left = 88
+    Top = 45
+    Width = 121
+    Height = 19
+    Ctl3D = False
+    DataField = 'VLR_UNITARIO'
+    DataSource = DMCadOrdemServico.dsOrdemServico_Mat
+    ParentCtl3D = False
+    TabOrder = 3
+    OnExit = DBEdit1Exit
   end
 end

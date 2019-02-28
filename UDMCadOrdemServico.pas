@@ -1089,6 +1089,7 @@ type
     cdsProdutoREFERENCIA: TStringField;
     cdsProdutoNOME: TStringField;
     cdsProdutoINATIVO: TStringField;
+    qParametros_SerPRECO_CUSTO_MATERIAL: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure dspOrdemServicoUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError;
