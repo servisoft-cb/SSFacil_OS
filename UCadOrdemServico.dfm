@@ -1709,14 +1709,18 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               'Normal'
               'Garantia'
               'Fabrica'#231#227'o'
-              'Servi'#231'o de Campo')
+              'Servi'#231'o de Campo'
+              'Manuten'#231#227'o Corretiva'
+              'Manuten'#231#227'o Preventiva')
             ParentCtl3D = False
             TabOrder = 7
             Values.Strings = (
               'N'
               'G'
               'F'
-              'S')
+              'S'
+              'C'
+              'P')
           end
           object RzGroupBox2: TRzGroupBox
             Left = 2
@@ -1996,6 +2000,339 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               DataSource = DMCadOrdemServico.dsOrdemServico_Itens
               ParentCtl3D = False
               TabOrder = 0
+            end
+          end
+        end
+        object TS_Gerador: TRzTabSheet
+          Caption = 'Equipamento'
+          object Panel17: TPanel
+            Left = 0
+            Top = 0
+            Width = 1031
+            Height = 344
+            Align = alClient
+            Color = 16771022
+            TabOrder = 0
+            object Label55: TLabel
+              Left = 54
+              Top = 22
+              Width = 65
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Equipamento:'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clBlack
+              Font.Height = -11
+              Font.Name = 'MS Sans Serif'
+              Font.Style = []
+              ParentFont = False
+            end
+            object btIncluiProduto: TSpeedButton
+              Left = 778
+              Top = 13
+              Width = 23
+              Height = 22
+              Hint = 'Abre cadastro de produtos'
+              Caption = '...'
+              Margin = 0
+              OnClick = SpeedButton2Click
+            end
+            object btBuscaProduto: TSpeedButton
+              Left = 753
+              Top = 13
+              Width = 23
+              Height = 22
+              Hint = 'Busca produto cadastrado'
+              Caption = 'F2'
+              Margin = 0
+            end
+            object Label56: TLabel
+              Left = 21
+              Top = 80
+              Width = 98
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Fabricante do Motor:'
+            end
+            object Label57: TLabel
+              Left = 65
+              Top = 60
+              Width = 54
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Montadora:'
+            end
+            object Label58: TLabel
+              Left = 62
+              Top = 116
+              Width = 57
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'N'#186' de S'#233'rie:'
+            end
+            object Label67: TLabel
+              Left = 74
+              Top = 134
+              Width = 45
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Pot'#234'ncia:'
+            end
+            object Label69: TLabel
+              Left = 41
+              Top = 152
+              Width = 78
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Ano Fabrica'#231#227'o:'
+            end
+            object Label70: TLabel
+              Left = 434
+              Top = 58
+              Width = 90
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'N'#186' de S'#233'rie Equip.:'
+            end
+            object Label71: TLabel
+              Left = 415
+              Top = 78
+              Width = 109
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Fabricante do Gerador:'
+            end
+            object Label72: TLabel
+              Left = 426
+              Top = 114
+              Width = 98
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'N'#186' de S'#233'rie Gerador:'
+            end
+            object Label73: TLabel
+              Left = 486
+              Top = 96
+              Width = 38
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Modelo:'
+            end
+            object Label74: TLabel
+              Left = 454
+              Top = 132
+              Width = 70
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Modelo USCA:'
+            end
+            object Label75: TLabel
+              Left = 485
+              Top = 150
+              Width = 39
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Tens'#227'o:'
+            end
+            object Label76: TLabel
+              Left = 81
+              Top = 98
+              Width = 38
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Modelo:'
+            end
+            object DBEdit17: TDBEdit
+              Left = 168
+              Top = 16
+              Width = 583
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'NOME_PRODUTO'
+              DataSource = DMCadOrdemServico.dsOrdemServico_Itens
+              ParentCtl3D = False
+              TabOrder = 1
+            end
+            object DBEdit21: TDBEdit
+              Left = 124
+              Top = 16
+              Width = 43
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'ID_PRODUTO'
+              DataSource = DMCadOrdemServico.dsOrdemServico_Itens
+              ParentCtl3D = False
+              TabOrder = 0
+            end
+            object RxDBLookupCombo6: TRxDBLookupCombo
+              Left = 124
+              Top = 72
+              Width = 224
+              Height = 21
+              DropDownCount = 8
+              DropDownWidth = 500
+              Ctl3D = False
+              DataField = 'ID_FABRICANTE_MOTOR'
+              DataSource = DMCadOrdemServico.dsProdutoGerador
+              LookupField = 'ID'
+              LookupDisplay = 'NOME'
+              LookupSource = DMCadOrdemServico.dsFabricanteMotor
+              ParentCtl3D = False
+              ReadOnly = True
+              TabOrder = 3
+            end
+            object RxDBLookupCombo7: TRxDBLookupCombo
+              Left = 124
+              Top = 52
+              Width = 224
+              Height = 21
+              DropDownCount = 8
+              DropDownWidth = 500
+              Ctl3D = False
+              DataField = 'ID_MOTADORA'
+              DataSource = DMCadOrdemServico.dsProdutoGerador
+              LookupField = 'ID'
+              LookupDisplay = 'NOME'
+              LookupSource = DMCadOrdemServico.dsMarca_Montadora
+              ParentCtl3D = False
+              ReadOnly = True
+              TabOrder = 2
+            end
+            object DBEdit26: TDBEdit
+              Left = 124
+              Top = 110
+              Width = 224
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'NRO_SERIE'
+              DataSource = DMCadOrdemServico.dsProdutoGerador
+              ParentCtl3D = False
+              ReadOnly = True
+              TabOrder = 5
+            end
+            object DBEdit27: TDBEdit
+              Left = 124
+              Top = 128
+              Width = 224
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'POTENCIA'
+              DataSource = DMCadOrdemServico.dsProdutoGerador
+              ParentCtl3D = False
+              ReadOnly = True
+              TabOrder = 6
+            end
+            object DBEdit28: TDBEdit
+              Left = 124
+              Top = 146
+              Width = 120
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'ANO_FABR'
+              DataSource = DMCadOrdemServico.dsProdutoGerador
+              ParentCtl3D = False
+              ReadOnly = True
+              TabOrder = 7
+            end
+            object DBEdit29: TDBEdit
+              Left = 527
+              Top = 52
+              Width = 224
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'NRO_SERIE_EQUIP'
+              DataSource = DMCadOrdemServico.dsProdutoGerador
+              ParentCtl3D = False
+              ReadOnly = True
+              TabOrder = 8
+            end
+            object RxDBLookupCombo8: TRxDBLookupCombo
+              Left = 527
+              Top = 70
+              Width = 224
+              Height = 21
+              DropDownCount = 8
+              DropDownWidth = 500
+              Ctl3D = False
+              DataField = 'ID_FABRICANTE_GERADOR'
+              DataSource = DMCadOrdemServico.dsProdutoGerador
+              LookupField = 'ID'
+              LookupDisplay = 'NOME'
+              LookupSource = DMCadOrdemServico.dsFabricanteGerador
+              ParentCtl3D = False
+              ReadOnly = True
+              TabOrder = 9
+            end
+            object DBEdit30: TDBEdit
+              Left = 527
+              Top = 108
+              Width = 224
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'NRO_SERIE_GERADOR'
+              DataSource = DMCadOrdemServico.dsProdutoGerador
+              ParentCtl3D = False
+              ReadOnly = True
+              TabOrder = 11
+            end
+            object DBEdit31: TDBEdit
+              Left = 527
+              Top = 90
+              Width = 224
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'MODELO_GERADOR'
+              DataSource = DMCadOrdemServico.dsProdutoGerador
+              ParentCtl3D = False
+              ReadOnly = True
+              TabOrder = 10
+            end
+            object DBEdit32: TDBEdit
+              Left = 527
+              Top = 126
+              Width = 224
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'MODELO_USCA'
+              DataSource = DMCadOrdemServico.dsProdutoGerador
+              ParentCtl3D = False
+              ReadOnly = True
+              TabOrder = 12
+            end
+            object DBEdit33: TDBEdit
+              Left = 527
+              Top = 144
+              Width = 120
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'TENSAO'
+              DataSource = DMCadOrdemServico.dsProdutoGerador
+              ParentCtl3D = False
+              ReadOnly = True
+              TabOrder = 13
+            end
+            object DBEdit34: TDBEdit
+              Left = 124
+              Top = 92
+              Width = 224
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'MODELO'
+              DataSource = DMCadOrdemServico.dsProdutoGerador
+              ParentCtl3D = False
+              ReadOnly = True
+              TabOrder = 4
             end
           end
         end

@@ -233,6 +233,37 @@ type
     Shape19: TShape;
     Label66: TLabel;
     btnLiberar: TNxButton;
+    TS_Gerador: TRzTabSheet;
+    Panel17: TPanel;
+    Label55: TLabel;
+    btIncluiProduto: TSpeedButton;
+    btBuscaProduto: TSpeedButton;
+    Label56: TLabel;
+    Label57: TLabel;
+    Label58: TLabel;
+    Label67: TLabel;
+    Label69: TLabel;
+    Label70: TLabel;
+    Label71: TLabel;
+    Label72: TLabel;
+    Label73: TLabel;
+    Label74: TLabel;
+    Label75: TLabel;
+    Label76: TLabel;
+    DBEdit17: TDBEdit;
+    DBEdit21: TDBEdit;
+    RxDBLookupCombo6: TRxDBLookupCombo;
+    RxDBLookupCombo7: TRxDBLookupCombo;
+    DBEdit26: TDBEdit;
+    DBEdit27: TDBEdit;
+    DBEdit28: TDBEdit;
+    DBEdit29: TDBEdit;
+    RxDBLookupCombo8: TRxDBLookupCombo;
+    DBEdit30: TDBEdit;
+    DBEdit31: TDBEdit;
+    DBEdit32: TDBEdit;
+    DBEdit33: TDBEdit;
+    DBEdit34: TDBEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
@@ -514,6 +545,21 @@ begin
   NxFlipPanel1.Expanded := False;
   TabSheet1.TabVisible  := False;
   TS_Custo.TabVisible   := (fDMCadOrdemServico.qParametros_UsuarioMOSTRAR_CUSTO_OS.AsString = 'S');
+
+  fDMCadOrdemServico.qParametros_Prod.Active := True;
+  if fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString = 'S' then
+  begin
+    RzGroupBox2.Visible   := False;
+    TS_Gerador.TabVisible := True;
+    RzPageControl2.ActivePage := TS_Gerador;
+    fDMCadOrdemServico.cdsFabricanteGerador.Open;
+    fDMCadOrdemServico.cdsMarca_Montadora.Open;
+    fDMCadOrdemServico.cdsFabricanteMotor.Open;
+    fDMCadOrdemServico.cdsProdutoGerador.Open;
+  end
+  else
+    RzGroupBox2.Visible := True;
+  fDMCadOrdemServico.qParametros_Prod.Active := True;
 end;
 
 procedure TfrmCadOrdemServico.prc_Consultar(ID: Integer);

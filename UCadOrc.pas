@@ -487,6 +487,7 @@ begin
   end
   else
     TS_Produto.TabVisible := True;     
+  fDMCadOrdemServico.qParametros_Prod.Active := True;
 end;
 
 procedure TfrmCadOrc.prc_Consultar(ID: Integer);
