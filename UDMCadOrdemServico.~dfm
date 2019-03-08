@@ -2726,6 +2726,11 @@ object DMCadOrdemServico: TDMCadOrdemServico
       FixedChar = True
       Size = 1
     end
+    object qParametros_SerPRECO_CUSTO_MATERIAL: TStringField
+      FieldName = 'PRECO_CUSTO_MATERIAL'
+      FixedChar = True
+      Size = 1
+    end
   end
   object mOS_Mat: TClientDataSet
     Active = True

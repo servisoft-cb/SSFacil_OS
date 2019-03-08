@@ -127,7 +127,7 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
     Height = 39
     Align = alBottom
     Color = 8404992
-    TabOrder = 2
+    TabOrder = 3
     object btnConfBaixa: TNxButton
       Left = 116
       Top = 4
@@ -282,7 +282,7 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
     DataField = 'VLR_UNITARIO'
     DataSource = DMCadOrdemServico.dsOrdemServico_Mat
     ParentCtl3D = False
-    TabOrder = 3
+    TabOrder = 2
     OnExit = DBEdit1Exit
   end
 end

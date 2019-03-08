@@ -1107,6 +1107,7 @@ type
     procedure cdsOrdemServico_EnsaioCalcFields(DataSet: TDataSet);
     procedure cdsOrdemServico_TercCalcFields(DataSet: TDataSet);
     procedure cdsOrdemServico_AssCalcFields(DataSet: TDataSet);
+    procedure cdsProdutoAfterOpen(DataSet: TDataSet);
   private
     { Private declarations }
     procedure DoLogAdditionalValues(ATableName: string; var AValues: TArrayLogData; var UserName: string);
@@ -1720,6 +1721,12 @@ begin
                                  + ' AND ITEM_LIB_OS = ' + IntToStr(Item_Lib_OS);
   end;
   cdsBaixa_Pedido.Open;
+end;
+
+procedure TDMCadOrdemServico.cdsProdutoAfterOpen(DataSet: TDataSet);
+begin
+  if not cdsProdutoGerador.Active then
+    cdsProdutoGerador.Open;
 end;
 
 end.

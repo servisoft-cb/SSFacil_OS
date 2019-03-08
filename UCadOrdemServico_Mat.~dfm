@@ -283,5 +283,6 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
     DataSource = DMCadOrdemServico.dsOrdemServico_Mat
     ParentCtl3D = False
     TabOrder = 3
+    OnExit = DBEdit1Exit
   end
 end

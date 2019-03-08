@@ -267,6 +267,9 @@ type
     procedure DBEdit17KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure DBEdit21Exit(Sender: TObject);
+    procedure btBuscaProdutoClick(Sender: TObject);
+    procedure DBEdit21KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     vTipoNotaAnt: String;
@@ -1379,6 +1382,27 @@ begin
     fDMCadOrdemServico.cdsOrdemServico_ItensNOME_PRODUTO.AsString := fDMCadOrdemServico.cdsProdutoNOME.AsString;
     fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsInteger         := 1;
   end;
+end;
+
+procedure TfrmCadOrc.btBuscaProdutoClick(Sender: TObject);
+begin
+  frmSel_Produto  := TfrmSel_Produto.Create(Self);
+  frmSel_Produto.vTipo_Prod := 'P';
+  frmSel_Produto.ComboBox1.ItemIndex := 0;
+  frmSel_Produto.Edit1.Text     := DBEdit17.Text;
+  frmSel_Produto.ctProdutoLocal := frmSel_Produto.sdsProduto.CommandText;
+  frmSel_Produto.ctProdAux      := frmSel_Produto.sdsProdAux.CommandText;
+  vFilial                       := 1;
+  frmSel_Produto.ShowModal;
+  DBEdit21.Text := IntToStr(vCodProduto_Pos);
+  DBEdit21Exit(Sender);
+end;
+
+procedure TfrmCadOrc.DBEdit21KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Key = Vk_F2) then
+    btBuscaProduto.Click;
 end;
 
 end.

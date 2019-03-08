@@ -1710,6 +1710,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               'Garantia'
               'Fabrica'#231#227'o'
               'Servi'#231'o de Campo'
+              'Manuten'#231#227'o Corretiva'
               'Manuten'#231#227'o Preventiva')
             ParentCtl3D = False
             TabOrder = 7
@@ -1718,6 +1719,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               'G'
               'F'
               'S'
+              'C'
               'P')
           end
           object RzGroupBox2: TRzGroupBox
@@ -1872,10 +1874,10 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         Top = 271
         Width = 1035
         Height = 367
-        ActivePage = TS_CondEntrada
+        ActivePage = TS_Gerador
         ActivePageDefault = TS_CondEntrada
         Align = alClient
-        TabIndex = 0
+        TabIndex = 1
         TabOrder = 2
         OnChange = RzPageControl2Change
         FixedDimension = 19
@@ -2043,6 +2045,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               Hint = 'Busca produto cadastrado'
               Caption = 'F2'
               Margin = 0
+              OnClick = btBuscaProdutoClick
             end
             object Label56: TLabel
               Left = 21
@@ -2151,6 +2154,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               DataSource = DMCadOrdemServico.dsOrdemServico_Itens
               ParentCtl3D = False
               TabOrder = 1
+              OnKeyDown = DBEdit17KeyDown
             end
             object DBEdit21: TDBEdit
               Left = 124
@@ -2163,6 +2167,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               DataSource = DMCadOrdemServico.dsOrdemServico_Itens
               ParentCtl3D = False
               TabOrder = 0
+              OnExit = DBEdit21Exit
+              OnKeyDown = DBEdit21KeyDown
             end
             object RxDBLookupCombo6: TRxDBLookupCombo
               Left = 124

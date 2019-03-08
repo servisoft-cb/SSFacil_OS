@@ -15,7 +15,7 @@ object DMImpOrdemServico: TDMImpOrdemServico
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43066.746810972200000000
-    ReportOptions.LastChange = 43509.729564328710000000
+    ReportOptions.LastChange = 43532.351565451390000000
     ScriptLanguage = 'PascalScript'
     StoreInDFM = False
     OnPreview = frxReport1Preview
@@ -604,7 +604,6 @@ object DMImpOrdemServico: TDMImpOrdemServico
     Top = 216
   end
   object cdsOSImp_Custo: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspOSImp_Custo'
@@ -657,7 +656,6 @@ object DMImpOrdemServico: TDMImpOrdemServico
     Top = 264
   end
   object cdsOSImp_Ass: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspOSImp_Ass'

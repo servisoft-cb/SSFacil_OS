@@ -336,6 +336,12 @@ type
     procedure NxButton1Click(Sender: TObject);
     procedure RzGroupBox2Enter(Sender: TObject);
     procedure btnLiberarClick(Sender: TObject);
+    procedure btBuscaProdutoClick(Sender: TObject);
+    procedure DBEdit21KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure DBEdit17KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure DBEdit21Exit(Sender: TObject);
   private
     { Private declarations }
     vTipoNotaAnt: String;
@@ -1266,7 +1272,18 @@ begin
   fDMImpOrdemServico.sdsOSImp_Mat.ParamByName('ID').AsInteger := fDMCadOrdemServico.cdsOrdemServico_ConsultaID.AsInteger;
   fDMImpOrdemServico.cdsOSImp_Mat.Open;
 
-  vArq := ExtractFilePath(Application.ExeName) + 'Relatorios\OS_Supercrom.fr3';
+  fDMImpOrdemServico.qRelatorios.Close;
+  fDMImpOrdemServico.qRelatorios.ParamByName('F1').AsInteger := fDMCadOrdemServico.cdsOrdemServico_ConsultaFILIAL.AsInteger;
+  fDMImpOrdemServico.qRelatorios.ParamByName('T1').AsInteger := 4;
+  fDMImpOrdemServico.qRelatorios.ParamByName('P1').AsInteger := 1;
+  fDMImpOrdemServico.qRelatorios.Open;
+
+  if not fDMImpOrdemServico.qRelatorios.IsEmpty then
+    vArq := fDMImpOrdemServico.qRelatoriosCAMINHO.AsString
+  else
+    vArq := ExtractFilePath(Application.ExeName) + 'Relatorios\ORC_Supercrom.fr3';
+  fDMImpOrdemServico.qRelatorios.Close;
+
   if FileExists(vArq) then
     fDMImpOrdemServico.frxReport1.Report.LoadFromFile(vArq)
   else
@@ -1836,6 +1853,46 @@ begin
   ffrmCadOrdemServico_Lib.fDMCadOrdemServico := fDMCadOrdemServico;
   ffrmCadOrdemServico_Lib.ShowModal;
   FreeAndNil(ffrmCadOrdemServico_Lib);
+end;
+
+procedure TfrmCadOrdemServico.btBuscaProdutoClick(Sender: TObject);
+begin
+  frmSel_Produto  := TfrmSel_Produto.Create(Self);
+  frmSel_Produto.vTipo_Prod := 'P';
+  frmSel_Produto.ComboBox1.ItemIndex := 0;
+  frmSel_Produto.Edit1.Text     := DBEdit17.Text;
+  frmSel_Produto.ctProdutoLocal := frmSel_Produto.sdsProduto.CommandText;
+  frmSel_Produto.ctProdAux      := frmSel_Produto.sdsProdAux.CommandText;
+  vFilial                       := 1;
+  frmSel_Produto.ShowModal;
+  DBEdit21.Text := IntToStr(vCodProduto_Pos);
+  DBEdit21Exit(Sender);
+end;
+
+procedure TfrmCadOrdemServico.DBEdit21KeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if (Key = Vk_F2) then
+    btBuscaProduto.Click;
+end;
+
+procedure TfrmCadOrdemServico.DBEdit17KeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if (Key = Vk_F2) then
+    btBuscaProduto.Click;
+end;
+
+procedure TfrmCadOrdemServico.DBEdit21Exit(Sender: TObject);
+begin
+  fDMCadOrdemServico.cdsProduto.IndexFieldNames := 'ID';
+  fDMCadOrdemServico.cdsProduto.Close;
+  fDMCadOrdemServico.cdsProduto.Open;
+  if fDMCadOrdemServico.cdsProduto.FindKey([DbEdit21.Text]) then
+  begin
+    fDMCadOrdemServico.cdsOrdemServico_ItensNOME_PRODUTO.AsString := fDMCadOrdemServico.cdsProdutoNOME.AsString;
+    fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsInteger         := 1;
+  end;
 end;
 
 end.

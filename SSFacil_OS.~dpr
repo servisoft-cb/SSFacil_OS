@@ -9,8 +9,6 @@ uses
   rsDBUtils in '..\rslib\nova\rsDBUtils.pas',
   LogProvider in '..\logs\src\LogProvider.pas',
   LogTypes in '..\logs\src\LogTypes.pas',
-  uNFeComandos in '..\ssfacil\uNFeComandos.pas',
-  uNFeConsts in '..\NFe 3.10\NFESrv\uNFeConsts.pas',
   USel_Pessoa in '..\ssfacil\USel_Pessoa.pas' {frmSel_Pessoa},
   UDMCadOrdemServico in 'UDMCadOrdemServico.pas' {DMCadOrdemServico: TDataModule},
   UCadOrdemServico in 'UCadOrdemServico.pas' {frmCadOrdemServico},
@@ -93,7 +91,9 @@ uses
   uConsAgenda in '..\ssfacil\uConsAgenda.pas' {frmConsAgenda},
   UDMCadAgenda in '..\ssfacil\UDMCadAgenda.pas' {DMCadAgenda: TDataModule},
   UCadSetor in '..\ssfacil\uCadSetor.pas' {frmCadSetor},
-  UCadSetor_Proc in '..\ssfacil\UCadSetor_Proc.pas' {frmCadSetor_Proc};
+  UCadSetor_Proc in '..\ssfacil\UCadSetor_Proc.pas' {frmCadSetor_Proc},
+  uNFeComandos in '..\ssfacil\uNFeComandos.pas',
+  uNFeConsts in '..\nfe 4.00\nfesrv\uNFeConsts.pas';
 
 {$R *.res}
 

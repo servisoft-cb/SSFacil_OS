@@ -93,7 +93,8 @@ uses
   UCadSetor in '..\ssfacil\uCadSetor.pas' {frmCadSetor},
   UCadSetor_Proc in '..\ssfacil\UCadSetor_Proc.pas' {frmCadSetor_Proc},
   uNFeComandos in '..\ssfacil\uNFeComandos.pas',
-  uNFeConsts in '..\nfe 4.00\nfesrv\uNFeConsts.pas';
+  uNFeConsts in '..\nfe 4.00\nfesrv\uNFeConsts.pas',
+  UDMAprova_Orc in 'UDMAprova_Orc.pas' {DMAprova_Orc: TDataModule};
 
 {$R *.res}
 

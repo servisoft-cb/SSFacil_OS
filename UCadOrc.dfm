@@ -1,8 +1,8 @@
 object frmCadOrc: TfrmCadOrc
   Left = 196
-  Top = 9
+  Top = 15
   Width = 933
-  Height = 692
+  Height = 686
   Caption = 'Or'#231'amento'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -23,7 +23,7 @@ object frmCadOrc: TfrmCadOrc
     Left = 0
     Top = 0
     Width = 925
-    Height = 661
+    Height = 655
     ActivePage = TS_Cadastro
     ActivePageDefault = TS_Consulta
     Align = alClient
@@ -42,7 +42,7 @@ object frmCadOrc: TfrmCadOrc
         Left = 0
         Top = 117
         Width = 921
-        Height = 504
+        Height = 498
         Align = alClient
         BorderStyle = bsNone
         Ctl3D = False
@@ -351,7 +351,7 @@ object frmCadOrc: TfrmCadOrc
       end
       object StaticText1: TStaticText
         Left = 0
-        Top = 621
+        Top = 615
         Width = 921
         Height = 17
         Align = alBottom
@@ -1344,12 +1344,12 @@ object frmCadOrc: TfrmCadOrc
         Left = 0
         Top = 173
         Width = 921
-        Height = 465
-        ActivePage = TS_Produto
+        Height = 459
+        ActivePage = TS_Gerador
         ActivePageDefault = TS_Produto
         Align = alClient
         UseColoredTabs = True
-        TabIndex = 0
+        TabIndex = 1
         TabOrder = 2
         FixedDimension = 19
         object TS_Produto: TRzTabSheet
@@ -1358,7 +1358,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 0
             Width = 917
-            Height = 442
+            Height = 436
             Align = alClient
             Color = 16771022
             Enabled = False
@@ -1925,7 +1925,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 0
             Width = 917
-            Height = 442
+            Height = 436
             Align = alClient
             Color = 16771022
             TabOrder = 0
@@ -1961,6 +1961,7 @@ object frmCadOrc: TfrmCadOrc
               Hint = 'Busca produto cadastrado'
               Caption = 'F2'
               Margin = 0
+              OnClick = btBuscaProdutoClick
             end
             object Label38: TLabel
               Left = 21
@@ -2083,7 +2084,7 @@ object frmCadOrc: TfrmCadOrc
               ParentCtl3D = False
               TabOrder = 0
               OnExit = DBEdit21Exit
-              OnKeyDown = DBEdit17KeyDown
+              OnKeyDown = DBEdit21KeyDown
             end
             object RxDBLookupCombo2: TRxDBLookupCombo
               Left = 124
@@ -2787,7 +2788,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 28
             Width = 917
-            Height = 414
+            Height = 408
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Mat
@@ -3149,7 +3150,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 30
             Width = 917
-            Height = 412
+            Height = 406
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Terc
@@ -3351,7 +3352,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 32
             Width = 917
-            Height = 410
+            Height = 404
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Ensaio
@@ -3460,7 +3461,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 25
             Width = 917
-            Height = 417
+            Height = 411
             Align = alClient
             BevelInner = bvNone
             BevelOuter = bvNone
@@ -3616,7 +3617,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 68
             Width = 917
-            Height = 177
+            Height = 171
             Align = alClient
             BevelInner = bvNone
             BevelOuter = bvNone
@@ -3630,7 +3631,7 @@ object frmCadOrc: TfrmCadOrc
           end
           object Panel9: TPanel
             Left = 0
-            Top = 245
+            Top = 239
             Width = 917
             Height = 31
             Align = alBottom
@@ -3681,7 +3682,7 @@ object frmCadOrc: TfrmCadOrc
           end
           object SMDBGrid3: TSMDBGrid
             Left = 0
-            Top = 276
+            Top = 270
             Width = 917
             Height = 166
             Align = alBottom
