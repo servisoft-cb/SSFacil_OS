@@ -197,6 +197,8 @@ type
     DBEdit32: TDBEdit;
     DBEdit33: TDBEdit;
     DBEdit34: TDBEdit;
+    RxDBLookupCombo7: TRxDBLookupCombo;
+    Label37: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
@@ -317,7 +319,6 @@ implementation
 
 uses DmdDatabase, rsDBUtils, uUtilPadrao, USel_Pessoa, USel_Produto, UDMImpOrdemServico, UCadProduto, USel_Setor_Proc2,
   USel_Ensaio, UCadOrc_Custo, UCadOrc_Aprov, USel_Funcionario, uCadPessoa;
-
 
 {$R *.dfm}
 
@@ -592,6 +593,7 @@ begin
   fDMCadOrdemServico.cdsOrdemServico_Itens.Open;
   fDMCadOrdemServico.cdsOrdemServico_Mat.Close;
   fDMCadOrdemServico.cdsOrdemServico_Mat.Open;
+  fDMCadOrdemServico.cdsProdutoGerador.Close;
   vFilial      := fDMCadOrdemServico.cdsOrdemServicoFILIAL.AsInteger;
   vFilial_Nome := '';
   if fDMCadOrdemServico.cdsFilial.Locate('ID',vFilial,[loCaseInsensitive]) then
@@ -627,6 +629,15 @@ begin
   fDMCadOrdemServico.qFilial_Custo.Close;
   fDMCadOrdemServico.qFilial_Custo.ParamByName('ID').AsInteger := fDMCadOrdemServico.cdsOrdemServicoFILIAL.AsInteger;
   fDMCadOrdemServico.qFilial_Custo.Open;
+
+  if not fDMCadOrdemServico.cdsOrdemServico_ItensID_PRODUTO.IsNull then
+  begin
+    fDMCadOrdemServico.cdsProduto.IndexFieldNames := 'ID';
+    fDMCadOrdemServico.cdsProduto.Close;
+    fDMCadOrdemServico.cdsProduto.Open;
+    fDMCadOrdemServico.cdsProduto.FindKey([fDMCadOrdemServico.cdsOrdemServico_ItensID_PRODUTO.AsInteger]);
+    fDMCadOrdemServico.cdsProdutoGerador.Open;
+  end
 end;
 
 function TfrmCadOrc.fnc_Verifica_Registro: Boolean;
@@ -641,13 +652,13 @@ begin
   fDMCadOrdemServico.qVerAprov.Open;
   if fDMCadOrdemServico.qVerAprovTIPO.AsString = 'A' then
   begin
-    MessageDlg('*** Orçamento já esta Aprovado!', mtError, [mbOk], 0);
+    MessageDlg('*** Orçamento já está Aprovado!', mtError, [mbOk], 0);
     exit;
   end
   else
   if fDMCadOrdemServico.qVerAprovTIPO.AsString = 'N' then
   begin
-    MessageDlg('*** Orçamento Esta como Não Aprovado!', mtError, [mbOk], 0);
+    MessageDlg('*** Orçamento está como Não Aprovado!', mtError, [mbOk], 0);
     exit;
   end;
 
@@ -660,7 +671,8 @@ begin
   begin
     if RzPageControl1.ActivePage = TS_Cadastro then
     begin
-      if not(fDMCadOrdemServico.cdsOrdemServico_Consulta.Active) or (fDMCadOrdemServico.cdsOrdemServico_Consulta.IsEmpty) or (fDMCadOrdemServico.cdsOrdemServico_ConsultaID.AsInteger <= 0) then
+      if not(fDMCadOrdemServico.cdsOrdemServico_Consulta.Active) or (fDMCadOrdemServico.cdsOrdemServico_Consulta.IsEmpty) or
+            (fDMCadOrdemServico.cdsOrdemServico_ConsultaID.AsInteger <= 0) then
         exit;
       prc_Posiciona_OS;
       prc_Opcao_Tipo_Produto;
@@ -945,7 +957,7 @@ begin
   end;
   if StrToFloat(FormatFloat('0.000000',fDMCadOrdemServico.cdsOrdemServico_MatQTD_ESTOQUE.AsFloat)) > 0 then
   begin
-    MessageDlg('*** Material já foi dado baixa no estoque!', mtInformation, [mbOk], 0);
+    MessageDlg('*** Material já foi baixado no estoque!', mtInformation, [mbOk], 0);
     exit;
   end;
 
@@ -965,7 +977,7 @@ begin
   end;
   if StrToFloat(FormatFloat('0.000000',fDMCadOrdemServico.cdsOrdemServico_MatQTD_ESTOQUE.AsFloat)) > 0 then
   begin
-    MessageDlg('*** Material já foi dado baixa no estoque!', mtInformation, [mbOk], 0);
+    MessageDlg('*** Material já foi baixado no estoque!', mtInformation, [mbOk], 0);
     exit;
   end;
 
@@ -1403,6 +1415,8 @@ procedure TfrmCadOrc.DBEdit21KeyDown(Sender: TObject; var Key: Word;
 begin
   if (Key = Vk_F2) then
     btBuscaProduto.Click;
+  if Key = Vk_Return then
+    DBEdit21Exit(Sender);
 end;
-
+  
 end.

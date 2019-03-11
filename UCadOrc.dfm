@@ -1,6 +1,6 @@
 object frmCadOrc: TfrmCadOrc
   Left = 196
-  Top = 15
+  Top = 1
   Width = 933
   Height = 686
   Caption = 'Or'#231'amento'
@@ -1196,6 +1196,14 @@ object frmCadOrc: TfrmCadOrc
             Margin = 0
             OnClick = SpeedButton4Click
           end
+          object Label37: TLabel
+            Left = 29
+            Top = 92
+            Width = 59
+            Height = 13
+            Alignment = taRightJustify
+            Caption = 'Cond. Pgto.:'
+          end
           object DBDateEdit1: TDBDateEdit
             Left = 530
             Top = 28
@@ -1228,7 +1236,7 @@ object frmCadOrc: TfrmCadOrc
             ParentCtl3D = False
             ParentFont = False
             ReadOnly = True
-            TabOrder = 7
+            TabOrder = 8
           end
           object RxDBLookupCombo3: TRxDBLookupCombo
             Left = 90
@@ -1236,7 +1244,6 @@ object frmCadOrc: TfrmCadOrc
             Width = 374
             Height = 21
             DropDownCount = 15
-            DropDownWidth = 700
             Ctl3D = False
             DataField = 'ID_CLIENTE'
             DataSource = DMCadOrdemServico.dsOrdemServico
@@ -1254,7 +1261,6 @@ object frmCadOrc: TfrmCadOrc
             Width = 374
             Height = 21
             DropDownCount = 15
-            DropDownWidth = 500
             Ctl3D = False
             DataField = 'ID_VENDEDOR'
             DataSource = DMCadOrdemServico.dsOrdemServico
@@ -1337,6 +1343,21 @@ object frmCadOrc: TfrmCadOrc
             ParentCtl3D = False
             ParentFont = False
             TabOrder = 6
+          end
+          object RxDBLookupCombo7: TRxDBLookupCombo
+            Left = 90
+            Top = 84
+            Width = 374
+            Height = 21
+            DropDownCount = 15
+            Ctl3D = False
+            DataField = 'ID_CONDPGTO'
+            DataSource = DMCadOrdemServico.dsOrdemServico
+            LookupField = 'ID'
+            LookupDisplay = 'NOME'
+            LookupSource = DMCadOrdemServico.dsCondPgto
+            ParentCtl3D = False
+            TabOrder = 7
           end
         end
       end

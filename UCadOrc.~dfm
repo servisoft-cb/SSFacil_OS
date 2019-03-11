@@ -1,8 +1,8 @@
 object frmCadOrc: TfrmCadOrc
   Left = 196
-  Top = 9
+  Top = 1
   Width = 933
-  Height = 692
+  Height = 686
   Caption = 'Or'#231'amento'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -23,8 +23,8 @@ object frmCadOrc: TfrmCadOrc
     Left = 0
     Top = 0
     Width = 925
-    Height = 661
-    ActivePage = TS_Consulta
+    Height = 655
+    ActivePage = TS_Cadastro
     ActivePageDefault = TS_Consulta
     Align = alClient
     BackgroundColor = 16752448
@@ -32,7 +32,7 @@ object frmCadOrc: TfrmCadOrc
     FlatColor = clGray
     ParentBackgroundColor = False
     TabColors.Shadow = clSilver
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     OnChange = RzPageControl1Change
     FixedDimension = 19
@@ -42,7 +42,7 @@ object frmCadOrc: TfrmCadOrc
         Left = 0
         Top = 117
         Width = 921
-        Height = 504
+        Height = 498
         Align = alClient
         BorderStyle = bsNone
         Ctl3D = False
@@ -351,7 +351,7 @@ object frmCadOrc: TfrmCadOrc
       end
       object StaticText1: TStaticText
         Left = 0
-        Top = 621
+        Top = 615
         Width = 921
         Height = 17
         Align = alBottom
@@ -1196,6 +1196,14 @@ object frmCadOrc: TfrmCadOrc
             Margin = 0
             OnClick = SpeedButton4Click
           end
+          object Label37: TLabel
+            Left = 29
+            Top = 92
+            Width = 59
+            Height = 13
+            Alignment = taRightJustify
+            Caption = 'Cond. Pgto.:'
+          end
           object DBDateEdit1: TDBDateEdit
             Left = 530
             Top = 28
@@ -1228,7 +1236,7 @@ object frmCadOrc: TfrmCadOrc
             ParentCtl3D = False
             ParentFont = False
             ReadOnly = True
-            TabOrder = 7
+            TabOrder = 8
           end
           object RxDBLookupCombo3: TRxDBLookupCombo
             Left = 90
@@ -1236,7 +1244,6 @@ object frmCadOrc: TfrmCadOrc
             Width = 374
             Height = 21
             DropDownCount = 15
-            DropDownWidth = 700
             Ctl3D = False
             DataField = 'ID_CLIENTE'
             DataSource = DMCadOrdemServico.dsOrdemServico
@@ -1254,7 +1261,6 @@ object frmCadOrc: TfrmCadOrc
             Width = 374
             Height = 21
             DropDownCount = 15
-            DropDownWidth = 500
             Ctl3D = False
             DataField = 'ID_VENDEDOR'
             DataSource = DMCadOrdemServico.dsOrdemServico
@@ -1338,13 +1344,28 @@ object frmCadOrc: TfrmCadOrc
             ParentFont = False
             TabOrder = 6
           end
+          object RxDBLookupCombo7: TRxDBLookupCombo
+            Left = 90
+            Top = 84
+            Width = 374
+            Height = 21
+            DropDownCount = 15
+            Ctl3D = False
+            DataField = 'ID_CONDPGTO'
+            DataSource = DMCadOrdemServico.dsOrdemServico
+            LookupField = 'ID'
+            LookupDisplay = 'NOME'
+            LookupSource = DMCadOrdemServico.dsCondPgto
+            ParentCtl3D = False
+            TabOrder = 7
+          end
         end
       end
       object RzPageControl2: TRzPageControl
         Left = 0
         Top = 173
         Width = 921
-        Height = 465
+        Height = 459
         ActivePage = TS_Gerador
         ActivePageDefault = TS_Produto
         Align = alClient
@@ -1358,7 +1379,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 0
             Width = 917
-            Height = 442
+            Height = 436
             Align = alClient
             Color = 16771022
             Enabled = False
@@ -1925,7 +1946,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 0
             Width = 917
-            Height = 442
+            Height = 436
             Align = alClient
             Color = 16771022
             TabOrder = 0
@@ -2788,7 +2809,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 28
             Width = 917
-            Height = 414
+            Height = 408
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Mat
@@ -3150,7 +3171,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 30
             Width = 917
-            Height = 412
+            Height = 406
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Terc
@@ -3352,7 +3373,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 32
             Width = 917
-            Height = 410
+            Height = 404
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Ensaio
@@ -3461,7 +3482,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 25
             Width = 917
-            Height = 417
+            Height = 411
             Align = alClient
             BevelInner = bvNone
             BevelOuter = bvNone
@@ -3617,7 +3638,7 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 68
             Width = 917
-            Height = 177
+            Height = 171
             Align = alClient
             BevelInner = bvNone
             BevelOuter = bvNone
@@ -3631,7 +3652,7 @@ object frmCadOrc: TfrmCadOrc
           end
           object Panel9: TPanel
             Left = 0
-            Top = 245
+            Top = 239
             Width = 917
             Height = 31
             Align = alBottom
@@ -3682,7 +3703,7 @@ object frmCadOrc: TfrmCadOrc
           end
           object SMDBGrid3: TSMDBGrid
             Left = 0
-            Top = 276
+            Top = 270
             Width = 917
             Height = 166
             Align = alBottom

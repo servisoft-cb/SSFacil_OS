@@ -394,10 +394,8 @@ var
 
 implementation
 
-uses DmdDatabase, rsDBUtils, uUtilPadrao, USel_Pessoa, USel_Produto,
-  UDMImpOrdemServico, UCadProduto, UAjustar_OS, UCadOrdemServico_Enc,
-  USel_Orc, UDMCopiarOrc, UCadOrdemServico_Lib;
-
+uses DmdDatabase, rsDBUtils, uUtilPadrao, USel_Pessoa, USel_Produto, UDMImpOrdemServico, UCadProduto, UAjustar_OS, USel_Orc,
+  UCadOrdemServico_Enc, UDMCopiarOrc, UCadOrdemServico_Lib;
 
 {$R *.dfm}
 
@@ -422,7 +420,7 @@ begin
 
   if (fDMCadOrdemServico.qVerBaixaOSCONT_BAIXAS.AsInteger > 0) or (fDMCadOrdemServico.qVerBaixaOSCONT_MAT.AsInteger > 0) then
   begin
-    MessageDlg('*** OS não pode ser excluida, pois já possui baixas (Processos ou Materiais)!', mtInformation, [mbOk], 0);
+    MessageDlg('*** OS não pode ser excluída pois já possui baixas (Processos ou Materiais)!', mtInformation, [mbOk], 0);
     exit;
   end;
 
@@ -712,7 +710,8 @@ begin
   begin
     if RzPageControl1.ActivePage = TS_Cadastro then
     begin
-      if not(fDMCadOrdemServico.cdsOrdemServico_Consulta.Active) or (fDMCadOrdemServico.cdsOrdemServico_Consulta.IsEmpty) or (fDMCadOrdemServico.cdsOrdemServico_ConsultaID.AsInteger <= 0) then
+      if not(fDMCadOrdemServico.cdsOrdemServico_Consulta.Active) or (fDMCadOrdemServico.cdsOrdemServico_Consulta.IsEmpty) or
+            (fDMCadOrdemServico.cdsOrdemServico_ConsultaID.AsInteger <= 0) then
         exit;
       prc_Posiciona_OS;
       prc_Status;
@@ -964,7 +963,8 @@ end;
 procedure TfrmCadOrdemServico.prc_Calcular_DtEntrega;
 begin
   if (fDMCadOrdemServico.cdsOrdemServicoDTRECEBIMENTO.AsDateTime > 10) and (fDMCadOrdemServico.cdsOrdemServicoQTD_DIAS_ENT.AsInteger > 0) then
-    fDMCadOrdemServico.cdsOrdemServicoDT_AGENDA.AsDateTime := fDMCadOrdemServico.cdsOrdemServicoDTRECEBIMENTO.AsDateTime + fDMCadOrdemServico.cdsOrdemServicoQTD_DIAS_ENT.AsInteger;
+    fDMCadOrdemServico.cdsOrdemServicoDT_AGENDA.AsDateTime := fDMCadOrdemServico.cdsOrdemServicoDTRECEBIMENTO.AsDateTime +
+                                                              fDMCadOrdemServico.cdsOrdemServicoQTD_DIAS_ENT.AsInteger;
 end;
 
 procedure TfrmCadOrdemServico.DBDateEdit4Exit(Sender: TObject);
@@ -1001,12 +1001,12 @@ var
 begin
   if fDMCadOrdemServico.cdsOrdemServico_Proc.RecordCount > 0 then
   begin
-    MessageDlg('*** Já existe processos gravados!', mtError, [mbOk], 0);
+    MessageDlg('*** Já existem processos gravados!', mtError, [mbOk], 0);
     exit;
   end;
   if fDMCadOrdemServico.cdsOrdemServico_ItensID_PROCESSO_GRUPO.AsInteger <= 0 then
   begin
-    MessageDlg('*** Grupo de processo não informado!', mtError, [mbOk], 0);
+    MessageDlg('*** Grupo de processos não informado!', mtError, [mbOk], 0);
     RxDBLookupCombo5.SetFocus;
     exit;
   end;
@@ -1171,7 +1171,7 @@ begin
   end;
   if StrToFloat(FormatFloat('0.000000',fDMCadOrdemServico.cdsOrdemServico_MatQTD_ESTOQUE.AsFloat)) > 0 then
   begin
-    MessageDlg('*** Material já foi dado baixa no estoque!', mtInformation, [mbOk], 0);
+    MessageDlg('*** Material já foi baixado no estoque!', mtInformation, [mbOk], 0);
     exit;
   end;
 
@@ -1191,7 +1191,7 @@ begin
   end;
   if StrToFloat(FormatFloat('0.000000',fDMCadOrdemServico.cdsOrdemServico_MatQTD_ESTOQUE.AsFloat)) > 0 then
   begin
-    MessageDlg('*** Material já foi dado baixa no estoque!', mtInformation, [mbOk], 0);
+    MessageDlg('*** Material já foi baixado no estoque!', mtInformation, [mbOk], 0);
     exit;
   end;
 
@@ -1321,7 +1321,7 @@ var
 begin
   if not(fDMCadOrdemServico.cdsOrdemServico.State in [dsEdit,dsInsert]) then
   begin
-    MessageDlg('*** Ordem de Serviço não esta em modo de Alteração ou Inclusão!', mtInformation, [mbOk], 0);
+    MessageDlg('*** Ordem de Serviço não está em modo de Alteração ou Inclusão!', mtInformation, [mbOk], 0);
     exit;
   end;
   if fDMCadOrdemServico.cdsOrdemServico_ProcORDEM.AsInteger <= 1 then
@@ -1353,7 +1353,7 @@ var
 begin
   if not(fDMCadOrdemServico.cdsOrdemServico.State in [dsEdit,dsInsert]) then
   begin
-    MessageDlg('*** Ordem de Serviço não esta em modo de Alteração ou Inclusão!', mtInformation, [mbOk], 0);
+    MessageDlg('*** Ordem de Serviço não está em modo de Alteração ou Inclusão!', mtInformation, [mbOk], 0);
     exit;
   end;
   if fDMCadOrdemServico.cdsOrdemServico_ProcORDEM.AsInteger = fDMCadOrdemServico.cdsOrdemServico_Proc.RecordCount then
@@ -1389,7 +1389,7 @@ begin
   if fDMCadOrdemServico.qVerifica_BaixaCONTADOR.AsInteger > 0 then
   begin
     Result := True;
-    MessageDlg('*** Não pode ser alterado o processo, pois já foi baixado!', mtInformation, [mbOk], 0);
+    MessageDlg('*** Processo não pode ser alterado pois já foi baixado!', mtInformation, [mbOk], 0);
   end;
 end;
 
@@ -1503,9 +1503,11 @@ begin
     fDMCadOrdemServico.qProduto.Close;
     fDMCadOrdemServico.qProduto.ParamByName('ID').AsInteger := fDMCadOrdemServico.cdsOrdemServico_MatID_PRODUTO.AsInteger;
     fDMCadOrdemServico.qProduto.Open;
-    vVlrMaterial := StrToFloat(FormatFloat('0.00',vVlrMaterial + (fDMCadOrdemServico.qProdutoPRECO_CUSTO.AsFloat * fDMCadOrdemServico.cdsOrdemServico_MatQTD_ESTOQUE.AsFloat)));
+    vVlrMaterial := StrToFloat(FormatFloat('0.00',vVlrMaterial + (fDMCadOrdemServico.qProdutoPRECO_CUSTO.AsFloat *
+                    fDMCadOrdemServico.cdsOrdemServico_MatQTD_ESTOQUE.AsFloat)));
     if fDMCadOrdemServico.cdsOrdemServico_MatTIPO.AsString <> 'N' then
-      vVlrMaterial_Prev := StrToFloat(FormatFloat('0.00',vVlrMaterial_Prev + (fDMCadOrdemServico.qProdutoPRECO_CUSTO.AsFloat * fDMCadOrdemServico.cdsOrdemServico_MatQTD.AsFloat)));
+      vVlrMaterial_Prev := StrToFloat(FormatFloat('0.00',vVlrMaterial_Prev +
+                          (fDMCadOrdemServico.qProdutoPRECO_CUSTO.AsFloat * fDMCadOrdemServico.cdsOrdemServico_MatQTD.AsFloat)));
     fDMCadOrdemServico.cdsOrdemServico_Mat.Next;
   end;
   fDMCadOrdemServico.cdsOrdemServico_Terc.First;
@@ -1653,7 +1655,7 @@ begin
   end;
   if fDMCadOrdemServico.cdsOrdemServico_ProcDTCONCLUIDO.AsDateTime <= 10 then
   begin
-    MessageDlg('*** Processo não finalizado, Não pode ser feito um retrabalho!', mtInformation, [mbOk], 0);
+    MessageDlg('*** Processo não finalizado! Não pode ser feito um retrabalho!', mtInformation, [mbOk], 0);
     exit;
   end;
 
@@ -1701,10 +1703,10 @@ begin
     exit;
   if fDMCadOrdemServico.cdsOrdemServico_ItensID_PRODUTO.AsInteger > 0 then
   begin
-    MessageDlg('*** OS já possue Produto informado!', mtInformation, [mbOk], 0);
+    MessageDlg('*** OS já possui produto informado!', mtInformation, [mbOk], 0);
     exit;
   end;
-  if MessageDlg('Deseja Copiar o Orçamento ' + fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsString + ' ?' ,mtConfirmation,[mbYes,mbNo],0) = mrNo then
+  if MessageDlg('Deseja copiar o Orçamento ' + fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsString + ' ?' ,mtConfirmation,[mbYes,mbNo],0) = mrNo then
     exit;
 
   fDMCopiarOrc := TDMCopiarOrc.Create(Self);
@@ -1727,7 +1729,8 @@ begin
     for x := 0 to (fDMCopiarOrc.cdsOrc_Itens.FieldCount - 1) do
     begin
       if (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'ID') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'ITEM') and
-         (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Setor') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Terc') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Mat') then
+         (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Setor') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Terc') and
+         (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Mat') then
         fDMCadOrdemServico.cdsOrdemServico_Itens.FieldByName(fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName).AsVariant := fDMCopiarOrc.cdsOrc_Itens.Fields[x].Value;
     end;
     fDMCadOrdemServico.cdsOrdemServico_Itens.Post;
@@ -1738,7 +1741,8 @@ begin
     for x := 0 to (fDMCopiarOrc.cdsOrc_Itens.FieldCount - 1) do
     begin
       if (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'ID') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'ITEM') and
-         (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Setor') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Terc') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Mat') then
+         (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Setor') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Terc') and
+         (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Mat') then
         fDMCadOrdemServico.cdsOrdemServico_Itens.FieldByName(fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName).AsVariant := fDMCopiarOrc.cdsOrc_Itens.Fields[x].Value;
     end;
     fDMCadOrdemServico.cdsOrdemServico_Itens.Post;
@@ -1753,8 +1757,9 @@ begin
       for x := 0 to (fDMCopiarOrc.cdsOrc_Mat.FieldCount - 1) do
       begin
         if (fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName <> 'ID') and (fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName <> 'ITEM') and
-           (fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName <> 'sdsOrc_Setor') and (fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName <> 'sdsOrc_Terc') and (fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName <> 'sdsOrc_Mat') then
-             fDMCadOrdemServico.cdsOrdemServico_Mat.FieldByName(fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName).AsVariant := fDMCopiarOrc.cdsOrc_Mat.Fields[x].Value;
+           (fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName <> 'sdsOrc_Setor') and (fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName <> 'sdsOrc_Terc') and
+           (fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName <> 'sdsOrc_Mat') then
+          fDMCadOrdemServico.cdsOrdemServico_Mat.FieldByName(fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName).AsVariant := fDMCopiarOrc.cdsOrc_Mat.Fields[x].Value;
       end;
       fDMCadOrdemServico.cdsOrdemServico_Mat.Post;
       fDMCopiarOrc.cdsOrc_Mat.Next;
@@ -1770,8 +1775,9 @@ begin
       for x := 0 to (fDMCopiarOrc.cdsOrc_Terc.FieldCount - 1) do
       begin
         if (fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName <> 'ID') and (fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName <> 'ITEM') and
-           (fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName <> 'sdsOrc_Setor') and (fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName <> 'sdsOrc_Terc') and (fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName <> 'sdsOrc_Mat') then
-             fDMCadOrdemServico.cdsOrdemServico_Terc.FieldByName(fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName).AsVariant := fDMCopiarOrc.cdsOrc_Terc.Fields[x].Value;
+           (fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName <> 'sdsOrc_Setor') and (fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName <> 'sdsOrc_Terc') and
+           (fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName <> 'sdsOrc_Mat') then
+          fDMCadOrdemServico.cdsOrdemServico_Terc.FieldByName(fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName).AsVariant := fDMCopiarOrc.cdsOrc_Terc.Fields[x].Value;
       end;
       fDMCadOrdemServico.cdsOrdemServico_Terc.Post;
       fDMCopiarOrc.cdsOrc_Terc.Next;

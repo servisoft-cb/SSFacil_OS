@@ -1121,13 +1121,13 @@ type
     ctCliente: String;
     ctConsulta_Mat: String;
     ctOSItem_Imp: String;
-    ctCsmOsMotorServ : String;
-    ctBaixa_Pedido   : String;
+    ctCsmOsMotorServ: String;
+    ctBaixa_Pedido: String;
 
     vMSGNotaGerada: String;
-    vConfSelecao : Boolean;
+    vConfSelecao: Boolean;
     procedure prc_Localizar(ID: Integer); //-1 = Inclusão
-    procedure prc_Inserir(Tipo : String);
+    procedure prc_Inserir(Tipo: String);
     procedure prc_Gravar;
     procedure prc_Excluir;
     procedure prc_Abrir_cdsCliente;
@@ -1148,9 +1148,9 @@ type
 
     procedure prc_Somar_Setor;
 
-    procedure prc_Abrir_Baixa_Pedido(ID : Integer ; ID_OS, Item_OS, Item_Lib_OS : Integer);
+    procedure prc_Abrir_Baixa_Pedido(ID: Integer; ID_OS, Item_OS, Item_Lib_OS: Integer);
 
-    function fnc_Existe_NumOS(Num_OS, ID : Integer) : Boolean; 
+    function fnc_Existe_NumOS(Num_OS, ID: Integer): Boolean; 
   end;
 
 var
@@ -1164,7 +1164,7 @@ uses DmdDatabase, LogProvider, uUtilPadrao, Math;
 
 { TDMCadPais }
 
-procedure TDMCadOrdemServico.prc_Inserir(Tipo : String);
+procedure TDMCadOrdemServico.prc_Inserir(Tipo: String);
 var
   vAux: Integer;
 begin
@@ -1473,8 +1473,8 @@ end;
 
 procedure TDMCadOrdemServico.prc_Inserir_Proc;
 var
-  vItemAux : Integer;
-  vOrdemAux : Integer;
+  vItemAux: Integer;
+  vOrdemAux: Integer;
 begin
   cdsOrdemServico_Proc.IndexFieldNames := 'ID;ITEM;ITEM_PROC;ORDEM';
   cdsOrdemServico_Proc.Last;
@@ -1579,7 +1579,7 @@ end;
 
 procedure TDMCadOrdemServico.prc_Inserir_Setor;
 var
-  vItemAux : Integer;
+  vItemAux: Integer;
 begin
   cdsOrdemServico_Setor.Last;
   vItemAux := cdsOrdemServico_SetorITEM_SETOR.AsInteger;
@@ -1592,7 +1592,7 @@ end;
 
 procedure TDMCadOrdemServico.prc_Inserir_Setor_Proc;
 var
-  vItemAux : Integer;
+  vItemAux: Integer;
 begin
   cdsOrdemServico_Setor_Proc.Last;
   vItemAux := cdsOrdemServico_Setor_ProcITEM_PROC.AsInteger;
@@ -1707,7 +1707,7 @@ begin
   cdsOrdemServico_AssITEM.AsInteger := vItemAux + 1;
 end;
 
-procedure TDMCadOrdemServico.prc_Abrir_Baixa_Pedido(ID : Integer ; ID_OS, Item_OS, Item_Lib_OS : Integer);
+procedure TDMCadOrdemServico.prc_Abrir_Baixa_Pedido(ID: Integer; ID_OS, Item_OS, Item_Lib_OS: Integer);
 begin
   cdsBaixa_Pedido.Close;
   sdsBaixa_Pedido.CommandText := ctBaixa_Pedido;

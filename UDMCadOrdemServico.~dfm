@@ -5238,6 +5238,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     IndexFieldNames = 'NOME'
     Params = <>
     ProviderName = 'dspProduto'
+    AfterOpen = cdsProdutoAfterOpen
     Left = 960
     Top = 161
     object cdsProdutoID: TIntegerField

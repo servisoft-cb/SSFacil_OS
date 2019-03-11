@@ -3,8 +3,8 @@ unit UDMImpOrdemServico;
 interface
 
 uses
-  SysUtils, Classes, FMTBcd, frxClass, frxDBSet, DB, DBClient, Provider,
-  SqlExpr, frxChBox, frxExportMail, frxExportPDF, frxOLE, frxBarcode;
+  SysUtils, Classes, FMTBcd, frxClass, frxDBSet, DB, DBClient, Provider, SqlExpr, frxChBox, frxExportMail, frxExportPDF,
+  frxOLE, frxBarcode;
 
 
 type
@@ -174,6 +174,7 @@ type
     dspOrcSetor: TDataSetProvider;
     dspOrcSetorProc: TDataSetProvider;
     cdsOrcSetorProcNOME_PROCESSO: TStringField;
+    cdsOSImpCONDPGTO: TStringField;
     procedure frxReport1Preview(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
     procedure cdsOrcSetorAfterScroll(DataSet: TDataSet);
