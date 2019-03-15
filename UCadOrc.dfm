@@ -1366,11 +1366,11 @@ object frmCadOrc: TfrmCadOrc
         Top = 173
         Width = 921
         Height = 459
-        ActivePage = TS_Gerador
+        ActivePage = TS_Produto
         ActivePageDefault = TS_Produto
         Align = alClient
         UseColoredTabs = True
-        TabIndex = 1
+        TabIndex = 0
         TabOrder = 2
         FixedDimension = 19
         object TS_Produto: TRzTabSheet
