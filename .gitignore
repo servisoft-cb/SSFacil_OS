@@ -9,3 +9,5 @@
 *.~dfm
 *.~pas
 *.~dfm
+*.~dpr
+*.exe
