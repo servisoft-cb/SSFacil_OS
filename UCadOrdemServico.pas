@@ -1117,15 +1117,25 @@ begin
     frmSel_Produto.vTipo_Prod := 'P';
     frmSel_Produto.Edit2.Text := vReferencia_Pos;
     frmSel_Produto.ShowModal;
+    if not(fDMCadOrdemServico.cdsOrdemServico_Itens.State in [dsEdit,dsInsert]) then
+      fDMCadOrdemServico.cdsOrdemServico_Itens.Edit;
     fDMCadOrdemServico.cdsOrdemServico_itensID_PRODUTO.AsInteger := vCodProduto_Pos;
     fDMCadOrdemServico.cdsOrdemServico_ItensREFERENCIA.AsString  := vReferencia_Pos;
     if fDMCadOrdemServico.cdsOrdemServico_ItensID_PRODUTO.AsInteger > 0 then
+    begin
+      DBEdit7Exit(Sender);
       DBEdit7.SetFocus;
+    end;
   end;
 end;
 
 procedure TfrmCadOrdemServico.DBEdit7Exit(Sender: TObject);
 begin
+  if not(fDMCadOrdemServico.cdsOrdemServico.State in [dsEdit,dsInsert]) then
+    exit;
+  if not(fDMCadOrdemServico.cdsOrdemServico_Itens.State in [dsEdit,dsInsert]) then
+    fDMCadOrdemServico.cdsOrdemServico_Itens.Edit;
+  
   if trim(fDMCadOrdemServico.cdsOrdemServico_ItensREFERENCIA.AsString) <> '' then
   begin
     fDMCadOrdemServico.qProduto.Close;
@@ -1281,7 +1291,7 @@ begin
   if not fDMImpOrdemServico.qRelatorios.IsEmpty then
     vArq := fDMImpOrdemServico.qRelatoriosCAMINHO.AsString
   else
-    vArq := ExtractFilePath(Application.ExeName) + 'Relatorios\ORC_Supercrom.fr3';
+    vArq := ExtractFilePath(Application.ExeName) + 'Relatorios\OS_Supercrom.fr3';
   fDMImpOrdemServico.qRelatorios.Close;
 
   if FileExists(vArq) then

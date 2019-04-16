@@ -12,3 +12,5 @@
 *.~dpr
 *.exe
 *.~dfm
+*.~dfm
+*.~pas
