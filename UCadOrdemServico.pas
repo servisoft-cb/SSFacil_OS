@@ -1148,6 +1148,7 @@ begin
       exit;
     end;
     fDMCadOrdemServico.cdsOrdemServico_ItensNOME_PRODUTO.AsString := fDMCadOrdemServico.qProdutoNOME.AsString;
+    fDMCadOrdemServico.cdsOrdemServico_ItensID_PRODUTO.AsInteger  := fDMCadOrdemServico.qProdutoID.AsInteger;
   end
   else
   begin

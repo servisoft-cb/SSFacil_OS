@@ -1148,6 +1148,7 @@ begin
       exit;
     end;
     fDMCadOrdemServico.cdsOrdemServico_ItensNOME_PRODUTO.AsString := fDMCadOrdemServico.qProdutoNOME.AsString;
+    fDMCadOrdemServico.cdsOrdemServico_ItensID_PRODUTO.AsInteger  := fDMCadOrdemServico.qProdutoID.AsInteger;
   end
   else
   begin
@@ -1291,7 +1292,7 @@ begin
   if not fDMImpOrdemServico.qRelatorios.IsEmpty then
     vArq := fDMImpOrdemServico.qRelatoriosCAMINHO.AsString
   else
-    vArq := ExtractFilePath(Application.ExeName) + 'Relatorios\ORC_Supercrom.fr3';
+    vArq := ExtractFilePath(Application.ExeName) + 'Relatorios\OS_Supercrom.fr3';
   fDMImpOrdemServico.qRelatorios.Close;
 
   if FileExists(vArq) then

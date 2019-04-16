@@ -94,6 +94,8 @@ type
     DBEdit17: TDBEdit;
     Label28: TLabel;
     RxDBLookupCombo6: TRxDBLookupCombo;
+    SpeedButton3: TSpeedButton;
+    SpeedButton4: TSpeedButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -131,6 +133,8 @@ type
     procedure RxDBLookupCombo4Enter(Sender: TObject);
     procedure RxDBLookupCombo1Enter(Sender: TObject);
     procedure RxDBLookupCombo5Enter(Sender: TObject);
+    procedure SpeedButton3Click(Sender: TObject);
+    procedure SpeedButton4Click(Sender: TObject);
   private
     { Private declarations }
     fDMCadProduto: TDMCadProduto;
@@ -674,6 +678,22 @@ end;
 procedure TfrmCadProduto.RxDBLookupCombo5Enter(Sender: TObject);
 begin
   fdmCadProduto.cdsFabricanteGerador.IndexFieldNames := 'NOME';
+end;
+
+procedure TfrmCadProduto.SpeedButton3Click(Sender: TObject);
+begin
+  dmCadProduto.cdsCliente.Close;
+  dmCadProduto.cdsCliente.Open;
+end;
+
+procedure TfrmCadProduto.SpeedButton4Click(Sender: TObject);
+begin
+  dmCadProduto.cdsFabricanteMotor.Close;
+  dmCadProduto.cdsMarca_Montadora.Close;
+  dmCadProduto.cdsFabricanteGerador.Close;
+  dmCadProduto.cdsFabricanteMotor.Open;
+  dmCadProduto.cdsMarca_Montadora.Open;
+  dmCadProduto.cdsFabricanteGerador.Open;
 end;
 
 end.

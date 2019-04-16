@@ -32,7 +32,7 @@ object frmCadProduto: TfrmCadProduto
     Top = 0
     Width = 919
     Height = 621
-    ActivePage = TS_Cadastro
+    ActivePage = TS_Consulta
     ActivePageDefault = TS_Consulta
     Align = alClient
     BackgroundColor = 16759929
@@ -40,7 +40,7 @@ object frmCadProduto: TfrmCadProduto
     FlatColor = clGray
     ParentBackgroundColor = False
     TabColors.Shadow = clSilver
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     OnChange = RzPageControl1Change
     FixedDimension = 19
