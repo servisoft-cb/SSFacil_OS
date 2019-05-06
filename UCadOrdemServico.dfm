@@ -24,7 +24,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
     Top = 0
     Width = 1039
     Height = 661
-    ActivePage = TS_Cadastro
+    ActivePage = TS_Consulta
     ActivePageDefault = TS_Consulta
     Align = alClient
     BackgroundColor = 16752448
@@ -32,7 +32,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
     FlatColor = clGray
     ParentBackgroundColor = False
     TabColors.Shadow = clSilver
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     OnChange = RzPageControl1Change
     FixedDimension = 19
@@ -154,7 +154,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'ENTREGUE'
             Title.Alignment = taCenter
             Title.Caption = 'Entregue'
-            Width = 64
             Visible = True
           end
           item
@@ -170,7 +169,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'NUM_ORCAMENTO'
             Title.Alignment = taCenter
             Title.Caption = 'N'#186' Or'#231'amento'
-            Width = 64
             Visible = True
           end
           item
@@ -186,7 +184,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'PRODUZIDO'
             Title.Alignment = taCenter
             Title.Caption = 'Produzido'
-            Width = 64
             Visible = True
           end
           item
@@ -2382,7 +2379,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             WidthOfIndicator = 11
             DefaultRowHeight = 17
             ScrollBars = ssHorizontal
-            ColCount = 10
+            ColCount = 11
             RowCount = 2
             Columns = <
               item
@@ -2414,7 +2411,13 @@ object frmCadOrdemServico: TfrmCadOrdemServico
                 Expanded = False
                 FieldName = 'QTD_HORAS'
                 Title.Alignment = taCenter
-                Title.Caption = 'Qtd. Horas'
+                Title.Caption = 'Qtd.'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'UNIDADE'
+                Title.Caption = 'Unidade'
                 Visible = True
               end
               item
@@ -4791,7 +4794,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
                 Title.Alignment = taCenter
                 Title.Caption = 'Qtd. Faturada'
                 Title.Color = 16763025
-                Width = 64
                 Visible = True
               end>
           end
@@ -4953,7 +4955,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         object DBText3: TDBText
           Left = 313
           Top = 8
-          Width = 50
+          Width = 5
           Height = 13
           AutoSize = True
           DataField = 'VLR_SERVICO'
@@ -4968,7 +4970,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         object DBText4: TDBText
           Left = 544
           Top = 8
-          Width = 50
+          Width = 5
           Height = 13
           AutoSize = True
           DataField = 'VLR_MATERIAL'
@@ -4996,7 +4998,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         object DBText5: TDBText
           Left = 803
           Top = 8
-          Width = 50
+          Width = 5
           Height = 13
           AutoSize = True
           DataField = 'VLR_TOTAL'
@@ -5296,6 +5298,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           Ctl3D = False
           ParentCtl3D = False
           TabOrder = 3
+          Time = 0.541666666666666600
           EditType = etTime
           DropButtonVisible = False
         end

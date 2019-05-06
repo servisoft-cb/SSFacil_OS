@@ -1090,6 +1090,18 @@ type
     cdsProdutoNOME: TStringField;
     cdsProdutoINATIVO: TStringField;
     qParametros_SerPRECO_CUSTO_MATERIAL: TStringField;
+    sdsOrdemServico_Setor_ProcUNIDADE: TStringField;
+    cdsOrdemServico_Setor_ProcUNIDADE: TStringField;
+    sdsOrdemServico_ProcUNIDADE: TStringField;
+    cdsOrdemServico_ProcUNIDADE: TStringField;
+    sdsUnidade: TSQLDataSet;
+    cdsUnidade: TClientDataSet;
+    dsUnidade: TDataSource;
+    dspUnidade: TDataSetProvider;
+    cdsUnidadeUNIDADE: TStringField;
+    cdsUnidadeNOME: TStringField;
+    sdsOrdemServico_SetorUNIDADE: TStringField;
+    cdsOrdemServico_SetorUNIDADE: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure dspOrdemServicoUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError;
@@ -1585,8 +1597,8 @@ begin
   vItemAux := cdsOrdemServico_SetorITEM_SETOR.AsInteger;
 
   cdsOrdemServico_Setor.Insert;
-  cdsOrdemServico_SetorID.AsInteger   := cdsOrdemServicoID.AsInteger;
-  cdsOrdemServico_SetorITEM.AsInteger := cdsOrdemServico_ItensITEM.AsInteger;
+  cdsOrdemServico_SetorID.AsInteger         := cdsOrdemServicoID.AsInteger;
+  cdsOrdemServico_SetorITEM.AsInteger       := cdsOrdemServico_ItensITEM.AsInteger;
   cdsOrdemServico_SetorITEM_SETOR.AsInteger := vItemAux + 1;
 end;
 

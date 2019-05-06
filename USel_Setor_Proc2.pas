@@ -33,12 +33,10 @@ type
 
     procedure prc_Consultar;
     procedure prc_Gravar_cdsSel_Setor_Proc;
-
   public
     { Public declarations }
     fDMCadOrdemServico: TDMCadOrdemServico;
-    vID_Setor_Local : Integer;
-
+    vID_Setor_Local: Integer;
   end;
 
 var
@@ -61,7 +59,7 @@ end;
 
 procedure TfrmSel_Setor_Proc2.prc_Gravar_cdsSel_Setor_Proc;
 var
-  i : Integer;
+  i: Integer;
 begin
   if fDMSel_Setor_Proc.cdsSetor_Proc.IsEmpty then
     exit;
@@ -98,7 +96,7 @@ end;
 
 procedure TfrmSel_Setor_Proc2.prc_Consultar;
 var
-  vIDSetorAux : Integer;
+  vIDSetorAux: Integer;
 begin
   SMDBGrid1.DisableScroll;
   fDMSel_Setor_Proc.mAuxiliar.EmptyDataSet;
@@ -120,16 +118,17 @@ begin
       fDMSel_Setor_Proc.mAuxiliar.Post;
     end;
     fDMSel_Setor_Proc.mAuxiliar.Insert;
-    fDMSel_Setor_Proc.mAuxiliarID_SETOR.AsInteger := fDMSel_Setor_Proc.cdsSetor_ProcID.AsInteger;
-    fDMSel_Setor_Proc.mAuxiliarNOME_SETOR.AsString := fDMSel_Setor_Proc.cdsSetor_ProcNOME_SETOR.AsString; 
+    fDMSel_Setor_Proc.mAuxiliarID_SETOR.AsInteger  := fDMSel_Setor_Proc.cdsSetor_ProcID.AsInteger;
+    fDMSel_Setor_Proc.mAuxiliarNOME_SETOR.AsString := fDMSel_Setor_Proc.cdsSetor_ProcNOME_SETOR.AsString;
     fDMSel_Setor_Proc.mAuxiliarITEM.AsInteger      := fDMSel_Setor_Proc.cdsSetor_ProcITEM.AsInteger;
     fDMSel_Setor_Proc.mAuxiliarORDEM.AsInteger     := fDMSel_Setor_Proc.cdsSetor_ProcORDEM.AsInteger;
+    fDMSel_Setor_Proc.mAuxiliarUNIDADE.AsString    := fDMSel_Setor_Proc.cdsSetor_ProcUNIDADE.AsString;
     fDMSel_Setor_Proc.mAuxiliarID_PROCESSO.AsInteger := fDMSel_Setor_Proc.cdsSetor_ProcID_PROCESSO.AsInteger;
-    fDMSel_Setor_Proc.mAuxiliarVLR_HORA.AsFloat      := fDMSel_Setor_Proc.cdsSetor_ProcVLR_HORA.AsFloat;
+    fDMSel_Setor_Proc.mAuxiliarVLR_HORA.AsFloat    := fDMSel_Setor_Proc.cdsSetor_ProcVLR_HORA.AsFloat;
     fDMSel_Setor_Proc.mAuxiliarNOME_PROCESSO.AsString    := fDMSel_Setor_Proc.cdsSetor_ProcNOME_PROCESSO.AsString;
     fDMSel_Setor_Proc.mAuxiliarSelecionado.AsBoolean     := False;
     fDMSel_Setor_Proc.mAuxiliarTotal_Hora.AsFloat        := 0;
-    fDMSel_Setor_Proc.mAuxiliarVlr_Hora_Ori.AsFloat      := fDMSel_Setor_Proc.cdsSetor_ProcVLR_HORA.AsFloat; 
+    fDMSel_Setor_Proc.mAuxiliarVlr_Hora_Ori.AsFloat      := fDMSel_Setor_Proc.cdsSetor_ProcVLR_HORA.AsFloat;
     fDMSel_Setor_Proc.mAuxiliarSelecionado_Ori.AsBoolean := False;
     fDMSel_Setor_Proc.mAuxiliarDescricao.AsString        := '';
     fDMSel_Setor_Proc.mAuxiliarFlag.AsInteger            := 2;
@@ -212,8 +211,8 @@ end;
 
 procedure TfrmSel_Setor_Proc2.btnConfirmarClick(Sender: TObject);
 var
-  vAux : Real;
-  vQtd, vVlr : Real;
+  vAux: Real;
+  vQtd, vVlr: Real;
 begin
   SMDBGrid1.DisableScroll;
   fDMSel_Setor_Proc.mAuxiliar.First;
@@ -234,12 +233,11 @@ begin
         fDMCadOrdemServico.cdsOrdemServico_SetorVLR_TOTAL.AsFloat  := 0;
         fDMCadOrdemServico.cdsOrdemServico_SetorTOTAL_HORA.AsFloat := 0;
         fDMCadOrdemServico.cdsOrdemServico_SetorclNome_Setor.AsString := fDMSel_Setor_Proc.mAuxiliarNOME_SETOR.AsString;
+        fDMCadOrdemServico.cdsOrdemServico_SetorUNIDADE.AsString      := fDMSel_Setor_Proc.mAuxiliarUNIDADE.AsString;
         fDMCadOrdemServico.cdsOrdemServico_Setor.Post;
       end;
 
       if fDMCadOrdemServico.cdsOrdemServico_Setor_Proc.Locate('ID_PROCESSO',fDMSel_Setor_Proc.mAuxiliarID_PROCESSO.AsInteger,[loCaseInsensitive]) then
-      //if fDMCadOrdemServico.cdsOrdemServico_Setor_Proc.Locate('ITEM_SETOR;ID_PROCESSO',VarArrayOf([fDMCadOrdemServico.cdsOrdemServico_SetorITEM_SETOR.AsInteger,
-        //                                                        fDMSel_Setor_Proc.mAuxiliarID_PROCESSO.AsInteger]),[locaseinsensitive]) then
       begin
         fDMCadOrdemServico.cdsOrdemServico_Setor_Proc.Edit;
         vQtd := fDMCadOrdemServico.cdsOrdemServico_Setor_ProcTOTAL_HORA.AsFloat;
@@ -252,13 +250,13 @@ begin
       end;
 
       vAux := StrToFloat(FormatFloat('0.00',fDMSel_Setor_Proc.mAuxiliarTotal_Hora.AsFloat));
-      //if not fDMSel_Setor_Proc.mAuxiliarSelecionado_Ori.AsBoolean then
-        //vAux := fnc_Converte_Horas(fDMSel_Setor_Proc.mAuxiliarTotal_Hora.AsFloat);
 
+      fDMCadOrdemServico.cdsOrdemServico_Setor_ProcUNIDADE.AsString      := fDMSel_Setor_Proc.mAuxiliarUNIDADE.AsString;             
       fDMCadOrdemServico.cdsOrdemServico_Setor_ProcDESCRICAO.AsString    := fDMSel_Setor_Proc.mAuxiliarDescricao.AsString;
       fDMCadOrdemServico.cdsOrdemServico_Setor_ProcTOTAL_HORA.AsFloat    := vAux;
       fDMCadOrdemServico.cdsOrdemServico_Setor_ProcVLR_HORA.AsFloat      := fDMSel_Setor_Proc.mAuxiliarVLR_HORA.AsFloat;
-      fDMCadOrdemServico.cdsOrdemServico_Setor_ProcVLR_TOTAL.AsFloat     := fDMSel_Setor_Proc.mAuxiliarVLR_HORA.AsFloat * fDMSel_Setor_Proc.mAuxiliarTotal_Hora.AsFloat;
+      fDMCadOrdemServico.cdsOrdemServico_Setor_ProcVLR_TOTAL.AsFloat     := fDMSel_Setor_Proc.mAuxiliarVLR_HORA.AsFloat *
+                                                                            fDMSel_Setor_Proc.mAuxiliarTotal_Hora.AsFloat;
       fDMCadOrdemServico.cdsOrdemServico_Setor_ProcclNome_Processo.AsString := fDMSel_Setor_Proc.mAuxiliarNOME_PROCESSO.AsString;
       fDMCadOrdemServico.cdsOrdemServico_Setor_Proc.Post;
 

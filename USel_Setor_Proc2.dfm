@@ -78,13 +78,6 @@ object frmSel_Setor_Proc2: TfrmSel_Setor_Proc2
       end
       item
         Expanded = False
-        FieldName = 'VLR_HORA'
-        ReadOnly = True
-        Title.Color = 14155735
-        Visible = True
-      end
-      item
-        Expanded = False
         FieldName = 'NOME_PROCESSO'
         ReadOnly = True
         Title.Color = 14155735
@@ -94,12 +87,22 @@ object frmSel_Setor_Proc2: TfrmSel_Setor_Proc2
       item
         Expanded = False
         FieldName = 'Total_Hora'
+        Title.Caption = 'Qtd.'
+        Title.Color = 14155735
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'UNIDADE'
+        Title.Caption = 'Unidade'
         Title.Color = 14155735
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'VLR_HORA'
+        ReadOnly = True
+        Title.Caption = 'Vlr. Unit.'
         Title.Color = 14155735
         Visible = True
       end

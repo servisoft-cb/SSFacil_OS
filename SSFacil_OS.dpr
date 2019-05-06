@@ -94,7 +94,8 @@ uses
   UCadSetor_Proc in '..\ssfacil\UCadSetor_Proc.pas' {frmCadSetor_Proc},
   uNFeComandos in '..\ssfacil\uNFeComandos.pas',
   uNFeConsts in '..\nfe 4.00\nfesrv\uNFeConsts.pas',
-  UDMAprova_Orc in 'UDMAprova_Orc.pas' {DMAprova_Orc: TDataModule};
+  UDMAprova_Orc in 'UDMAprova_Orc.pas' {DMAprova_Orc: TDataModule},
+  DmdDatabase_NFeBD in '..\ssfacil\DmdDatabase_NFeBD.pas' {dmDatabase_NFeBD: TDataModule};
 
 {$R *.res}
 

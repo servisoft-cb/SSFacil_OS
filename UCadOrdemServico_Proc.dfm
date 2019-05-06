@@ -20,12 +20,12 @@ object frmCadOrdemServico_Proc: TfrmCadOrdemServico_Proc
   PixelsPerInch = 96
   TextHeight = 13
   object Label3: TLabel
-    Left = 33
+    Left = 29
     Top = 60
-    Width = 54
+    Width = 58
     Height = 13
     Alignment = taRightJustify
-    Caption = 'Qtd. Horas:'
+    Caption = 'Quantidade:'
   end
   object Label4: TLabel
     Left = 40
@@ -159,10 +159,18 @@ object frmCadOrdemServico_Proc: TfrmCadOrdemServico_Proc
     Margin = 0
     OnClick = SpeedButton1Click
   end
+  object Label1: TLabel
+    Left = 188
+    Top = 60
+    Width = 43
+    Height = 13
+    Alignment = taRightJustify
+    Caption = 'Unidade:'
+  end
   object DBEdit3: TDBEdit
     Left = 88
     Top = 52
-    Width = 89
+    Width = 88
     Height = 21
     CharCase = ecUpperCase
     Ctl3D = True
@@ -178,7 +186,7 @@ object frmCadOrdemServico_Proc: TfrmCadOrdemServico_Proc
     Height = 41
     Align = alBottom
     Color = 8404992
-    TabOrder = 5
+    TabOrder = 6
     object BitBtn1: TBitBtn
       Left = 255
       Top = 8
@@ -256,7 +264,7 @@ object frmCadOrdemServico_Proc: TfrmCadOrdemServico_Proc
     Ctl3D = True
     NumGlyphs = 2
     ParentCtl3D = False
-    TabOrder = 3
+    TabOrder = 4
   end
   object RxDBLookupCombo1: TRxDBLookupCombo
     Left = 88
@@ -299,6 +307,19 @@ object frmCadOrdemServico_Proc: TfrmCadOrdemServico_Proc
     MaxLength = 800
     ParentFont = False
     ScrollBars = ssVertical
-    TabOrder = 4
+    TabOrder = 5
+  end
+  object RxDBLookupCombo3: TRxDBLookupCombo
+    Left = 232
+    Top = 52
+    Width = 97
+    Height = 21
+    DropDownCount = 15
+    DataField = 'UNIDADE'
+    DataSource = DMCadOrdemServico.dsOrdemServico_Proc
+    LookupField = 'UNIDADE'
+    LookupDisplay = 'NOME'
+    LookupSource = DMCadOrdemServico.dsUnidade
+    TabOrder = 3
   end
 end

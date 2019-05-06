@@ -10,9 +10,10 @@ object DMSel_Setor_Proc: TDMSel_Setor_Proc
     GetMetadata = False
     CommandText = 
       'SELECT S.ID, S.NOME NOME_SETOR, SP.item, SP.ordem, SP.id_process' +
-      'o, SP.vlr_hora,S.ORDEM_ORC,'#13#10'P.NOME NOME_PROCESSO'#13#10'FROM SETOR S'#13 +
-      #10'INNER JOIN SETOR_PROC SP ON (S.ID = SP.ID)'#13#10'INNER JOIN PROCESSO' +
-      ' P ON (SP.ID_PROCESSO = P.ID)'#13#10'WHERE S.MOSTRAR_ORC = '#39'S'#39#13#10
+      'o, SP.vlr_hora,S.ORDEM_ORC,'#13#10'P.NOME NOME_PROCESSO, SP.UNIDADE'#13#10'F' +
+      'ROM SETOR S'#13#10'INNER JOIN SETOR_PROC SP ON (S.ID = SP.ID)'#13#10'INNER J' +
+      'OIN PROCESSO P ON (SP.ID_PROCESSO = P.ID)'#13#10'WHERE S.MOSTRAR_ORC =' +
+      ' '#39'S'#39#13#10
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
@@ -52,6 +53,10 @@ object DMSel_Setor_Proc: TDMSel_Setor_Proc
     end
     object cdsSetor_ProcORDEM_ORC: TIntegerField
       FieldName = 'ORDEM_ORC'
+    end
+    object cdsSetor_ProcUNIDADE: TStringField
+      FieldName = 'UNIDADE'
+      Size = 6
     end
   end
   object dspSetor_Proc: TDataSetProvider
@@ -145,6 +150,11 @@ object DMSel_Setor_Proc: TDMSel_Setor_Proc
         Name = 'Funcao'
         DataType = ftString
         Size = 20
+      end
+      item
+        Name = 'UNIDADE'
+        DataType = ftString
+        Size = 6
       end>
     IndexDefs = <>
     Params = <>
@@ -152,7 +162,7 @@ object DMSel_Setor_Proc: TDMSel_Setor_Proc
     Left = 240
     Top = 120
     Data = {
-      B40100009619E0BD010000001800000012000000000003000000B4010849445F
+      D00100009619E0BD010000001800000013000000000003000000D0010849445F
       5345544F5204000100000000000A4E4F4D455F5345544F520100490000000100
       055749445448020002003C00044954454D0400010000000000054F5244454D04
       000100000000000B49445F50524F434553534F040001000000000008564C525F
@@ -165,7 +175,8 @@ object DMSel_Setor_Proc: TDMSel_Setor_Proc
       4E6F6D655F456E7361696F0100490000000100055749445448020002003C000E
       49445F46756E63696F6E6172696F0400010000000000104E6F6D655F46756E63
       696F6E6172696F0100490000000100055749445448020002003C000646756E63
-      616F01004900000001000557494454480200020014000000}
+      616F010049000000010005574944544802000200140007554E49444144450100
+      4900000001000557494454480200020006000000}
     object mAuxiliarID_SETOR: TIntegerField
       DisplayLabel = 'ID Setor'
       FieldName = 'ID_SETOR'
@@ -234,6 +245,10 @@ object DMSel_Setor_Proc: TDMSel_Setor_Proc
     end
     object mAuxiliarFuncao: TStringField
       FieldName = 'Funcao'
+    end
+    object mAuxiliarUNIDADE: TStringField
+      FieldName = 'UNIDADE'
+      Size = 6
     end
   end
   object dsmAuxiliar: TDataSource

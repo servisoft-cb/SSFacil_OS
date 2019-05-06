@@ -36,7 +36,6 @@ type
     N19: TMenuItem;
     N9: TMenuItem;
     lbDatabase: TLabel;
-    Label3: TLabel;
     N4: TMenuItem;
     UCControls1: TUCControls;
     ToolButton2: TToolButton;
@@ -53,6 +52,8 @@ type
     Label1: TLabel;
     Label2: TLabel;
     ToolButton5: TToolButton;
+    Label4: TLabel;
+    Label5: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure EfetuarLogoff1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -92,8 +93,7 @@ var
 
 implementation
 
-uses DmdDatabase, uUtilPadrao, UCadOrdemServico, UCadProcesso,
-  UCadProcesso_Grupo, UCadServico_OS, UProcesso_ES, uCadParada,
+uses DmdDatabase, uUtilPadrao, UCadOrdemServico, UCadProcesso, UCadProcesso_Grupo, UCadServico_OS, UProcesso_ES, uCadParada,
   UBaixa_Mat_OS, UCadProduto, UCadOrc, uCadEnsaio, uCadMotivo;
 
 {$R *.dfm}

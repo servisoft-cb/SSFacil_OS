@@ -52,6 +52,8 @@ type
     cdsFuncionarioNOME: TStringField;
     cdsFuncionarioFUNCAO: TStringField;
     mAuxiliarFuncao: TStringField;
+    mAuxiliarUNIDADE: TStringField;
+    cdsSetor_ProcUNIDADE: TStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

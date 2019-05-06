@@ -260,6 +260,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     Top = 8
   end
   object cdsOrdemServico: TClientDataSet
+    Active = True
     Aggregates = <>
     IndexFieldNames = 'ID'
     Params = <>
@@ -1141,6 +1142,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Itens: TClientDataSet
+    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServicosdsOrdemServico_Itens
     IndexFieldNames = 'ID;ITEM'
@@ -1619,6 +1621,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     Top = 182
   end
   object cdsFuncionario: TClientDataSet
+    Active = True
     Aggregates = <>
     IndexFieldNames = 'NOME'
     Params = <>
@@ -1736,6 +1739,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Mat: TClientDataSet
+    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Mat
     IndexFieldNames = 'ID;ITEM;ITEM_MAT'
@@ -1891,6 +1895,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     Top = 337
   end
   object cdsMaterial: TClientDataSet
+    Active = True
     Aggregates = <>
     IndexFieldNames = 'NOME'
     Params = <>
@@ -2589,15 +2594,15 @@ object DMCadOrdemServico: TDMCadOrdemServico
         ParamType = ptInput
       end>
     SQLConnection = dmDatabase.scoDados
-    Left = 512
-    Top = 344
+    Left = 496
+    Top = 320
   end
   object cdsOS_Nota: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'dspOS_Nota'
-    Left = 576
-    Top = 344
+    Left = 560
+    Top = 320
     object cdsOS_NotaID_NOTA: TIntegerField
       FieldName = 'ID_NOTA'
       Required = True
@@ -2634,13 +2639,13 @@ object DMCadOrdemServico: TDMCadOrdemServico
   end
   object dsOS_Nota: TDataSource
     DataSet = cdsOS_Nota
-    Left = 608
-    Top = 344
+    Left = 592
+    Top = 320
   end
   object dspOS_Nota: TDataSetProvider
     DataSet = sdsOS_Nota
-    Left = 544
-    Top = 344
+    Left = 528
+    Top = 320
   end
   object sdsVendedor: TSQLDataSet
     NoMetadata = True
@@ -2974,8 +2979,13 @@ object DMCadOrdemServico: TDMCadOrdemServico
       FieldName = 'RETRABALHO'
       Size = 1
     end
+    object sdsOrdemServico_ProcUNIDADE: TStringField
+      FieldName = 'UNIDADE'
+      Size = 6
+    end
   end
   object cdsOrdemServico_Proc: TClientDataSet
+    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Proc
     IndexFieldNames = 'ID;ITEM;ORDEM;ITEM_PROC'
@@ -3071,6 +3081,10 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object cdsOrdemServico_ProcRETRABALHO: TStringField
       FieldName = 'RETRABALHO'
       Size = 1
+    end
+    object cdsOrdemServico_ProcUNIDADE: TStringField
+      FieldName = 'UNIDADE'
+      Size = 6
     end
   end
   object dsOrdemServico_Proc: TDataSource
@@ -3279,6 +3293,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Terc: TClientDataSet
+    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Terc
     IndexFieldNames = 'ID;ITEM;ITEM_TERC'
@@ -3872,8 +3887,13 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object sdsOrdemServico_SetorVLR_TOTAL: TFloatField
       FieldName = 'VLR_TOTAL'
     end
+    object sdsOrdemServico_SetorUNIDADE: TStringField
+      FieldName = 'UNIDADE'
+      Size = 6
+    end
   end
   object cdsOrdemServico_Setor: TClientDataSet
+    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Setor
     IndexFieldNames = 'ID;ITEM;ITEM_SETOR'
@@ -3920,6 +3940,10 @@ object DMCadOrdemServico: TDMCadOrdemServico
       FieldKind = fkCalculated
       FieldName = 'clPerc_Preco'
       Calculated = True
+    end
+    object cdsOrdemServico_SetorUNIDADE: TStringField
+      FieldName = 'UNIDADE'
+      Size = 6
     end
   end
   object dsOrdemServico_Setor: TDataSource
@@ -3998,8 +4022,13 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object sdsOrdemServico_Setor_ProcVLR_TOTAL: TFloatField
       FieldName = 'VLR_TOTAL'
     end
+    object sdsOrdemServico_Setor_ProcUNIDADE: TStringField
+      FieldName = 'UNIDADE'
+      Size = 6
+    end
   end
   object cdsOrdemServico_Setor_Proc: TClientDataSet
+    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_SetorsdsOrdemServico_Setor_Proc
     IndexFieldNames = 'ID;ITEM;ITEM_SETOR;ITEM_PROC'
@@ -4056,6 +4085,10 @@ object DMCadOrdemServico: TDMCadOrdemServico
       FieldKind = fkCalculated
       FieldName = 'clPerc_Preco'
       Calculated = True
+    end
+    object cdsOrdemServico_Setor_ProcUNIDADE: TStringField
+      FieldName = 'UNIDADE'
+      Size = 6
     end
   end
   object dsOrdemServico_Setor_Proc: TDataSource
@@ -4179,6 +4212,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Ensaio: TClientDataSet
+    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Ensaio
     Params = <>
@@ -4363,6 +4397,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Custo: TClientDataSet
+    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServicosdsOrdemServico_Custo
     Params = <>
@@ -4565,6 +4600,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Ass: TClientDataSet
+    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServicosdsOrdemServico_Ass
     IndexFieldNames = 'ID;ITEM'
@@ -4701,6 +4737,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Lib: TClientDataSet
+    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Lib
     IndexFieldNames = 'ID;ITEM;ITEM_LIB'
@@ -5265,5 +5302,41 @@ object DMCadOrdemServico: TDMCadOrdemServico
     DataSet = cdsProduto
     Left = 992
     Top = 161
+  end
+  object sdsUnidade: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 'SELECT UNIDADE, NOME FROM UNIDADE'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = dmDatabase.scoDados
+    Left = 496
+    Top = 368
+  end
+  object cdsUnidade: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspUnidade'
+    Left = 560
+    Top = 368
+    object cdsUnidadeUNIDADE: TStringField
+      FieldName = 'UNIDADE'
+      Required = True
+      Size = 6
+    end
+    object cdsUnidadeNOME: TStringField
+      FieldName = 'NOME'
+      Size = 30
+    end
+  end
+  object dsUnidade: TDataSource
+    DataSet = cdsUnidade
+    Left = 592
+    Top = 368
+  end
+  object dspUnidade: TDataSetProvider
+    DataSet = sdsUnidade
+    Left = 528
+    Top = 368
   end
 end
