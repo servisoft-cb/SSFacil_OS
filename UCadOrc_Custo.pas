@@ -199,9 +199,7 @@ begin
   fDMCadOrdemServico.cdsOrdemServico_Mat.First;
   while not fDMCadOrdemServico.cdsOrdemServico_Mat.Eof do
   begin
-    fDMCadOrdemServico.qProduto.Close;
-    fDMCadOrdemServico.qProduto.ParamByName('ID').AsInteger := fDMCadOrdemServico.cdsOrdemServico_MatID_PRODUTO.AsInteger;
-    fDMCadOrdemServico.qProduto.Open;
+    fDMCadOrdemServico.prc_Monta_qProduto(fDMCadOrdemServico.cdsOrdemServico_MatID_PRODUTO.AsInteger,'');
     vVlrMaterial := StrToCurr(FormatCurr('0.00',vVlrMaterial + fDMCadOrdemServico.cdsOrdemServico_MatVLR_TOTAL.AsFloat));
     fDMCadOrdemServico.cdsOrdemServico_Mat.Next;
   end;

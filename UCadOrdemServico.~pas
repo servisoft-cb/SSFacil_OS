@@ -375,6 +375,7 @@ type
     procedure prc_Montar_Ordem;
 
     procedure prc_Abrir_cdsOrdemServico_Enc;
+    procedure prc_Monta_Grid2;
 
     function fnc_Existe_Baixa(Ordem: Integer): Boolean;
 
@@ -562,7 +563,11 @@ begin
     fDMCadOrdemServico.cdsProdutoGerador.Open;
   end
   else
-    RzGroupBox2.Visible := True;
+  begin
+    RzGroupBox2.Visible   := True;
+    TS_Gerador.TabVisible := False;
+    prc_Monta_Grid2;
+  end;
   fDMCadOrdemServico.qParametros_Prod.Active := True;
 end;
 
@@ -1138,9 +1143,7 @@ begin
   
   if trim(fDMCadOrdemServico.cdsOrdemServico_ItensREFERENCIA.AsString) <> '' then
   begin
-    fDMCadOrdemServico.qProduto.Close;
-    fDMCadOrdemServico.qProduto.ParamByName('REFERENCIA').AsString := fDMCadOrdemServico.cdsOrdemServico_ItensREFERENCIA.AsString;
-    fDMCadOrdemServico.qProduto.Open;
+    fDMCadOrdemServico.prc_Monta_qProduto(0,fDMCadOrdemServico.cdsOrdemServico_ItensREFERENCIA.AsString);
     if fDMCadOrdemServico.qProdutoID.AsInteger <= 0 then
     begin
       MessageDlg('*** Referência não cadastrada!', mtInformation, [mbOk], 0);
@@ -1511,9 +1514,7 @@ begin
   fDMCadOrdemServico.cdsOrdemServico_Mat.First;
   while not fDMCadOrdemServico.cdsOrdemServico_Mat.Eof do
   begin
-    fDMCadOrdemServico.qProduto.Close;
-    fDMCadOrdemServico.qProduto.ParamByName('ID').AsInteger := fDMCadOrdemServico.cdsOrdemServico_MatID_PRODUTO.AsInteger;
-    fDMCadOrdemServico.qProduto.Open;
+    fDMCadOrdemServico.prc_Monta_qProduto(fDMCadOrdemServico.cdsOrdemServico_MatID_PRODUTO.AsInteger,'');
     vVlrMaterial := StrToFloat(FormatFloat('0.00',vVlrMaterial + (fDMCadOrdemServico.qProdutoPRECO_CUSTO.AsFloat *
                     fDMCadOrdemServico.cdsOrdemServico_MatQTD_ESTOQUE.AsFloat)));
     if fDMCadOrdemServico.cdsOrdemServico_MatTIPO.AsString <> 'N' then
@@ -1910,6 +1911,21 @@ begin
     fDMCadOrdemServico.cdsOrdemServico_ItensNOME_PRODUTO.AsString := fDMCadOrdemServico.cdsProdutoNOME.AsString;
     fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsInteger         := 1;
   end;
+end;
+
+procedure TfrmCadOrdemServico.prc_Monta_Grid2;
+var
+  i : Integer;
+begin
+  for i := 0 to SMDBGrid2.ColCount - 2 do
+  begin
+    if (SMDBGrid1.Columns[i].FieldName = 'QTD_HORAS') and (trim(fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString) <> 'S') then
+      SMDBGrid1.Columns[i].Title.Caption := 'Qtd. Horas';
+    if (SMDBGrid1.Columns[i].FieldName = 'UNIDADE') then
+      SMDBGrid1.Columns[i].Visible := (trim(fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString) = 'S');
+  end;
+
+
 end;
 
 end.

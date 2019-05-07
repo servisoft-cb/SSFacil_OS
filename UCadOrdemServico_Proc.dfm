@@ -159,7 +159,7 @@ object frmCadOrdemServico_Proc: TfrmCadOrdemServico_Proc
     Margin = 0
     OnClick = SpeedButton1Click
   end
-  object Label1: TLabel
+  object label111: TLabel
     Left = 188
     Top = 60
     Width = 43
@@ -278,6 +278,7 @@ object frmCadOrdemServico_Proc: TfrmCadOrdemServico_Proc
     LookupDisplay = 'NOME'
     LookupSource = DMCadOrdemServico.dsProcesso
     TabOrder = 0
+    OnExit = RxDBLookupCombo1Exit
   end
   object RxDBLookupCombo2: TRxDBLookupCombo
     Left = 88
@@ -311,8 +312,8 @@ object frmCadOrdemServico_Proc: TfrmCadOrdemServico_Proc
   end
   object RxDBLookupCombo3: TRxDBLookupCombo
     Left = 232
-    Top = 52
-    Width = 97
+    Top = 53
+    Width = 98
     Height = 21
     DropDownCount = 15
     DataField = 'UNIDADE'

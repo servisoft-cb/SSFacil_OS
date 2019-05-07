@@ -24,7 +24,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
     Top = 0
     Width = 1039
     Height = 661
-    ActivePage = TS_Consulta
+    ActivePage = TS_Cadastro
     ActivePageDefault = TS_Consulta
     Align = alClient
     BackgroundColor = 16752448
@@ -32,7 +32,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
     FlatColor = clGray
     ParentBackgroundColor = False
     TabColors.Shadow = clSilver
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     OnChange = RzPageControl1Change
     FixedDimension = 19
@@ -1799,7 +1799,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             object DBEdit7: TDBEdit
               Left = 82
               Top = 11
-              Width = 146
+              Width = 136
               Height = 19
               CharCase = ecUpperCase
               Ctl3D = False
@@ -1874,10 +1874,10 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         Top = 271
         Width = 1035
         Height = 367
-        ActivePage = TS_CondEntrada
+        ActivePage = TS_Processos
         ActivePageDefault = TS_CondEntrada
         Align = alClient
-        TabIndex = 0
+        TabIndex = 2
         TabOrder = 2
         OnChange = RzPageControl2Change
         FixedDimension = 19
@@ -2388,6 +2388,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
                 FieldName = 'ITEM_PROC'
                 Title.Alignment = taCenter
                 Title.Caption = 'Item'
+                Width = 43
                 Visible = True
               end
               item
@@ -4955,7 +4956,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         object DBText3: TDBText
           Left = 313
           Top = 8
-          Width = 5
+          Width = 50
           Height = 13
           AutoSize = True
           DataField = 'VLR_SERVICO'
@@ -4970,7 +4971,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         object DBText4: TDBText
           Left = 544
           Top = 8
-          Width = 5
+          Width = 50
           Height = 13
           AutoSize = True
           DataField = 'VLR_MATERIAL'
@@ -4998,7 +4999,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         object DBText5: TDBText
           Left = 803
           Top = 8
-          Width = 5
+          Width = 50
           Height = 13
           AutoSize = True
           DataField = 'VLR_TOTAL'
@@ -5298,7 +5299,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           Ctl3D = False
           ParentCtl3D = False
           TabOrder = 3
-          Time = 0.541666666666666600
           EditType = etTime
           DropButtonVisible = False
         end

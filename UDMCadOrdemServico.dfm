@@ -260,7 +260,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     Top = 8
   end
   object cdsOrdemServico: TClientDataSet
-    Active = True
     Aggregates = <>
     IndexFieldNames = 'ID'
     Params = <>
@@ -1142,7 +1141,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Itens: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServicosdsOrdemServico_Itens
     IndexFieldNames = 'ID;ITEM'
@@ -1739,7 +1737,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Mat: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Mat
     IndexFieldNames = 'ID;ITEM;ITEM_MAT'
@@ -2985,7 +2982,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Proc: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Proc
     IndexFieldNames = 'ID;ITEM;ORDEM;ITEM_PROC'
@@ -3131,7 +3127,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
   object sdsProcesso: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
-    CommandText = 'SELECT ID, NOME, TERCEIRO'#13#10'FROM PROCESSO'
+    CommandText = 'SELECT ID, NOME, TERCEIRO, UNIDADE'#13#10'FROM PROCESSO'
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
@@ -3154,14 +3150,18 @@ object DMCadOrdemServico: TDMCadOrdemServico
       FieldName = 'ID'
       Required = True
     end
-    object cdsProcessoNOME: TStringField
-      FieldName = 'NOME'
-      Size = 30
-    end
     object cdsProcessoTERCEIRO: TStringField
       FieldName = 'TERCEIRO'
       FixedChar = True
       Size = 1
+    end
+    object cdsProcessoNOME: TStringField
+      FieldName = 'NOME'
+      Size = 30
+    end
+    object cdsProcessoUNIDADE: TStringField
+      FieldName = 'UNIDADE'
+      Size = 6
     end
   end
   object dsProcesso: TDataSource
@@ -3171,22 +3171,10 @@ object DMCadOrdemServico: TDMCadOrdemServico
   end
   object qProduto: TSQLQuery
     MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftInteger
-        Name = 'ID'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftString
-        Name = 'REFERENCIA'
-        ParamType = ptInput
-      end>
+    Params = <>
     SQL.Strings = (
       'SELECT P.ID, P.NOME, P.REFERENCIA, p.UNIDADE, p.preco_custo'
-      'FROM produto P'
-      'WHERE (P.ID = :ID)'
-      '  or (P.REFERENCIA = :REFERENCIA)')
+      'FROM produto P')
     SQLConnection = dmDatabase.scoDados
     Left = 792
     Top = 400
@@ -3293,7 +3281,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Terc: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Terc
     IndexFieldNames = 'ID;ITEM;ITEM_TERC'
@@ -3893,7 +3880,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Setor: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Setor
     IndexFieldNames = 'ID;ITEM;ITEM_SETOR'
@@ -4028,7 +4014,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Setor_Proc: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_SetorsdsOrdemServico_Setor_Proc
     IndexFieldNames = 'ID;ITEM;ITEM_SETOR;ITEM_PROC'
@@ -4212,7 +4197,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Ensaio: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Ensaio
     Params = <>
@@ -4397,7 +4381,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Custo: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServicosdsOrdemServico_Custo
     Params = <>
@@ -4600,7 +4583,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Ass: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServicosdsOrdemServico_Ass
     IndexFieldNames = 'ID;ITEM'
@@ -4737,7 +4719,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Lib: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Lib
     IndexFieldNames = 'ID;ITEM;ITEM_LIB'

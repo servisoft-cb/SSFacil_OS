@@ -24,7 +24,7 @@ object frmCadOrc: TfrmCadOrc
     Top = 0
     Width = 925
     Height = 655
-    ActivePage = TS_Cadastro
+    ActivePage = TS_Consulta
     ActivePageDefault = TS_Consulta
     Align = alClient
     BackgroundColor = 16752448
@@ -32,7 +32,7 @@ object frmCadOrc: TfrmCadOrc
     FlatColor = clGray
     ParentBackgroundColor = False
     TabColors.Shadow = clSilver
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     OnChange = RzPageControl1Change
     FixedDimension = 19
@@ -1366,11 +1366,11 @@ object frmCadOrc: TfrmCadOrc
         Top = 173
         Width = 921
         Height = 459
-        ActivePage = TS_Gerador
+        ActivePage = TS_Produto
         ActivePageDefault = TS_Produto
         Align = alClient
         UseColoredTabs = True
-        TabIndex = 1
+        TabIndex = 0
         TabOrder = 2
         FixedDimension = 19
         object TS_Produto: TRzTabSheet
@@ -2389,17 +2389,24 @@ object frmCadOrc: TfrmCadOrc
               end
               item
                 Expanded = False
-                FieldName = 'VLR_HORA'
+                FieldName = 'TOTAL_HORA'
                 Title.Alignment = taCenter
-                Title.Caption = 'Vlr. Hora'
+                Title.Caption = 'Qtd.'
                 Title.Color = 16769444
                 Visible = True
               end
               item
                 Expanded = False
-                FieldName = 'TOTAL_HORA'
+                FieldName = 'UNIDADE'
+                Title.Caption = 'Unidade'
+                Title.Color = 16769444
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'VLR_HORA'
                 Title.Alignment = taCenter
-                Title.Caption = 'Qtd. Hora'
+                Title.Caption = 'Vlr. Unit.'
                 Title.Color = 16769444
                 Visible = True
               end
@@ -2507,8 +2514,17 @@ object frmCadOrc: TfrmCadOrc
                 Expanded = False
                 FieldName = 'TOTAL_HORA'
                 Title.Alignment = taCenter
-                Title.Caption = 'Total Hora'
+                Title.Caption = 'Qtd.'
                 Title.Color = 16769734
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'UNIDADE'
+                Title.Alignment = taCenter
+                Title.Caption = 'Unidade'
+                Title.Color = 16769734
+                Width = 47
                 Visible = True
               end
               item

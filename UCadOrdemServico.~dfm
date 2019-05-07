@@ -1799,7 +1799,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             object DBEdit7: TDBEdit
               Left = 82
               Top = 11
-              Width = 146
+              Width = 136
               Height = 19
               CharCase = ecUpperCase
               Ctl3D = False
@@ -1874,10 +1874,10 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         Top = 271
         Width = 1035
         Height = 367
-        ActivePage = TS_CondEntrada
+        ActivePage = TS_Processos
         ActivePageDefault = TS_CondEntrada
         Align = alClient
-        TabIndex = 0
+        TabIndex = 2
         TabOrder = 2
         OnChange = RzPageControl2Change
         FixedDimension = 19
@@ -2379,7 +2379,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             WidthOfIndicator = 11
             DefaultRowHeight = 17
             ScrollBars = ssHorizontal
-            ColCount = 10
+            ColCount = 11
             RowCount = 2
             Columns = <
               item
@@ -2388,6 +2388,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
                 FieldName = 'ITEM_PROC'
                 Title.Alignment = taCenter
                 Title.Caption = 'Item'
+                Width = 43
                 Visible = True
               end
               item
@@ -2411,7 +2412,13 @@ object frmCadOrdemServico: TfrmCadOrdemServico
                 Expanded = False
                 FieldName = 'QTD_HORAS'
                 Title.Alignment = taCenter
-                Title.Caption = 'Qtd. Horas'
+                Title.Caption = 'Qtd.'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'UNIDADE'
+                Title.Caption = 'Unidade'
                 Visible = True
               end
               item

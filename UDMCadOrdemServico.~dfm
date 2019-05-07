@@ -8,7 +8,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
   object sdsOrdemServico: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
-    Active = True
     CommandText = 
       'SELECT OS.*, CLI.NOME NOME_CLIENTE, CLI.CNPJ_CPF, CLI.CIDADE, F.' +
       'NOME NOME_ATENDENTE, CP.NOME CONDPGTO, CLI.INSCR_EST, '#13#10'CLI.ENDE' +
@@ -261,7 +260,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     Top = 8
   end
   object cdsOrdemServico: TClientDataSet
-    Active = True
     Aggregates = <>
     IndexFieldNames = 'ID'
     Params = <>
@@ -911,7 +909,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
   object sdsOrdemServico_Itens: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
-    Active = True
     CommandText = 'SELECT OS.*'#13#10'FROM ORDEMSERVICO_ITENS OS'#13#10'WHERE OS.ID = :ID'
     DataSource = dsOrdemServico_Mestre
     MaxBlobSize = -1
@@ -1144,7 +1141,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Itens: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServicosdsOrdemServico_Itens
     IndexFieldNames = 'ID;ITEM'
@@ -1663,7 +1659,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
   object sdsOrdemServico_Mat: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
-    Active = True
     CommandText = 
       'SELECT OM.*'#13#10'FROM ORDEMSERVICO_MAT OM'#13#10'WHERE OM.ID = :ID'#13#10' AND O' +
       'M.ITEM = :ITEM'#13#10
@@ -1742,7 +1737,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Mat: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Mat
     IndexFieldNames = 'ID;ITEM;ITEM_MAT'
@@ -2888,7 +2882,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
   object sdsOrdemServico_Proc: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
-    Active = True
     CommandText = 
       'SELECT O.*, cast(o.obs as varchar(1000)) OBSAUX'#13#10'FROM ORDEMSERVI' +
       'CO_PROC O'#13#10'WHERE O.ID = :ID'#13#10'      AND O.ITEM = :ITEM'#13#10
@@ -2989,7 +2982,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Proc: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Proc
     IndexFieldNames = 'ID;ITEM;ORDEM;ITEM_PROC'
@@ -3175,22 +3167,10 @@ object DMCadOrdemServico: TDMCadOrdemServico
   end
   object qProduto: TSQLQuery
     MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftInteger
-        Name = 'ID'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftString
-        Name = 'REFERENCIA'
-        ParamType = ptInput
-      end>
+    Params = <>
     SQL.Strings = (
       'SELECT P.ID, P.NOME, P.REFERENCIA, p.UNIDADE, p.preco_custo'
-      'FROM produto P'
-      'WHERE (P.ID = :ID)'
-      '  or (P.REFERENCIA = :REFERENCIA)')
+      'FROM produto P')
     SQLConnection = dmDatabase.scoDados
     Left = 792
     Top = 400
@@ -3252,7 +3232,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
   object sdsOrdemServico_Terc: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
-    Active = True
     CommandText = 
       'SELECT O.*'#13#10'FROM ORDEMSERVICO_TERC O'#13#10'WHERE O.ID = :ID'#13#10'  AND O.' +
       'ITEM = :ITEM'#13#10
@@ -3298,7 +3277,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Terc: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Terc
     IndexFieldNames = 'ID;ITEM;ITEM_TERC'
@@ -3847,7 +3825,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
   object sdsOrdemServico_Setor: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
-    Active = True
     CommandText = 
       'SELECT *'#13#10'FROM ORDEMSERVICO_SETOR'#13#10'WHERE ID = :ID'#13#10'  AND ITEM = ' +
       ':ITEM'
@@ -3964,7 +3941,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
   object sdsOrdemServico_Setor_Proc: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
-    Active = True
     CommandText = 
       'SELECT *'#13#10'FROM ORDEMSERVICO_SETOR_PROC'#13#10'WHERE ID = :ID'#13#10'  AND IT' +
       'EM = :ITEM'#13#10'  AND ITEM_SETOR = :ITEM_SETOR'
@@ -4217,7 +4193,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Ensaio: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Ensaio
     Params = <>
@@ -4402,7 +4377,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Custo: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServicosdsOrdemServico_Custo
     Params = <>
@@ -4605,7 +4579,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Ass: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServicosdsOrdemServico_Ass
     IndexFieldNames = 'ID;ITEM'
@@ -4742,7 +4715,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
   end
   object cdsOrdemServico_Lib: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsOrdemServico_ItenssdsOrdemServico_Lib
     IndexFieldNames = 'ID;ITEM;ITEM_LIB'
