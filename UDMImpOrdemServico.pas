@@ -175,6 +175,8 @@ type
     dspOrcSetorProc: TDataSetProvider;
     cdsOrcSetorProcNOME_PROCESSO: TStringField;
     cdsOSImpCONDPGTO: TStringField;
+    cdsOrcSetorProcUNIDADE: TStringField;
+    cdsOrcSetorUNIDADE: TStringField;
     procedure frxReport1Preview(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
     procedure cdsOrcSetorAfterScroll(DataSet: TDataSet);

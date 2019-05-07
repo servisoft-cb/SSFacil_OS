@@ -15,7 +15,7 @@ object DMImpOrdemServico: TDMImpOrdemServico
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43066.746810972200000000
-    ReportOptions.LastChange = 43535.578587766210000000
+    ReportOptions.LastChange = 43592.656117847230000000
     ScriptLanguage = 'PascalScript'
     StoreInDFM = False
     OnPreview = frxReport1Preview
@@ -953,6 +953,10 @@ object DMImpOrdemServico: TDMImpOrdemServico
     object cdsOrcSetorNOME_SETOR: TStringField
       FieldName = 'NOME_SETOR'
     end
+    object cdsOrcSetorUNIDADE: TStringField
+      FieldName = 'UNIDADE'
+      Size = 6
+    end
   end
   object dsOrcSetor: TDataSource
     DataSet = cdsOrcSetor
@@ -969,7 +973,8 @@ object DMImpOrdemServico: TDMImpOrdemServico
       'ID_SETOR=ID_SETOR'
       'TOTAL_HORA=TOTAL_HORA'
       'VLR_TOTAL=VLR_TOTAL'
-      'NOME_SETOR=NOME_SETOR')
+      'NOME_SETOR=NOME_SETOR'
+      'UNIDADE=UNIDADE')
     DataSource = dsOrcSetor
     BCDToCurrency = False
     Left = 184
@@ -1046,6 +1051,10 @@ object DMImpOrdemServico: TDMImpOrdemServico
       FieldName = 'NOME_PROCESSO'
       Size = 30
     end
+    object cdsOrcSetorProcUNIDADE: TStringField
+      FieldName = 'UNIDADE'
+      Size = 6
+    end
   end
   object dsOrcSetorProc: TDataSource
     DataSet = cdsOrcSetorProc
@@ -1065,7 +1074,8 @@ object DMImpOrdemServico: TDMImpOrdemServico
       'TOTAL_HORA=TOTAL_HORA'
       'VLR_HORA=VLR_HORA'
       'VLR_TOTAL=VLR_TOTAL'
-      'NOME_PROCESSO=NOME_PROCESSO')
+      'NOME_PROCESSO=NOME_PROCESSO'
+      'UNIDADE=UNIDADE')
     DataSource = dsOrcSetorProc
     BCDToCurrency = False
     Left = 184
