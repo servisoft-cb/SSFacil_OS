@@ -1919,10 +1919,10 @@ var
 begin
   for i := 0 to SMDBGrid2.ColCount - 2 do
   begin
-    if (SMDBGrid1.Columns[i].FieldName = 'QTD_HORAS') and (trim(fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString) <> 'S') then
-      SMDBGrid1.Columns[i].Title.Caption := 'Qtd. Horas';
-    if (SMDBGrid1.Columns[i].FieldName = 'UNIDADE') then
-      SMDBGrid1.Columns[i].Visible := (trim(fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString) = 'S');
+    if (SMDBGrid2.Columns[i].FieldName = 'QTD_HORAS') and (trim(fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString) <> 'S') then
+      SMDBGrid2.Columns[i].Title.Caption := 'Qtd. Horas';
+    if (SMDBGrid2.Columns[i].FieldName = 'UNIDADE') then
+      SMDBGrid2.Columns[i].Visible := (trim(fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString) = 'S');
   end;
 end;
 

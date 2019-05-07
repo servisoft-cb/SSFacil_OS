@@ -1924,8 +1924,6 @@ begin
     if (SMDBGrid1.Columns[i].FieldName = 'UNIDADE') then
       SMDBGrid1.Columns[i].Visible := (trim(fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString) = 'S');
   end;
-
-
 end;
 
 end.
