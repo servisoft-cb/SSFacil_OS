@@ -755,9 +755,9 @@ procedure TfrmProcesso_ES.CurrencyEdit1KeyDown(Sender: TObject;
 begin
   if Key = Vk_Return then
   begin
-    if Memo2.Visible then
-      Memo2.SetFocus
-    else
+    //if Memo2.Visible then
+     // Memo2.SetFocus
+    //else
       btnConfirmar.SetFocus;
   end;
 end;

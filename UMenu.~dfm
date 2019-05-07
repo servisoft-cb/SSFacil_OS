@@ -183,21 +183,49 @@ object fMenu: TfMenu
     ParentColor = False
     ParentFont = False
   end
-  object Label3: TLabel
-    Left = 80
-    Top = 104
-    Width = 16
+  object Label1: TLabel
+    Left = 96
+    Top = 96
+    Width = 144
     Height = 30
+    Caption = 'M'#243'dulo OS'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Color = clAqua
     Font.Height = -27
     Font.Name = 'Courier New'
     Font.Style = []
     ParentFont = False
   end
-  object Label1: TLabel
+  object Label2: TLabel
     Left = 96
-    Top = 96
+    Top = 8
+    Width = 287
+    Height = 93
+    Caption = 'SSF'#225'cil'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clAqua
+    Font.Height = -80
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 98
+    Top = 10
+    Width = 287
+    Height = 93
+    Caption = 'SSF'#225'cil'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -80
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object Label5: TLabel
+    Left = 98
+    Top = 98
     Width = 144
     Height = 30
     Caption = 'M'#243'dulo OS'
@@ -207,19 +235,7 @@ object fMenu: TfMenu
     Font.Name = 'Courier New'
     Font.Style = []
     ParentFont = False
-  end
-  object Label2: TLabel
-    Left = 96
-    Top = 8
-    Width = 275
-    Height = 89
-    Caption = 'SSF'#225'cil'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -80
-    Font.Name = 'Arial'
-    Font.Style = []
-    ParentFont = False
+    Transparent = True
   end
   object ToolBar1: TToolBar
     Left = 0
@@ -309,6 +325,13 @@ object fMenu: TfMenu
       object CadastrodeMotivos1: TMenuItem
         Caption = 'Cadastro de Motivos (N'#227'o Aprovados)'
         OnClick = CadastrodeMotivos1Click
+      end
+      object N2: TMenuItem
+        Caption = '-'
+      end
+      object ConsultaProcesso1: TMenuItem
+        Caption = 'Consulta Processo'
+        OnClick = ConsultaProcesso1Click
       end
     end
     object N19: TMenuItem
