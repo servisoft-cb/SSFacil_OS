@@ -27,7 +27,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1229
+    Width = 1237
     Height = 188
     Align = alTop
     TabOrder = 0
@@ -433,7 +433,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
     end
   end
   object Panel2: TPanel
-    Left = 715
+    Left = 723
     Top = 188
     Width = 514
     Height = 574

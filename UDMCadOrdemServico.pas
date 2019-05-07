@@ -3,7 +3,7 @@ unit UDMCadOrdemServico;
 interface
 
 uses
-  SysUtils, Classes, FMTBcd, DB, DBClient, Provider, SqlExpr, LogTypes, dbXPress;
+  SysUtils, Classes, FMTBcd, DB, DBClient, Provider, SqlExpr, LogTypes, dbXPress,Dialogs;
 
 type
   TDMCadOrdemServico = class(TDataModule)
@@ -1102,6 +1102,7 @@ type
     cdsUnidadeNOME: TStringField;
     sdsOrdemServico_SetorUNIDADE: TStringField;
     cdsOrdemServico_SetorUNIDADE: TStringField;
+    cdsProcessoUNIDADE: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure dspOrdemServicoUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError;
@@ -1135,6 +1136,7 @@ type
     ctOSItem_Imp: String;
     ctCsmOsMotorServ: String;
     ctBaixa_Pedido: String;
+    ctqProduto: String; 
 
     vMSGNotaGerada: String;
     vConfSelecao: Boolean;
@@ -1161,6 +1163,7 @@ type
     procedure prc_Somar_Setor;
 
     procedure prc_Abrir_Baixa_Pedido(ID: Integer; ID_OS, Item_OS, Item_Lib_OS: Integer);
+    procedure prc_Monta_qProduto(ID : Integer ; Referencia : String);
 
     function fnc_Existe_NumOS(Num_OS, ID: Integer): Boolean; 
   end;
@@ -1285,6 +1288,7 @@ var
   vIndices: string;
   aIndices: array of string;
 begin
+  ctqProduto       := qProduto.SQL.Text;
   ctCommand        := sdsOrdemServico.CommandText;
   ctConsulta       := sdsOrdemServico_Consulta.CommandText;
   ctConsulta_Itens := sdsConsulta_Itens.CommandText;
@@ -1508,9 +1512,7 @@ procedure TDMCadOrdemServico.cdsOrdemServico_MatCalcFields(
 begin
   if cdsOrdemServico_MatID_PRODUTO.AsInteger > 0 then
   begin
-    qProduto.Close;
-    qProduto.ParamByName('ID').AsInteger := cdsOrdemServico_MatID_PRODUTO.AsInteger;
-    qProduto.Open;
+    prc_Monta_qProduto(cdsOrdemServico_MatID_PRODUTO.AsInteger,'');
     cdsOrdemServico_MatlkNomeProduto.AsString := qProdutoNOME.AsString;
     cdsOrdemServico_MatlkReferencia.AsString  := qProdutoREFERENCIA.AsString;
     cdsOrdemServico_MatlkUnidade.AsString     := qProdutoUNIDADE.AsString;
@@ -1739,6 +1741,27 @@ procedure TDMCadOrdemServico.cdsProdutoAfterOpen(DataSet: TDataSet);
 begin
   if not cdsProdutoGerador.Active then
     cdsProdutoGerador.Open;
+end;
+
+procedure TDMCadOrdemServico.prc_Monta_qProduto(ID: Integer;
+  Referencia: String);
+var
+  vComando : String;
+begin
+  qProduto.Close;
+  if trim(ctqProduto) = '' then
+  begin
+    MessageDlg('*** Produto não encontrado (ctqProduto)!',mtError, [mbOk], 0);
+    exit;
+  end;
+  vComando := '';
+  if ID > 0 then
+    vComando := ' WHERE P.ID = ' + IntToStr(ID)
+  else
+  if trim(Referencia) <> '' then
+    vComando := ' WHERE P.REFERENCIA = ' + QuotedStr(Referencia);
+  qProduto.SQL.Text := ctqProduto + vComando;
+  qProduto.Open;
 end;
 
 end.

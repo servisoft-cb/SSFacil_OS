@@ -22,8 +22,8 @@ object frmCadProcesso_Grupo: TfrmCadProcesso_Grupo
   object RzPageControl1: TRzPageControl
     Left = 0
     Top = 0
-    Width = 702
-    Height = 450
+    Width = 710
+    Height = 457
     ActivePage = TS_Cadastro
     ActivePageDefault = TS_Consulta
     Align = alClient
@@ -40,8 +40,8 @@ object frmCadProcesso_Grupo: TfrmCadProcesso_Grupo
       object SMDBGrid1: TSMDBGrid
         Left = 0
         Top = 66
-        Width = 698
-        Height = 344
+        Width = 706
+        Height = 351
         Align = alClient
         BorderStyle = bsNone
         Ctl3D = False
@@ -98,7 +98,7 @@ object frmCadProcesso_Grupo: TfrmCadProcesso_Grupo
       object Panel2: TPanel
         Left = 0
         Top = 0
-        Width = 698
+        Width = 706
         Height = 32
         Align = alTop
         Color = clSilver
@@ -326,8 +326,8 @@ object frmCadProcesso_Grupo: TfrmCadProcesso_Grupo
       end
       object StaticText1: TStaticText
         Left = 0
-        Top = 410
-        Width = 698
+        Top = 417
+        Width = 706
         Height = 17
         Align = alBottom
         BorderStyle = sbsSunken
@@ -343,7 +343,7 @@ object frmCadProcesso_Grupo: TfrmCadProcesso_Grupo
       object pnlPesquisa: TPanel
         Left = 0
         Top = 32
-        Width = 698
+        Width = 706
         Height = 34
         Align = alTop
         Color = clSilver
@@ -444,7 +444,7 @@ object frmCadProcesso_Grupo: TfrmCadProcesso_Grupo
       object Panel1: TPanel
         Left = 0
         Top = 0
-        Width = 698
+        Width = 706
         Height = 35
         Align = alTop
         Color = 8404992
@@ -670,7 +670,7 @@ object frmCadProcesso_Grupo: TfrmCadProcesso_Grupo
       object pnlCadastro: TPanel
         Left = 0
         Top = 35
-        Width = 698
+        Width = 706
         Height = 128
         Align = alTop
         Enabled = False
@@ -721,7 +721,7 @@ object frmCadProcesso_Grupo: TfrmCadProcesso_Grupo
         object GroupBox1: TGroupBox
           Left = 1
           Top = 78
-          Width = 696
+          Width = 704
           Height = 49
           Align = alBottom
           Caption = ' Informar os Processos na Ordem '
@@ -969,8 +969,8 @@ object frmCadProcesso_Grupo: TfrmCadProcesso_Grupo
       object SMDBGrid2: TSMDBGrid
         Left = 0
         Top = 163
-        Width = 698
-        Height = 264
+        Width = 706
+        Height = 271
         Align = alClient
         Ctl3D = False
         DataSource = DMCadProcesso_Grupo.dsProcesso_Grupo_Itens

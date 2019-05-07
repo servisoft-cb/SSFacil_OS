@@ -25,6 +25,7 @@ type
     SpeedButton5: TSpeedButton;
     SpeedButton1: TSpeedButton;
     Label1: TLabel;
+    label111: TLabel;
     RxDBLookupCombo3: TRxDBLookupCombo;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
@@ -32,6 +33,7 @@ type
     procedure BitBtn2Click(Sender: TObject);
     procedure SpeedButton5Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
+    procedure RxDBLookupCombo1Exit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -57,6 +59,12 @@ end;
 
 procedure TfrmCadOrdemServico_Proc.FormShow(Sender: TObject);
 begin
+  label111.Visible         := (fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString = 'S');
+  RxDBLookupCombo3.Visible := (fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString = 'S'); 
+  if fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString = 'S' then
+    Label3.Caption := 'Quantidade:'
+  else
+    Label3.Caption := 'Qtd.Horas:';
   oDBUtils.SetDataSourceProperties(Self, fDMCadOrdemServico);
 end;
 
@@ -106,6 +114,11 @@ procedure TfrmCadOrdemServico_Proc.SpeedButton1Click(Sender: TObject);
 begin
   fDMCadOrdemServico.cdsServico_OS.Close;
   fDMCadOrdemServico.cdsServico_OS.Open;
+end;
+
+procedure TfrmCadOrdemServico_Proc.RxDBLookupCombo1Exit(Sender: TObject);
+begin
+  fDMCadOrdemServico.cdsOrdemServico_ProcUNIDADE.AsString := fDMCadOrdemServico.cdsProcessoUNIDADE.AsString;
 end;
 
 end.

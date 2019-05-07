@@ -95,7 +95,9 @@ uses
   uNFeComandos in '..\ssfacil\uNFeComandos.pas',
   uNFeConsts in '..\nfe 4.00\nfesrv\uNFeConsts.pas',
   UDMAprova_Orc in 'UDMAprova_Orc.pas' {DMAprova_Orc: TDataModule},
-  DmdDatabase_NFeBD in '..\ssfacil\DmdDatabase_NFeBD.pas' {dmDatabase_NFeBD: TDataModule};
+  DmdDatabase_NFeBD in '..\ssfacil\DmdDatabase_NFeBD.pas' {dmDatabase_NFeBD: TDataModule},
+  UDMConsOS in 'UDMConsOS.pas' {DMConsOS: TDataModule},
+  UConsProcesso in 'UConsProcesso.pas' {frmConsProcesso};
 
 {$R *.res}
 

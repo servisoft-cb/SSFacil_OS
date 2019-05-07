@@ -326,6 +326,13 @@ object fMenu: TfMenu
         Caption = 'Cadastro de Motivos (N'#227'o Aprovados)'
         OnClick = CadastrodeMotivos1Click
       end
+      object N2: TMenuItem
+        Caption = '-'
+      end
+      object ConsultaProcesso1: TMenuItem
+        Caption = 'Consulta Processo'
+        OnClick = ConsultaProcesso1Click
+      end
     end
     object N19: TMenuItem
       Caption = '|'

@@ -917,9 +917,7 @@ procedure TfrmCadOrc.DBEdit7Exit(Sender: TObject);
 begin
   if trim(fDMCadOrdemServico.cdsOrdemServico_ItensREFERENCIA.AsString) <> '' then
   begin
-    fDMCadOrdemServico.qProduto.Close;
-    fDMCadOrdemServico.qProduto.ParamByName('REFERENCIA').AsString := fDMCadOrdemServico.cdsOrdemServico_ItensREFERENCIA.AsString;
-    fDMCadOrdemServico.qProduto.Open;
+    fDMCadOrdemServico.prc_Monta_qProduto(0,fDMCadOrdemServico.cdsOrdemServico_ItensREFERENCIA.AsString);
     if fDMCadOrdemServico.qProdutoID.AsInteger <= 0 then
     begin
       MessageDlg('*** Referência não cadastrada!', mtInformation, [mbOk], 0);

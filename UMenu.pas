@@ -54,6 +54,8 @@ type
     ToolButton5: TToolButton;
     Label4: TLabel;
     Label5: TLabel;
+    N2: TMenuItem;
+    ConsultaProcesso1: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure EfetuarLogoff1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -72,6 +74,7 @@ type
     procedure ToolButton4Click(Sender: TObject);
     procedure CadastrodeMotivos1Click(Sender: TObject);
     procedure ToolButton5Click(Sender: TObject);
+    procedure ConsultaProcesso1Click(Sender: TObject);
   private
     { Private declarations }
     procedure prc_Habilita_Menu;
@@ -94,7 +97,8 @@ var
 implementation
 
 uses DmdDatabase, uUtilPadrao, UCadOrdemServico, UCadProcesso, UCadProcesso_Grupo, UCadServico_OS, UProcesso_ES, uCadParada,
-  UBaixa_Mat_OS, UCadProduto, UCadOrc, uCadEnsaio, uCadMotivo;
+  UBaixa_Mat_OS, UCadProduto, UCadOrc, uCadEnsaio, uCadMotivo,
+  UConsProcesso;
 
 {$R *.dfm}
 
@@ -283,6 +287,11 @@ end;
 procedure TfMenu.ToolButton5Click(Sender: TObject);
 begin
   CadastrodeProdutos1Click(Sender);
+end;
+
+procedure TfMenu.ConsultaProcesso1Click(Sender: TObject);
+begin
+  OpenForm(TfrmConsProcesso,wsMaximized,'');
 end;
 
 initialization

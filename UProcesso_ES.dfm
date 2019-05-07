@@ -250,9 +250,9 @@ object frmProcesso_ES: TfrmProcesso_ES
         ParentFont = False
       end
       object Label11: TLabel
-        Left = 32
+        Left = 34
         Top = 147
-        Width = 128
+        Width = 126
         Height = 18
         Alignment = taRightJustify
         Caption = 'Total de Horas:'
@@ -660,6 +660,7 @@ object frmProcesso_ES: TfrmProcesso_ES
         Top = 197
         Width = 649
         Height = 47
+        TabStop = False
         Ctl3D = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
