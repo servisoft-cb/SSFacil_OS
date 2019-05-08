@@ -304,6 +304,7 @@ type
 
     procedure prc_Opcao_Tipo_Produto;
     procedure prc_Gerar_Ass_Usuario;
+    procedure prc_Monta_Grid;
 
   public
     { Public declarations }
@@ -490,7 +491,11 @@ begin
     fDMCadOrdemServico.cdsProdutoGerador.Open;
   end
   else
-    TS_Produto.TabVisible := True;     
+  begin
+    TS_Produto.TabVisible := True;
+    TS_Gerador.TabVisible := False;
+    prc_Monta_Grid;    
+  end;
   fDMCadOrdemServico.qParametros_Prod.Active := True;
 end;
 
@@ -1417,4 +1422,28 @@ begin
     DBEdit21Exit(Sender);
 end;
   
+procedure TfrmCadOrc.prc_Monta_Grid;
+var
+  i : Integer;
+begin
+  for i := 0 to RzDBGrid1.Columns.Count - 2 do
+  begin
+    if (RzDBGrid1.Columns[i].FieldName = 'TOTAL_HORA') and (trim(fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString) <> 'S') then
+      RzDBGrid1.Columns[i].Title.Caption := 'Total Hora';
+    if (RzDBGrid1.Columns[i].FieldName = 'UNIDADE') then
+      RzDBGrid1.Columns[i].Visible := (trim(fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString) = 'S');
+  end;
+  for i := 0 to RzDBGrid13.Columns.Count - 2 do
+  begin
+    if (RzDBGrid13.Columns[i].FieldName = 'TOTAL_HORA') and (trim(fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString) <> 'S') then
+      RzDBGrid13.Columns[i].Title.Caption := 'Qtd. Hora';
+    if (RzDBGrid13.Columns[i].FieldName = 'UNIDADE') then
+      RzDBGrid13.Columns[i].Visible := (trim(fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString) = 'S');
+  end;
+
+
+
+
+end;
+
 end.

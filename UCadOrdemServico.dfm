@@ -1,6 +1,6 @@
 object frmCadOrdemServico: TfrmCadOrdemServico
-  Left = 218
-  Top = 16
+  Left = 197
+  Top = 10
   Width = 1047
   Height = 692
   Caption = 'Ordem de Servi'#231'o'
@@ -154,7 +154,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'ENTREGUE'
             Title.Alignment = taCenter
             Title.Caption = 'Entregue'
-            Width = 64
             Visible = True
           end
           item
@@ -170,7 +169,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'NUM_ORCAMENTO'
             Title.Alignment = taCenter
             Title.Caption = 'N'#186' Or'#231'amento'
-            Width = 64
             Visible = True
           end
           item
@@ -186,7 +184,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'PRODUZIDO'
             Title.Alignment = taCenter
             Title.Caption = 'Produzido'
-            Width = 64
             Visible = True
           end
           item
@@ -2426,7 +2423,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
                 Expanded = False
                 FieldName = 'UNIDADE'
                 Title.Caption = 'Unidade'
-                Width = 64
                 Visible = True
               end
               item
@@ -4803,7 +4799,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
                 Title.Alignment = taCenter
                 Title.Caption = 'Qtd. Faturada'
                 Title.Color = 16763025
-                Width = 64
                 Visible = True
               end>
           end
