@@ -97,7 +97,8 @@ uses
   UDMAprova_Orc in 'UDMAprova_Orc.pas' {DMAprova_Orc: TDataModule},
   DmdDatabase_NFeBD in '..\ssfacil\DmdDatabase_NFeBD.pas' {dmDatabase_NFeBD: TDataModule},
   UDMConsOS in 'UDMConsOS.pas' {DMConsOS: TDataModule},
-  UConsProcesso in 'UConsProcesso.pas' {frmConsProcesso};
+  UConsProcesso in 'UConsProcesso.pas' {frmConsProcesso},
+  UVendedor_Config in '..\ssfacil\UVendedor_Config.pas' {frmVendedor_Config};
 
 {$R *.res}
 
