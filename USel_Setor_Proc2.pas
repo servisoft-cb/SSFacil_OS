@@ -3,9 +3,8 @@ unit USel_Setor_Proc2;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Grids, DBGrids, SMDBGrid, UDMSel_Setor_Proc, NxCollection,
-  StdCtrls, ExtCtrls, UDMCadOrdemServico, DB, jpeg;
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs, Grids, DBGrids, UDMSel_Setor_Proc, jpeg,
+  NxCollection, SMDBGrid, StdCtrls, ExtCtrls, UDMCadOrdemServico, DB;
 
 type
   TfrmSel_Setor_Proc2 = class(TForm)

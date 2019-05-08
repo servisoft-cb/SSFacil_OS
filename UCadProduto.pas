@@ -96,6 +96,7 @@ type
     RxDBLookupCombo6: TRxDBLookupCombo;
     SpeedButton3: TSpeedButton;
     SpeedButton4: TSpeedButton;
+    SpeedButton6: TSpeedButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -682,18 +683,18 @@ end;
 
 procedure TfrmCadProduto.SpeedButton3Click(Sender: TObject);
 begin
-  dmCadProduto.cdsCliente.Close;
-  dmCadProduto.cdsCliente.Open;
+  fdmCadProduto.cdsCliente.Close;
+  fdmCadProduto.cdsCliente.Open;
 end;
 
 procedure TfrmCadProduto.SpeedButton4Click(Sender: TObject);
 begin
-  dmCadProduto.cdsFabricanteMotor.Close;
-  dmCadProduto.cdsMarca_Montadora.Close;
-  dmCadProduto.cdsFabricanteGerador.Close;
-  dmCadProduto.cdsFabricanteMotor.Open;
-  dmCadProduto.cdsMarca_Montadora.Open;
-  dmCadProduto.cdsFabricanteGerador.Open;
+  fdmCadProduto.cdsFabricanteMotor.Close;
+  fdmCadProduto.cdsMarca_Montadora.Close;
+  fdmCadProduto.cdsFabricanteGerador.Close;
+  fdmCadProduto.cdsFabricanteMotor.Open;
+  fdmCadProduto.cdsMarca_Montadora.Open;
+  fdmCadProduto.cdsFabricanteGerador.Open;
 end;
 
 end.
