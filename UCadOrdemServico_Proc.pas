@@ -24,7 +24,6 @@ type
     DBMemo4: TDBMemo;
     SpeedButton5: TSpeedButton;
     SpeedButton1: TSpeedButton;
-    Label1: TLabel;
     label111: TLabel;
     RxDBLookupCombo3: TRxDBLookupCombo;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
