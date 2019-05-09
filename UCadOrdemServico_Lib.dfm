@@ -96,12 +96,12 @@ object frmCadOrdemServico_Lib: TfrmCadOrdemServico_Lib
       Transparent = True
     end
     object Label3: TLabel
-      Left = 366
+      Left = 363
       Top = 7
-      Width = 114
+      Width = 117
       Height = 16
       Alignment = taRightJustify
-      Caption = 'Qtd. J'#225' Liberada:'
+      Caption = 'Qtd. J'#225' Faturada:'
       Color = clMoneyGreen
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText

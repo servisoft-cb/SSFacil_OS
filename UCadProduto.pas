@@ -97,6 +97,10 @@ type
     SpeedButton3: TSpeedButton;
     SpeedButton4: TSpeedButton;
     SpeedButton6: TSpeedButton;
+    Label29: TLabel;
+    RxDBComboBox4: TRxDBComboBox;
+    Label30: TLabel;
+    RxDBComboBox1: TRxDBComboBox;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -311,12 +315,25 @@ begin
   if fDMCadProduto.cdsProduto.State in [dsBrowse] then
     exit;
 
-
   DBEdit2.ReadOnly        := False;
   DBEdit7.ReadOnly        := False;
   RxDBComboBox7.ReadOnly  := True;
 
   fDMCadProduto.cdsProdutoTIPO_REG.AsString := 'P';
+  if fDMCadProduto.cdsProdutoTIPO_REG.AsString = 'P' then
+    fDMCadProduto.cdsProdutoSPED_TIPO_ITEM.AsString := '04'
+  else
+  if fDMCadProduto.cdsProdutoTIPO_REG.AsString = 'S' then
+    fDMCadProduto.cdsProdutoSPED_TIPO_ITEM.AsString := '06'
+  else
+  if fDMCadProduto.cdsProdutoTIPO_REG.AsString = 'M' then
+    fDMCadProduto.cdsProdutoSPED_TIPO_ITEM.AsString := '01'
+  else
+  if fDMCadProduto.cdsProdutoTIPO_REG.AsString = 'C' then
+    fDMCadProduto.cdsProdutoSPED_TIPO_ITEM.AsString := '07'
+  else
+  if fDMCadProduto.cdsProdutoTIPO_REG.AsString = 'I' then
+    fDMCadProduto.cdsProdutoSPED_TIPO_ITEM.AsString := '08';
 
   prc_Habilita;
 

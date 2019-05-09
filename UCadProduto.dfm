@@ -1025,6 +1025,22 @@ object frmCadProduto: TfrmCadProduto
           Alignment = taRightJustify
           Caption = 'Obs:'
         end
+        object Label29: TLabel
+          Left = 310
+          Top = 135
+          Width = 85
+          Height = 13
+          Alignment = taRightJustify
+          Caption = 'Tipo Item (SPED):'
+        end
+        object Label30: TLabel
+          Left = 322
+          Top = 113
+          Width = 72
+          Height = 13
+          Alignment = taRightJustify
+          Caption = 'Posse Produto:'
+        end
         object DBEdit2: TDBEdit
           Left = 89
           Top = 53
@@ -1647,6 +1663,65 @@ object frmCadProduto: TfrmCadProduto
               TabOrder = 0
             end
           end
+        end
+        object RxDBComboBox4: TRxDBComboBox
+          Left = 397
+          Top = 127
+          Width = 163
+          Height = 21
+          Style = csDropDownList
+          Ctl3D = True
+          DataField = 'SPED_TIPO_ITEM'
+          DataSource = dmCadProduto.dsProduto
+          EnableValues = True
+          ItemHeight = 13
+          Items.Strings = (
+            '00 - Mercadoria para Revenda'
+            '01- Mat'#233'ria-Prima'
+            '02- Embalagem'
+            '03 - Produto em Processo'
+            '04 - Produto Acabado'
+            '05 - SubProduto'
+            '06 - Produto Intermedi'#225'rio'
+            '07 - Material de Uso e Consumo'
+            '08 - Ativo Imobilizado'
+            '09 - Servi'#231'os'
+            '10 - Outros Insumos'
+            '99 - Outras')
+          ParentCtl3D = False
+          TabOrder = 13
+          Values.Strings = (
+            '00'
+            '01'
+            '02'
+            '03'
+            '04'
+            '05'
+            '06'
+            '07'
+            '08'
+            '09'
+            '10'
+            '99')
+        end
+        object RxDBComboBox1: TRxDBComboBox
+          Left = 397
+          Top = 105
+          Width = 119
+          Height = 21
+          Style = csDropDownList
+          DataField = 'POSSE_MATERIAL'
+          DataSource = dmCadProduto.dsProduto
+          DropDownCount = 2
+          EnableValues = True
+          ItemHeight = 13
+          Items.Strings = (
+            'Empresa'
+            'Terceiro')
+          TabOrder = 14
+          Values.Strings = (
+            'E'
+            'T')
         end
       end
     end
