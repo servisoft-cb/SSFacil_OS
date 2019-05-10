@@ -264,6 +264,8 @@ type
     DBEdit32: TDBEdit;
     DBEdit33: TDBEdit;
     DBEdit34: TDBEdit;
+    Shape14: TShape;
+    Label77: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
@@ -841,14 +843,20 @@ procedure TfrmCadOrdemServico.SMDBGrid1GetCellParams(Sender: TObject;
 begin
   if not(fDMCadOrdemServico.cdsOrdemServico_Consulta.Active) or (fDMCadOrdemServico.cdsOrdemServico_Consulta.IsEmpty) then
     exit;
-  if fDMCadOrdemServico.cdsOrdemServico_ConsultaDTENTREGA.AsDateTime > 10 then
+  if fDMCadOrdemServico.cdsOrdemServico_ConsultaFATURADO_NOTA.AsString = 'S' then
   begin
     Background  := clGreen;
     AFont.Color := clWhite;
   end
   else
+  if fDMCadOrdemServico.cdsOrdemServico_ConsultaFATURADO_NOTA.AsString = 'P' then
+  begin
+    Background  := $00FF7979;
+    AFont.Color := clBlack;
+  end
+  else
   if fDMCadOrdemServico.cdsOrdemServico_ConsultaPRODUZIDO.AsString = 'I' then
-    Background := clAqua
+    Background := $00FFFF75
   else
   if fDMCadOrdemServico.cdsOrdemServico_ConsultaPRODUZIDO.AsString = 'S' then
     Background := clMoneyGreen

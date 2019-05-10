@@ -545,12 +545,13 @@ object DMCadOrdemServico: TDMCadOrdemServico
       'em conserto'#39#13#10'  WHEN OS.STATUS = '#39'8'#39' THEN '#39'Pronto'#39#13#10'  WHEN OS.ST' +
       'ATUS = '#39'9'#39' THEN '#39'Entregue'#39#13#10'  end DESC_STATUS,'#13#10'CASE'#13#10' WHEN AP.T' +
       'IPO = '#39'A'#39' THEN '#39'APROVADO'#39#13#10' WHEN AP.TIPO = '#39'N'#39' THEN '#39'N'#195'O APROVAD' +
-      'O'#39#13#10' ELSE '#39'PENDENTE'#39#13#10' END DESC_TIPO_ORC'#13#10#13#10#13#10'FROM ORDEMSERVICO ' +
-      'OS'#13#10'LEFT JOIN PESSOA CLI ON (OS.ID_CLIENTE = CLI.CODIGO)'#13#10'LEFT J' +
-      'OIN ORDEMSERVICO_OTICA OT ON (OS.id = OT.ID)'#13#10'LEFT JOIN ORDEMSER' +
-      'VICO_ENC ENC ON (OS.ID = ENC.ID) '#13#10'LEFT JOIN ORDEMSERVICO_APROV ' +
-      'AP ON (OS.ID = AP.ID)'#13#10'LEFT JOIN ORDEMSERVICO_CUSTO OC ON (OS.ID' +
-      ' = OC.ID)'#13#10'LEFT JOIN PESSOA VEN ON VEN.CODIGO = OS.ID_VENDEDOR'#13#10
+      'O'#39#13#10' ELSE '#39'PENDENTE'#39#13#10' END DESC_TIPO_ORC, OS.faturado_nota'#13#10#13#10#13#10 +
+      'FROM ORDEMSERVICO OS'#13#10'LEFT JOIN PESSOA CLI ON (OS.ID_CLIENTE = C' +
+      'LI.CODIGO)'#13#10'LEFT JOIN ORDEMSERVICO_OTICA OT ON (OS.id = OT.ID)'#13#10 +
+      'LEFT JOIN ORDEMSERVICO_ENC ENC ON (OS.ID = ENC.ID) '#13#10'LEFT JOIN O' +
+      'RDEMSERVICO_APROV AP ON (OS.ID = AP.ID)'#13#10'LEFT JOIN ORDEMSERVICO_' +
+      'CUSTO OC ON (OS.ID = OC.ID)'#13#10'LEFT JOIN PESSOA VEN ON VEN.CODIGO ' +
+      '= OS.ID_VENDEDOR'#13#10
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
@@ -710,6 +711,11 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
     object cdsOrdemServico_ConsultaDTRECEBIMENTO: TDateField
       FieldName = 'DTRECEBIMENTO'
+    end
+    object cdsOrdemServico_ConsultaFATURADO_NOTA: TStringField
+      FieldName = 'FATURADO_NOTA'
+      FixedChar = True
+      Size = 1
     end
   end
   object dsOrdemServico_Consulta: TDataSource

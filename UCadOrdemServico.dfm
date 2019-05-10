@@ -853,30 +853,27 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           Top = 5
           Width = 30
           Height = 16
-          Brush.Color = clGreen
-          Visible = False
+          Brush.Color = 16742777
         end
         object Label31: TLabel
-          Left = 300
+          Left = 301
           Top = 8
-          Width = 90
+          Width = 77
           Height = 13
-          Caption = 'Faturado/Entregue'
+          Caption = 'Faturado Parcial'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clMaroon
           Font.Height = -11
           Font.Name = 'MS Sans Serif'
           Font.Style = []
           ParentFont = False
-          Visible = False
         end
         object Shape1: TShape
           Left = 12
           Top = 5
           Width = 30
           Height = 16
-          Brush.Color = clAqua
-          Visible = False
+          Brush.Color = 16777077
         end
         object Label10: TLabel
           Left = 44
@@ -890,7 +887,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           Font.Name = 'MS Sans Serif'
           Font.Style = []
           ParentFont = False
-          Visible = False
         end
         object Shape2: TShape
           Left = 132
@@ -898,7 +894,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           Width = 30
           Height = 16
           Brush.Color = clMoneyGreen
-          Visible = False
         end
         object Label26: TLabel
           Left = 167
@@ -912,17 +907,16 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           Font.Name = 'MS Sans Serif'
           Font.Style = []
           ParentFont = False
-          Visible = False
         end
         object Shape18: TShape
-          Left = 427
+          Left = 611
           Top = 4
           Width = 30
           Height = 16
           Brush.Color = 33023
         end
         object Label68: TLabel
-          Left = 459
+          Left = 643
           Top = 7
           Width = 108
           Height = 13
@@ -935,18 +929,38 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           ParentFont = False
         end
         object Shape19: TShape
-          Left = 579
+          Left = 763
           Top = 4
           Width = 30
           Height = 16
           Brush.Color = 10944511
         end
         object Label66: TLabel
-          Left = 611
+          Left = 795
           Top = 7
           Width = 143
           Height = 13
           Caption = 'Copiado para o Pedido Parcial'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Shape14: TShape
+          Left = 420
+          Top = 5
+          Width = 30
+          Height = 16
+          Brush.Color = clGreen
+        end
+        object Label77: TLabel
+          Left = 452
+          Top = 8
+          Width = 42
+          Height = 13
+          Caption = 'Faturado'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clMaroon
           Font.Height = -11

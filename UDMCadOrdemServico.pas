@@ -1103,6 +1103,7 @@ type
     sdsOrdemServico_SetorUNIDADE: TStringField;
     cdsOrdemServico_SetorUNIDADE: TStringField;
     cdsProcessoUNIDADE: TStringField;
+    cdsOrdemServico_ConsultaFATURADO_NOTA: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure dspOrdemServicoUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError;
