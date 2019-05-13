@@ -30,18 +30,38 @@ type
     cdsOrdemServico_NotaUF: TStringField;
     dsOrdemServico_Nota: TDataSource;
     cdsOrdemServico_NotaNUM_OS: TIntegerField;
+    sdsOrdemServico_Ped: TSQLDataSet;
+    dspOrdemServico_Ped: TDataSetProvider;
+    cdsOrdemServico_Ped: TClientDataSet;
+    dsOrdemServico_Ped: TDataSource;
+    cdsOrdemServico_PedID: TIntegerField;
+    cdsOrdemServico_PedITEM: TIntegerField;
+    cdsOrdemServico_PedQTD_OS: TIntegerField;
+    cdsOrdemServico_PedID_PEDIDO: TIntegerField;
+    cdsOrdemServico_PedITEM_PEDIDO: TIntegerField;
+    cdsOrdemServico_PedNUM_PEDIDO: TIntegerField;
+    cdsOrdemServico_PedPEDIDO_CLIENTE: TStringField;
+    cdsOrdemServico_PedDTPEDIDO: TDateField;
+    cdsOrdemServico_PedQTD_PEDIDO: TFloatField;
+    cdsOrdemServico_PedQTD_RESTANTE: TFloatField;
+    cdsOrdemServico_PedNOME_CLIENTE: TStringField;
+    cdsOrdemServico_PedCNPJ_CPF: TStringField;
+    cdsOrdemServico_PedCIDADE: TStringField;
+    cdsOrdemServico_PedUF: TStringField;
+    cdsOrdemServico_PedNUM_OS: TIntegerField;
+    cdsOrdemServico_PedQTD_FATURADO: TFloatField;
+    cdsOrdemServico_PedDATA_OS: TDateField;
+    cdsOrdemServico_NotaDATA_OS: TDateField;
+    cdsOrdemServico_NotaDTRECEBIMENTO: TDateField;
+    cdsOrdemServico_PedDTRECEBIMENTO: TDateField;
     sdsOrdemServico: TSQLDataSet;
     dspOrdemServico: TDataSetProvider;
     cdsOrdemServico: TClientDataSet;
     dsOrdemServico: TDataSource;
+    cdsOrdemServicoQTD_FATURADO: TFloatField;
     cdsOrdemServicoID: TIntegerField;
     cdsOrdemServicoITEM: TIntegerField;
     cdsOrdemServicoQTD_OS: TIntegerField;
-    cdsOrdemServicoID_PEDIDO: TIntegerField;
-    cdsOrdemServicoITEM_PEDIDO: TIntegerField;
-    cdsOrdemServicoNUM_PEDIDO: TIntegerField;
-    cdsOrdemServicoPEDIDO_CLIENTE: TStringField;
-    cdsOrdemServicoDTPEDIDO: TDateField;
     cdsOrdemServicoQTD_PEDIDO: TFloatField;
     cdsOrdemServicoQTD_RESTANTE: TFloatField;
     cdsOrdemServicoNOME_CLIENTE: TStringField;
@@ -49,15 +69,14 @@ type
     cdsOrdemServicoCIDADE: TStringField;
     cdsOrdemServicoUF: TStringField;
     cdsOrdemServicoNUM_OS: TIntegerField;
-    cdsOrdemServicoQTD_FATURADO: TFloatField;
     cdsOrdemServicoDATA_OS: TDateField;
-    cdsOrdemServico_NotaDATA_OS: TDateField;
+    cdsOrdemServicoDTRECEBIMENTO: TDateField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-    ctOrdemServico_Nota, ctOrdemServico : String;
+    ctOrdemServico_Nota, ctOrdemServico_Ped, ctOrdemServico : String;
     
   end;
 
@@ -72,8 +91,9 @@ uses DmdDatabase;
 
 procedure TDMConsOrdemServico.DataModuleCreate(Sender: TObject);
 begin
-  ctOrdemServico      := sdsOrdemServico.CommandText;
+  ctOrdemServico_Ped  := sdsOrdemServico_Ped.CommandText;
   ctOrdemServico_Nota := sdsOrdemServico_Nota.CommandText;
+  ctOrdemServico      := sdsOrdemServico.CommandText;
 end;
 
 end.

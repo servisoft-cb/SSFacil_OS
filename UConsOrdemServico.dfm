@@ -138,8 +138,8 @@ object frmConsOrdemServico: TfrmConsOrdemServico
       TabOrder = 5
     end
     object btnConsultar: TNxButton
-      Left = 504
-      Top = 59
+      Left = 502
+      Top = 82
       Width = 176
       Height = 30
       Caption = 'Efetuar Pesquisa'
@@ -247,10 +247,10 @@ object frmConsOrdemServico: TfrmConsOrdemServico
     Top = 114
     Width = 920
     Height = 335
-    ActivePage = TS_Detalhada
+    ActivePage = TS_OS
     ActivePageDefault = TS_Detalhada
     Align = alClient
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 1
     FixedDimension = 19
     object TS_Detalhada: TRzTabSheet
@@ -265,6 +265,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         DataSource = DMConsOrdemServico.dsOrdemServico_Nota
         Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
         ParentCtl3D = False
+        ReadOnly = True
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -289,7 +290,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         WidthOfIndicator = 11
         DefaultRowHeight = 17
         ScrollBars = ssHorizontal
-        ColCount = 18
+        ColCount = 19
         RowCount = 2
         Columns = <
           item
@@ -305,6 +306,15 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             FieldName = 'DATA_OS'
             Title.Alignment = taCenter
             Title.Caption = 'Data OS'
+            Title.Color = 8454016
+            Width = 78
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DTRECEBIMENTO'
+            Title.Alignment = taCenter
+            Title.Caption = 'Data Recebimento'
             Title.Color = 8454016
             Width = 78
             Visible = True
@@ -330,8 +340,9 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Expanded = False
             FieldName = 'ITEM_PEDIDO'
             Title.Alignment = taCenter
-            Title.Caption = 'Item Pedido'
+            Title.Caption = 'Item Ped.'
             Title.Color = 8454016
+            Width = 39
             Visible = True
           end
           item
@@ -388,7 +399,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Expanded = False
             FieldName = 'QTD_RESTANTE'
             Title.Alignment = taCenter
-            Title.Caption = 'Qtd. Restante'
+            Title.Caption = 'Qtd. N'#227'o Faturado'
             Title.Color = 8454016
             Width = 76
             Visible = True
@@ -399,7 +410,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Nome Cliente'
             Title.Color = 8454016
-            Width = 64
+            Width = 257
             Visible = True
           end
           item
@@ -408,7 +419,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'CNPJ / CPF'
             Title.Color = 8454016
-            Width = 64
+            Width = 135
             Visible = True
           end
           item
@@ -417,7 +428,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Cidade'
             Title.Color = 8454016
-            Width = 64
+            Width = 172
             Visible = True
           end
           item
@@ -425,7 +436,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             FieldName = 'UF'
             Title.Alignment = taCenter
             Title.Color = 8454016
-            Width = 64
+            Width = 35
             Visible = True
           end
           item
@@ -480,8 +491,8 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         end
       end
     end
-    object TS_OS: TRzTabSheet
-      Caption = 'Por OS'
+    object TS_OSPed: TRzTabSheet
+      Caption = 'Por Pedido'
       object SMDBGrid2: TSMDBGrid
         Left = 0
         Top = 0
@@ -489,9 +500,10 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         Height = 312
         Align = alClient
         Ctl3D = False
-        DataSource = DMConsOrdemServico.dsOrdemServico
+        DataSource = DMConsOrdemServico.dsOrdemServico_Ped
         Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
         ParentCtl3D = False
+        ReadOnly = True
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -516,7 +528,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         WidthOfIndicator = 11
         DefaultRowHeight = 17
         ScrollBars = ssHorizontal
-        ColCount = 15
+        ColCount = 16
         RowCount = 2
         Columns = <
           item
@@ -591,7 +603,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Expanded = False
             FieldName = 'QTD_RESTANTE'
             Title.Alignment = taCenter
-            Title.Caption = 'Qtd. Restante'
+            Title.Caption = 'Qtd. N'#227'o Faturado'
             Title.Color = 16777139
             Width = 76
             Visible = True
@@ -610,7 +622,6 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'CNPJ / CPF'
             Title.Color = 16777139
-            Width = 64
             Visible = True
           end
           item
@@ -619,7 +630,6 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Cidade'
             Title.Color = 16777139
-            Width = 64
             Visible = True
           end
           item
@@ -627,7 +637,6 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             FieldName = 'UF'
             Title.Alignment = taCenter
             Title.Color = 16777139
-            Width = 64
             Visible = True
           end
           item
@@ -637,6 +646,155 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'ID OS'
             Title.Color = 16777139
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DTRECEBIMENTO'
+            Title.Alignment = taCenter
+            Title.Caption = 'Data Recebimento'
+            Title.Color = 16777139
+            Visible = True
+          end>
+      end
+    end
+    object TS_OS: TRzTabSheet
+      Caption = 'Por OS'
+      object SMDBGrid3: TSMDBGrid
+        Left = 0
+        Top = 0
+        Width = 916
+        Height = 312
+        Align = alClient
+        Ctl3D = False
+        DataSource = DMConsOrdemServico.dsOrdemServico
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
+        ParentCtl3D = False
+        ReadOnly = True
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'MS Sans Serif'
+        TitleFont.Style = []
+        Flat = True
+        BandsFont.Charset = DEFAULT_CHARSET
+        BandsFont.Color = clWindowText
+        BandsFont.Height = -11
+        BandsFont.Name = 'MS Sans Serif'
+        BandsFont.Style = []
+        Groupings = <>
+        GridStyle.Style = gsCustom
+        GridStyle.OddColor = clWindow
+        GridStyle.EvenColor = clWindow
+        TitleHeight.PixelCount = 24
+        FooterColor = clBtnFace
+        ExOptions = [eoENTERlikeTAB, eoKeepSelection, eoStandardPopup, eoBLOBEditor, eoTitleWordWrap, eoShowFilterBar]
+        RegistryKey = 'Software\Scalabium'
+        RegistrySection = 'SMDBGrid'
+        WidthOfIndicator = 11
+        DefaultRowHeight = 17
+        ScrollBars = ssHorizontal
+        ColCount = 13
+        RowCount = 2
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'NUM_OS'
+            Title.Alignment = taCenter
+            Title.Caption = 'N'#186' OS'
+            Title.Color = 8257535
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DATA_OS'
+            Title.Alignment = taCenter
+            Title.Caption = 'Data OS'
+            Title.Color = 8257535
+            Width = 78
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'QTD_OS'
+            Title.Alignment = taCenter
+            Title.Caption = 'Qtd. OS'
+            Title.Color = 8257535
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'QTD_PEDIDO'
+            Title.Alignment = taCenter
+            Title.Caption = 'Qtd. Pedido'
+            Title.Color = 8257535
+            Width = 77
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'QTD_RESTANTE'
+            Title.Alignment = taCenter
+            Title.Caption = 'Qtd. N'#227'o Faturado'
+            Title.Color = 8257535
+            Width = 76
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'QTD_FATURADO'
+            Title.Alignment = taCenter
+            Title.Caption = 'Qtd. Faturado'
+            Title.Color = 8257535
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'NOME_CLIENTE'
+            Title.Alignment = taCenter
+            Title.Caption = 'Nome Cliente'
+            Title.Color = 8257535
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'CNPJ_CPF'
+            Title.Alignment = taCenter
+            Title.Caption = 'CNPJ / CPF'
+            Title.Color = 8257535
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'CIDADE'
+            Title.Alignment = taCenter
+            Title.Caption = 'Cidade'
+            Title.Color = 8257535
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'UF'
+            Title.Alignment = taCenter
+            Title.Color = 8257535
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'ID'
+            Title.Alignment = taCenter
+            Title.Caption = 'ID OS'
+            Title.Color = 8257535
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DTRECEBIMENTO'
+            Title.Alignment = taCenter
+            Title.Caption = 'Data Recebimento'
+            Title.Color = 8257535
             Visible = True
           end>
       end

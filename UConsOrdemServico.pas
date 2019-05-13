@@ -26,7 +26,7 @@ type
     RzPageControl1: TRzPageControl;
     TS_Detalhada: TRzTabSheet;
     SMDBGrid1: TSMDBGrid;
-    TS_OS: TRzTabSheet;
+    TS_OSPed: TRzTabSheet;
     SMDBGrid2: TSMDBGrid;
     Panel2: TPanel;
     Label7: TLabel;
@@ -38,6 +38,8 @@ type
     DateEdit7: TDateEdit;
     Label10: TLabel;
     DateEdit8: TDateEdit;
+    TS_OS: TRzTabSheet;
+    SMDBGrid3: TSMDBGrid;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure btnConsultarClick(Sender: TObject);
@@ -47,8 +49,9 @@ type
     vComando : String;
 
     procedure prc_Condicao;
-    procedure prc_ConsOrdemServico;
+    procedure prc_ConsOrdemServico_Ped;
     procedure prc_ConsOrdemServico_Nota;
+    procedure prc_ConsOrdemServico;
 
   public
     { Public declarations }
@@ -59,7 +62,7 @@ var
 
 implementation
 
-uses rsDBUtils;
+uses rsDBUtils, StrUtils;
 
 {$R *.dfm}
 
@@ -79,17 +82,20 @@ begin
   if RzPageControl1.ActivePage = TS_Detalhada then
     prc_ConsOrdemServico_Nota
   else
+  if RzPageControl1.ActivePage = TS_OSPed then
+    prc_ConsOrdemServico_Ped
+  else
     prc_ConsOrdemServico;
 end;
 
-procedure TfrmConsOrdemServico.prc_ConsOrdemServico;
+procedure TfrmConsOrdemServico.prc_ConsOrdemServico_Ped;
 begin
   prc_Condicao;
   SMDBGrid2.DisableScroll;
-  fDMConsOrdemServico.cdsOrdemServico.Close;
-  fDMConsOrdemServico.sdsOrdemServico.CommandText := fDMConsOrdemServico.ctOrdemServico + vComando;
-  fDMConsOrdemServico.cdsOrdemServico.Open;
-  fDMConsOrdemServico.cdsOrdemServico.IndexFieldNames := 'NUM_OS';
+  fDMConsOrdemServico.cdsOrdemServico_Ped.Close;
+  fDMConsOrdemServico.sdsOrdemServico_Ped.CommandText := fDMConsOrdemServico.ctOrdemServico_Ped + vComando;
+  fDMConsOrdemServico.cdsOrdemServico_Ped.Open;
+  fDMConsOrdemServico.cdsOrdemServico_Ped.IndexFieldNames := 'NUM_OS';
   SMDBGrid2.EnableScroll;
 end;
 
@@ -106,7 +112,7 @@ end;
 
 procedure TfrmConsOrdemServico.prc_Condicao;
 begin
-  vComando := 'WHERE 0 = 0';
+  vComando := '';
   if CurrencyEdit1.AsInteger > 0 then
     vComando := vComando + ' and O2.NUM_OS = ' + IntToStr(CurrencyEdit1.AsInteger)
   else
@@ -140,6 +146,24 @@ begin
       4 : vComando := vComando + ' and N2.NUMNOTA IS NOT NULL ';
     end;
   end;
+end;
+
+procedure TfrmConsOrdemServico.prc_ConsOrdemServico;
+var
+  vComandoAux, vComandoAux2: String;
+  i: Integer;
+begin
+  i := PosEx('GROUP',fDMConsOrdemServico.ctOrdemServico,0);
+  vComandoAux  := copy(fDMConsOrdemServico.ctOrdemServico,i,Length(fDMConsOrdemServico.ctOrdemServico) - i + 1);
+  vComandoAux2 := copy(fDMConsOrdemServico.ctOrdemServico,1,i-1);
+  prc_Condicao;
+  SMDBGrid3.DisableScroll;
+  fDMConsOrdemServico.cdsOrdemServico.Close;
+  //fDMConsOrdemServico.sdsOrdemServico_Ped.CommandText := fDMConsOrdemServico.ctOrdemServico + vComando;
+  fDMConsOrdemServico.sdsOrdemServico.CommandText := vComandoAux2 + vComando + vComandoAux;
+  fDMConsOrdemServico.cdsOrdemServico.Open;
+  fDMConsOrdemServico.cdsOrdemServico.IndexFieldNames := 'NUM_OS';
+  SMDBGrid3.EnableScroll;
 end;
 
 end.
