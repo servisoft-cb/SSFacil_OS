@@ -98,7 +98,9 @@ uses
   DmdDatabase_NFeBD in '..\ssfacil\DmdDatabase_NFeBD.pas' {dmDatabase_NFeBD: TDataModule},
   UDMConsOS in 'UDMConsOS.pas' {DMConsOS: TDataModule},
   UConsProcesso in 'UConsProcesso.pas' {frmConsProcesso},
-  UVendedor_Config in '..\ssfacil\UVendedor_Config.pas' {frmVendedor_Config};
+  UVendedor_Config in '..\ssfacil\UVendedor_Config.pas' {frmVendedor_Config},
+  UConsOrdemServico in 'UConsOrdemServico.pas' {frmConsOrdemServico},
+  UDMConsOrdemServico in 'UDMConsOrdemServico.pas' {DMConsOrdemServico: TDataModule};
 
 {$R *.res}
 
