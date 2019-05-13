@@ -44,9 +44,9 @@ object frmAjustar_OS: TfrmAjustar_OS
       ParentFont = False
     end
     object Label11: TLabel
-      Left = 24
+      Left = 26
       Top = 120
-      Width = 128
+      Width = 126
       Height = 18
       Alignment = taRightJustify
       Caption = 'Total de Horas:'
@@ -318,9 +318,9 @@ object frmAjustar_OS: TfrmAjustar_OS
       TabOrder = 0
       OnExit = Panel1Exit
       object Label6: TLabel
-        Left = 52
+        Left = 57
         Top = 16
-        Width = 102
+        Width = 97
         Height = 18
         Alignment = taRightJustify
         Caption = 'Data In'#237'cio:'
@@ -334,9 +334,9 @@ object frmAjustar_OS: TfrmAjustar_OS
         ParentFont = False
       end
       object Label3: TLabel
-        Left = 58
+        Left = 63
         Top = 47
-        Width = 96
+        Width = 91
         Height = 18
         Alignment = taRightJustify
         Caption = 'Data Final:'
@@ -350,9 +350,9 @@ object frmAjustar_OS: TfrmAjustar_OS
         ParentFont = False
       end
       object Label5: TLabel
-        Left = 303
+        Left = 307
         Top = 16
-        Width = 49
+        Width = 45
         Height = 18
         Alignment = taRightJustify
         Caption = 'Hora:'
@@ -366,9 +366,9 @@ object frmAjustar_OS: TfrmAjustar_OS
         ParentFont = False
       end
       object Label7: TLabel
-        Left = 303
+        Left = 307
         Top = 47
-        Width = 49
+        Width = 45
         Height = 18
         Alignment = taRightJustify
         Caption = 'Hora:'

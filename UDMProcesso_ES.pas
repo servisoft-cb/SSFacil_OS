@@ -238,6 +238,7 @@ type
     cdsOS_ProcRETRABALHO: TStringField;
     cdsOS_ProcNOME_PROCESSO: TStringField;
     cdsOS_ProcNOME_SERVICO_OS: TStringField;
+    mBaixaAuxRETRABALHO: TStringField;
     procedure dspBaixa_OSUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError;
       UpdateKind: TUpdateKind; var Response: TResolverResponse);

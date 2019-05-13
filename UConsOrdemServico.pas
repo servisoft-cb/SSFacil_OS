@@ -55,6 +55,7 @@ type
 
   public
     { Public declarations }
+
   end;
 
 var
@@ -75,6 +76,8 @@ procedure TfrmConsOrdemServico.FormShow(Sender: TObject);
 begin
   fDMConsOrdemServico := TDMConsOrdemServico.Create(Self);
   oDBUtils.SetDataSourceProperties(Self, fDMConsOrdemServico);
+  if CurrencyEdit1.AsInteger > 0 then
+    btnConsultarClick(Sender);
 end;
 
 procedure TfrmConsOrdemServico.btnConsultarClick(Sender: TObject);

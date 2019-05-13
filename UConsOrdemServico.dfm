@@ -247,10 +247,10 @@ object frmConsOrdemServico: TfrmConsOrdemServico
     Top = 114
     Width = 920
     Height = 335
-    ActivePage = TS_OS
+    ActivePage = TS_OSPed
     ActivePageDefault = TS_Detalhada
     Align = alClient
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 1
     FixedDimension = 19
     object TS_Detalhada: TRzTabSheet
@@ -622,6 +622,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'CNPJ / CPF'
             Title.Color = 16777139
+            Width = 64
             Visible = True
           end
           item
@@ -630,6 +631,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Cidade'
             Title.Color = 16777139
+            Width = 64
             Visible = True
           end
           item
@@ -637,6 +639,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             FieldName = 'UF'
             Title.Alignment = taCenter
             Title.Color = 16777139
+            Width = 64
             Visible = True
           end
           item
@@ -654,6 +657,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Data Recebimento'
             Title.Color = 16777139
+            Width = 64
             Visible = True
           end>
       end
@@ -755,6 +759,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Nome Cliente'
             Title.Color = 8257535
+            Width = 64
             Visible = True
           end
           item
@@ -763,6 +768,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'CNPJ / CPF'
             Title.Color = 8257535
+            Width = 64
             Visible = True
           end
           item
@@ -771,6 +777,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Cidade'
             Title.Color = 8257535
+            Width = 64
             Visible = True
           end
           item
@@ -778,6 +785,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             FieldName = 'UF'
             Title.Alignment = taCenter
             Title.Color = 8257535
+            Width = 64
             Visible = True
           end
           item
@@ -795,6 +803,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Data Recebimento'
             Title.Color = 8257535
+            Width = 64
             Visible = True
           end>
       end

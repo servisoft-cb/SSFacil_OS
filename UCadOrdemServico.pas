@@ -344,6 +344,8 @@ type
     procedure DBEdit17KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure DBEdit21Exit(Sender: TObject);
+    procedure SMDBGrid1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     vTipoNotaAnt: String;
@@ -398,7 +400,8 @@ var
 implementation
 
 uses DmdDatabase, rsDBUtils, uUtilPadrao, USel_Pessoa, USel_Produto, UDMImpOrdemServico, UCadProduto, UAjustar_OS, USel_Orc,
-  UCadOrdemServico_Enc, UDMCopiarOrc, UCadOrdemServico_Lib;
+  UCadOrdemServico_Enc, UDMCopiarOrc, UCadOrdemServico_Lib,
+  UConsOrdemServico;
 
 {$R *.dfm}
 
@@ -815,6 +818,7 @@ begin
     frmSel_Pessoa := TfrmSel_Pessoa.Create(Self);
     frmSel_Pessoa.vTipo_Pessoa := 'C';
     frmSel_Pessoa.ShowModal;
+    FreeAndNil(frmSel_Pessoa);
     fDMCadOrdemServico.cdsOrdemServicoID_CLIENTE.AsInteger := vCodPessoa_Pos;
     DBEdit11.SetFocus;
   end;
@@ -1574,7 +1578,7 @@ begin
   end;
 
   ffrmAjustar_OS := TfrmAjustar_OS.Create(self);
-  ffrmAjustar_OS.vNum_OS := fDMCadOrdemServico.cdsCons_BaixaNUM_OS.AsInteger;
+  ffrmAjustar_OS.vNum_OS    := fDMCadOrdemServico.cdsCons_BaixaNUM_OS.AsInteger;
   ffrmAjustar_OS.vItem_Proc := fDMCadOrdemServico.cdsCons_BaixaITEM_PROC.AsInteger;
   ffrmAjustar_OS.ShowModal;
   FreeAndNil(ffrmAjustar_OS);
@@ -1931,6 +1935,21 @@ begin
       SMDBGrid2.Columns[i].Title.Caption := 'Qtd. Horas';
     if (SMDBGrid2.Columns[i].FieldName = 'UNIDADE') then
       SMDBGrid2.Columns[i].Visible := (trim(fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString) = 'S');
+  end;
+end;
+
+procedure TfrmCadOrdemServico.SMDBGrid1KeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+var
+  ffrmConsOrdemServico: TfrmConsOrdemServico;
+begin
+  if (Key = Vk_F5) then
+  begin
+    ffrmConsOrdemServico := TfrmConsOrdemServico.Create(Self);
+    if fDMCadOrdemServico.cdsOrdemServico_Consulta.Active then
+      ffrmConsOrdemServico.CurrencyEdit1.AsInteger := fDMCadOrdemServico.cdsOrdemServico_ConsultaNUM_OS.AsInteger;
+    ffrmConsOrdemServico.ShowModal;
+    FreeAndNil(ffrmConsOrdemServico);
   end;
 end;
 
