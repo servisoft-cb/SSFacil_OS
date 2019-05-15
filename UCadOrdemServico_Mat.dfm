@@ -2,7 +2,7 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
   Left = 388
   Top = 233
   Width = 612
-  Height = 143
+  Height = 188
   Caption = 'frmCadOrdemServico_Mat'
   Color = clMoneyGreen
   Font.Charset = DEFAULT_CHARSET
@@ -20,7 +20,7 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
   TextHeight = 13
   object Label1: TLabel
     Left = 46
-    Top = 15
+    Top = 39
     Width = 40
     Height = 13
     Alignment = taRightJustify
@@ -28,7 +28,7 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
   end
   object Label2: TLabel
     Left = 28
-    Top = 33
+    Top = 57
     Width = 58
     Height = 13
     Alignment = taRightJustify
@@ -36,7 +36,7 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
   end
   object SpeedButton5: TSpeedButton
     Left = 530
-    Top = 6
+    Top = 30
     Width = 23
     Height = 22
     Hint = 'Atualiza tabela Unidade'
@@ -86,15 +86,23 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
   end
   object Label3: TLabel
     Left = 55
-    Top = 51
+    Top = 75
     Width = 31
     Height = 13
     Alignment = taRightJustify
     Caption = 'Pre'#231'o:'
   end
+  object Label4: TLabel
+    Left = 72
+    Top = 19
+    Width = 14
+    Height = 13
+    Alignment = taRightJustify
+    Caption = 'ID:'
+  end
   object RxDBLookupCombo1: TRxDBLookupCombo
     Left = 88
-    Top = 7
+    Top = 31
     Width = 441
     Height = 21
     DropDownCount = 15
@@ -105,29 +113,30 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
     LookupDisplay = 'NOME'
     LookupSource = DMCadOrdemServico.dsMaterial
     ParentCtl3D = False
-    TabOrder = 0
+    TabOrder = 1
+    OnEnter = RxDBLookupCombo1Enter
     OnExit = RxDBLookupCombo1Exit
   end
   object DBEdit1: TDBEdit
     Left = 88
-    Top = 27
+    Top = 51
     Width = 121
     Height = 19
     Ctl3D = False
     DataField = 'QTD'
     DataSource = DMCadOrdemServico.dsOrdemServico_Mat
     ParentCtl3D = False
-    TabOrder = 1
+    TabOrder = 2
     OnExit = DBEdit1Exit
   end
   object Panel5: TPanel
     Left = 0
-    Top = 73
+    Top = 118
     Width = 604
     Height = 39
     Align = alBottom
     Color = 8404992
-    TabOrder = 3
+    TabOrder = 4
     object btnConfBaixa: TNxButton
       Left = 116
       Top = 4
@@ -275,14 +284,28 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
   end
   object DBEdit2: TDBEdit
     Left = 88
-    Top = 45
+    Top = 69
     Width = 121
     Height = 19
     Ctl3D = False
     DataField = 'VLR_UNITARIO'
     DataSource = DMCadOrdemServico.dsOrdemServico_Mat
     ParentCtl3D = False
-    TabOrder = 2
+    TabOrder = 3
     OnExit = DBEdit1Exit
+  end
+  object CurrencyEdit1: TCurrencyEdit
+    Left = 88
+    Top = 11
+    Width = 100
+    Height = 21
+    AutoSize = False
+    Ctl3D = False
+    DecimalPlaces = 0
+    DisplayFormat = '0'
+    ParentCtl3D = False
+    TabOrder = 0
+    OnExit = CurrencyEdit1Exit
+    OnKeyDown = CurrencyEdit1KeyDown
   end
 end

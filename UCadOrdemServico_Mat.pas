@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs, UDMCadOrdemServico, RxLookup,
-  StdCtrls, Mask, DBCtrls, NxCollection, ExtCtrls, DB, Buttons;
+  StdCtrls, Mask, DBCtrls, NxCollection, ExtCtrls, DB, Buttons, ToolEdit,
+  CurrEdit;
 
 type
   TfrmCadOrdemServico_Mat = class(TForm)
@@ -18,6 +19,8 @@ type
     SpeedButton5: TSpeedButton;
     Label3: TLabel;
     DBEdit2: TDBEdit;
+    CurrencyEdit1: TCurrencyEdit;
+    Label4: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure RxDBLookupCombo1Exit(Sender: TObject);
@@ -28,6 +31,10 @@ type
     procedure DBEdit1Exit(Sender: TObject);
     procedure DBEdit2Exit(Sender: TObject);
     procedure SpeedButton5Click(Sender: TObject);
+    procedure CurrencyEdit1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure RxDBLookupCombo1Enter(Sender: TObject);
+    procedure CurrencyEdit1Exit(Sender: TObject);
   private
     { Private declarations }
     function fnc_Calcular(Vlr_Unitario, Qtd: Real): Real;
@@ -136,6 +143,29 @@ procedure TfrmCadOrdemServico_Mat.SpeedButton5Click(Sender: TObject);
 begin
   fDMCadOrdemServico.cdsMaterial.Close;
   fDMCadOrdemServico.cdsMaterial.Open;
+end;
+
+procedure TfrmCadOrdemServico_Mat.CurrencyEdit1KeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if Key = Vk_Return then
+  begin
+    CurrencyEdit1Exit(Sender);
+  end;
+end;
+
+procedure TfrmCadOrdemServico_Mat.RxDBLookupCombo1Enter(Sender: TObject);
+begin
+  fDMCadOrdemServico.cdsMaterial.IndexFieldNames := 'NOME';
+end;
+
+procedure TfrmCadOrdemServico_Mat.CurrencyEdit1Exit(Sender: TObject);
+begin
+  fDMCadOrdemServico.cdsMaterial.IndexFieldNames := 'ID';
+  if fDMCadOrdemServico.cdsMaterial.FindKey([CurrencyEdit1.Value]) then
+    RxDBLookupCombo1.KeyValue := CurrencyEdit1.Value
+  else
+    RxDBLookupCombo1.ClearValue; 
 end;
 
 end.
