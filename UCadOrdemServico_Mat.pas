@@ -35,6 +35,7 @@ type
       Shift: TShiftState);
     procedure RxDBLookupCombo1Enter(Sender: TObject);
     procedure CurrencyEdit1Exit(Sender: TObject);
+    procedure RxDBLookupCombo1Change(Sender: TObject);
   private
     { Private declarations }
     function fnc_Calcular(Vlr_Unitario, Qtd: Real): Real;
@@ -166,6 +167,11 @@ begin
     RxDBLookupCombo1.KeyValue := CurrencyEdit1.Value
   else
     RxDBLookupCombo1.ClearValue; 
+end;
+
+procedure TfrmCadOrdemServico_Mat.RxDBLookupCombo1Change(Sender: TObject);
+begin
+  CurrencyEdit1.Value := RxDBLookupCombo1.KeyValue;
 end;
 
 end.

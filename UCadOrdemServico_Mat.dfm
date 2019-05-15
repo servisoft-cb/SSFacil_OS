@@ -114,6 +114,7 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
     LookupSource = DMCadOrdemServico.dsMaterial
     ParentCtl3D = False
     TabOrder = 1
+    OnChange = RxDBLookupCombo1Change
     OnEnter = RxDBLookupCombo1Enter
     OnExit = RxDBLookupCombo1Exit
   end
