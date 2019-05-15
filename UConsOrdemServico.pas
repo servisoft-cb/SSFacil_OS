@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UDMConsOrdemServico, ExtCtrls, StdCtrls, Mask, ToolEdit,
-  CurrEdit, NxCollection, Grids, DBGrids, SMDBGrid, RzTabs;
+  CurrEdit, NxCollection, Grids, DBGrids, SMDBGrid, RzTabs, DB, ComObj;
 
 type
   TfrmConsOrdemServico = class(TForm)
@@ -40,14 +40,17 @@ type
     DateEdit8: TDateEdit;
     TS_OS: TRzTabSheet;
     SMDBGrid3: TSMDBGrid;
+    NxButton1: TNxButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure btnConsultarClick(Sender: TObject);
+    procedure NxButton1Click(Sender: TObject);
   private
     { Private declarations }
     fDMConsOrdemServico: TDMConsOrdemServico;
     vComando : String;
 
+    procedure prc_CriaExcel(vDados: TDataSource; Grid : TSMDBGrid);
     procedure prc_Condicao;
     procedure prc_ConsOrdemServico_Ped;
     procedure prc_ConsOrdemServico_Nota;
@@ -63,7 +66,7 @@ var
 
 implementation
 
-uses rsDBUtils, StrUtils;
+uses rsDBUtils, StrUtils, uUtilPadrao;
 
 {$R *.dfm}
 
@@ -167,6 +170,41 @@ begin
   fDMConsOrdemServico.cdsOrdemServico.Open;
   fDMConsOrdemServico.cdsOrdemServico.IndexFieldNames := 'NUM_OS';
   SMDBGrid3.EnableScroll;
+end;
+
+procedure TfrmConsOrdemServico.NxButton1Click(Sender: TObject);
+begin
+  case RzPageControl1.ActivePageIndex of
+    0: prc_CriaExcel(SMDBGrid1.DataSource, SMDBGrid1);
+    1: prc_CriaExcel(SMDBGrid2.DataSource, SMDBGrid2);
+    2: prc_CriaExcel(SMDBGrid3.DataSource, SMDBGrid3);
+  end;
+end;
+
+procedure TfrmConsOrdemServico.prc_CriaExcel(vDados: TDataSource; Grid : TSMDBGrid);
+var
+  planilha: variant;
+  vTexto: string;
+begin
+  Screen.Cursor := crHourGlass;
+  vDados.DataSet.First;
+
+  planilha := CreateOleObject('Excel.Application');
+  planilha.WorkBooks.add(1);
+  planilha.caption := 'Exportando dados do tela para o Excel';
+  planilha.visible := true;
+
+  prc_Preencher_Excel2(planilha, vDados, Grid);
+
+  planilha.columns.Autofit;
+  vTexto := ExtractFilePath(Application.ExeName);
+
+  vTexto := vTexto + Name + '_Pessoa_' + Grid.Name + '_' +  Monta_Numero(DateToStr(Date), 0);
+  try
+    planilha.ActiveWorkBook.SaveAs(vTexto);
+  finally
+    Screen.Cursor := crDefault;
+  end;
 end;
 
 end.
