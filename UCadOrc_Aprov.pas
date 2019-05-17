@@ -3,9 +3,8 @@ unit UCadOrc_Aprov;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, UDMCadOrdemServico, StdCtrls, RxDBComb, DBCtrls, ExtCtrls, Mask,
-  ToolEdit, RXDBCtrl, UDMAprova_Orc, RxLookup, NxCollection, Buttons;
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs, UDMCadOrdemServico, StdCtrls, RxDBComb,
+  DBCtrls, ExtCtrls, Mask, ToolEdit, RXDBCtrl, UDMAprova_Orc, RxLookup, NxCollection, Buttons;
 
 type
   TfrmCadOrc_Aprov = class(TForm)
@@ -47,7 +46,6 @@ type
   public
     { Public declarations }
     fDMCadOrdemServico: TDMCadOrdemServico;
-
   end;
 
 var

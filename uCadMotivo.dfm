@@ -13,7 +13,7 @@ object frmCadMotivo: TfrmCadMotivo
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
-  Position = poDefault
+  Position = poScreenCenter
   OnClose = FormClose
   OnDestroy = FormDestroy
   OnShow = FormShow
@@ -22,8 +22,8 @@ object frmCadMotivo: TfrmCadMotivo
   object RzPageControl1: TRzPageControl
     Left = 0
     Top = 0
-    Width = 771
-    Height = 504
+    Width = 779
+    Height = 511
     ActivePage = TS_Consulta
     ActivePageDefault = TS_Consulta
     Align = alClient
@@ -40,8 +40,8 @@ object frmCadMotivo: TfrmCadMotivo
       object SMDBGrid1: TSMDBGrid
         Left = 0
         Top = 67
-        Width = 767
-        Height = 397
+        Width = 775
+        Height = 404
         Align = alClient
         Ctl3D = False
         DataSource = DMCadMotivo.dsMotivo
@@ -94,7 +94,7 @@ object frmCadMotivo: TfrmCadMotivo
       object Panel2: TPanel
         Left = 0
         Top = 0
-        Width = 767
+        Width = 775
         Height = 32
         Align = alTop
         Color = clSilver
@@ -322,8 +322,8 @@ object frmCadMotivo: TfrmCadMotivo
       end
       object StaticText1: TStaticText
         Left = 0
-        Top = 464
-        Width = 767
+        Top = 471
+        Width = 775
         Height = 17
         Align = alBottom
         BorderStyle = sbsSunken
@@ -339,7 +339,7 @@ object frmCadMotivo: TfrmCadMotivo
       object pnlPesquisa: TPanel
         Left = 0
         Top = 32
-        Width = 767
+        Width = 775
         Height = 35
         Align = alTop
         Color = clSilver
@@ -439,7 +439,7 @@ object frmCadMotivo: TfrmCadMotivo
       object Panel1: TPanel
         Left = 0
         Top = 0
-        Width = 767
+        Width = 775
         Height = 35
         Align = alTop
         Color = 8404992
@@ -665,8 +665,8 @@ object frmCadMotivo: TfrmCadMotivo
       object pnlCadastro: TPanel
         Left = 0
         Top = 35
-        Width = 767
-        Height = 446
+        Width = 775
+        Height = 453
         Align = alClient
         Enabled = False
         TabOrder = 0

@@ -100,7 +100,9 @@ uses
   UConsProcesso in 'UConsProcesso.pas' {frmConsProcesso},
   UVendedor_Config in '..\ssfacil\UVendedor_Config.pas' {frmVendedor_Config},
   UConsOrdemServico in 'UConsOrdemServico.pas' {frmConsOrdemServico},
-  UDMConsOrdemServico in 'UDMConsOrdemServico.pas' {DMConsOrdemServico: TDataModule};
+  UDMConsOrdemServico in 'UDMConsOrdemServico.pas' {DMConsOrdemServico: TDataModule},
+  UCadMotivo in 'uCadMotivo.pas' {frmCadMotivo},
+  UDMCadMotivo in 'UDMCadMotivo.pas' {DMCadMotivo: TDataModule};
 
 {$R *.res}
 

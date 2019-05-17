@@ -216,7 +216,7 @@ object frmCadOrc_Aprov: TfrmCadOrc_Aprov
     object DBText1: TDBText
       Left = 392
       Top = 15
-      Width = 49
+      Width = 48
       Height = 13
       AutoSize = True
       DataField = 'USUARIO'
@@ -245,7 +245,7 @@ object frmCadOrc_Aprov: TfrmCadOrc_Aprov
     object DBText2: TDBText
       Left = 392
       Top = 36
-      Width = 49
+      Width = 48
       Height = 13
       AutoSize = True
       DataField = 'HORA'
@@ -259,20 +259,20 @@ object frmCadOrc_Aprov: TfrmCadOrc_Aprov
     end
     object SpeedButton2: TSpeedButton
       Left = 522
-      Top = 80
+      Top = 81
       Width = 23
       Height = 22
-      Hint = 'Atualiza tabela Unidade'
-      Caption = '...'
+      Hint = 'Cadastro de Motivo'
+      Caption = ' ...'
       Margin = 0
       OnClick = SpeedButton2Click
     end
     object SpeedButton5: TSpeedButton
       Left = 546
-      Top = 80
+      Top = 81
       Width = 23
       Height = 22
-      Hint = 'Atualiza tabela Unidade'
+      Hint = 'Atualiza tabela Motivo'
       Glyph.Data = {
         E6040000424DE604000000000000360000002800000014000000140000000100
         180000000000B0040000C40E0000C40E00000000000000000000FFFFFFFFFFFF

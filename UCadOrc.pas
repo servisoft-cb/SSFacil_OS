@@ -199,6 +199,7 @@ type
     DBEdit34: TDBEdit;
     RxDBLookupCombo7: TRxDBLookupCombo;
     Label37: TLabel;
+    NxButton1: TNxButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
@@ -304,8 +305,7 @@ type
 
     procedure prc_Opcao_Tipo_Produto;
     procedure prc_Gerar_Ass_Usuario;
-    procedure prc_Monta_Grid;
-
+    procedure prc_Monta_Grid;      
   public
     { Public declarations }
     cTXTStream: TMemoryStream;
@@ -1424,7 +1424,7 @@ end;
   
 procedure TfrmCadOrc.prc_Monta_Grid;
 var
-  i : Integer;
+  i: Integer;
 begin
   for i := 0 to RzDBGrid1.Columns.Count - 2 do
   begin
@@ -1439,11 +1439,7 @@ begin
       RzDBGrid13.Columns[i].Title.Caption := 'Qtd. Hora';
     if (RzDBGrid13.Columns[i].FieldName = 'UNIDADE') then
       RzDBGrid13.Columns[i].Visible := (trim(fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString) = 'S');
-  end;
-
-
-
-
+  end;             
 end;
 
 end.
