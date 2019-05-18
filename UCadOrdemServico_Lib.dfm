@@ -241,6 +241,7 @@ object frmCadOrdemServico_Lib: TfrmCadOrdemServico_Lib
       WidthOfIndicator = 11
       DefaultRowHeight = 17
       ScrollBars = ssHorizontal
+      ColCount = 6
       RowCount = 2
       Columns = <
         item
@@ -274,6 +275,15 @@ object frmCadOrdemServico_Lib: TfrmCadOrdemServico_Lib
           Title.Alignment = taCenter
           Title.Caption = 'Hora Liberada'
           Width = 91
+          Visible = True
+        end
+        item
+          Alignment = taCenter
+          Expanded = False
+          FieldName = 'ID_MOVESTOQUE'
+          Title.Alignment = taCenter
+          Title.Caption = 'ID Mov. Estoque'
+          Width = 94
           Visible = True
         end>
     end

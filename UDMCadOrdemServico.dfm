@@ -4694,7 +4694,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
         Size = 4
       end>
     SQLConnection = dmDatabase.scoDados
-    Left = 56
+    Left = 58
     Top = 576
     object sdsOrdemServico_LibID: TIntegerField
       FieldName = 'ID'
@@ -4723,6 +4723,9 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object sdsOrdemServico_LibQTD_LIB_PED: TFloatField
       FieldName = 'QTD_LIB_PED'
     end
+    object sdsOrdemServico_LibID_MOVESTOQUE: TIntegerField
+      FieldName = 'ID_MOVESTOQUE'
+    end
   end
   object cdsOrdemServico_Lib: TClientDataSet
     Aggregates = <>
@@ -4730,7 +4733,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     IndexFieldNames = 'ID;ITEM;ITEM_LIB'
     Params = <>
     Left = 120
-    Top = 576
+    Top = 575
     object cdsOrdemServico_LibID: TIntegerField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -4758,6 +4761,9 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object cdsOrdemServico_LibQTD_LIB_PED: TFloatField
       FieldName = 'QTD_LIB_PED'
     end
+    object cdsOrdemServico_LibID_MOVESTOQUE: TIntegerField
+      FieldName = 'ID_MOVESTOQUE'
+    end
   end
   object dsOrdemServico_Lib: TDataSource
     DataSet = cdsOrdemServico_Lib
@@ -4769,9 +4775,10 @@ object DMCadOrdemServico: TDMCadOrdemServico
     GetMetadata = False
     CommandText = 
       'SELECT I.ID, I.ITEM, I.qtd, I.qtd_faturado, I.qtd_restante, I.qt' +
-      'd_liberada, P.num_pedido, P.pedido_cliente'#13#10'FROM PEDIDO_ITEM I'#13#10 +
-      'INNER JOIN PEDIDO P'#13#10'ON I.ID = P.ID'#13#10'WHERE I.ID_OS_SERV = :ID_OS' +
-      '_SERV'#13#10'  AND I.TIPO_REG = '#39'P'#39#13#10
+      'd_liberada, P.num_pedido, P.pedido_cliente, i.vlr_unitario,'#13#10'i.p' +
+      'erc_tribicms, i.perc_icms, i.perc_ipi'#13#10'FROM PEDIDO_ITEM I'#13#10'INNER' +
+      ' JOIN PEDIDO P'#13#10'ON I.ID = P.ID'#13#10'WHERE I.ID_OS_SERV = :ID_OS_SERV' +
+      #13#10'  AND I.TIPO_REG = '#39'P'#39#13#10
     MaxBlobSize = -1
     Params = <
       item
@@ -4807,6 +4814,18 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
     object sdsPedido_ItemPEDIDO_CLIENTE: TStringField
       FieldName = 'PEDIDO_CLIENTE'
+    end
+    object sdsPedido_ItemVLR_UNITARIO: TFloatField
+      FieldName = 'VLR_UNITARIO'
+    end
+    object sdsPedido_ItemPERC_TRIBICMS: TFloatField
+      FieldName = 'PERC_TRIBICMS'
+    end
+    object sdsPedido_ItemPERC_ICMS: TFloatField
+      FieldName = 'PERC_ICMS'
+    end
+    object sdsPedido_ItemPERC_IPI: TFloatField
+      FieldName = 'PERC_IPI'
     end
   end
   object dspPedido_Item: TDataSetProvider
@@ -4845,6 +4864,18 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
     object cdsPedido_ItemPEDIDO_CLIENTE: TStringField
       FieldName = 'PEDIDO_CLIENTE'
+    end
+    object cdsPedido_ItemVLR_UNITARIO: TFloatField
+      FieldName = 'VLR_UNITARIO'
+    end
+    object cdsPedido_ItemPERC_TRIBICMS: TFloatField
+      FieldName = 'PERC_TRIBICMS'
+    end
+    object cdsPedido_ItemPERC_ICMS: TFloatField
+      FieldName = 'PERC_ICMS'
+    end
+    object cdsPedido_ItemPERC_IPI: TFloatField
+      FieldName = 'PERC_IPI'
     end
   end
   object dsPedido_Item: TDataSource

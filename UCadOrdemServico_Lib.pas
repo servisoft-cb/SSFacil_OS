@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UDMCadOrdemServico, StdCtrls, Buttons, ExtCtrls, Mask, ToolEdit,
   RXDBCtrl, DBCtrls, RzEdit, RzDBEdit, DB, NxCollection, CurrEdit, Grids,
-  DBGrids, SMDBGrid, dbXPress;
+  DBGrids, SMDBGrid, dbXPress, UDMEstoque;
 
 type
   TfrmCadOrdemServico_Lib = class(TForm)
@@ -38,6 +38,8 @@ type
     vSaldo_Lib : Real;
 
     procedure prc_Gravar_BaixaPedido(Qtd : Real);
+    procedure prc_Gravar_Estoque(VlrUnit : Real);
+
   public
     { Public declarations }
     fDMCadOrdemServico: TDMCadOrdemServico;
@@ -80,6 +82,7 @@ var
   vQtdAux : Real;
   vQtd2 : Real;
   ID: TTransactionDesc;
+  vVlrUnit : Real;
 begin
   if CurrencyEdit1.Value > StrToFloat(FormatFloat('0.0000',vSaldo_Lib)) then
   begin
@@ -96,10 +99,12 @@ begin
     MessageDlg('*** Não gerado Pedido para a OS!', mtInformation, [mbOk], 0);
     exit;
   end;
+  vVlrUnit := 0;
   fDMCadOrdemServico.cdsPedido_Item.First;
   while not fDMCadOrdemServico.cdsPedido_Item.Eof do
   begin
-    vQtdAux := StrToFloat(FormatFloat('0.0000',vQtdAux + (fDMCadOrdemServico.cdsPedido_ItemQTD_RESTANTE.AsFloat - fDMCadOrdemServico.cdsPedido_ItemQTD_LIBERADA.AsFloat)));
+    vQtdAux  := StrToFloat(FormatFloat('0.0000',vQtdAux + (fDMCadOrdemServico.cdsPedido_ItemQTD_RESTANTE.AsFloat - fDMCadOrdemServico.cdsPedido_ItemQTD_LIBERADA.AsFloat)));
+    vVlrUnit := StrToFloat(FormatFloat('0.0000000',fDMCadOrdemServico.cdsPedido_ItemVLR_UNITARIO.AsFloat));
     fDMCadOrdemServico.cdsPedido_Item.Next;
   end;
   if StrToFloat(FormatFloat('0.0000',vQtdAux)) <= 0 then
@@ -130,6 +135,9 @@ begin
     fDMCadOrdemServico.cdsOrdemServico_LibQTD_LIB_PED.AsFloat   := CurrencyEdit1.Value;
     fDMCadOrdemServico.cdsOrdemServico_Lib.Post;
 
+    fDMCadOrdemServico.cdsPedido_Item.First;
+    prc_Gravar_Estoque(vVlrUnit);
+
     fDMCadOrdemServico.cdsOrdemServico_Itens.Edit;
     fDMCadOrdemServico.cdsOrdemServico_ItensQTD_LIBERADA.AsFloat := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD_LIBERADA.AsFloat + CurrencyEdit1.Value));
     fDMCadOrdemServico.cdsOrdemServico_Itens.Post;
@@ -158,6 +166,7 @@ begin
       fDMCadOrdemServico.cdsPedido_Item.Next;
     end;
     //fDMCadOrdemServico.cdsPedido_Item.ApplyUpdates(0);
+
     fDMCadOrdemServico.cdsBaixa_Pedido.ApplyUpdates(0);
     fDMCadOrdemServico.cdsOrdemServico_Itens.ApplyUpdates(0);
     dmDatabase.scoDados.Commit(ID);
@@ -241,21 +250,65 @@ begin
   if not fDMCadOrdemServico.cdsBaixa_Pedido.Active then
     fDMCadOrdemServico.prc_Abrir_Baixa_Pedido(-1,0,0,0);
 
-    fDMCadOrdemServico.cdsBaixa_Pedido.Insert;
-    fDMCadOrdemServico.cdsBaixa_PedidoID.AsInteger := vAux;
-    fDMCadOrdemServico.cdsBaixa_PedidoTIPO_REG.AsString       := 'PRO';
-    fDMCadOrdemServico.cdsBaixa_PedidoID_PEDIDO.AsInteger     :=  fDMCadOrdemServico.cdsPedido_ItemID.AsInteger;
-    fDMCadOrdemServico.cdsBaixa_PedidoITEM_PEDIDO.AsInteger   := fDMCadOrdemServico.cdsPedido_ItemITEM.AsInteger;
-    fDMCadOrdemServico.cdsBaixa_PedidoDTBAIXA.AsDateTime      := Date;
-    fDMCadOrdemServico.cdsBaixa_PedidoQTD.AsFloat             := StrToFloat(FormatFloat('0.0000',Qtd));
-    fDMCadOrdemServico.cdsBaixa_PedidoNUM_PEDIDO.AsInteger    := fDMCadOrdemServico.cdsPedido_ItemNUM_PEDIDO.AsInteger;
-    fDMCadOrdemServico.cdsBaixa_PedidoPEDIDO_CLIENTE.AsString := fDMCadOrdemServico.cdsPedido_ItemPEDIDO_CLIENTE.AsString;
-    fDMCadOrdemServico.cdsBaixa_PedidoID_MOVESTOQUE.AsInteger := 0;
-    fDMCadOrdemServico.cdsBaixa_PedidoTIPO_MOV.AsString       := 'P';
-    fDMCadOrdemServico.cdsBaixa_PedidoID_OS.AsInteger         := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
-    fDMCadOrdemServico.cdsBaixa_PedidoITEM_OS.AsInteger       := fDMCadOrdemServico.cdsOrdemServico_ItensITEM.AsInteger;
-    fDMCadOrdemServico.cdsBaixa_PedidoITEM_LIB_OS.AsInteger   := fDMCadOrdemServico.cdsOrdemServico_LibITEM_LIB.AsInteger;
-    fDMCadOrdemServico.cdsBaixa_Pedido.Post;
+  fDMCadOrdemServico.cdsBaixa_Pedido.Insert;
+  fDMCadOrdemServico.cdsBaixa_PedidoID.AsInteger := vAux;
+  fDMCadOrdemServico.cdsBaixa_PedidoTIPO_REG.AsString       := 'PRO';
+  fDMCadOrdemServico.cdsBaixa_PedidoID_PEDIDO.AsInteger     :=  fDMCadOrdemServico.cdsPedido_ItemID.AsInteger;
+  fDMCadOrdemServico.cdsBaixa_PedidoITEM_PEDIDO.AsInteger   := fDMCadOrdemServico.cdsPedido_ItemITEM.AsInteger;
+  fDMCadOrdemServico.cdsBaixa_PedidoDTBAIXA.AsDateTime      := Date;
+  fDMCadOrdemServico.cdsBaixa_PedidoQTD.AsFloat             := StrToFloat(FormatFloat('0.0000',Qtd));
+  fDMCadOrdemServico.cdsBaixa_PedidoNUM_PEDIDO.AsInteger    := fDMCadOrdemServico.cdsPedido_ItemNUM_PEDIDO.AsInteger;
+  fDMCadOrdemServico.cdsBaixa_PedidoPEDIDO_CLIENTE.AsString := fDMCadOrdemServico.cdsPedido_ItemPEDIDO_CLIENTE.AsString;
+  fDMCadOrdemServico.cdsBaixa_PedidoID_MOVESTOQUE.AsInteger := 0;
+  fDMCadOrdemServico.cdsBaixa_PedidoTIPO_MOV.AsString       := 'P';
+  fDMCadOrdemServico.cdsBaixa_PedidoID_OS.AsInteger         := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
+  fDMCadOrdemServico.cdsBaixa_PedidoITEM_OS.AsInteger       := fDMCadOrdemServico.cdsOrdemServico_ItensITEM.AsInteger;
+  fDMCadOrdemServico.cdsBaixa_PedidoITEM_LIB_OS.AsInteger   := fDMCadOrdemServico.cdsOrdemServico_LibITEM_LIB.AsInteger;
+  fDMCadOrdemServico.cdsBaixa_Pedido.Post;
+end;
+
+procedure TfrmCadOrdemServico_Lib.prc_Gravar_Estoque(VlrUnit : Real);
+var
+  fDMEstoque: TDMEstoque;
+  vID_Estoque : Integer;
+  vGerarCusto : String;
+begin
+  vGerarCusto := 'N';
+  if StrToFloat(FormatFloat('0.00000',VlrUnit)) > 0 then
+    vGerarCusto := 'S';
+  fDMCadOrdemServico.prc_Monta_qProduto(fDMCadOrdemServico.cdsOrdemServico_ItensID_PRODUTO.AsInteger,'');
+
+  //Estoque
+  fDMEstoque := TDMEstoque.Create(Self);
+
+  vID_Estoque := fDMEstoque.fnc_Gravar_Estoque(0,
+                                             fDMCadOrdemServico.cdsOrdemServicoFILIAL.AsInteger,
+                                             1, //aqui verificar o local do estoque
+                                             fDMCadOrdemServico.cdsOrdemServico_ItensID_PRODUTO.AsInteger,
+                                             fDMCadOrdemServico.cdsOrdemServicoNUM_OS.AsInteger,
+                                             fDMCadOrdemServico.cdsOrdemServicoID_CLIENTE.AsInteger,
+                                             0,
+                                             fDMCadOrdemServico.cdsOrdemServicoID.AsInteger,0,
+                                             'E','OSLIB',
+                                             fDMCadOrdemServico.qProdutoUNIDADE.AsString,
+                                             fDMCadOrdemServico.qProdutoUNIDADE.AsString,
+                                             '','',
+                                             fDMCadOrdemServico.cdsOrdemServico_LibDTLIBERADA.AsDateTime,
+                                             VlrUnit,
+                                             fDMCadOrdemServico.cdsOrdemServico_LibQTD.AsFloat,
+                                             fDMCadOrdemServico.cdsPedido_ItemPERC_ICMS.AsFloat,
+                                             fDMCadOrdemServico.cdsPedido_ItemPERC_IPI.AsFloat,
+                                             0,
+                                             fDMCadOrdemServico.cdsPedido_ItemPERC_TRIBICMS.AsFloat,
+                                             0,
+                                             fDMCadOrdemServico.cdsOrdemServico_LibQTD.AsFloat,
+                                             VlrUnit,
+                                             0,0,'',
+                                             0,
+                                             '',vGerarCusto,0,0); //ver aqui sobre Lote Controle  04/11/2015
+  fDMCadOrdemServico.cdsOrdemServico_Lib.Edit;
+  fDMCadOrdemServico.cdsOrdemServico_LibID_MOVESTOQUE.AsInteger := vID_Estoque;
+  fDMCadOrdemServico.cdsOrdemServico_Lib.Post;
 end;
 
 end.
