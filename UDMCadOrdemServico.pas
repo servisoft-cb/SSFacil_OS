@@ -1104,6 +1104,16 @@ type
     cdsOrdemServico_SetorUNIDADE: TStringField;
     cdsProcessoUNIDADE: TStringField;
     cdsOrdemServico_ConsultaFATURADO_NOTA: TStringField;
+    sdsOrdemServico_LibID_MOVESTOQUE: TIntegerField;
+    cdsOrdemServico_LibID_MOVESTOQUE: TIntegerField;
+    sdsPedido_ItemVLR_UNITARIO: TFloatField;
+    cdsPedido_ItemVLR_UNITARIO: TFloatField;
+    sdsPedido_ItemPERC_TRIBICMS: TFloatField;
+    sdsPedido_ItemPERC_ICMS: TFloatField;
+    sdsPedido_ItemPERC_IPI: TFloatField;
+    cdsPedido_ItemPERC_TRIBICMS: TFloatField;
+    cdsPedido_ItemPERC_ICMS: TFloatField;
+    cdsPedido_ItemPERC_IPI: TFloatField;
     procedure DataModuleCreate(Sender: TObject);
     procedure dspOrdemServicoUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError;

@@ -65,12 +65,15 @@ end;
 procedure TfrmCadOrdemServico_Mat.FormShow(Sender: TObject);
 begin
   oDBUtils.SetDataSourceProperties(Self, fDMCadOrdemServico);
+  if fDMCadOrdemServico.cdsOrdemServico_Mat.State in [dsEdit] then
+    CurrencyEdit1.AsInteger := fDMCadOrdemServico.cdsOrdemServico_MatID_PRODUTO.AsInteger;
 end;
 
 procedure TfrmCadOrdemServico_Mat.RxDBLookupCombo1Exit(Sender: TObject);
 begin
   if RxDBLookupCombo1.Text <> '' then
   begin
+    CurrencyEdit1.AsInteger := RxDBLookupCombo1.KeyValue;
     fDMCadOrdemServico.cdsMaterial.Locate('ID',fDMCadOrdemServico.cdsOrdemServico_MatID_PRODUTO.AsInteger,[loCaseInsensitive]);
     if fDMCadOrdemServico.qParametros_SerPRECO_CUSTO_MATERIAL.AsString = 'S' then
       fDMCadOrdemServico.cdsOrdemServico_MatVLR_UNITARIO.AsFloat := fDMCadOrdemServico.cdsMaterialPRECO_CUSTO.AsFloat
