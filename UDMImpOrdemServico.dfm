@@ -15,7 +15,7 @@ object DMImpOrdemServico: TDMImpOrdemServico
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43066.746810972200000000
-    ReportOptions.LastChange = 43592.656117847230000000
+    ReportOptions.LastChange = 43605.566556168980000000
     ScriptLanguage = 'PascalScript'
     StoreInDFM = False
     OnPreview = frxReport1Preview
@@ -74,19 +74,20 @@ object DMImpOrdemServico: TDMImpOrdemServico
       'TE, OS.DTEMISSAO, OS.NOME_CONTATO NOME_CONTATO,'#13#10'       OS.DTREC' +
       'EBIMENTO, OS.DT_AGENDA, OS.QTD_DIAS_ENT, OS.NUM_ORCAMENTO, OS.RA' +
       'STREABILIDADE, F.NOME FIL_NOME,'#13#10'       F.NOME_INTERNO, C.NOME C' +
-      'LI_NOME, C.FANTASIA CLI_FANTASIA, IT.ID_PRODUTO, IT.QTD, IT.DM, ' +
-      'IT.REFERENCIA,'#13#10'       IT.NOME_PRODUTO, IT.OBS, IT.OBS_CONDENTRA' +
-      'DA, IT.DESCRICAO_SERVICO,C.EMAIL_NFE,'#13#10'       C.ENDERECO ||'#39' - '#39 +
-      ' || C.NUM_END ||'#39', '#39'||C.BAIRRO AS ENDERECO,C.CIDADE, C.UF,'#13#10'    ' +
-      '   '#39'('#39'||COALESCE(C.DDDFONE1,0)||'#39') '#39'||C.TELEFONE1 TELEFONE,OS.TI' +
-      'PO_FRETE, OS.DTINICIO, CP.NOME CONDPGTO,'#13#10'       case TIPO_SERVI' +
-      'CO'#13#10'         when '#39'N'#39' then '#39'NORMAL'#39#13#10'         when '#39'G'#39' then '#39'GAR' +
-      'ANTIA'#39#13#10'         when '#39'F'#39' then '#39'FABRICA'#199#195'O'#39#13#10'         when '#39'S'#39' t' +
-      'hen '#39'SERVI'#199'O DE CAMPO'#39#13#10'         else '#39#39#13#10'       end DESC_TIPO_S' +
-      'ERVICO'#13#10'from ORDEMSERVICO OS'#13#10'inner join FILIAL F on (OS.FILIAL ' +
-      '= F.ID)'#13#10'inner join PESSOA C on (OS.ID_CLIENTE = C.CODIGO)'#13#10'inne' +
-      'r join ORDEMSERVICO_ITENS IT on (OS.ID = IT.ID)'#13#10'LEFT JOIN CONDP' +
-      'GTO CP ON (CP.ID = OS.ID_CONDPGTO)'#13#10'where OS.ID = :ID  '
+      'LI_NOME, C.FANTASIA CLI_FANTASIA, C.CNPJ_CPF CLI_CNPJ, IT.ID_PRO' +
+      'DUTO, IT.QTD, IT.DM, IT.REFERENCIA,'#13#10'       IT.NOME_PRODUTO, IT.' +
+      'OBS, IT.OBS_CONDENTRADA, IT.DESCRICAO_SERVICO,C.EMAIL_NFE,'#13#10'    ' +
+      '   C.ENDERECO ||'#39' - '#39' || C.NUM_END ||'#39', '#39'||C.BAIRRO AS ENDERECO,' +
+      'C.CIDADE, C.UF,'#13#10'       '#39'('#39'||COALESCE(C.DDDFONE1,0)||'#39') '#39'||C.TEL' +
+      'EFONE1 TELEFONE,OS.TIPO_FRETE, OS.DTINICIO, CP.NOME CONDPGTO,'#13#10' ' +
+      '      case TIPO_SERVICO'#13#10'         when '#39'N'#39' then '#39'NORMAL'#39#13#10'      ' +
+      '   when '#39'G'#39' then '#39'GARANTIA'#39#13#10'         when '#39'F'#39' then '#39'FABRICA'#199#195'O'#39 +
+      #13#10'         when '#39'S'#39' then '#39'SERVI'#199'O DE CAMPO'#39#13#10'         else '#39#39#13#10' ' +
+      '      end DESC_TIPO_SERVICO'#13#10'from ORDEMSERVICO OS'#13#10'inner join FI' +
+      'LIAL F on (OS.FILIAL = F.ID)'#13#10'inner join PESSOA C on (OS.ID_CLIE' +
+      'NTE = C.CODIGO)'#13#10'inner join ORDEMSERVICO_ITENS IT on (OS.ID = IT' +
+      '.ID)'#13#10'LEFT JOIN CONDPGTO CP ON (CP.ID = OS.ID_CONDPGTO)'#13#10'where O' +
+      'S.ID = :ID  '
     MaxBlobSize = -1
     Params = <
       item
@@ -234,6 +235,9 @@ object DMImpOrdemServico: TDMImpOrdemServico
     object cdsOSImpCONDPGTO: TStringField
       FieldName = 'CONDPGTO'
       Size = 40
+    end
+    object cdsOSImpCLI_CNPJ: TStringField
+      FieldName = 'CLI_CNPJ'
     end
   end
   object dsOSImp: TDataSource
@@ -415,8 +419,9 @@ object DMImpOrdemServico: TDMImpOrdemServico
       'TELEFONE=TELEFONE'
       'TIPO_FRETE=TIPO_FRETE'
       'DTINICIO=DTINICIO'
-      '-sdsProdutoGerador=sdsProdutoGerador'
-      'CONDPGTO=CONDPGTO')
+      'sdsProdutoGerador=sdsProdutoGerador'
+      'CONDPGTO=CONDPGTO'
+      'CLI_CNPJ=CLI_CNPJ')
     DataSet = cdsOSImp
     BCDToCurrency = False
     Left = 224

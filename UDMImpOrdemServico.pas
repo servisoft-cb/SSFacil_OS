@@ -177,6 +177,7 @@ type
     cdsOSImpCONDPGTO: TStringField;
     cdsOrcSetorProcUNIDADE: TStringField;
     cdsOrcSetorUNIDADE: TStringField;
+    cdsOSImpCLI_CNPJ: TStringField;
     procedure frxReport1Preview(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
     procedure cdsOrcSetorAfterScroll(DataSet: TDataSet);
