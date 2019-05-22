@@ -24,7 +24,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
     Top = 0
     Width = 1039
     Height = 661
-    ActivePage = TS_Consulta
+    ActivePage = TS_Cadastro
     ActivePageDefault = TS_Consulta
     Align = alClient
     BackgroundColor = 16752448
@@ -32,7 +32,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
     FlatColor = clGray
     ParentBackgroundColor = False
     TabColors.Shadow = clSilver
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     OnChange = RzPageControl1Change
     FixedDimension = 19
@@ -2441,6 +2441,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
                 Expanded = False
                 FieldName = 'UNIDADE'
                 Title.Caption = 'Unidade'
+                Width = 64
                 Visible = True
               end
               item
@@ -4817,6 +4818,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
                 Title.Alignment = taCenter
                 Title.Caption = 'Qtd. Faturada'
                 Title.Color = 16763025
+                Width = 64
                 Visible = True
               end>
           end
