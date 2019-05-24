@@ -100,6 +100,14 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
     Alignment = taRightJustify
     Caption = 'ID:'
   end
+  object Label5: TLabel
+    Left = 199
+    Top = 19
+    Width = 55
+    Height = 13
+    Alignment = taRightJustify
+    Caption = 'Refer'#234'ncia:'
+  end
   object RxDBLookupCombo1: TRxDBLookupCombo
     Left = 88
     Top = 31
@@ -113,7 +121,7 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
     LookupDisplay = 'NOME'
     LookupSource = DMCadOrdemServico.dsMaterial
     ParentCtl3D = False
-    TabOrder = 1
+    TabOrder = 2
     OnChange = RxDBLookupCombo1Change
     OnEnter = RxDBLookupCombo1Enter
     OnExit = RxDBLookupCombo1Exit
@@ -127,7 +135,7 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
     DataField = 'QTD'
     DataSource = DMCadOrdemServico.dsOrdemServico_Mat
     ParentCtl3D = False
-    TabOrder = 2
+    TabOrder = 3
     OnExit = DBEdit1Exit
   end
   object Panel5: TPanel
@@ -137,7 +145,7 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
     Height = 39
     Align = alBottom
     Color = 8404992
-    TabOrder = 4
+    TabOrder = 5
     object btnConfBaixa: TNxButton
       Left = 116
       Top = 4
@@ -292,7 +300,7 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
     DataField = 'VLR_UNITARIO'
     DataSource = DMCadOrdemServico.dsOrdemServico_Mat
     ParentCtl3D = False
-    TabOrder = 3
+    TabOrder = 4
     OnExit = DBEdit1Exit
   end
   object CurrencyEdit1: TCurrencyEdit
@@ -308,5 +316,23 @@ object frmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat
     TabOrder = 0
     OnExit = CurrencyEdit1Exit
     OnKeyDown = CurrencyEdit1KeyDown
+  end
+  object RxDBLookupCombo2: TRxDBLookupCombo
+    Left = 256
+    Top = 11
+    Width = 273
+    Height = 21
+    DropDownCount = 15
+    Ctl3D = False
+    DataField = 'ID_PRODUTO'
+    DataSource = DMCadOrdemServico.dsOrdemServico_Mat
+    LookupField = 'ID'
+    LookupDisplay = 'REFERENCIA'
+    LookupSource = DMCadOrdemServico.dsMaterial
+    ParentCtl3D = False
+    TabOrder = 1
+    OnChange = RxDBLookupCombo2Change
+    OnEnter = RxDBLookupCombo2Enter
+    OnExit = RxDBLookupCombo2Exit
   end
 end

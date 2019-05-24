@@ -21,6 +21,8 @@ type
     DBEdit2: TDBEdit;
     CurrencyEdit1: TCurrencyEdit;
     Label4: TLabel;
+    Label5: TLabel;
+    RxDBLookupCombo2: TRxDBLookupCombo;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure RxDBLookupCombo1Exit(Sender: TObject);
@@ -36,6 +38,9 @@ type
     procedure RxDBLookupCombo1Enter(Sender: TObject);
     procedure CurrencyEdit1Exit(Sender: TObject);
     procedure RxDBLookupCombo1Change(Sender: TObject);
+    procedure RxDBLookupCombo2Enter(Sender: TObject);
+    procedure RxDBLookupCombo2Exit(Sender: TObject);
+    procedure RxDBLookupCombo2Change(Sender: TObject);
   private
     { Private declarations }
     function fnc_Calcular(Vlr_Unitario, Qtd: Real): Real;
@@ -167,14 +172,43 @@ procedure TfrmCadOrdemServico_Mat.CurrencyEdit1Exit(Sender: TObject);
 begin
   fDMCadOrdemServico.cdsMaterial.IndexFieldNames := 'ID';
   if fDMCadOrdemServico.cdsMaterial.FindKey([CurrencyEdit1.Value]) then
-    RxDBLookupCombo1.KeyValue := CurrencyEdit1.Value
+  begin
+    RxDBLookupCombo1.KeyValue := CurrencyEdit1.Value;
+    RxDBLookupCombo2.KeyValue := CurrencyEdit1.Value;
+  end
   else
-    RxDBLookupCombo1.ClearValue; 
+  begin
+    RxDBLookupCombo1.ClearValue;
+    RxDBLookupCombo2.ClearValue;
+  end;
 end;
 
 procedure TfrmCadOrdemServico_Mat.RxDBLookupCombo1Change(Sender: TObject);
 begin
   CurrencyEdit1.Value := RxDBLookupCombo1.KeyValue;
+end;
+
+procedure TfrmCadOrdemServico_Mat.RxDBLookupCombo2Enter(Sender: TObject);
+begin
+  fDMCadOrdemServico.cdsMaterial.IndexFieldNames := 'REFERENCIA';
+end;
+
+procedure TfrmCadOrdemServico_Mat.RxDBLookupCombo2Exit(Sender: TObject);
+begin
+  if RxDBLookupCombo2.Text <> '' then
+  begin
+    CurrencyEdit1.AsInteger := RxDBLookupCombo2.KeyValue;
+    fDMCadOrdemServico.cdsMaterial.Locate('ID',fDMCadOrdemServico.cdsOrdemServico_MatID_PRODUTO.AsInteger,[loCaseInsensitive]);
+    if fDMCadOrdemServico.qParametros_SerPRECO_CUSTO_MATERIAL.AsString = 'S' then
+      fDMCadOrdemServico.cdsOrdemServico_MatVLR_UNITARIO.AsFloat := fDMCadOrdemServico.cdsMaterialPRECO_CUSTO.AsFloat
+    else
+      fDMCadOrdemServico.cdsOrdemServico_MatVLR_UNITARIO.AsFloat := fDMCadOrdemServico.cdsMaterialPRECO_VENDA.AsFloat;
+  end;
+end;
+
+procedure TfrmCadOrdemServico_Mat.RxDBLookupCombo2Change(Sender: TObject);
+begin
+  CurrencyEdit1.Value := RxDBLookupCombo2.KeyValue;
 end;
 
 end.
