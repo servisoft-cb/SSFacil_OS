@@ -37,7 +37,7 @@ object DMProcesso_ES: TDMProcesso_ES
       'where o.num_os = :NUM_OS'
       '  AND OSP.item_proc = :ITEM_PROC')
     SQLConnection = dmDatabase.scoDados
-    Left = 512
+    Left = 511
     Top = 64
     object qOS_ProcID: TIntegerField
       FieldName = 'ID'
@@ -65,20 +65,11 @@ object DMProcesso_ES: TDMProcesso_ES
       BlobType = ftMemo
       Size = 1
     end
-    object qOS_ProcQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object qOS_ProcID_SERVICO_OS: TIntegerField
       FieldName = 'ID_SERVICO_OS'
     end
     object qOS_ProcDTCONCLUIDO: TDateField
       FieldName = 'DTCONCLUIDO'
-    end
-    object qOS_ProcQTD_RESTANTE: TIntegerField
-      FieldName = 'QTD_RESTANTE'
-    end
-    object qOS_ProcQTD_CONCLUIDO: TIntegerField
-      FieldName = 'QTD_CONCLUIDO'
     end
     object qOS_ProcDTENTRADA: TDateField
       FieldName = 'DTENTRADA'
@@ -89,9 +80,6 @@ object DMProcesso_ES: TDMProcesso_ES
     object qOS_ProcNOME_PROCESSO: TStringField
       FieldName = 'NOME_PROCESSO'
       Size = 30
-    end
-    object qOS_ProcQTD_ITEM: TIntegerField
-      FieldName = 'QTD_ITEM'
     end
     object qOS_ProcNOME_PRODUTO: TStringField
       FieldName = 'NOME_PRODUTO'
@@ -106,13 +94,25 @@ object DMProcesso_ES: TDMProcesso_ES
     object qOS_ProcORDEM: TIntegerField
       FieldName = 'ORDEM'
     end
-    object qOS_ProcQTD_CONCLUIDO_ANT: TIntegerField
-      FieldName = 'QTD_CONCLUIDO_ANT'
-    end
     object qOS_ProcSTATUS: TStringField
       FieldName = 'STATUS'
       FixedChar = True
       Size = 1
+    end
+    object qOS_ProcQTD: TFloatField
+      FieldName = 'QTD'
+    end
+    object qOS_ProcQTD_RESTANTE: TFloatField
+      FieldName = 'QTD_RESTANTE'
+    end
+    object qOS_ProcQTD_CONCLUIDO: TFloatField
+      FieldName = 'QTD_CONCLUIDO'
+    end
+    object qOS_ProcQTD_CONCLUIDO_ANT: TFloatField
+      FieldName = 'QTD_CONCLUIDO_ANT'
+    end
+    object qOS_ProcQTD_ITEM: TFloatField
+      FieldName = 'QTD_ITEM'
     end
   end
   object sdsBaixa_OS: TSQLDataSet
@@ -161,9 +161,6 @@ object DMProcesso_ES: TDMProcesso_ES
     object sdsBaixa_OSID_FUNCIONARIO: TIntegerField
       FieldName = 'ID_FUNCIONARIO'
     end
-    object sdsBaixa_OSQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object sdsBaixa_OSID_PROCESSO: TIntegerField
       FieldName = 'ID_PROCESSO'
     end
@@ -191,6 +188,9 @@ object DMProcesso_ES: TDMProcesso_ES
     object sdsBaixa_OSRETRABALHO: TStringField
       FieldName = 'RETRABALHO'
       Size = 1
+    end
+    object sdsBaixa_OSQTD: TFloatField
+      FieldName = 'QTD'
     end
   end
   object dspBaixa_OS: TDataSetProvider
@@ -233,9 +233,6 @@ object DMProcesso_ES: TDMProcesso_ES
     object cdsBaixa_OSID_FUNCIONARIO: TIntegerField
       FieldName = 'ID_FUNCIONARIO'
     end
-    object cdsBaixa_OSQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object cdsBaixa_OSID_PROCESSO: TIntegerField
       FieldName = 'ID_PROCESSO'
     end
@@ -263,6 +260,9 @@ object DMProcesso_ES: TDMProcesso_ES
     object cdsBaixa_OSRETRABALHO: TStringField
       FieldName = 'RETRABALHO'
       Size = 1
+    end
+    object cdsBaixa_OSQTD: TFloatField
+      FieldName = 'QTD'
     end
   end
   object dsBaixa_OS: TDataSource
@@ -350,20 +350,11 @@ object DMProcesso_ES: TDMProcesso_ES
       BlobType = ftMemo
       Size = 1
     end
-    object sdsOrdemServico_ProcQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object sdsOrdemServico_ProcID_SERVICO_OS: TIntegerField
       FieldName = 'ID_SERVICO_OS'
     end
     object sdsOrdemServico_ProcDTCONCLUIDO: TDateField
       FieldName = 'DTCONCLUIDO'
-    end
-    object sdsOrdemServico_ProcQTD_RESTANTE: TIntegerField
-      FieldName = 'QTD_RESTANTE'
-    end
-    object sdsOrdemServico_ProcQTD_CONCLUIDO: TIntegerField
-      FieldName = 'QTD_CONCLUIDO'
     end
     object sdsOrdemServico_ProcDTENTRADA: TDateField
       FieldName = 'DTENTRADA'
@@ -381,6 +372,15 @@ object DMProcesso_ES: TDMProcesso_ES
       FieldName = 'STATUS'
       FixedChar = True
       Size = 1
+    end
+    object sdsOrdemServico_ProcQTD: TFloatField
+      FieldName = 'QTD'
+    end
+    object sdsOrdemServico_ProcQTD_RESTANTE: TFloatField
+      FieldName = 'QTD_RESTANTE'
+    end
+    object sdsOrdemServico_ProcQTD_CONCLUIDO: TFloatField
+      FieldName = 'QTD_CONCLUIDO'
     end
   end
   object dspOrdemServico_Proc: TDataSetProvider
@@ -422,20 +422,11 @@ object DMProcesso_ES: TDMProcesso_ES
       BlobType = ftMemo
       Size = 1
     end
-    object cdsOrdemServico_ProcQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object cdsOrdemServico_ProcID_SERVICO_OS: TIntegerField
       FieldName = 'ID_SERVICO_OS'
     end
     object cdsOrdemServico_ProcDTCONCLUIDO: TDateField
       FieldName = 'DTCONCLUIDO'
-    end
-    object cdsOrdemServico_ProcQTD_RESTANTE: TIntegerField
-      FieldName = 'QTD_RESTANTE'
-    end
-    object cdsOrdemServico_ProcQTD_CONCLUIDO: TIntegerField
-      FieldName = 'QTD_CONCLUIDO'
     end
     object cdsOrdemServico_ProcDTENTRADA: TDateField
       FieldName = 'DTENTRADA'
@@ -453,6 +444,15 @@ object DMProcesso_ES: TDMProcesso_ES
       FieldName = 'STATUS'
       FixedChar = True
       Size = 1
+    end
+    object cdsOrdemServico_ProcQTD: TFloatField
+      FieldName = 'QTD'
+    end
+    object cdsOrdemServico_ProcQTD_RESTANTE: TFloatField
+      FieldName = 'QTD_RESTANTE'
+    end
+    object cdsOrdemServico_ProcQTD_CONCLUIDO: TFloatField
+      FieldName = 'QTD_CONCLUIDO'
     end
   end
   object dsOrdemServico_Proc: TDataSource
@@ -504,9 +504,6 @@ object DMProcesso_ES: TDMProcesso_ES
     object qVerifica_ProcID_FUNCIONARIO: TIntegerField
       FieldName = 'ID_FUNCIONARIO'
     end
-    object qVerifica_ProcQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object qVerifica_ProcID_PROCESSO: TIntegerField
       FieldName = 'ID_PROCESSO'
     end
@@ -519,6 +516,9 @@ object DMProcesso_ES: TDMProcesso_ES
     object qVerifica_ProcNOME_PROCESSO: TStringField
       FieldName = 'NOME_PROCESSO'
       Size = 30
+    end
+    object qVerifica_ProcQTD: TFloatField
+      FieldName = 'QTD'
     end
   end
   object sdsBaixa_OS_Pausa: TSQLDataSet
@@ -711,20 +711,20 @@ object DMProcesso_ES: TDMProcesso_ES
         ParamType = ptInput
       end>
     SQL.Strings = (
-      ''
-      ''
       
-        'select aux.*, aux.qtd - coalesce(aux.qtd_concluido,0) qtd_restan' +
-        'te,'
+        'select aux.*, cast(aux.qtd - coalesce(aux.qtd_concluido,0) as Do' +
+        'uble precision) qtd_restante,'
       
-        ' coalesce(aux.qtd_Concluida_ant2,0) - coalesce(aux.qtd_ja_conclu' +
-        'ida,0) qtd_concluida_ant'
+        ' cast(coalesce(aux.qtd_Concluida_ant2,0) - coalesce(aux.qtd_ja_c' +
+        'oncluida,0) as Double precision) qtd_concluida_ant'
       '    from ('
       
         '    select proc.nome nome_processo, o.id_processo, o.status, o.q' +
         'td, o.ordem, os2.num_os,'
       '    o.item_proc, o.id_servico_os, O.ID, O.retrabalho,'
-      '    (select sum(b.qtd) qtd_concluido from baixa_os b'
+      
+        '    (select CAST(sum(b.qtd) AS double precision) qtd_concluido f' +
+        'rom baixa_os b'
       '      where b.num_os = :NUM_OS'
       '        and b.item_proc = :ITEM_PROC'
       '        and b.dtsaida is not null) qtd_concluido,'
@@ -736,13 +736,17 @@ object DMProcesso_ES: TDMProcesso_ES
       '        and b3.dtsaida is null'
       '        and b3.dtentrada is not null) qtd_ant,'
       '    '
-      '    (select sum(b4.qtd) from baixa_os b4'
+      
+        '    (select CAST(sum(b4.qtd) AS DOUBLE PRECISION) from baixa_os ' +
+        'b4'
       '      where b4.num_os = :NUM_OS'
       '        and b4.ordem = O.ordem - 1'
       '        and b4.dtsaida is not null'
       '        and b4.dtentrada is not null) qtd_Concluida_ant2,'
       ''
-      '    (select sum(b4.qtd) from baixa_os b4'
+      
+        '    (select CAST(sum(b4.qtd) AS DOUBLE PRECISION)  from baixa_os' +
+        ' b4'
       '      where b4.num_os = :NUM_OS'
       '        and b4.item_proc = :ITEM_PROC'
       '        and b4.dtsaida is not null'
@@ -774,9 +778,6 @@ object DMProcesso_ES: TDMProcesso_ES
       FixedChar = True
       Size = 1
     end
-    object qVerQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object qVerORDEM: TIntegerField
       FieldName = 'ORDEM'
     end
@@ -794,46 +795,39 @@ object DMProcesso_ES: TDMProcesso_ES
       FieldName = 'ID'
       Required = True
     end
-    object qVerQTD_CONCLUIDO: TFMTBCDField
-      FieldName = 'QTD_CONCLUIDO'
-      Precision = 15
-      Size = 0
-    end
-    object qVerQTD_EM_ABERTO: TIntegerField
-      FieldName = 'QTD_EM_ABERTO'
-    end
     object qVerDTENTRADA: TDateField
       FieldName = 'DTENTRADA'
     end
     object qVerHRENTRADA: TTimeField
       FieldName = 'HRENTRADA'
     end
-    object qVerQTD_ANT: TIntegerField
-      FieldName = 'QTD_ANT'
-    end
-    object qVerQTD_CONCLUIDA_ANT2: TFMTBCDField
-      FieldName = 'QTD_CONCLUIDA_ANT2'
-      Precision = 15
-      Size = 0
-    end
-    object qVerQTD_JA_CONCLUIDA: TFMTBCDField
-      FieldName = 'QTD_JA_CONCLUIDA'
-      Precision = 15
-      Size = 0
-    end
-    object qVerQTD_RESTANTE: TFMTBCDField
-      FieldName = 'QTD_RESTANTE'
-      Precision = 15
-      Size = 0
-    end
-    object qVerQTD_CONCLUIDA_ANT: TFMTBCDField
-      FieldName = 'QTD_CONCLUIDA_ANT'
-      Precision = 15
-      Size = 0
-    end
     object qVerRETRABALHO: TStringField
       FieldName = 'RETRABALHO'
       Size = 1
+    end
+    object qVerQTD: TFloatField
+      FieldName = 'QTD'
+    end
+    object qVerQTD_CONCLUIDO: TFloatField
+      FieldName = 'QTD_CONCLUIDO'
+    end
+    object qVerQTD_EM_ABERTO: TFloatField
+      FieldName = 'QTD_EM_ABERTO'
+    end
+    object qVerQTD_ANT: TFloatField
+      FieldName = 'QTD_ANT'
+    end
+    object qVerQTD_CONCLUIDA_ANT2: TFloatField
+      FieldName = 'QTD_CONCLUIDA_ANT2'
+    end
+    object qVerQTD_JA_CONCLUIDA: TFloatField
+      FieldName = 'QTD_JA_CONCLUIDA'
+    end
+    object qVerQTD_RESTANTE: TFloatField
+      FieldName = 'QTD_RESTANTE'
+    end
+    object qVerQTD_CONCLUIDA_ANT: TFloatField
+      FieldName = 'QTD_CONCLUIDA_ANT'
     end
   end
   object sdsPRC_Atualiza_OS: TSQLDataSet
@@ -951,10 +945,6 @@ object DMProcesso_ES: TDMProcesso_ES
         DataType = ftInteger
       end
       item
-        Name = 'Qtd'
-        DataType = ftInteger
-      end
-      item
         Name = 'ID_Processo'
         DataType = ftInteger
       end
@@ -989,11 +979,15 @@ object DMProcesso_ES: TDMProcesso_ES
         Name = 'RETRABALHO'
         DataType = ftString
         Size = 1
+      end
+      item
+        Name = 'Qtd'
+        DataType = ftFloat
       end>
     IndexDefs = <>
     Params = <>
     StoreDefs = True
-    Left = 208
+    Left = 209
     Top = 264
     Data = {
       7F0100009619E0BD0100000018000000120000000000030000007F0102494404
@@ -1001,13 +995,13 @@ object DMProcesso_ES: TDMProcesso_ES
       00000000094974656D5F50726F630400010000000000094474456E7472616461
       040006000000000007447453616964610400060000000000094872456E747261
       64610400070000000000074872536169646104000700000000000E49445F4675
-      6E63696F6E6172696F04000100000000000351746404000100000000000B4944
-      5F50726F636573736F04000100000000000D49445F5365727669636F5F4F5304
-      00010000000000054F7264656D04000100000000000A5469706F5F4261697861
-      0100490000000100055749445448020002000100034F62730100490000000100
-      05574944544802000200FA000D4E6F6D655F50726F636573736F010049000000
-      0100055749445448020002003C000B546F74616C5F486F726173080004000000
-      00000A524554524142414C484F01004900000001000557494454480200020001
+      6E63696F6E6172696F04000100000000000B49445F50726F636573736F040001
+      00000000000D49445F5365727669636F5F4F530400010000000000054F726465
+      6D04000100000000000A5469706F5F4261697861010049000000010005574944
+      5448020002000100034F6273010049000000010005574944544802000200FA00
+      0D4E6F6D655F50726F636573736F010049000000010005574944544802000200
+      3C000B546F74616C5F486F72617308000400000000000A524554524142414C48
+      4F01004900000001000557494454480200020001000351746408000400000000
       000000}
     object mBaixaAuxID: TIntegerField
       FieldName = 'ID'
@@ -1035,9 +1029,6 @@ object DMProcesso_ES: TDMProcesso_ES
     end
     object mBaixaAuxID_Funcionario: TIntegerField
       FieldName = 'ID_Funcionario'
-    end
-    object mBaixaAuxQtd: TIntegerField
-      FieldName = 'Qtd'
     end
     object mBaixaAuxID_Processo: TIntegerField
       FieldName = 'ID_Processo'
@@ -1067,6 +1058,9 @@ object DMProcesso_ES: TDMProcesso_ES
     object mBaixaAuxRETRABALHO: TStringField
       FieldName = 'RETRABALHO'
       Size = 1
+    end
+    object mBaixaAuxQtd: TFloatField
+      FieldName = 'Qtd'
     end
   end
   object dsmBaixaAux: TDataSource
@@ -1187,20 +1181,11 @@ object DMProcesso_ES: TDMProcesso_ES
       BlobType = ftMemo
       Size = 1
     end
-    object cdsOS_ProcQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object cdsOS_ProcID_SERVICO_OS: TIntegerField
       FieldName = 'ID_SERVICO_OS'
     end
     object cdsOS_ProcDTCONCLUIDO: TDateField
       FieldName = 'DTCONCLUIDO'
-    end
-    object cdsOS_ProcQTD_RESTANTE: TIntegerField
-      FieldName = 'QTD_RESTANTE'
-    end
-    object cdsOS_ProcQTD_CONCLUIDO: TIntegerField
-      FieldName = 'QTD_CONCLUIDO'
     end
     object cdsOS_ProcDTENTRADA: TDateField
       FieldName = 'DTENTRADA'
@@ -1233,6 +1218,15 @@ object DMProcesso_ES: TDMProcesso_ES
     object cdsOS_ProcNOME_SERVICO_OS: TStringField
       FieldName = 'NOME_SERVICO_OS'
       Size = 50
+    end
+    object cdsOS_ProcQTD: TFloatField
+      FieldName = 'QTD'
+    end
+    object cdsOS_ProcQTD_RESTANTE: TFloatField
+      FieldName = 'QTD_RESTANTE'
+    end
+    object cdsOS_ProcQTD_CONCLUIDO: TFloatField
+      FieldName = 'QTD_CONCLUIDO'
     end
   end
   object DSOS_Proc: TDataSource

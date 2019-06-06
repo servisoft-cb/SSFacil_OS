@@ -494,7 +494,6 @@ type
     dsmOS_Mat: TDataSource;
     mOS_Serv: TClientDataSet;
     mOS_ServNome_Servico: TStringField;
-    mOS_ServQtd: TIntegerField;
     mOS_ServVlrTotal: TFloatField;
     mOS_ServNome_Tecnico: TStringField;
     dsmOS_Serv: TDataSource;
@@ -520,7 +519,6 @@ type
     sdsOrdemServico_ProcQTD_HORAS: TFloatField;
     sdsOrdemServico_ProcDTENTREGA: TDateField;
     sdsOrdemServico_ProcOBS: TMemoField;
-    sdsOrdemServico_ProcQTD: TIntegerField;
     cdsOrdemServico_Proc: TClientDataSet;
     cdsOrdemServico_ItensREFERENCIA: TStringField;
     cdsOrdemServico_ItenssdsOrdemServico_Proc: TDataSetField;
@@ -531,7 +529,6 @@ type
     cdsOrdemServico_ProcQTD_HORAS: TFloatField;
     cdsOrdemServico_ProcDTENTREGA: TDateField;
     cdsOrdemServico_ProcOBS: TMemoField;
-    cdsOrdemServico_ProcQTD: TIntegerField;
     dsOrdemServico_Proc: TDataSource;
     sdsOrdemServico_ItensDM: TFloatField;
     cdsOrdemServico_ItensDM: TFloatField;
@@ -545,8 +542,6 @@ type
     cdsProcesso_GrupoNOME: TStringField;
     sdsOrdemServico_ItensID_PROCESSO_GRUPO: TIntegerField;
     cdsOrdemServico_ItensID_PROCESSO_GRUPO: TIntegerField;
-    sdsOrdemServico_ItensQTD: TIntegerField;
-    cdsOrdemServico_ItensQTD: TIntegerField;
     sdsProcesso: TSQLDataSet;
     dspProcesso: TDataSetProvider;
     cdsProcesso: TClientDataSet;
@@ -586,11 +581,7 @@ type
     sdsOrdemServicoNUM_ORCAMENTO: TIntegerField;
     cdsOrdemServicoNUM_ORCAMENTO: TIntegerField;
     sdsOrdemServico_ProcDTCONCLUIDO: TDateField;
-    sdsOrdemServico_ProcQTD_RESTANTE: TIntegerField;
-    sdsOrdemServico_ProcQTD_CONCLUIDO: TIntegerField;
     cdsOrdemServico_ProcDTCONCLUIDO: TDateField;
-    cdsOrdemServico_ProcQTD_RESTANTE: TIntegerField;
-    cdsOrdemServico_ProcQTD_CONCLUIDO: TIntegerField;
     sdsOrdemServico_ProcDTENTRADA: TDateField;
     sdsOrdemServico_ProcHRENTRADA: TTimeField;
     sdsOrdemServico_ProcHRCONCLUIDO: TTimeField;
@@ -631,7 +622,6 @@ type
     cdsCons_BaixaDTSAIDA: TDateField;
     cdsCons_BaixaHRSAIDA: TTimeField;
     cdsCons_BaixaID_FUNCIONARIO: TIntegerField;
-    cdsCons_BaixaQTD: TIntegerField;
     cdsCons_BaixaID_PROCESSO: TIntegerField;
     cdsCons_BaixaID_SERVICO_OS: TIntegerField;
     cdsCons_BaixaTOTAL_HORAS: TFloatField;
@@ -945,11 +935,7 @@ type
     cdsOrdemServico_ItensCALCULA_PI: TStringField;
     sdsOrdemServico_ItensCAMADA: TStringField;
     cdsOrdemServico_ItensCAMADA: TStringField;
-    sdsOrdemServico_ItensQTD_FATURADO: TIntegerField;
-    sdsOrdemServico_ItensQTD_RESTANTE: TIntegerField;
     sdsOrdemServico_ItensPRODUZIDO: TStringField;
-    cdsOrdemServico_ItensQTD_FATURADO: TIntegerField;
-    cdsOrdemServico_ItensQTD_RESTANTE: TIntegerField;
     cdsOrdemServico_ItensPRODUZIDO: TStringField;
     sdsOrdemServicoCOPIADO_PEDIDO: TStringField;
     cdsOrdemServicoCOPIADO_PEDIDO: TStringField;
@@ -1114,6 +1100,20 @@ type
     cdsPedido_ItemPERC_TRIBICMS: TFloatField;
     cdsPedido_ItemPERC_ICMS: TFloatField;
     cdsPedido_ItemPERC_IPI: TFloatField;
+    sdsOrdemServico_ItensQTD: TFloatField;
+    sdsOrdemServico_ItensQTD_FATURADO: TFloatField;
+    sdsOrdemServico_ItensQTD_RESTANTE: TFloatField;
+    cdsOrdemServico_ItensQTD: TFloatField;
+    cdsOrdemServico_ItensQTD_FATURADO: TFloatField;
+    cdsOrdemServico_ItensQTD_RESTANTE: TFloatField;
+    sdsOrdemServico_ProcQTD: TFloatField;
+    sdsOrdemServico_ProcQTD_RESTANTE: TFloatField;
+    sdsOrdemServico_ProcQTD_CONCLUIDO: TFloatField;
+    cdsOrdemServico_ProcQTD: TFloatField;
+    cdsOrdemServico_ProcQTD_RESTANTE: TFloatField;
+    cdsOrdemServico_ProcQTD_CONCLUIDO: TFloatField;
+    mOS_ServQtd: TFloatField;
+    cdsCons_BaixaQTD: TFloatField;
     procedure DataModuleCreate(Sender: TObject);
     procedure dspOrdemServicoUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError;
@@ -1246,7 +1246,7 @@ begin
     vMsgOS := vMsgOS + #13 + '*** Produto/Peça não informado!';
   if (trim(cdsOrdemServico_ItensNOME_PRODUTO.AsString) = '') and (cdsOrdemServicoTP_ORCAMENTO.AsString = 'R') then
     vMsgOS := vMsgOS + #13 + '*** Produto/Peça não informado!';
-  if cdsOrdemServico_ItensQTD.AsInteger <= 0 then
+  if cdsOrdemServico_ItensQTD.AsFloat <= 0 then
     vMsgOS := vMsgOS + #13 + '*** Quantidade não informada!';
   if (cdsOrdemServico_Proc.RecordCount <= 0) and (cdsOrdemServicoTP_ORCAMENTO.AsString <> 'R') then
     vMsgOS := vMsgOS + #13 + '*** Não foi informado Processo na OS!';
@@ -1265,7 +1265,7 @@ begin
     while not cdsOrdemServico_Proc.Eof do
     begin
       cdsOrdemServico_Proc.Edit;
-      cdsOrdemServico_ProcQTD.AsInteger := cdsOrdemServico_ItensQTD.AsInteger;
+      cdsOrdemServico_ProcQTD.AsFloat := StrToFloat(FormatFloat('0.0000',cdsOrdemServico_ItensQTD.AsFloat));
       if cdsOrdemServico_ProcDTENTREGA.AsDateTime <= 10 then
         cdsOrdemServico_ProcDTENTREGA.AsDateTime := cdsOrdemServicoDT_AGENDA.AsDateTime;
       cdsOrdemServico_ProcNUM_OS.AsInteger := cdsOrdemServicoNUM_OS.AsInteger;

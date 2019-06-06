@@ -83,11 +83,11 @@ type
     vDigitoIni : String;
     vNumPedido_Loc : Integer;
     vTipo_ES : String;
-    vQtd : Integer;
+    vQtd : Real;
     vNum_OS, vOrdem : Integer;
     vPausar : String;//P=Pausar   F=Finalizar Pausa
     vID_ParadaAnt : Integer;
-    vQtd_Restante, vQtd_Concluido : Integer;
+    vQtd_Restante, vQtd_Concluido : Real;
 
     vContador: Integer;
 
@@ -267,14 +267,14 @@ begin
   if fDMProcesso_ES.qVerNUM_OS.AsInteger <= 0 then
     vMSGLocal := '*** Nº da OS ou Processo não existe!*** '
   else
-  if (vOrdem > 1) and (fDMProcesso_ES.qVerQTD_ANT.AsInteger > 0) and (fDMProcesso_ES.qParametros_SerCONTROLAR_PROCESSO_ANT.AsString = 'S') then
+  if (vOrdem > 1) and (fDMProcesso_ES.qVerQTD_ANT.AsFloat > 0) and (fDMProcesso_ES.qParametros_SerCONTROLAR_PROCESSO_ANT.AsString = 'S') then
     vMSGLocal := '*** Existe um processo anterior que não foi feito a leitura!*** '
   else
   if fDMProcesso_ES.qVerSTATUS.AsString = 'F' then
     vMSGLocal := '*** Processo já esta concluído *** ' + #13 + #13 + #13
                     + 'OS: ' + IntToStr(vNum_OS)
   else
-  if (fDMProcesso_ES.qVerDTENTRADA.AsDateTime <= 10) and (vOrdem > 1) and (fDMProcesso_ES.qVerQTD_CONCLUIDA_ANT.AsInteger <= 0) and
+  if (fDMProcesso_ES.qVerDTENTRADA.AsDateTime <= 10) and (vOrdem > 1) and (fDMProcesso_ES.qVerQTD_CONCLUIDA_ANT.AsFloat <= 0) and
     (fDMProcesso_ES.qParametros_SerCONTROLAR_PROCESSO_ANT.AsString = 'S') then
     vMSGLocal := '*** Processo anterior não executado!';
 
@@ -399,7 +399,7 @@ begin
                                                                               fDMProcesso_ES.cdsBaixa_OSDTSAIDA.AsDateTime);
         end;
         fDMProcesso_ES.cdsBaixa_OSOBS.AsString := Memo2.Lines.Text;
-        if fDMProcesso_ES.qVerQTD_RESTANTE.AsInteger <> CurrencyEdit1.AsInteger then
+        if StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_RESTANTE.AsFloat)) <> CurrencyEdit1.Value then
           vMSGLocal := vMSGLocal + ' *** PROCESSO ENCERRADO PARCIALMENTE ***'
         else
           vMSGLocal := vMSGLocal + ' *** PROCESSO ENCERRADO ***' ;
@@ -409,7 +409,7 @@ begin
     if (vPausar <> 'P') and (vPausar <> 'F') then
     begin
       fDMProcesso_ES.cdsBaixa_OSID_FUNCIONARIO.AsInteger := fDMProcesso_ES.qFuncionarioCODIGO.AsInteger;
-      fDMProcesso_ES.cdsBaixa_OSQTD.AsInteger            := CurrencyEdit1.AsInteger;
+      fDMProcesso_ES.cdsBaixa_OSQTD.AsFloat              := CurrencyEdit1.Value;
       fDMProcesso_ES.cdsBaixa_OS.Post;
       fDMProcesso_ES.cdsBaixa_OS.ApplyUpdates(0);
     end;
@@ -462,7 +462,7 @@ begin
     fDMProcesso_ES.cdsOrdemServico_Proc.Edit;
     if vTipo_ES = 'E' then
     begin
-      fDMProcesso_ES.cdsOrdemServico_ProcQTD.AsInteger   := fDMProcesso_ES.qOS_ProcQTD_ITEM.AsInteger;
+      fDMProcesso_ES.cdsOrdemServico_ProcQTD.AsFloat     := StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qOS_ProcQTD_ITEM.AsFloat));
       fDMProcesso_ES.cdsOrdemServico_ProcSTATUS.AsString := 'I';
       if fDMProcesso_ES.cdsOrdemServico_ProcDTENTRADA.AsDateTime <= 10 then
       begin
@@ -550,15 +550,15 @@ begin
   if vTipo_ES = 'E' then
   begin
     if (fDMProcesso_ES.qVerORDEM.AsInteger = 1) then
-      CurrencyEdit1.AsInteger := fDMProcesso_ES.qVerQTD_RESTANTE.AsInteger
+      CurrencyEdit1.Value := StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_RESTANTE.AsFloat))
     else
-    if (fDMProcesso_ES.qVerQTD_CONCLUIDO.AsInteger > 0) and (fDMProcesso_ES.qVerQTD_RESTANTE.AsInteger > 0) then
-      CurrencyEdit1.AsInteger := fDMProcesso_ES.qVerQTD_RESTANTE.AsInteger
+    if (StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_CONCLUIDO.AsFloat)) > 0) and (StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_RESTANTE.AsFloat)) > 0) then
+      CurrencyEdit1.Value := StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_RESTANTE.AsFloat))
     else
-    if fDMProcesso_ES.qVerQTD_CONCLUIDA_ANT.AsInteger > 0 then
-      CurrencyEdit1.AsInteger := fDMProcesso_ES.qVerQTD_CONCLUIDA_ANT.AsInteger
+    if StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_CONCLUIDA_ANT.AsFloat)) > 0 then
+      CurrencyEdit1.Value := StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_CONCLUIDA_ANT.AsFloat))
     else
-      CurrencyEdit1.AsInteger := fDMProcesso_ES.qVerQTD_RESTANTE.AsInteger;
+      CurrencyEdit1.Value := StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_RESTANTE.AsFloat));
     btnConfirmar.Caption := 'Entrada';
     label15.Caption := 'Entrada em Produção';
     Label18.Visible := False;
@@ -598,8 +598,8 @@ begin
     else
       btnConfirmar.Caption := 'Finalizar';
     //CurrencyEdit1.AsInteger := fDMProcesso_ES.qOS_ProcQTD.AsInteger - fDMProcesso_ES.qOS_ProcQTD_CONCLUIDO.AsInteger;
-    CurrencyEdit1.AsInteger := fDMProcesso_ES.qVerQTD_EM_ABERTO.AsInteger;
-    Label13.Caption         := fDMProcesso_ES.qVerDTENTRADA.AsString + ' ' + fDMProcesso_ES.qVerHRENTRADA.AsString;
+    CurrencyEdit1.Value := StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_EM_ABERTO.AsFloat));
+    Label13.Caption     := fDMProcesso_ES.qVerDTENTRADA.AsString + ' ' + fDMProcesso_ES.qVerHRENTRADA.AsString;
     if vPausar = 'P' then
       Label15.Caption := 'Início da Pausa'
     else
@@ -642,7 +642,7 @@ end;
 
 procedure TfrmProcesso_ES.btnConfirmarClick(Sender: TObject);
 begin
-  if (CurrencyEdit1.AsInteger <= 0) and (vPausar <> 'P') and (vPausar <> 'F') then
+  if (CurrencyEdit1.Value <= 0) and (vPausar <> 'P') and (vPausar <> 'F') then
   begin
     MessageDlg('*** Quantidade não informada!' , mtError, [mbOk], 0);
     exit;
