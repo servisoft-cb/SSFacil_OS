@@ -61,9 +61,6 @@ object DMConsOS: TDMConsOS
     object cdsConsProcessoDTENTREGA: TDateField
       FieldName = 'DTENTREGA'
     end
-    object cdsConsProcessoQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object cdsConsProcessoDTENTRADA: TDateField
       FieldName = 'DTENTRADA'
     end
@@ -107,6 +104,9 @@ object DMConsOS: TDMConsOS
     object cdsConsProcessoNOME_CLIENTE: TStringField
       FieldName = 'NOME_CLIENTE'
       Size = 60
+    end
+    object cdsConsProcessoQTD: TFloatField
+      FieldName = 'QTD'
     end
   end
   object dsConsProcesso: TDataSource

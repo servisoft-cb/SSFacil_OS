@@ -266,7 +266,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     ProviderName = 'dspOrdemServico'
     OnNewRecord = cdsOrdemServicoNewRecord
     Left = 120
-    Top = 8
+    Top = 7
     object cdsOrdemServicoID: TIntegerField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -926,7 +926,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
         Size = 4
       end>
     SQLConnection = dmDatabase.scoDados
-    Left = 56
+    Left = 57
     Top = 80
     object sdsOrdemServico_ItensID: TIntegerField
       FieldName = 'ID'
@@ -1051,9 +1051,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object sdsOrdemServico_ItensID_PROCESSO_GRUPO: TIntegerField
       FieldName = 'ID_PROCESSO_GRUPO'
     end
-    object sdsOrdemServico_ItensQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object sdsOrdemServico_ItensOBS_CONDENTRADA: TMemoField
       FieldName = 'OBS_CONDENTRADA'
       BlobType = ftMemo
@@ -1131,12 +1128,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
       FieldName = 'CAMADA'
       Size = 25
     end
-    object sdsOrdemServico_ItensQTD_FATURADO: TIntegerField
-      FieldName = 'QTD_FATURADO'
-    end
-    object sdsOrdemServico_ItensQTD_RESTANTE: TIntegerField
-      FieldName = 'QTD_RESTANTE'
-    end
     object sdsOrdemServico_ItensPRODUZIDO: TStringField
       FieldName = 'PRODUZIDO'
       FixedChar = True
@@ -1144,6 +1135,15 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
     object sdsOrdemServico_ItensQTD_LIBERADA: TFloatField
       FieldName = 'QTD_LIBERADA'
+    end
+    object sdsOrdemServico_ItensQTD: TFloatField
+      FieldName = 'QTD'
+    end
+    object sdsOrdemServico_ItensQTD_FATURADO: TFloatField
+      FieldName = 'QTD_FATURADO'
+    end
+    object sdsOrdemServico_ItensQTD_RESTANTE: TFloatField
+      FieldName = 'QTD_RESTANTE'
     end
   end
   object cdsOrdemServico_Itens: TClientDataSet
@@ -1153,7 +1153,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     Params = <>
     BeforePost = cdsOrdemServico_ItensBeforePost
     OnNewRecord = cdsOrdemServico_ItensNewRecord
-    Left = 120
+    Left = 119
     Top = 80
     object cdsOrdemServico_ItensID: TIntegerField
       FieldName = 'ID'
@@ -1287,9 +1287,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object cdsOrdemServico_ItensID_PROCESSO_GRUPO: TIntegerField
       FieldName = 'ID_PROCESSO_GRUPO'
     end
-    object cdsOrdemServico_ItensQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object cdsOrdemServico_ItenssdsOrdemServico_Terc: TDataSetField
       FieldName = 'sdsOrdemServico_Terc'
     end
@@ -1376,12 +1373,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
       FieldName = 'CAMADA'
       Size = 25
     end
-    object cdsOrdemServico_ItensQTD_FATURADO: TIntegerField
-      FieldName = 'QTD_FATURADO'
-    end
-    object cdsOrdemServico_ItensQTD_RESTANTE: TIntegerField
-      FieldName = 'QTD_RESTANTE'
-    end
     object cdsOrdemServico_ItensPRODUZIDO: TStringField
       FieldName = 'PRODUZIDO'
       FixedChar = True
@@ -1392,6 +1383,15 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
     object cdsOrdemServico_ItensQTD_LIBERADA: TFloatField
       FieldName = 'QTD_LIBERADA'
+    end
+    object cdsOrdemServico_ItensQTD: TFloatField
+      FieldName = 'QTD'
+    end
+    object cdsOrdemServico_ItensQTD_FATURADO: TFloatField
+      FieldName = 'QTD_FATURADO'
+    end
+    object cdsOrdemServico_ItensQTD_RESTANTE: TFloatField
+      FieldName = 'QTD_RESTANTE'
     end
   end
   object dsOrdemServico_Itens: TDataSource
@@ -1625,6 +1625,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     Top = 182
   end
   object cdsFuncionario: TClientDataSet
+    Active = True
     Aggregates = <>
     IndexFieldNames = 'NOME'
     Params = <>
@@ -1960,7 +1961,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     Params = <>
     ProviderName = 'dspConsulta_Itens'
     Left = 560
-    Top = 72
+    Top = 71
     object cdsConsulta_ItensNUM_OS: TIntegerField
       FieldName = 'NUM_OS'
     end
@@ -2830,10 +2831,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
         Size = 100
       end
       item
-        Name = 'Qtd'
-        DataType = ftInteger
-      end
-      item
         Name = 'VlrTotal'
         DataType = ftFloat
       end
@@ -2841,6 +2838,10 @@ object DMCadOrdemServico: TDMCadOrdemServico
         Name = 'Nome_Tecnico'
         DataType = ftString
         Size = 100
+      end
+      item
+        Name = 'Qtd'
+        DataType = ftFloat
       end>
     IndexDefs = <
       item
@@ -2855,11 +2856,12 @@ object DMCadOrdemServico: TDMCadOrdemServico
     Left = 704
     Top = 456
     Data = {
-      920000009619E0BD010000001800000005000000000003000000920004497465
+      A80000009619E0BD010000001800000005000000000003000000A80004497465
       6D01004900000001000557494454480200020005000C4E6F6D655F5365727669
-      636F010049000000010005574944544802000200640003517464040001000000
-      000008566C72546F74616C08000400000000000C4E6F6D655F5465636E69636F
-      01004900000001000557494454480200020064000000}
+      636F010049000000010005574944544802000200640008566C72546F74616C08
+      000400000000000C4E6F6D655F5465636E69636F010049000000010005574944
+      544802000200640003517464080004000000000001000D44454641554C545F4F
+      524445520200820000000000}
     object mOS_ServItem: TStringField
       FieldName = 'Item'
       Size = 5
@@ -2868,15 +2870,15 @@ object DMCadOrdemServico: TDMCadOrdemServico
       FieldName = 'Nome_Servico'
       Size = 100
     end
-    object mOS_ServQtd: TIntegerField
-      FieldName = 'Qtd'
-    end
     object mOS_ServVlrTotal: TFloatField
       FieldName = 'VlrTotal'
     end
     object mOS_ServNome_Tecnico: TStringField
       FieldName = 'Nome_Tecnico'
       Size = 100
+    end
+    object mOS_ServQtd: TFloatField
+      FieldName = 'Qtd'
     end
   end
   object dsmOS_Serv: TDataSource
@@ -2937,9 +2939,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
       BlobType = ftMemo
       Size = 1
     end
-    object sdsOrdemServico_ProcQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object sdsOrdemServico_ProcID_SERVICO_OS: TIntegerField
       FieldName = 'ID_SERVICO_OS'
     end
@@ -2950,12 +2949,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
     object sdsOrdemServico_ProcDTCONCLUIDO: TDateField
       FieldName = 'DTCONCLUIDO'
-    end
-    object sdsOrdemServico_ProcQTD_RESTANTE: TIntegerField
-      FieldName = 'QTD_RESTANTE'
-    end
-    object sdsOrdemServico_ProcQTD_CONCLUIDO: TIntegerField
-      FieldName = 'QTD_CONCLUIDO'
     end
     object sdsOrdemServico_ProcDTENTRADA: TDateField
       FieldName = 'DTENTRADA'
@@ -2984,6 +2977,15 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object sdsOrdemServico_ProcUNIDADE: TStringField
       FieldName = 'UNIDADE'
       Size = 6
+    end
+    object sdsOrdemServico_ProcQTD: TFloatField
+      FieldName = 'QTD'
+    end
+    object sdsOrdemServico_ProcQTD_RESTANTE: TFloatField
+      FieldName = 'QTD_RESTANTE'
+    end
+    object sdsOrdemServico_ProcQTD_CONCLUIDO: TFloatField
+      FieldName = 'QTD_CONCLUIDO'
     end
   end
   object cdsOrdemServico_Proc: TClientDataSet
@@ -3025,9 +3027,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
       BlobType = ftMemo
       Size = 1
     end
-    object cdsOrdemServico_ProcQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object cdsOrdemServico_ProcID_SERVICO_OS: TIntegerField
       FieldName = 'ID_SERVICO_OS'
     end
@@ -3038,12 +3037,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
     object cdsOrdemServico_ProcDTCONCLUIDO: TDateField
       FieldName = 'DTCONCLUIDO'
-    end
-    object cdsOrdemServico_ProcQTD_RESTANTE: TIntegerField
-      FieldName = 'QTD_RESTANTE'
-    end
-    object cdsOrdemServico_ProcQTD_CONCLUIDO: TIntegerField
-      FieldName = 'QTD_CONCLUIDO'
     end
     object cdsOrdemServico_ProcDTENTRADA: TDateField
       FieldName = 'DTENTRADA'
@@ -3086,6 +3079,15 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object cdsOrdemServico_ProcUNIDADE: TStringField
       FieldName = 'UNIDADE'
       Size = 6
+    end
+    object cdsOrdemServico_ProcQTD: TFloatField
+      FieldName = 'QTD'
+    end
+    object cdsOrdemServico_ProcQTD_RESTANTE: TFloatField
+      FieldName = 'QTD_RESTANTE'
+    end
+    object cdsOrdemServico_ProcQTD_CONCLUIDO: TFloatField
+      FieldName = 'QTD_CONCLUIDO'
     end
   end
   object dsOrdemServico_Proc: TDataSource
@@ -3475,9 +3477,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object cdsCons_BaixaID_FUNCIONARIO: TIntegerField
       FieldName = 'ID_FUNCIONARIO'
     end
-    object cdsCons_BaixaQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object cdsCons_BaixaID_PROCESSO: TIntegerField
       FieldName = 'ID_PROCESSO'
     end
@@ -3545,6 +3544,9 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object cdsCons_BaixaRETRABALHO: TStringField
       FieldName = 'RETRABALHO'
       Size = 1
+    end
+    object cdsCons_BaixaQTD: TFloatField
+      FieldName = 'QTD'
     end
   end
   object dsCons_Baixa: TDataSource

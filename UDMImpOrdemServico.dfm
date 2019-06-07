@@ -108,8 +108,8 @@ object DMImpOrdemServico: TDMImpOrdemServico
     Aggregates = <>
     Params = <>
     ProviderName = 'dspOSImp'
-    Left = 104
-    Top = 22
+    Left = 103
+    Top = 21
     object cdsOSImpID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -156,9 +156,6 @@ object DMImpOrdemServico: TDMImpOrdemServico
     end
     object cdsOSImpID_PRODUTO: TIntegerField
       FieldName = 'ID_PRODUTO'
-    end
-    object cdsOSImpQTD: TIntegerField
-      FieldName = 'QTD'
     end
     object cdsOSImpDM: TFloatField
       FieldName = 'DM'
@@ -239,6 +236,9 @@ object DMImpOrdemServico: TDMImpOrdemServico
     object cdsOSImpCLI_CNPJ: TStringField
       FieldName = 'CLI_CNPJ'
     end
+    object cdsOSImpQTD: TFloatField
+      FieldName = 'QTD'
+    end
   end
   object dsOSImp: TDataSource
     DataSet = cdsOSImp
@@ -279,7 +279,7 @@ object DMImpOrdemServico: TDMImpOrdemServico
     Params = <>
     ProviderName = 'dspOsImp_Proc'
     Left = 104
-    Top = 70
+    Top = 69
     object cdsOsImp_ProcID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -305,9 +305,6 @@ object DMImpOrdemServico: TDMImpOrdemServico
       FieldName = 'OBS'
       BlobType = ftMemo
       Size = 1
-    end
-    object cdsOsImp_ProcQTD: TIntegerField
-      FieldName = 'QTD'
     end
     object cdsOsImp_ProcID_SERVICO_OS: TIntegerField
       FieldName = 'ID_SERVICO_OS'
@@ -350,6 +347,9 @@ object DMImpOrdemServico: TDMImpOrdemServico
       FixedChar = True
       Size = 12
     end
+    object cdsOsImp_ProcQTD: TFloatField
+      FieldName = 'QTD'
+    end
   end
   object dsOsImp_Proc: TDataSource
     DataSet = cdsOsImp_Proc
@@ -367,7 +367,6 @@ object DMImpOrdemServico: TDMImpOrdemServico
       'QTD_HORAS=QTD_HORAS'
       'DTENTREGA=DTENTREGA'
       'OBS=OBS'
-      'QTD=QTD'
       'ID_SERVICO_OS=ID_SERVICO_OS'
       'NOME_PROCESSO=NOME_PROCESSO'
       'TERCEIRO=TERCEIRO'
@@ -377,7 +376,8 @@ object DMImpOrdemServico: TDMImpOrdemServico
       'CODBARRA=CODBARRA'
       'ORDEM=ORDEM'
       'RETRABALHO=RETRABALHO'
-      'DESC_RETRABALHO=DESC_RETRABALHO')
+      'DESC_RETRABALHO=DESC_RETRABALHO'
+      'QTD=QTD')
     DataSet = cdsOsImp_Proc
     BCDToCurrency = False
     Left = 192
@@ -401,7 +401,6 @@ object DMImpOrdemServico: TDMImpOrdemServico
       'CLI_NOME=CLI_NOME'
       'CLI_FANTASIA=CLI_FANTASIA'
       'ID_PRODUTO=ID_PRODUTO'
-      'QTD=QTD'
       'DM=DM'
       'REFERENCIA=REFERENCIA'
       'NOME_PRODUTO=NOME_PRODUTO'
@@ -421,7 +420,8 @@ object DMImpOrdemServico: TDMImpOrdemServico
       'DTINICIO=DTINICIO'
       'sdsProdutoGerador=sdsProdutoGerador'
       'CONDPGTO=CONDPGTO'
-      'CLI_CNPJ=CLI_CNPJ')
+      'CLI_CNPJ=CLI_CNPJ'
+      'QTD=QTD')
     DataSet = cdsOSImp
     BCDToCurrency = False
     Left = 224

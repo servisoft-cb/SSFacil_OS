@@ -17,7 +17,6 @@ type
     cdsConsProcessoID_SERVICO_OS: TIntegerField;
     cdsConsProcessoQTD_HORAS: TFloatField;
     cdsConsProcessoDTENTREGA: TDateField;
-    cdsConsProcessoQTD: TIntegerField;
     cdsConsProcessoDTENTRADA: TDateField;
     cdsConsProcessoDTCONCLUIDO: TDateField;
     cdsConsProcessoHRENTRADA: TTimeField;
@@ -41,6 +40,7 @@ type
     qClienteCODIGO: TIntegerField;
     qClienteNOME: TStringField;
     qClienteCNPJ_CPF: TStringField;
+    cdsConsProcessoQTD: TFloatField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

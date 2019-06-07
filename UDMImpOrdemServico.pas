@@ -36,7 +36,6 @@ type
     cdsOSImpCLI_NOME: TStringField;
     cdsOSImpCLI_FANTASIA: TStringField;
     cdsOSImpID_PRODUTO: TIntegerField;
-    cdsOSImpQTD: TIntegerField;
     cdsOSImpDM: TFloatField;
     cdsOSImpREFERENCIA: TStringField;
     cdsOSImpNOME_PRODUTO: TStringField;
@@ -52,7 +51,6 @@ type
     cdsOsImp_ProcQTD_HORAS: TFloatField;
     cdsOsImp_ProcDTENTREGA: TDateField;
     cdsOsImp_ProcOBS: TMemoField;
-    cdsOsImp_ProcQTD: TIntegerField;
     cdsOsImp_ProcID_SERVICO_OS: TIntegerField;
     cdsOsImp_ProcNOME_PROCESSO: TStringField;
     cdsOsImp_ProcTERCEIRO: TStringField;
@@ -178,6 +176,8 @@ type
     cdsOrcSetorProcUNIDADE: TStringField;
     cdsOrcSetorUNIDADE: TStringField;
     cdsOSImpCLI_CNPJ: TStringField;
+    cdsOSImpQTD: TFloatField;
+    cdsOsImp_ProcQTD: TFloatField;
     procedure frxReport1Preview(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
     procedure cdsOrcSetorAfterScroll(DataSet: TDataSet);

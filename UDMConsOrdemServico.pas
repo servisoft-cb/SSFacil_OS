@@ -12,7 +12,6 @@ type
     cdsOrdemServico_Nota: TClientDataSet;
     cdsOrdemServico_NotaID: TIntegerField;
     cdsOrdemServico_NotaITEM: TIntegerField;
-    cdsOrdemServico_NotaQTD_OS: TIntegerField;
     cdsOrdemServico_NotaNUMNOTA: TIntegerField;
     cdsOrdemServico_NotaID_PEDIDO: TIntegerField;
     cdsOrdemServico_NotaITEM_PEDIDO: TIntegerField;
@@ -36,7 +35,6 @@ type
     dsOrdemServico_Ped: TDataSource;
     cdsOrdemServico_PedID: TIntegerField;
     cdsOrdemServico_PedITEM: TIntegerField;
-    cdsOrdemServico_PedQTD_OS: TIntegerField;
     cdsOrdemServico_PedID_PEDIDO: TIntegerField;
     cdsOrdemServico_PedITEM_PEDIDO: TIntegerField;
     cdsOrdemServico_PedNUM_PEDIDO: TIntegerField;
@@ -61,7 +59,6 @@ type
     cdsOrdemServicoQTD_FATURADO: TFloatField;
     cdsOrdemServicoID: TIntegerField;
     cdsOrdemServicoITEM: TIntegerField;
-    cdsOrdemServicoQTD_OS: TIntegerField;
     cdsOrdemServicoQTD_PEDIDO: TFloatField;
     cdsOrdemServicoQTD_RESTANTE: TFloatField;
     cdsOrdemServicoNOME_CLIENTE: TStringField;
@@ -71,6 +68,9 @@ type
     cdsOrdemServicoNUM_OS: TIntegerField;
     cdsOrdemServicoDATA_OS: TDateField;
     cdsOrdemServicoDTRECEBIMENTO: TDateField;
+    cdsOrdemServico_NotaQTD_OS: TFloatField;
+    cdsOrdemServico_PedQTD_OS: TFloatField;
+    cdsOrdemServicoQTD_OS: TFloatField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

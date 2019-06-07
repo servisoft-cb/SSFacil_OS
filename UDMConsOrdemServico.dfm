@@ -26,7 +26,7 @@ object DMConsOrdemServico: TDMConsOrdemServico
     Params = <>
     SQLConnection = dmDatabase.scoDados
     Left = 52
-    Top = 24
+    Top = 23
   end
   object dspOrdemServico_Nota: TDataSetProvider
     DataSet = sdsOrdemServico_Nota
@@ -46,9 +46,6 @@ object DMConsOrdemServico: TDMConsOrdemServico
     object cdsOrdemServico_NotaITEM: TIntegerField
       FieldName = 'ITEM'
       Required = True
-    end
-    object cdsOrdemServico_NotaQTD_OS: TIntegerField
-      FieldName = 'QTD_OS'
     end
     object cdsOrdemServico_NotaNUMNOTA: TIntegerField
       FieldName = 'NUMNOTA'
@@ -110,6 +107,9 @@ object DMConsOrdemServico: TDMConsOrdemServico
     object cdsOrdemServico_NotaDTRECEBIMENTO: TDateField
       FieldName = 'DTRECEBIMENTO'
     end
+    object cdsOrdemServico_NotaQTD_OS: TFloatField
+      FieldName = 'QTD_OS'
+    end
   end
   object dsOrdemServico_Nota: TDataSource
     DataSet = cdsOrdemServico_Nota
@@ -154,9 +154,6 @@ object DMConsOrdemServico: TDMConsOrdemServico
     object cdsOrdemServico_PedITEM: TIntegerField
       FieldName = 'ITEM'
       Required = True
-    end
-    object cdsOrdemServico_PedQTD_OS: TIntegerField
-      FieldName = 'QTD_OS'
     end
     object cdsOrdemServico_PedID_PEDIDO: TIntegerField
       FieldName = 'ID_PEDIDO'
@@ -209,6 +206,9 @@ object DMConsOrdemServico: TDMConsOrdemServico
     object cdsOrdemServico_PedDTRECEBIMENTO: TDateField
       FieldName = 'DTRECEBIMENTO'
     end
+    object cdsOrdemServico_PedQTD_OS: TFloatField
+      FieldName = 'QTD_OS'
+    end
   end
   object dsOrdemServico_Ped: TDataSource
     DataSet = cdsOrdemServico_Ped
@@ -258,9 +258,6 @@ object DMConsOrdemServico: TDMConsOrdemServico
       FieldName = 'ITEM'
       Required = True
     end
-    object cdsOrdemServicoQTD_OS: TIntegerField
-      FieldName = 'QTD_OS'
-    end
     object cdsOrdemServicoQTD_PEDIDO: TFloatField
       FieldName = 'QTD_PEDIDO'
     end
@@ -291,6 +288,9 @@ object DMConsOrdemServico: TDMConsOrdemServico
     end
     object cdsOrdemServicoDTRECEBIMENTO: TDateField
       FieldName = 'DTRECEBIMENTO'
+    end
+    object cdsOrdemServicoQTD_OS: TFloatField
+      FieldName = 'QTD_OS'
     end
   end
   object dsOrdemServico: TDataSource

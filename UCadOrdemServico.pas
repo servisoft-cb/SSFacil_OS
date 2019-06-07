@@ -350,7 +350,7 @@ type
     { Private declarations }
     vTipoNotaAnt: String;
     vID_Cliente_Ant: Integer;
-    vQtd_Ant: Integer;
+    vQtd_Ant: Real;
 
     fDMCadOrdemServico: TDMCadOrdemServico;
     ffrmEscolhe_Filial: TfrmEscolhe_Filial;
@@ -464,8 +464,9 @@ begin
 
   if not (fDMCadOrdemServico.cdsOrdemServico_Itens.State in [dsEdit,dsInsert]) then
     fDMCadOrdemServico.cdsOrdemServico_Itens.Edit;
-  if (vQtd_Ant <> fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsInteger) or (fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.IsNull) then
-    fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsInteger := fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsInteger;
+  if (StrToFloat(FormatFloat('0.0000',vQtd_Ant)) <> StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat)))
+    or (fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.IsNull) then
+    fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsFloat := fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat;
 
   fDMCadOrdemServico.prc_Gravar;
   vIDAux := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
@@ -660,7 +661,7 @@ begin
 
   prc_Posicionar_Cliente;
   //28/06/2018
-  vQtd_Ant := fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsInteger;
+  vQtd_Ant := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat));
 
   TS_Consulta.TabEnabled := False;
   prc_Habilitar_Campos;
@@ -1818,7 +1819,7 @@ begin
         fDMCadOrdemServico.prc_Inserir_Proc;
         fDMCadOrdemServico.cdsOrdemServico_ProcID_PROCESSO.AsInteger  := fDMCopiarOrc.cdsOrc_Setor_ProcID_PROCESSO.AsInteger;
         fDMCadOrdemServico.cdsOrdemServico_ProcNOME_PROCESSO.AsString := fDMCopiarOrc.cdsOrc_Setor_ProcDESCRICAO.AsString;
-        fDMCadOrdemServico.cdsOrdemServico_ProcQTD_HORAS.AsFloat := fDMCopiarOrc.cdsOrc_Setor_ProcTOTAL_HORA.AsFloat;
+        fDMCadOrdemServico.cdsOrdemServico_ProcQTD_HORAS.AsFloat      := fDMCopiarOrc.cdsOrc_Setor_ProcTOTAL_HORA.AsFloat;
         fDMCadOrdemServico.cdsOrdemServico_ProcID_PROCESSO.AsInteger  := fDMCopiarOrc.cdsOrc_Setor_ProcID_PROCESSO.AsInteger;
         fDMCadOrdemServico.cdsOrdemServico_Proc.Post;
         fDMCopiarOrc.cdsOrc_Setor_Proc.Next;
@@ -1832,8 +1833,8 @@ end;
 
 procedure TfrmCadOrdemServico.RzGroupBox2Enter(Sender: TObject);
 begin
-  DBEdit9.ReadOnly := (fDMCadOrdemServico.cdsOrdemServico_ItensQTD_FATURADO.AsInteger > 0);
-  vQtd_Ant         := fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsInteger;
+  DBEdit9.ReadOnly := (StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD_FATURADO.AsFloat)) > 0);
+  vQtd_Ant         := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat));
 end;
 
 function TfrmCadOrdemServico.fnc_Encerrar(ID: Integer): Boolean;
