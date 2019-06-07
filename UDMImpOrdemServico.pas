@@ -178,6 +178,16 @@ type
     cdsOSImpCLI_CNPJ: TStringField;
     cdsOSImpQTD: TFloatField;
     cdsOsImp_ProcQTD: TFloatField;
+    sdsOrcTerceiros: TSQLDataSet;
+    cdsOrcTerceiros: TClientDataSet;
+    dsOrcTerceiros: TDataSource;
+    frxOrcTerceiros: TfrxDBDataset;
+    dspOrcTerceiros: TDataSetProvider;
+    cdsOrcTerceirosID: TIntegerField;
+    cdsOrcTerceirosITEM: TIntegerField;
+    cdsOrcTerceirosITEM_TERC: TIntegerField;
+    cdsOrcTerceirosVALOR: TFloatField;
+    cdsOrcTerceirosNOME_TERCEIRO: TStringField;
     procedure frxReport1Preview(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
     procedure cdsOrcSetorAfterScroll(DataSet: TDataSet);

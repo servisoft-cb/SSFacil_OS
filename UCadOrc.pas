@@ -1062,6 +1062,10 @@ begin
   fDMImpOrdemServico.sdsOrcSetor.ParamByName('ITEM').AsInteger := 1;
   fDMImpOrdemServico.cdsOrcSetor.Open;
 
+  fDMImpOrdemServico.cdsOrcTerceiros.Close;
+  fDMImpOrdemServico.sdsOrcTerceiros.ParamByName('ID').AsInteger := fDMCadOrdemServico.cdsOrdemServico_ConsultaID.AsInteger;
+  fDMImpOrdemServico.cdsOrcTerceiros.Open;
+
   fDMImpOrdemServico.qRelatorios.Close;
   fDMImpOrdemServico.qRelatorios.ParamByName('F1').AsInteger := fDMCadOrdemServico.cdsOrdemServico_ConsultaFILIAL.AsInteger;
   fDMImpOrdemServico.qRelatorios.ParamByName('T1').AsInteger := 1;

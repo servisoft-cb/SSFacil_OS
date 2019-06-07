@@ -3,7 +3,7 @@ object DMImpOrdemServico: TDMImpOrdemServico
   OnCreate = DataModuleCreate
   Left = 372
   Top = 83
-  Height = 520
+  Height = 546
   Width = 643
   object frxReport1: TfrxReport
     Tag = 1
@@ -1100,5 +1100,71 @@ object DMImpOrdemServico: TDMImpOrdemServico
     DataSet = sdsOrcSetorProc
     Left = 72
     Top = 408
+  end
+  object sdsOrcTerceiros: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 'SELECT *'#13#10'FROM ORDEMSERVICO_TERC'#13#10'WHERE ID = :ID'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+    SQLConnection = dmDatabase.scoDados
+    Left = 40
+    Top = 456
+  end
+  object cdsOrcTerceiros: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspOrcTerceiros'
+    Left = 104
+    Top = 456
+    object cdsOrcTerceirosID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object cdsOrcTerceirosITEM: TIntegerField
+      FieldName = 'ITEM'
+      Required = True
+    end
+    object cdsOrcTerceirosITEM_TERC: TIntegerField
+      FieldName = 'ITEM_TERC'
+      Required = True
+    end
+    object cdsOrcTerceirosVALOR: TFloatField
+      FieldName = 'VALOR'
+      DisplayFormat = '0.00'
+    end
+    object cdsOrcTerceirosNOME_TERCEIRO: TStringField
+      FieldName = 'NOME_TERCEIRO'
+      Size = 60
+    end
+  end
+  object dsOrcTerceiros: TDataSource
+    DataSet = cdsOrcTerceiros
+    Left = 144
+    Top = 456
+  end
+  object frxOrcTerceiros: TfrxDBDataset
+    UserName = 'frxOrcTerceiros'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'ID=ID'
+      'ITEM=ITEM'
+      'ITEM_TERC=ITEM_TERC'
+      'VALOR=VALOR'
+      'NOME_TERCEIRO=NOME_TERCEIRO')
+    DataSource = dsOrcTerceiros
+    BCDToCurrency = False
+    Left = 184
+    Top = 456
+  end
+  object dspOrcTerceiros: TDataSetProvider
+    DataSet = sdsOrcTerceiros
+    Left = 72
+    Top = 456
   end
 end

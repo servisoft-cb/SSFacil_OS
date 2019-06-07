@@ -1625,7 +1625,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     Top = 182
   end
   object cdsFuncionario: TClientDataSet
-    Active = True
     Aggregates = <>
     IndexFieldNames = 'NOME'
     Params = <>
@@ -3312,6 +3311,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
     object cdsOrdemServico_TercVALOR: TFloatField
       FieldName = 'VALOR'
+      DisplayFormat = '0.00'
     end
     object cdsOrdemServico_TercNOME_TERCEIRO: TStringField
       FieldName = 'NOME_TERCEIRO'
