@@ -1089,6 +1089,7 @@ begin
   else vTipo_Frete := 'Sem Frete';
   end;
   fDMImpOrdemServico.frxReport1.Variables['Tipo_Frete'] := QuotedStr(vTipo_Frete);
+
   fDMImpOrdemServico.frxReport1.ShowReport;
   FreeAndNil(fDMImpOrdemServico);
 end;

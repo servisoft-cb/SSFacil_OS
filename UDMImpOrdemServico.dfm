@@ -15,7 +15,7 @@ object DMImpOrdemServico: TDMImpOrdemServico
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43066.746810972200000000
-    ReportOptions.LastChange = 43607.614159293980000000
+    ReportOptions.LastChange = 43622.678460347200000000
     ScriptLanguage = 'PascalScript'
     StoreInDFM = False
     OnPreview = frxReport1Preview

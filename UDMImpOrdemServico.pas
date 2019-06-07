@@ -4,7 +4,7 @@ interface
 
 uses
   SysUtils, Classes, FMTBcd, frxClass, frxDBSet, DB, DBClient, Provider, SqlExpr, frxChBox, frxExportMail, frxExportPDF,
-  frxOLE, frxBarcode;
+  frxOLE, frxBarcode, frxRich;
 
 
 type
@@ -203,6 +203,9 @@ begin
     if frxReport1.FindComponent('Picture1')<> nil then
       TfrxPictureView(frxReport1.FindComponent('Picture1')).Picture.LoadFromFile(qFilialENDLOGO.AsString);
   end;
+//  TfrxRichView(frxReport1.FindObject('Rich1')).RichEdit.SelectAll;
+//  TfrxRichView(frxReport1.FindObject('Rich1')).RichEdit.SelAttributes.Size := 9;
+//  TfrxRichView(frxReport1.FindObject('Rich1')).RichEdit.SelAttributes.Size := 6;
 end;
 
 procedure TDMImpOrdemServico.DataModuleCreate(Sender: TObject);
