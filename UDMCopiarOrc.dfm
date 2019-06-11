@@ -200,6 +200,7 @@ object DMCopiarOrc: TDMCopiarOrc
     Top = 8
   end
   object cdsOrc: TClientDataSet
+    Active = True
     Aggregates = <>
     IndexFieldNames = 'ID'
     Params = <>
@@ -525,9 +526,6 @@ object DMCopiarOrc: TDMCopiarOrc
     object sdsOrc_ItensID_PROCESSO_GRUPO: TIntegerField
       FieldName = 'ID_PROCESSO_GRUPO'
     end
-    object sdsOrc_ItensQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object sdsOrc_ItensOBS_CONDENTRADA: TMemoField
       FieldName = 'OBS_CONDENTRADA'
       BlobType = ftMemo
@@ -605,16 +603,22 @@ object DMCopiarOrc: TDMCopiarOrc
       FieldName = 'CAMADA'
       Size = 25
     end
-    object sdsOrc_ItensQTD_FATURADO: TIntegerField
-      FieldName = 'QTD_FATURADO'
-    end
-    object sdsOrc_ItensQTD_RESTANTE: TIntegerField
-      FieldName = 'QTD_RESTANTE'
-    end
     object sdsOrc_ItensPRODUZIDO: TStringField
       FieldName = 'PRODUZIDO'
       FixedChar = True
       Size = 1
+    end
+    object sdsOrc_ItensQTD: TFloatField
+      FieldName = 'QTD'
+    end
+    object sdsOrc_ItensQTD_FATURADO: TFloatField
+      FieldName = 'QTD_FATURADO'
+    end
+    object sdsOrc_ItensQTD_RESTANTE: TFloatField
+      FieldName = 'QTD_RESTANTE'
+    end
+    object sdsOrc_ItensQTD_LIBERADA: TFloatField
+      FieldName = 'QTD_LIBERADA'
     end
   end
   object cdsOrc_Itens: TClientDataSet
@@ -747,9 +751,6 @@ object DMCopiarOrc: TDMCopiarOrc
     object cdsOrc_ItensID_PROCESSO_GRUPO: TIntegerField
       FieldName = 'ID_PROCESSO_GRUPO'
     end
-    object cdsOrc_ItensQTD: TIntegerField
-      FieldName = 'QTD'
-    end
     object cdsOrc_ItensOBS_CONDENTRADA: TMemoField
       FieldName = 'OBS_CONDENTRADA'
       BlobType = ftMemo
@@ -827,12 +828,6 @@ object DMCopiarOrc: TDMCopiarOrc
       FieldName = 'CAMADA'
       Size = 25
     end
-    object cdsOrc_ItensQTD_FATURADO: TIntegerField
-      FieldName = 'QTD_FATURADO'
-    end
-    object cdsOrc_ItensQTD_RESTANTE: TIntegerField
-      FieldName = 'QTD_RESTANTE'
-    end
     object cdsOrc_ItensPRODUZIDO: TStringField
       FieldName = 'PRODUZIDO'
       FixedChar = True
@@ -846,6 +841,18 @@ object DMCopiarOrc: TDMCopiarOrc
     end
     object cdsOrc_ItenssdsOrc_Mat: TDataSetField
       FieldName = 'sdsOrc_Mat'
+    end
+    object cdsOrc_ItensQTD: TFloatField
+      FieldName = 'QTD'
+    end
+    object cdsOrc_ItensQTD_LIBERADA: TFloatField
+      FieldName = 'QTD_LIBERADA'
+    end
+    object cdsOrc_ItensQTD_FATURADO: TFloatField
+      FieldName = 'QTD_FATURADO'
+    end
+    object cdsOrc_ItensQTD_RESTANTE: TFloatField
+      FieldName = 'QTD_RESTANTE'
     end
   end
   object dsOrc_Itens: TDataSource

@@ -287,6 +287,7 @@ type
     procedure prc_Excluir_Registro;
     procedure prc_Gravar_Registro;
     procedure prc_Consultar(ID: Integer);
+    procedure prc_CalcTotalOS;
 
     procedure prc_Posiciona_OS;
     procedure prc_Posicionar_Cliente;
@@ -305,7 +306,7 @@ type
 
     procedure prc_Opcao_Tipo_Produto;
     procedure prc_Gerar_Ass_Usuario;
-    procedure prc_Monta_Grid;      
+    procedure prc_Monta_Grid;
   public
     { Public declarations }
     cTXTStream: TMemoryStream;
@@ -396,6 +397,11 @@ begin
   end;
   if cbTipoRevestimento.ItemIndex < 0 then
     fDMCadOrdemServico.cdsOrdemServico_ItensTIPO_REVESTIMENTO.AsString := '';
+
+  if fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString = 'S' then
+  begin
+    prc_CalcTotalOs;
+  end;
 
   fDMCadOrdemServico.prc_Gravar;
   vIDAux := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
@@ -494,7 +500,7 @@ begin
   begin
     TS_Produto.TabVisible := True;
     TS_Gerador.TabVisible := False;
-    prc_Monta_Grid;    
+    prc_Monta_Grid;
   end;
   fDMCadOrdemServico.qParametros_Prod.Active := True;
 end;
@@ -1426,7 +1432,7 @@ begin
   if Key = Vk_Return then
     DBEdit21Exit(Sender);
 end;
-  
+
 procedure TfrmCadOrc.prc_Monta_Grid;
 var
   i: Integer;
@@ -1445,6 +1451,48 @@ begin
     if (RzDBGrid13.Columns[i].FieldName = 'UNIDADE') then
       RzDBGrid13.Columns[i].Visible := (trim(fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString) = 'S');
   end;             
+end;
+
+procedure TfrmCadOrc.prc_CalcTotalOS;
+var
+  vVlrMat, vVlrServ, vVlrTerc: Real;
+begin
+  vVlrMat  := 0;
+  vVlrServ := 0;
+  vVlrTerc := 0;
+
+  if fDMCadOrdemServico.cdsOrdemServico_Custo.IsEmpty then
+    fDMCadOrdemServico.cdsOrdemServico_Custo.Insert
+  else
+    fDMCadOrdemServico.cdsOrdemServico_Custo.Edit;
+  fDMCadOrdemServico.cdsOrdemServico_CustoID.AsInteger := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
+
+
+  while not fDMCadOrdemServico.cdsOrdemServico_Mat.Eof do
+  begin
+    vVlrMat := vVlrMat + fDMCadOrdemServico.cdsOrdemServico_MatVLR_TOTAL.AsCurrency;
+    fDMCadOrdemServico.cdsOrdemServico_Mat.Next;
+  end;
+  while not fDMCadOrdemServico.cdsOrdemServico_Setor.Eof do
+  begin
+    vVlrMat := vVlrMat + fDMCadOrdemServico.cdsOrdemServico_SetorVLR_TOTAL.AsCurrency;
+    fDMCadOrdemServico.cdsOrdemServico_Setor.Next;
+  end;
+  while not fDMCadOrdemServico.cdsOrdemServico_Terc.Eof do
+  begin
+    vVlrMat := vVlrMat + fDMCadOrdemServico.cdsOrdemServico_TercVALOR.AsCurrency;
+    fDMCadOrdemServico.cdsOrdemServico_Mat.Next;
+  end;
+
+  fDMCadOrdemServico.cdsOrdemServicoVLR_TOTAL.AsCurrency := vVlrMat + vVlrServ + vVlrTerc;
+  fDMCadOrdemServico.cdsOrdemServico_CustoPRECO.AsCurrency         := fDMCadOrdemServico.cdsOrdemServicoVLR_TOTAL.AsCurrency;
+  fDMCadOrdemServico.cdsOrdemServico_CustoTOTAL_CUSTO.AsCurrency   := fDMCadOrdemServico.cdsOrdemServicoVLR_TOTAL.AsCurrency;
+  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_PROPOSTA.AsCurrency  := fDMCadOrdemServico.cdsOrdemServicoVLR_TOTAL.AsCurrency;
+  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_MATERIAIS.AsCurrency := vVlrMat;
+  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_PROCESSO.AsCurrency  := vVlrServ;
+  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_TERCEIRO.AsCurrency  := vVlrTerc;
+  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_SETOR.AsCurrency     := vVlrServ;
+  fDMCadOrdemServico.cdsOrdemServico_Custo.Post;
 end;
 
 end.

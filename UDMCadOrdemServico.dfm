@@ -686,6 +686,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
     object cdsOrdemServico_ConsultaVLR_PROPOSTA: TFloatField
       FieldName = 'VLR_PROPOSTA'
+      DisplayFormat = '0.00'
     end
     object cdsOrdemServico_ConsultaPRECO: TFloatField
       FieldName = 'PRECO'

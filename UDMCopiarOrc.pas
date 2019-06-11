@@ -44,7 +44,6 @@ type
     sdsOrc_ItensREFERENCIA: TStringField;
     sdsOrc_ItensDM: TFloatField;
     sdsOrc_ItensID_PROCESSO_GRUPO: TIntegerField;
-    sdsOrc_ItensQTD: TIntegerField;
     sdsOrc_ItensOBS_CONDENTRADA: TMemoField;
     sdsOrc_ItensDESCRICAO_SERVICO: TStringField;
     sdsOrc_ItensTIPO_REVESTIMENTO: TStringField;
@@ -67,8 +66,6 @@ type
     sdsOrc_ItensESCOPO: TMemoField;
     sdsOrc_ItensCALCULA_PI: TStringField;
     sdsOrc_ItensCAMADA: TStringField;
-    sdsOrc_ItensQTD_FATURADO: TIntegerField;
-    sdsOrc_ItensQTD_RESTANTE: TIntegerField;
     sdsOrc_ItensPRODUZIDO: TStringField;
     cdsOrc_Itens: TClientDataSet;
     dsOrc_Itens: TDataSource;
@@ -286,7 +283,6 @@ type
     cdsOrc_ItensREFERENCIA: TStringField;
     cdsOrc_ItensDM: TFloatField;
     cdsOrc_ItensID_PROCESSO_GRUPO: TIntegerField;
-    cdsOrc_ItensQTD: TIntegerField;
     cdsOrc_ItensOBS_CONDENTRADA: TMemoField;
     cdsOrc_ItensDESCRICAO_SERVICO: TStringField;
     cdsOrc_ItensTIPO_REVESTIMENTO: TStringField;
@@ -309,13 +305,19 @@ type
     cdsOrc_ItensESCOPO: TMemoField;
     cdsOrc_ItensCALCULA_PI: TStringField;
     cdsOrc_ItensCAMADA: TStringField;
-    cdsOrc_ItensQTD_FATURADO: TIntegerField;
-    cdsOrc_ItensQTD_RESTANTE: TIntegerField;
     cdsOrc_ItensPRODUZIDO: TStringField;
     cdsOrc_ItenssdsOrc_Setor: TDataSetField;
     cdsOrc_ItenssdsOrc_Terc: TDataSetField;
     cdsOrc_ItenssdsOrc_Mat: TDataSetField;
     cdsOrc_SetorsdsOrc_Setor_Proc: TDataSetField;
+    sdsOrc_ItensQTD: TFloatField;
+    sdsOrc_ItensQTD_FATURADO: TFloatField;
+    sdsOrc_ItensQTD_RESTANTE: TFloatField;
+    sdsOrc_ItensQTD_LIBERADA: TFloatField;
+    cdsOrc_ItensQTD: TFloatField;
+    cdsOrc_ItensQTD_LIBERADA: TFloatField;
+    cdsOrc_ItensQTD_FATURADO: TFloatField;
+    cdsOrc_ItensQTD_RESTANTE: TFloatField;
   private
     { Private declarations }
   public

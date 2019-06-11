@@ -1747,6 +1747,9 @@ begin
   if not (fDMCadOrdemServico.cdsOrdemServico_Itens.Active) then
     fDMCadOrdemServico.cdsOrdemServico_Itens.Open;
 
+  if fDMCadOrdemServico.cdsOrdemServicoID_CLIENTE.IsNull then
+    fDMCadOrdemServico.cdsOrdemServicoID_CLIENTE.AsInteger := fDMCopiarOrc.cdsOrcID_CLIENTE.AsInteger;
+
   //Copia os itens
   if fDMCadOrdemServico.cdsOrdemServico_Itens.IsEmpty then
   begin
