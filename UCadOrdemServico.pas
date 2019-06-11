@@ -465,7 +465,7 @@ begin
   if not (fDMCadOrdemServico.cdsOrdemServico_Itens.State in [dsEdit,dsInsert]) then
     fDMCadOrdemServico.cdsOrdemServico_Itens.Edit;
   if (StrToFloat(FormatFloat('0.0000',vQtd_Ant)) <> StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat)))
-    or (fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.IsNull) then
+    or (fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsFloat <= 0) then
     fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsFloat := fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat;
 
   fDMCadOrdemServico.prc_Gravar;
@@ -1834,7 +1834,7 @@ end;
 procedure TfrmCadOrdemServico.RzGroupBox2Enter(Sender: TObject);
 begin
   DBEdit9.ReadOnly := (StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD_FATURADO.AsFloat)) > 0);
-  vQtd_Ant         := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat));
+  //vQtd_Ant         := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat));
 end;
 
 function TfrmCadOrdemServico.fnc_Encerrar(ID: Integer): Boolean;
