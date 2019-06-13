@@ -22,8 +22,8 @@ object frmCadEnsaio: TfrmCadEnsaio
   object RzPageControl1: TRzPageControl
     Left = 0
     Top = 0
-    Width = 771
-    Height = 503
+    Width = 779
+    Height = 511
     ActivePage = TS_Consulta
     ActivePageDefault = TS_Consulta
     Align = alClient
@@ -39,9 +39,9 @@ object frmCadEnsaio: TfrmCadEnsaio
       Caption = 'Consulta'
       object SMDBGrid1: TSMDBGrid
         Left = 0
-        Top = 67
-        Width = 767
-        Height = 396
+        Top = 65
+        Width = 775
+        Height = 406
         Align = alClient
         Ctl3D = False
         DataSource = DMCadEnsaio.dsEnsaio
@@ -102,16 +102,17 @@ object frmCadEnsaio: TfrmCadEnsaio
       object Panel2: TPanel
         Left = 0
         Top = 0
-        Width = 767
-        Height = 32
+        Width = 775
+        Height = 30
         Align = alTop
         Color = clSilver
         TabOrder = 0
         object btnPesquisar: TNxButton
-          Left = 309
-          Top = 2
+          Left = 154
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Pesquisar'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -180,10 +181,11 @@ object frmCadEnsaio: TfrmCadEnsaio
           OnClick = btnPesquisarClick
         end
         object btnExcluir: TNxButton
-          Left = 156
-          Top = 2
+          Left = 307
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Excluir'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -254,10 +256,11 @@ object frmCadEnsaio: TfrmCadEnsaio
           OnClick = btnExcluirClick
         end
         object btnInserir: TNxButton
-          Left = 3
-          Top = 2
+          Left = 1
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Inserir'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -330,8 +333,8 @@ object frmCadEnsaio: TfrmCadEnsaio
       end
       object StaticText1: TStaticText
         Left = 0
-        Top = 463
-        Width = 767
+        Top = 471
+        Width = 775
         Height = 17
         Align = alBottom
         BorderStyle = sbsSunken
@@ -346,8 +349,8 @@ object frmCadEnsaio: TfrmCadEnsaio
       end
       object pnlPesquisa: TPanel
         Left = 0
-        Top = 32
-        Width = 767
+        Top = 30
+        Width = 775
         Height = 35
         Align = alTop
         Color = clSilver

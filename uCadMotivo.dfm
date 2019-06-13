@@ -39,9 +39,9 @@ object frmCadMotivo: TfrmCadMotivo
       Caption = 'Consulta'
       object SMDBGrid1: TSMDBGrid
         Left = 0
-        Top = 67
+        Top = 65
         Width = 775
-        Height = 404
+        Height = 406
         Align = alClient
         Ctl3D = False
         DataSource = DMCadMotivo.dsMotivo
@@ -95,15 +95,16 @@ object frmCadMotivo: TfrmCadMotivo
         Left = 0
         Top = 0
         Width = 775
-        Height = 32
+        Height = 30
         Align = alTop
         Color = clSilver
         TabOrder = 0
         object btnPesquisar: TNxButton
-          Left = 309
-          Top = 2
+          Left = 154
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Pesquisar'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -172,10 +173,11 @@ object frmCadMotivo: TfrmCadMotivo
           OnClick = btnPesquisarClick
         end
         object btnExcluir: TNxButton
-          Left = 156
-          Top = 2
+          Left = 307
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Excluir'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -246,10 +248,11 @@ object frmCadMotivo: TfrmCadMotivo
           OnClick = btnExcluirClick
         end
         object btnInserir: TNxButton
-          Left = 3
-          Top = 2
+          Left = 1
+          Top = 1
           Width = 153
-          Height = 30
+          Height = 28
+          Align = alLeft
           Caption = 'Inserir'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -338,7 +341,7 @@ object frmCadMotivo: TfrmCadMotivo
       end
       object pnlPesquisa: TPanel
         Left = 0
-        Top = 32
+        Top = 30
         Width = 775
         Height = 35
         Align = alTop
