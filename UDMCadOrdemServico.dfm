@@ -3,7 +3,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
   OnCreate = DataModuleCreate
   Left = 132
   Top = 12
-  Height = 714
+  Height = 733
   Width = 1145
   object sdsOrdemServico: TSQLDataSet
     NoMetadata = True
@@ -3410,24 +3410,24 @@ object DMCadOrdemServico: TDMCadOrdemServico
     CommandText = 
       'SELECT IT.dm, AUX.*,'#13#10'CASE'#13#10'  WHEN AUX.CALCULA_AREA = '#39'S'#39' THEN (' +
       '(AUX.TOTAL_HORAS - coalesce(AUX.TOTAL_HORAS_PAUSA,0)) * AUX.VLR_' +
-      'HORA * coalesce(IT.DM,1))'#13#10'  ELSE ((AUX.TOTAL_HORAS - coalesce(A' +
-      'UX.TOTAL_HORAS_PAUSA,0)) * AUX.VLR_HORA)'#13#10'  END VLR_CUSTO'#13#10'FROM ' +
-      '('#13#10'SELECT B.id_os, B.num_os, B.ordem, B.item_proc, B.dtentrada, ' +
-      'B.hrentrada,'#13#10'B.dtsaida, B.hrsaida, B.id_funcionario, B.qtd, B.i' +
-      'd_processo,'#13#10'B.id_servico_os, B.total_horas, B.tipo_baixa,'#13#10'f.no' +
-      'me nome_funcionario, f.num_cartao, p.nome nome_processo,'#13#10's.nome' +
-      ' nome_servico, P.calcula_area, S.vlr_hora, B.OBS, b.retrabalho,'#13 +
-      #10'(SELECT SUM(BP.total_horas) FROM BAIXA_OS_PAUSA BP'#13#10'   WHERE BP' +
-      '.id = B.ID) TOTAL_HORAS_PAUSA,'#13#10'case '#13#10'  when b.tipo_baixa = '#39'M'#39 +
-      ' then null'#13#10'  else b.dtentrada'#13#10'  end dtEntrada2,'#13#10'case '#13#10'  when' +
-      ' b.tipo_baixa = '#39'M'#39' then null'#13#10'  else b.hrentrada'#13#10'  end hrEntra' +
-      'da2,'#13#10'case '#13#10'  when b.tipo_baixa = '#39'M'#39' then null'#13#10'  else b.dtsai' +
-      'da'#13#10'  end dtSaida2,'#13#10'case'#13#10'  when b.tipo_baixa = '#39'M'#39' then null'#13#10 +
-      '  else b.hrsaida'#13#10'  end hrSaida2'#13#10'FROM baixa_os B'#13#10'inner join fu' +
-      'ncionario f'#13#10'on b.id_funcionario = f.codigo'#13#10'inner join processo' +
-      ' p'#13#10'on b.id_processo = p.id'#13#10'left join servico_os s'#13#10'on b.id_ser' +
-      'vico_os = s.id'#13#10'WHERE b.id_os = :ID_OS) AUX'#13#10'inner JOIN ordemser' +
-      'vico_itens IT'#13#10'ON AUX.ID_OS = IT.id'#13#10
+      'HORA * (aux.qtd * coalesce(IT.DM,1)))'#13#10'  ELSE ((AUX.TOTAL_HORAS ' +
+      '- coalesce(AUX.TOTAL_HORAS_PAUSA,0)) * AUX.VLR_HORA)'#13#10'  END VLR_' +
+      'CUSTO'#13#10'FROM ('#13#10'SELECT B.id_os, B.num_os, B.ordem, B.item_proc, B' +
+      '.dtentrada, B.hrentrada,'#13#10'B.dtsaida, B.hrsaida, B.id_funcionario' +
+      ', B.qtd, B.id_processo,'#13#10'B.id_servico_os, B.total_horas, B.tipo_' +
+      'baixa,'#13#10'f.nome nome_funcionario, f.num_cartao, p.nome nome_proce' +
+      'sso,'#13#10's.nome nome_servico, P.calcula_area, S.vlr_hora, B.OBS, b.' +
+      'retrabalho,'#13#10'(SELECT SUM(BP.total_horas) FROM BAIXA_OS_PAUSA BP'#13 +
+      #10'   WHERE BP.id = B.ID) TOTAL_HORAS_PAUSA,'#13#10'case '#13#10'  when b.tipo' +
+      '_baixa = '#39'M'#39' then null'#13#10'  else b.dtentrada'#13#10'  end dtEntrada2,'#13#10'c' +
+      'ase '#13#10'  when b.tipo_baixa = '#39'M'#39' then null'#13#10'  else b.hrentrada'#13#10' ' +
+      ' end hrEntrada2,'#13#10'case '#13#10'  when b.tipo_baixa = '#39'M'#39' then null'#13#10'  ' +
+      'else b.dtsaida'#13#10'  end dtSaida2,'#13#10'case'#13#10'  when b.tipo_baixa = '#39'M'#39 +
+      ' then null'#13#10'  else b.hrsaida'#13#10'  end hrSaida2'#13#10'FROM baixa_os B'#13#10'i' +
+      'nner join funcionario f'#13#10'on b.id_funcionario = f.codigo'#13#10'inner j' +
+      'oin processo p'#13#10'on b.id_processo = p.id'#13#10'left join servico_os s'#13 +
+      #10'on b.id_servico_os = s.id'#13#10'WHERE b.id_os = :ID_OS) AUX'#13#10'inner J' +
+      'OIN ordemservico_itens IT'#13#10'ON AUX.ID_OS = IT.id'#13#10
     MaxBlobSize = -1
     Params = <
       item
