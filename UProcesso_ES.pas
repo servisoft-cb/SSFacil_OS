@@ -475,15 +475,14 @@ begin
       if vPausar = 'P' then
         fDMProcesso_ES.cdsOrdemServico_ProcSTATUS.AsString := 'P'
       else
-      if vPausar = 'F' then
-        fDMProcesso_ES.cdsOrdemServico_ProcSTATUS.AsString := 'I'
+      if (vPausar = 'F') then 
+        (fDMProcesso_ES.cdsOrdemServico_ProcSTATUS.AsString := 'I')
       else
       begin
         fDMProcesso_ES.cdsOrdemServico_ProcSTATUS.AsString := 'F';
         fDMProcesso_ES.cdsOrdemServico_ProcDTCONCLUIDO.AsDateTime := fDMProcesso_ES.cdsBaixa_OSDTSAIDA.AsDateTime;
         fDMProcesso_ES.cdsOrdemServico_ProcHRCONCLUIDO.AsDateTime := fDMProcesso_ES.cdsBaixa_OSHRSAIDA.AsDateTime;
-        //fDMProcesso_ES.cdsOrdemServico_ProcQTD_CONCLUIDO.AsInteger := fDMProcesso_ES.cdsOrdemServico_ProcQTD_CONCLUIDO.AsInteger + CurrencyEdit1.AsInteger;
-        //fDMProcesso_ES.cdsOrdemServico_Proc
+        //fDMProcesso_ES.cdsOrdemServico_ProcQTD_CONCLUIDO.AsFloat := fDMProcesso_ES.cdsOrdemServico_ProcQTD_CONCLUIDO.AsFloat + CurrencyEdit1.Value;
       end;
     end;
     fDMProcesso_ES.cdsOrdemServico_Proc.Post;

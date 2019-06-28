@@ -22,8 +22,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
   object RzPageControl1: TRzPageControl
     Left = 0
     Top = 0
-    Width = 1039
-    Height = 661
+    Width = 1031
+    Height = 653
     ActivePage = TS_Cadastro
     ActivePageDefault = TS_Consulta
     Align = alClient
@@ -41,8 +41,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object SMDBGrid1: TSMDBGrid
         Left = 0
         Top = 117
-        Width = 1035
-        Height = 480
+        Width = 1027
+        Height = 472
         Align = alClient
         BorderStyle = bsNone
         Ctl3D = False
@@ -155,6 +155,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'ENTREGUE'
             Title.Alignment = taCenter
             Title.Caption = 'Entregue'
+            Width = 64
             Visible = True
           end
           item
@@ -170,6 +171,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'NUM_ORCAMENTO'
             Title.Alignment = taCenter
             Title.Caption = 'N'#186' Or'#231'amento'
+            Width = 64
             Visible = True
           end
           item
@@ -185,6 +187,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'PRODUZIDO'
             Title.Alignment = taCenter
             Title.Caption = 'Produzido'
+            Width = 64
             Visible = True
           end
           item
@@ -207,7 +210,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object pnlPesquisa: TPanel
         Left = 0
         Top = 30
-        Width = 1035
+        Width = 1027
         Height = 87
         Align = alTop
         Color = clSilver
@@ -435,8 +438,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       end
       object StaticText1: TStaticText
         Left = 0
-        Top = 621
-        Width = 1035
+        Top = 613
+        Width = 1027
         Height = 17
         Align = alBottom
         BorderStyle = sbsSunken
@@ -452,7 +455,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object Panel11: TPanel
         Left = 0
         Top = 0
-        Width = 1035
+        Width = 1027
         Height = 30
         Align = alTop
         Color = clSilver
@@ -840,8 +843,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       end
       object Panel4: TPanel
         Left = 0
-        Top = 597
-        Width = 1035
+        Top = 589
+        Width = 1027
         Height = 24
         Align = alBottom
         Color = clSilver
@@ -973,7 +976,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object Panel1: TPanel
         Left = 0
         Top = 0
-        Width = 1035
+        Width = 1027
         Height = 30
         Align = alTop
         Color = 8404992
@@ -1202,7 +1205,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object pnlCadastro: TPanel
         Left = 0
         Top = 30
-        Width = 1035
+        Width = 1027
         Height = 241
         Align = alTop
         Enabled = False
@@ -1210,7 +1213,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         object pnlNota: TPanel
           Left = 1
           Top = 1
-          Width = 1033
+          Width = 1025
           Height = 28
           Align = alTop
           Color = clSilver
@@ -1259,7 +1262,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         object pnlCliente: TPanel
           Left = 1
           Top = 29
-          Width = 1033
+          Width = 1025
           Height = 211
           Align = alClient
           BevelInner = bvLowered
@@ -1744,7 +1747,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object RzGroupBox2: TRzGroupBox
             Left = 2
             Top = 154
-            Width = 1029
+            Width = 1021
             Height = 55
             Align = alBottom
             BorderColor = clBlue
@@ -1891,12 +1894,12 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object RzPageControl2: TRzPageControl
         Left = 0
         Top = 271
-        Width = 1035
-        Height = 367
-        ActivePage = TS_CondEntrada
+        Width = 1027
+        Height = 359
+        ActivePage = TS_Processos
         ActivePageDefault = TS_CondEntrada
         Align = alClient
-        TabIndex = 0
+        TabIndex = 2
         TabOrder = 2
         OnChange = RzPageControl2Change
         FixedDimension = 19
@@ -1905,7 +1908,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel8: TPanel
             Left = 0
             Top = 218
-            Width = 1031
+            Width = 1023
             Height = 25
             Align = alTop
             BevelOuter = bvNone
@@ -1928,8 +1931,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object DBMemo6: TDBMemo
             Left = 0
             Top = 243
-            Width = 1031
-            Height = 101
+            Width = 1023
+            Height = 93
             Align = alClient
             BevelInner = bvNone
             BevelOuter = bvNone
@@ -1943,7 +1946,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel9: TPanel
             Left = 0
             Top = 49
-            Width = 1031
+            Width = 1023
             Height = 25
             Align = alTop
             BevelOuter = bvNone
@@ -1966,7 +1969,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object DBMemo7: TDBMemo
             Left = 0
             Top = 74
-            Width = 1031
+            Width = 1023
             Height = 144
             Align = alTop
             BevelInner = bvNone
@@ -1981,7 +1984,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel10: TPanel
             Left = 0
             Top = 0
-            Width = 1031
+            Width = 1023
             Height = 25
             Align = alTop
             BevelOuter = bvNone
@@ -2004,7 +2007,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel12: TPanel
             Left = 0
             Top = 25
-            Width = 1031
+            Width = 1023
             Height = 24
             Align = alTop
             TabOrder = 0
@@ -2027,8 +2030,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel17: TPanel
             Left = 0
             Top = 0
-            Width = 1031
-            Height = 344
+            Width = 1023
+            Height = 336
             Align = alClient
             Color = 16771022
             TabOrder = 0
@@ -2364,8 +2367,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object SMDBGrid2: TSMDBGrid
             Left = 0
             Top = 30
-            Width = 1031
-            Height = 211
+            Width = 1023
+            Height = 203
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Proc
@@ -2438,6 +2441,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
                 Expanded = False
                 FieldName = 'UNIDADE'
                 Title.Caption = 'Unidade'
+                Width = 64
                 Visible = True
               end
               item
@@ -2485,7 +2489,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel5: TPanel
             Left = 0
             Top = 0
-            Width = 1031
+            Width = 1023
             Height = 30
             Align = alTop
             BevelOuter = bvNone
@@ -2899,8 +2903,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           end
           object NxFlipPanel1: TNxFlipPanel
             Left = 0
-            Top = 241
-            Width = 1031
+            Top = 233
+            Width = 1023
             Height = 103
             Align = alBottom
             Caption = 'Obs do Processo'
@@ -2939,7 +2943,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             object DBMemo5: TDBMemo
               Left = 0
               Top = 18
-              Width = 1031
+              Width = 1023
               Height = 85
               Align = alClient
               BevelInner = bvNone
@@ -2958,7 +2962,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel6: TPanel
             Left = 0
             Top = 0
-            Width = 1031
+            Width = 1023
             Height = 32
             Align = alTop
             BevelOuter = bvNone
@@ -3237,8 +3241,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object SMDBGrid5: TSMDBGrid
             Left = 0
             Top = 32
-            Width = 1031
-            Height = 312
+            Width = 1023
+            Height = 304
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Mat
@@ -3346,7 +3350,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel7: TPanel
             Left = 0
             Top = 0
-            Width = 1031
+            Width = 1023
             Height = 28
             Align = alTop
             BevelOuter = bvNone
@@ -3586,8 +3590,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object SMDBGrid6: TSMDBGrid
             Left = 0
             Top = 28
-            Width = 1031
-            Height = 316
+            Width = 1023
+            Height = 308
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Terc
@@ -3652,8 +3656,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object SMDBGrid7: TSMDBGrid
             Left = 0
             Top = 30
-            Width = 1031
-            Height = 314
+            Width = 1023
+            Height = 306
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsCons_Baixa
@@ -3806,7 +3810,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel13: TPanel
             Left = 0
             Top = 0
-            Width = 1031
+            Width = 1023
             Height = 30
             Align = alTop
             BevelOuter = bvNone
@@ -3991,7 +3995,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel14: TPanel
             Left = 0
             Top = 0
-            Width = 1031
+            Width = 1023
             Height = 30
             Align = alTop
             BevelOuter = bvNone
@@ -4073,8 +4077,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object SMDBGrid8: TSMDBGrid
             Left = 0
             Top = 30
-            Width = 1031
-            Height = 314
+            Width = 1023
+            Height = 306
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsCons_Pausa
@@ -4271,7 +4275,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel15: TPanel
             Left = 0
             Top = 0
-            Width = 1031
+            Width = 1023
             Height = 30
             Align = alTop
             BevelOuter = bvNone
@@ -4438,8 +4442,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object Panel16: TPanel
             Left = 0
             Top = 0
-            Width = 1031
-            Height = 344
+            Width = 1023
+            Height = 336
             Align = alClient
             BevelOuter = bvNone
             Color = 16756912
@@ -4661,8 +4665,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object RzPageControl3: TRzPageControl
         Left = 0
         Top = 201
-        Width = 1035
-        Height = 437
+        Width = 1027
+        Height = 429
         ActivePage = TS_Acessorios
         Align = alClient
         BackgroundColor = 11206655
@@ -4696,8 +4700,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object SMDBGrid4: TSMDBGrid
             Left = 0
             Top = 0
-            Width = 1031
-            Height = 414
+            Width = 1023
+            Height = 406
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Mat
@@ -4814,6 +4818,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
                 Title.Alignment = taCenter
                 Title.Caption = 'Qtd. Faturada'
                 Title.Color = 16763025
+                Width = 64
                 Visible = True
               end>
           end
@@ -4823,8 +4828,8 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           object SMDBGrid3: TSMDBGrid
             Left = 0
             Top = 0
-            Width = 1031
-            Height = 414
+            Width = 1023
+            Height = 406
             Align = alClient
             Ctl3D = False
             Font.Charset = DEFAULT_CHARSET
@@ -4954,7 +4959,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object Panel2: TPanel
         Left = 0
         Top = 0
-        Width = 1035
+        Width = 1027
         Height = 30
         Align = alTop
         Color = clSilver
@@ -5047,7 +5052,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
       object Panel3: TPanel
         Left = 0
         Top = 30
-        Width = 1035
+        Width = 1027
         Height = 171
         Align = alTop
         TabOrder = 2
