@@ -551,11 +551,12 @@ begin
     if (fDMProcesso_ES.qVerORDEM.AsInteger = 1) then
       CurrencyEdit1.Value := StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_RESTANTE.AsFloat))
     else
-    if (StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_CONCLUIDO.AsFloat)) > 0) and (StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_RESTANTE.AsFloat)) > 0) then
-      CurrencyEdit1.Value := StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_RESTANTE.AsFloat))
-    else
+    //aqui 28/06/2019
     if StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_CONCLUIDA_ANT.AsFloat)) > 0 then
       CurrencyEdit1.Value := StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_CONCLUIDA_ANT.AsFloat))
+    else
+    if (StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_CONCLUIDO.AsFloat)) > 0) and (StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_RESTANTE.AsFloat)) > 0) then
+      CurrencyEdit1.Value := StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_RESTANTE.AsFloat))
     else
       CurrencyEdit1.Value := StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_RESTANTE.AsFloat));
     btnConfirmar.Caption := 'Entrada';

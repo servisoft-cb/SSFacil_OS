@@ -184,6 +184,7 @@ procedure TfrmCadOrdemServico_Lib.btnExcluir_ItensClick(Sender: TObject);
 var
   ID: TTransactionDesc;
   vQtdAux : Real;
+  vQtdFat : Real;
 begin
   if fDMCadOrdemServico.cdsOrdemServico_Lib.IsEmpty then
     exit;
@@ -192,6 +193,7 @@ begin
     exit;
 
   vQtdAux := 0;
+  vQtdFat := 0;
   fDMCadOrdemServico.cdsPedido_Item.Close;
   fDMCadOrdemServico.sdsPedido_Item.ParamByName('ID_OS_SERV').AsInteger := fDMCadOrdemServico.cdsOrdemServico_LibID.AsInteger;
   fDMCadOrdemServico.cdsPedido_Item.Open;
@@ -199,17 +201,20 @@ begin
   while not fDMCadOrdemServico.cdsPedido_Item.Eof do
   begin
     vQtdAux := StrToFloat(FormatFloat('0.0000',vQtdAux + fDMCadOrdemServico.cdsPedido_ItemQTD_LIBERADA.AsFloat));
+    vQtdFat := StrToFloat(FormatFloat('0.0000',vQtdFat + fDMCadOrdemServico.cdsPedido_ItemQTD_FATURADO.AsFloat));
     fDMCadOrdemServico.cdsPedido_Item.Next;
   end;
-  if vQtdAux < StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_LibQTD.AsFloat)) then
+  if vQtdFat > 0 then
   begin
-    MessageDlg('*** Pedido já foi Faturado!', mtInformation, [mbOk], 0);
-    exit;
+    if vQtdAux < StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_LibQTD.AsFloat)) then
+    begin
+      MessageDlg('*** Pedido já foi Faturado!', mtInformation, [mbOk], 0);
+      exit;
+    end;
   end;
   
   vSaldo_Lib := StrToFloat(FormatFloat('0.0000',vSaldo_Lib + fDMCadOrdemServico.cdsOrdemServico_LibQTD.AsFloat));
   Label5.Caption := FormatFloat('0.00##',vSaldo_Lib);
-
 
   ID.TransactionID  := 12;
   ID.IsolationLevel := xilREADCOMMITTED;
@@ -217,6 +222,8 @@ begin
   try
     fDMCadOrdemServico.cdsOrdemServico_Itens.Edit;
     fDMCadOrdemServico.cdsOrdemServico_ItensQTD_LIBERADA.AsFloat := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD_LIBERADA.AsFloat - fDMCadOrdemServico.cdsOrdemServico_LibQTD.AsFloat));
+    if fDMCadOrdemServico.cdsOrdemServico_ItensQTD_LIBERADA.AsFloat <= 0 then
+      fDMCadOrdemServico.cdsOrdemServico_ItensQTD_LIBERADA.AsFloat := StrToFloat(FormatFloat('0.0000',0));
     fDMCadOrdemServico.cdsOrdemServico_Itens.Post;
 
     fDMCadOrdemServico.prc_Abrir_Baixa_Pedido(0,fDMCadOrdemServico.cdsOrdemServicoID.AsInteger,fDMCadOrdemServico.cdsOrdemServico_LibITEM.AsInteger,fDMCadOrdemServico.cdsOrdemServico_LibITEM_LIB.AsInteger);

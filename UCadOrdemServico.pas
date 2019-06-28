@@ -589,6 +589,10 @@ begin
     fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText +
                                                                ' AND OS.ID = ' + IntToStr(ID)
   else
+  if CurrencyEdit1.AsInteger > 0 then
+    fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText +
+                                                                 ' AND OS.NUM_OS = ' + CurrencyEdit1.Text
+  else
   begin
     if NxDatePicker1.Text <> '' then
       fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText
@@ -600,9 +604,6 @@ begin
     if not(RxDBLookupCombo1.Text = '') then
       fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText +
                                                                  ' AND OS.FILIAL = ' + IntToStr(RxDBLookupCombo1.KeyValue);
-    if CurrencyEdit1.AsInteger > 0 then
-      fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText +
-                                                                 ' AND OS.NUM_OS = ' + CurrencyEdit1.Text;
     if Trim(Edit2.Text) <> '' then
       fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText
                                       + ' AND ((CLI.NOME LIKE ' + QuotedStr('%'+Edit2.Text+'%') + ')'
