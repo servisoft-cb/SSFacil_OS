@@ -41,6 +41,7 @@ type
     qClienteNOME: TStringField;
     qClienteCNPJ_CPF: TStringField;
     cdsConsProcessoQTD: TFloatField;
+    cdsConsProcessoRETRABALHO: TStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

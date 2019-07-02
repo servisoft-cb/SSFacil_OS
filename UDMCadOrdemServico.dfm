@@ -3423,11 +3423,11 @@ object DMCadOrdemServico: TDMCadOrdemServico
       'ase '#13#10'  when b.tipo_baixa = '#39'M'#39' then null'#13#10'  else b.hrentrada'#13#10' ' +
       ' end hrEntrada2,'#13#10'case '#13#10'  when b.tipo_baixa = '#39'M'#39' then null'#13#10'  ' +
       'else b.dtsaida'#13#10'  end dtSaida2,'#13#10'case'#13#10'  when b.tipo_baixa = '#39'M'#39 +
-      ' then null'#13#10'  else b.hrsaida'#13#10'  end hrSaida2'#13#10'FROM baixa_os B'#13#10'i' +
-      'nner join funcionario f'#13#10'on b.id_funcionario = f.codigo'#13#10'inner j' +
-      'oin processo p'#13#10'on b.id_processo = p.id'#13#10'left join servico_os s'#13 +
-      #10'on b.id_servico_os = s.id'#13#10'WHERE b.id_os = :ID_OS) AUX'#13#10'inner J' +
-      'OIN ordemservico_itens IT'#13#10'ON AUX.ID_OS = IT.id'#13#10
+      ' then null'#13#10'  else b.hrsaida'#13#10'  end hrSaida2, B.ID'#13#10'FROM baixa_o' +
+      's B'#13#10'inner join funcionario f'#13#10'on b.id_funcionario = f.codigo'#13#10'i' +
+      'nner join processo p'#13#10'on b.id_processo = p.id'#13#10'left join servico' +
+      '_os s'#13#10'on b.id_servico_os = s.id'#13#10'WHERE b.id_os = :ID_OS) AUX'#13#10'i' +
+      'nner JOIN ordemservico_itens IT'#13#10'ON AUX.ID_OS = IT.id'#13#10
     MaxBlobSize = -1
     Params = <
       item
@@ -3446,7 +3446,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
   end
   object cdsCons_Baixa: TClientDataSet
     Aggregates = <>
-    IndexFieldNames = 'ORDEM'
+    IndexFieldNames = 'ORDEM;ID'
     Params = <>
     ProviderName = 'dspCons_Baixa'
     Left = 368
@@ -3548,6 +3548,10 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
     object cdsCons_BaixaQTD: TFloatField
       FieldName = 'QTD'
+    end
+    object cdsCons_BaixaID: TIntegerField
+      FieldName = 'ID'
+      Required = True
     end
   end
   object dsCons_Baixa: TDataSource
@@ -5358,5 +5362,251 @@ object DMCadOrdemServico: TDMCadOrdemServico
     DataSet = sdsUnidade
     Left = 528
     Top = 368
+  end
+  object sdsBaixa_OS: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 'SELECT B.*'#13#10'FROM BAIXA_OS B'#13#10'WHERE B.ID = :ID'#13#10
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+    SQLConnection = dmDatabase.scoDados
+    Left = 960
+    Top = 276
+    object sdsBaixa_OSID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object sdsBaixa_OSDTENTRADA: TDateField
+      FieldName = 'DTENTRADA'
+    end
+    object sdsBaixa_OSHRENTRADA: TTimeField
+      FieldName = 'HRENTRADA'
+    end
+    object sdsBaixa_OSDTSAIDA: TDateField
+      FieldName = 'DTSAIDA'
+    end
+    object sdsBaixa_OSID_OS: TIntegerField
+      FieldName = 'ID_OS'
+    end
+    object sdsBaixa_OSNUM_OS: TIntegerField
+      FieldName = 'NUM_OS'
+    end
+    object sdsBaixa_OSITEM_PROC: TIntegerField
+      FieldName = 'ITEM_PROC'
+    end
+    object sdsBaixa_OSID_FUNCIONARIO: TIntegerField
+      FieldName = 'ID_FUNCIONARIO'
+    end
+    object sdsBaixa_OSID_PROCESSO: TIntegerField
+      FieldName = 'ID_PROCESSO'
+    end
+    object sdsBaixa_OSID_SERVICO_OS: TIntegerField
+      FieldName = 'ID_SERVICO_OS'
+    end
+    object sdsBaixa_OSHRSAIDA: TTimeField
+      FieldName = 'HRSAIDA'
+    end
+    object sdsBaixa_OSORDEM: TIntegerField
+      FieldName = 'ORDEM'
+    end
+    object sdsBaixa_OSTOTAL_HORAS: TFloatField
+      FieldName = 'TOTAL_HORAS'
+    end
+    object sdsBaixa_OSTIPO_BAIXA: TStringField
+      FieldName = 'TIPO_BAIXA'
+      FixedChar = True
+      Size = 1
+    end
+    object sdsBaixa_OSOBS: TStringField
+      FieldName = 'OBS'
+      Size = 250
+    end
+    object sdsBaixa_OSRETRABALHO: TStringField
+      FieldName = 'RETRABALHO'
+      Size = 1
+    end
+    object sdsBaixa_OSQTD: TFloatField
+      FieldName = 'QTD'
+    end
+  end
+  object dspBaixa_OS: TDataSetProvider
+    DataSet = sdsBaixa_OS
+    Left = 992
+    Top = 276
+  end
+  object cdsBaixa_OS: TClientDataSet
+    Aggregates = <>
+    IndexFieldNames = 'ID'
+    Params = <>
+    ProviderName = 'dspBaixa_OS'
+    Left = 1024
+    Top = 276
+    object cdsBaixa_OSID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object cdsBaixa_OSDTENTRADA: TDateField
+      FieldName = 'DTENTRADA'
+    end
+    object cdsBaixa_OSHRENTRADA: TTimeField
+      FieldName = 'HRENTRADA'
+    end
+    object cdsBaixa_OSDTSAIDA: TDateField
+      FieldName = 'DTSAIDA'
+    end
+    object cdsBaixa_OSID_OS: TIntegerField
+      FieldName = 'ID_OS'
+    end
+    object cdsBaixa_OSNUM_OS: TIntegerField
+      FieldName = 'NUM_OS'
+    end
+    object cdsBaixa_OSITEM_PROC: TIntegerField
+      FieldName = 'ITEM_PROC'
+    end
+    object cdsBaixa_OSID_FUNCIONARIO: TIntegerField
+      FieldName = 'ID_FUNCIONARIO'
+    end
+    object cdsBaixa_OSID_PROCESSO: TIntegerField
+      FieldName = 'ID_PROCESSO'
+    end
+    object cdsBaixa_OSID_SERVICO_OS: TIntegerField
+      FieldName = 'ID_SERVICO_OS'
+    end
+    object cdsBaixa_OSHRSAIDA: TTimeField
+      FieldName = 'HRSAIDA'
+    end
+    object cdsBaixa_OSORDEM: TIntegerField
+      FieldName = 'ORDEM'
+    end
+    object cdsBaixa_OSTOTAL_HORAS: TFloatField
+      FieldName = 'TOTAL_HORAS'
+    end
+    object cdsBaixa_OSTIPO_BAIXA: TStringField
+      FieldName = 'TIPO_BAIXA'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsBaixa_OSOBS: TStringField
+      FieldName = 'OBS'
+      Size = 250
+    end
+    object cdsBaixa_OSRETRABALHO: TStringField
+      FieldName = 'RETRABALHO'
+      Size = 1
+    end
+    object cdsBaixa_OSQTD: TFloatField
+      FieldName = 'QTD'
+    end
+  end
+  object sdsBaixa_OS_Pausa: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 'SELECT B.*'#13#10'FROM BAIXA_OS_PAUSA B'#13#10'WHERE B.ID = :ID'#13#10
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+    SQLConnection = dmDatabase.scoDados
+    Left = 960
+    Top = 324
+    object sdsBaixa_OS_PausaID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object sdsBaixa_OS_PausaITEM: TIntegerField
+      FieldName = 'ITEM'
+      Required = True
+    end
+    object sdsBaixa_OS_PausaID_PARADA: TIntegerField
+      FieldName = 'ID_PARADA'
+    end
+    object sdsBaixa_OS_PausaDTINICIO: TDateField
+      FieldName = 'DTINICIO'
+    end
+    object sdsBaixa_OS_PausaHRINICIO: TTimeField
+      FieldName = 'HRINICIO'
+    end
+    object sdsBaixa_OS_PausaDTFINAL: TDateField
+      FieldName = 'DTFINAL'
+    end
+    object sdsBaixa_OS_PausaHRFINAL: TTimeField
+      FieldName = 'HRFINAL'
+    end
+    object sdsBaixa_OS_PausaOBS: TStringField
+      FieldName = 'OBS'
+      Size = 250
+    end
+    object sdsBaixa_OS_PausaID_OS: TIntegerField
+      FieldName = 'ID_OS'
+    end
+    object sdsBaixa_OS_PausaORDEM: TIntegerField
+      FieldName = 'ORDEM'
+    end
+    object sdsBaixa_OS_PausaTOTAL_HORAS: TFloatField
+      FieldName = 'TOTAL_HORAS'
+    end
+    object sdsBaixa_OS_PausaITEM_PROC: TIntegerField
+      FieldName = 'ITEM_PROC'
+    end
+  end
+  object dspBaixa_OS_Pausa: TDataSetProvider
+    DataSet = sdsBaixa_OS_Pausa
+    Left = 992
+    Top = 324
+  end
+  object cdsBaixa_OS_Pausa: TClientDataSet
+    Aggregates = <>
+    IndexFieldNames = 'ID;ITEM'
+    Params = <>
+    ProviderName = 'dspBaixa_OS_Pausa'
+    Left = 1024
+    Top = 324
+    object cdsBaixa_OS_PausaID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object cdsBaixa_OS_PausaITEM: TIntegerField
+      FieldName = 'ITEM'
+      Required = True
+    end
+    object cdsBaixa_OS_PausaID_PARADA: TIntegerField
+      FieldName = 'ID_PARADA'
+    end
+    object cdsBaixa_OS_PausaDTINICIO: TDateField
+      FieldName = 'DTINICIO'
+    end
+    object cdsBaixa_OS_PausaHRINICIO: TTimeField
+      FieldName = 'HRINICIO'
+    end
+    object cdsBaixa_OS_PausaDTFINAL: TDateField
+      FieldName = 'DTFINAL'
+    end
+    object cdsBaixa_OS_PausaHRFINAL: TTimeField
+      FieldName = 'HRFINAL'
+    end
+    object cdsBaixa_OS_PausaOBS: TStringField
+      FieldName = 'OBS'
+      Size = 250
+    end
+    object cdsBaixa_OS_PausaID_OS: TIntegerField
+      FieldName = 'ID_OS'
+    end
+    object cdsBaixa_OS_PausaORDEM: TIntegerField
+      FieldName = 'ORDEM'
+    end
+    object cdsBaixa_OS_PausaTOTAL_HORAS: TFloatField
+      FieldName = 'TOTAL_HORAS'
+    end
+    object cdsBaixa_OS_PausaITEM_PROC: TIntegerField
+      FieldName = 'ITEM_PROC'
+    end
   end
 end

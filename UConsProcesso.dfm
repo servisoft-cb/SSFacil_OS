@@ -439,9 +439,18 @@ object frmConsProcesso: TfrmConsProcesso
         WidthOfIndicator = 11
         DefaultRowHeight = 18
         ScrollBars = ssHorizontal
-        ColCount = 12
+        ColCount = 13
         RowCount = 2
         Columns = <
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'RETRABALHO'
+            Title.Alignment = taCenter
+            Title.Caption = 'Retrabalho'
+            Title.Color = 12058551
+            Visible = True
+          end
           item
             Alignment = taCenter
             Expanded = False

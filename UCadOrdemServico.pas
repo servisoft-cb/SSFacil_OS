@@ -266,6 +266,7 @@ type
     DBEdit34: TDBEdit;
     Shape14: TShape;
     Label77: TLabel;
+    btnExcluir_Realizado: TNxButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
@@ -346,6 +347,7 @@ type
     procedure DBEdit21Exit(Sender: TObject);
     procedure SMDBGrid1KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure btnExcluir_RealizadoClick(Sender: TObject);
   private
     { Private declarations }
     vTipoNotaAnt: String;
@@ -1580,8 +1582,7 @@ begin
   end;
 
   ffrmAjustar_OS := TfrmAjustar_OS.Create(self);
-  ffrmAjustar_OS.vNum_OS    := fDMCadOrdemServico.cdsCons_BaixaNUM_OS.AsInteger;
-  ffrmAjustar_OS.vItem_Proc := fDMCadOrdemServico.cdsCons_BaixaITEM_PROC.AsInteger;
+  ffrmAjustar_OS.vID_Baixa  := fDMCadOrdemServico.cdsCons_BaixaID.AsInteger;
   ffrmAjustar_OS.ShowModal;
   FreeAndNil(ffrmAjustar_OS);
 
@@ -1956,6 +1957,64 @@ begin
     ffrmConsOrdemServico.ShowModal;
     FreeAndNil(ffrmConsOrdemServico);
   end;
+end;
+
+procedure TfrmCadOrdemServico.btnExcluir_RealizadoClick(Sender: TObject);
+var
+  ID: TTransactionDesc;
+begin
+  if fDMCadOrdemServico.cdsOrdemServico.State in [dsEdit,dsInsert] then
+  begin
+    MessageDlg('*** OS não pode estar em modo de edição ou inclusão!', mtInformation, [mbOk], 0);
+    exit;
+  end;
+
+  if not(fDMCadOrdemServico.cdsCons_Baixa.Active) or (fDMCadOrdemServico.cdsCons_Baixa.IsEmpty) then
+    exit;
+
+  if fDMCadOrdemServico.cdsCons_BaixaTOTAL_HORAS_PAUSA.AsFloat > 0 then
+  begin
+    if MessageDlg('Registro com Pausa, deseja excluir a Pausa junto?',mtConfirmation,[mbYes,mbNo],0) = mrNo then
+      exit;
+  end
+  else
+  if MessageDlg('Deseja excluir o registro?',mtConfirmation,[mbYes,mbNo],0) = mrNo then
+    exit;
+
+  ID.TransactionID  := 1;
+  ID.IsolationLevel := xilREADCOMMITTED;
+  dmDatabase.scoDados.StartTransaction(ID);
+
+  try
+
+    fDMCadOrdemServico.cdsBaixa_OS.Close;
+    fDMCadOrdemServico.sdsBaixa_OS.ParamByName('ID').AsInteger    := fDMCadOrdemServico.cdsCons_BaixaID.AsInteger;
+    fDMCadOrdemServico.cdsBaixa_OS.Open;
+    if not fDMCadOrdemServico.cdsBaixa_OS.IsEmpty then
+    fDMCadOrdemServico.cdsBaixa_OS.Delete;
+    fDMCadOrdemServico.cdsBaixa_OS_Pausa.Close;
+    fDMCadOrdemServico.sdsBaixa_OS_Pausa.ParamByName('ID').AsInteger := fDMCadOrdemServico.cdsCons_BaixaID.AsInteger;
+    fDMCadOrdemServico.cdsBaixa_OS_Pausa.Open;
+    fDMCadOrdemServico.cdsBaixa_OS_Pausa.First;
+    while not fDMCadOrdemServico.cdsBaixa_OS_Pausa.Eof do
+      fDMCadOrdemServico.cdsBaixa_OS_Pausa.Delete;
+    fDMCadOrdemServico.cdsBaixa_OS.ApplyUpdates(0);
+    fDMCadOrdemServico.cdsBaixa_OS_Pausa.ApplyUpdates(0);
+    dmDatabase.scoDados.Commit(ID);
+
+    fDMCadOrdemServico.cdsOrdemServico_Itens.Close;
+    fDMCadOrdemServico.cdsOrdemServico_Itens.Open;
+
+  except
+    dmDatabase.scoDados.Rollback(ID);
+    raise;
+  end;
+
+  fDMCadOrdemServico.sdsPRC_Atualiza_OS.Close;
+  fDMCadOrdemServico.sdsPRC_Atualiza_OS.ParamByName('P_ID').AsInteger := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
+  fDMCadOrdemServico.sdsPRC_Atualiza_OS.ExecSQL;
+
+  btnConsultar_RealizadoClick(Sender);
 end;
 
 end.

@@ -40,12 +40,11 @@ type
     { Private declarations }
     fDMProcesso_ES: TDMProcesso_ES;
     procedure prc_Abrir_cdsBaixa_OS;
-    procedure prc_Grava_mBaixaAux;        
+    procedure prc_Grava_mBaixaAux;
   public
     { Public declarations }
-    vNum_OS : Integer;
-    vItem_Proc : Integer;
-    
+    vID_Baixa : Integer;
+
   end;
 
 var
@@ -77,10 +76,7 @@ end;
 
 procedure TfrmAjustar_OS.prc_Abrir_cdsBaixa_OS;
 begin
-  fDMProcesso_ES.cdsBaixa_OS.Close;
-  fDMProcesso_ES.sdsBaixa_OS.ParamByName('NUM_OS').AsInteger    := vNum_OS;
-  fDMProcesso_ES.sdsBaixa_OS.ParamByName('ITEM_PROC').AsInteger := vItem_Proc;
-  fDMProcesso_ES.cdsBaixa_OS.Open;
+  fDMProcesso_ES.prc_Abrir_cdsBaixa_OS(vID_Baixa,0,0);
 end;
 
 procedure TfrmAjustar_OS.prc_Grava_mBaixaAux;
@@ -108,7 +104,15 @@ end;
 procedure TfrmAjustar_OS.btnConfirmarClick(Sender: TObject);
 var
   ID: TTransactionDesc;
+  vMSGAux : string;
 begin
+  vMSGAux := '';
+  if (fDMProcesso_ES.mBaixaAuxDtEntrada.AsDateTime <= 10) and (fDMProcesso_ES.mBaixaAuxDtSaida.AsDateTime > 10) then
+    vMSGAux := '*** Data de entrada não informada!';
+
+  if (fDMProcesso_ES.mBaixaAuxDtEntrada.AsDateTime <= 10) and (fDMProcesso_ES.mBaixaAuxDtSaida.AsDateTime > 10) then
+    vMSGAux := '*** Data de entrada não informada!';
+
   if (fDMProcesso_ES.mBaixaAuxDtSaida.AsDateTime <= 10) and (StrToFloat(FormatFloat('0.00',fDMProcesso_ES.mBaixaAuxTotal_Horas.AsFloat)) <= 0) then
   begin
     MessageDlg('*** Data final ou total de horas não informados!', mtError, [mbOk], 0);

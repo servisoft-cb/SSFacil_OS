@@ -151,81 +151,6 @@ begin
   end;
 end;
 
-{function TfrmProcesso_ES.fnc_Verifica_OS: Boolean;
-var
-  vAux : String;
-  sds: TSQLDataSet;
-begin
-  Result   := False;
-  vOrdem   := 0;
-  vNum_OS  := 0;
-  vTipo_ES := '';
-
-  if CurrencyEdit2.AsInteger <= 0 then
-  begin
-    MessageDlg('*** Funcionário não informado!', mtError, [mbOk], 0);
-    exit;
-  end;
-
-  //Edit1.Text := Monta_Numero(Edit1.Text,0);
-  vAux       := Monta_Numero(Edit1.Text,12);
-  //if Length(Edit1.Text) < 12 then
-  //begin
-  //  MessageDlg('*** Código informado incorreto!', mtError, [mbOk], 0);
-  //  exit;
-  //end;
-
-  //vNum_OS    := StrToInt(copy(Edit1.Text,1,10));
-  //vItem_Proc := StrToInt(copy(Edit1.Text,11,2));
-  vNum_OS := StrToInt(copy(vAux,1,10));
-  vOrdem  := StrToInt(copy(vAux,11,2));
-
-  //Verifica se tem Processo aberto para essa OS
-  fDMProcesso_ES.qVerifica_Proc.Close;
-  fDMProcesso_ES.qVerifica_Proc.ParamByName('NUM_OS').AsInteger := vNum_OS;
-  fDMProcesso_ES.qVerifica_Proc.Open;
-  if (fDMProcesso_ES.qVerifica_ProcITEM_PROC.AsInteger > 0) and (fDMProcesso_ES.qVerifica_ProcITEM_PROC.AsInteger <> vOrdem) then
-  begin
-    MessageDlg('*** OS com o processo <' + fDMProcesso_ES.qVerifica_ProcNOME_PROCESSO.AsString +'> em aberto!' , mtError, [mbOk], 0);
-    exit;
-  end;
-  //************
-
-
-  vMSGLocal := '';
-  fDMProcesso_ES.qOS_Proc.Close;
-  fDMProcesso_ES.qOS_Proc.ParamByName('NUM_OS').AsInteger := vNum_OS;
-  fDMProcesso_ES.qOS_Proc.ParamByName('ORDEM').AsInteger  := vOrdem;
-  fDMProcesso_ES.qOS_Proc.Open;
-
-  if fDMProcesso_ES.qOS_ProcID.AsInteger <= 0 then
-    Label5.Caption := '*** Nº da OS ou Processo não existe!*** '
-  else
-  if (vOrdem > 1) and (fDMProcesso_ES.qOS_ProcQTD_CONCLUIDO_ANT.AsInteger <= 0) then
-  begin
-    Label5.Caption := '*** Existe um processo anterior que não foi feito a leitura!*** '
-  end
-  else
-  if fDMProcesso_ES.qOS_ProcDTCONCLUIDO.AsDateTime > 10 then
-    Label5.Caption := '*** Processo já esta concluído *** ' + #13 + #13 + #13
-                    + 'OS: ' + IntToStr(vNum_OS) + #13 + #13
-                    + 'Processo: ' + fDMProcesso_ES.qOS_ProcNOME_PROCESSO.AsString + #13 + #13
-  else
-  begin
-    fDMProcesso_ES.cdsBaixa_OS.Close;
-    fDMProcesso_ES.sdsBaixa_OS.ParamByName('NUM_OS').AsInteger := vNum_OS;
-    fDMProcesso_ES.sdsBaixa_OS.ParamByName('ORDEM').AsInteger  := vOrdem;
-    fDMProcesso_ES.cdsBaixa_OS.Open;
-    fDMProcesso_ES.cdsBaixa_OS.Last;
-
-    Result := True;
-    if fDMProcesso_ES.qOS_ProcDTENTRADA.IsNull then
-      vTipo_ES := 'E'
-    else
-      vTipo_ES := 'S';
-  end;
-end;}
-
 function TfrmProcesso_ES.fnc_Verifica_OS: Boolean;
 var
   vAux : String;
@@ -298,10 +223,7 @@ begin
     exit;
   end;
 
-  fDMProcesso_ES.cdsBaixa_OS.Close;
-  fDMProcesso_ES.sdsBaixa_OS.ParamByName('NUM_OS').AsInteger    := vNum_OS;
-  fDMProcesso_ES.sdsBaixa_OS.ParamByName('ITEM_PROC').AsInteger := vOrdem;
-  fDMProcesso_ES.cdsBaixa_OS.Open;
+  fDMProcesso_ES.prc_Abrir_cdsBaixa_OS(0,vNum_OS,vOrdem);
   fDMProcesso_ES.cdsBaixa_OS.Last;
   Result := True;
   if fDMProcesso_ES.qVerDTENTRADA.IsNull then

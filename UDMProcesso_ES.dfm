@@ -118,21 +118,9 @@ object DMProcesso_ES: TDMProcesso_ES
   object sdsBaixa_OS: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
-    CommandText = 
-      'SELECT B.*'#13#10'FROM BAIXA_OS B'#13#10'WHERE B.NUM_OS = :NUM_OS'#13#10'  AND B.i' +
-      'tem_proc = :ITEM_PROC'
+    CommandText = 'SELECT B.*'#13#10'FROM BAIXA_OS B'#13#10
     MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftInteger
-        Name = 'NUM_OS'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftInteger
-        Name = 'ITEM_PROC'
-        ParamType = ptInput
-      end>
+    Params = <>
     SQLConnection = dmDatabase.scoDados
     Left = 56
     Top = 28

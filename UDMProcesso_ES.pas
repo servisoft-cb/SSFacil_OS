@@ -261,6 +261,7 @@ type
 
     procedure prc_Localizar(ID: Integer); //-1 = Inclusão
     procedure prc_Localizar_Pausa(ID: Integer); //-1 = Inclusão
+    procedure prc_Abrir_cdsBaixa_OS(ID, NUM_OS, Item_Proc : Integer);
 
   end;
 
@@ -389,6 +390,19 @@ end;
 procedure TDMProcesso_ES.cdsBaixa_OSNewRecord(DataSet: TDataSet);
 begin
   cdsBaixa_OSRETRABALHO.AsString := 'N';
+end;
+
+procedure TDMProcesso_ES.prc_Abrir_cdsBaixa_OS(ID, NUM_OS, Item_Proc: Integer);
+begin
+  cdsBaixa_OS.Close;
+  sdsBaixa_OS.CommandText := ctBaixa_OS;
+  if ID > 0 then
+    sdsBaixa_OS.CommandText := sdsBaixa_OS.CommandText + ' WHERE B.ID = ' + IntToStr(ID)
+  else
+  if NUM_OS > 0 then
+    sdsBaixa_OS.CommandText := sdsBaixa_OS.CommandText + ' WHERE B.NUM_OS = ' + IntToStr(NUM_OS)
+                                                       + ' AND B.ITEM_PROC = ' + IntToStr(Item_Proc);
+  cdsBaixa_OS.Open;
 end;
 
 end.

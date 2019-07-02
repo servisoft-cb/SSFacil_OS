@@ -4,7 +4,7 @@ object frmAjustar_OS: TfrmAjustar_OS
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'frmAjustar_OS'
-  ClientHeight = 294
+  ClientHeight = 296
   ClientWidth = 863
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -22,7 +22,7 @@ object frmAjustar_OS: TfrmAjustar_OS
     Left = 0
     Top = 0
     Width = 863
-    Height = 294
+    Height = 296
     Align = alClient
     BevelOuter = bvNone
     Color = 16762052

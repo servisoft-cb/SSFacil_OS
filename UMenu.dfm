@@ -24,8 +24,8 @@ object fMenu: TfMenu
   OnCreate = FormCreate
   OnShow = FormShow
   DesignSize = (
-    821
-    441)
+    829
+    449)
   PixelsPerInch = 96
   TextHeight = 13
   object Image2: TImage
@@ -241,7 +241,7 @@ object fMenu: TfMenu
     Left = 0
     Top = 0
     Width = 73
-    Height = 441
+    Height = 449
     Align = alLeft
     AutoSize = True
     ButtonHeight = 68
@@ -7906,6 +7906,12 @@ object fMenu: TfMenu
         FormName = 'frmCadOrdemServico'
         CompName = 'btnLiberar'
         Caption = 'Liberar Fat'
+        GroupName = 'Ordem de Servi'#231'o'
+      end
+      item
+        FormName = 'frmCadOrdemServico'
+        CompName = 'btnExcluir_Realizado'
+        Caption = 'Excluir o Processo Realizado'
         GroupName = 'Ordem de Servi'#231'o'
       end>
     LoginMode = lmActive

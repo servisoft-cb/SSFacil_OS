@@ -16,10 +16,11 @@ object DMConsOS: TDMConsOS
       'ciado'#39#13#10'  WHEN OPR.STATUS = '#39'F'#39' THEN '#39'Finalizado'#39#13#10'  WHEN OPR.ST' +
       'ATUS = '#39'P'#39' THEN '#39'Pausa'#39#13#10'  ELSE '#39#39#13#10'  END DESC_STATUS,'#13#10'P.nome N' +
       'OME_PROCESSO, S.nome NOME_SERVICO, O.dtemissao, CLI.NOME NOME_CL' +
-      'IENTE'#13#10'FROM ordemservico_proc OPR'#13#10'INNER JOIN ORDEMSERVICO O'#13#10'ON' +
-      ' OPR.ID = O.ID'#13#10'left join processo p'#13#10'on opr.id_processo = p.id'#13 +
-      #10'LEFT JOIN servico_os S'#13#10'ON OPR.id_servico_os = S.ID'#13#10'LEFT JOIN ' +
-      'PESSOA CLI'#13#10'ON O.ID_CLIENTE = CLI.CODIGO'#13#10#13#10
+      'IENTE,'#13#10'COALESCE(OPR.RETRABALHO,'#39'N'#39') RETRABALHO'#13#10'FROM ordemservi' +
+      'co_proc OPR'#13#10'INNER JOIN ORDEMSERVICO O'#13#10'ON OPR.ID = O.ID'#13#10'left j' +
+      'oin processo p'#13#10'on opr.id_processo = p.id'#13#10'LEFT JOIN servico_os ' +
+      'S'#13#10'ON OPR.id_servico_os = S.ID'#13#10'LEFT JOIN PESSOA CLI'#13#10'ON O.ID_CL' +
+      'IENTE = CLI.CODIGO'#13#10#13#10
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
@@ -107,6 +108,10 @@ object DMConsOS: TDMConsOS
     end
     object cdsConsProcessoQTD: TFloatField
       FieldName = 'QTD'
+    end
+    object cdsConsProcessoRETRABALHO: TStringField
+      FieldName = 'RETRABALHO'
+      Size = 1
     end
   end
   object dsConsProcesso: TDataSource
