@@ -110,8 +110,8 @@ end;
 procedure TfrmConsProcesso.SMDBGrid1GetCellParams(Sender: TObject;
   Field: TField; AFont: TFont; var Background: TColor; Highlight: Boolean);
 begin
-  if fDMConsOS.cdsConsProcessoSTATUS.AsString = 'F' then
-    Background := $0077FF77
+  if (fDMConsOS.cdsConsProcessoSTATUS.AsString = 'F') or (fDMConsOS.cdsConsProcessoDTCONCLUIDO.AsDateTime > 10)  then
+    Background := clMoneyGreen
   else
   if fDMConsOS.cdsConsProcessoSTATUS.AsString = 'I' then
     Background := $00FFFFB9;

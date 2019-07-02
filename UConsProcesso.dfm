@@ -525,6 +525,7 @@ object frmConsProcesso: TfrmConsProcesso
             Title.Alignment = taCenter
             Title.Caption = 'Dt. Concluido'
             Title.Color = 12058551
+            Width = 64
             Visible = True
           end
           item
