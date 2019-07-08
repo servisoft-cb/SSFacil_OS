@@ -1,10 +1,10 @@
 object DMConsOrdemServico: TDMConsOrdemServico
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 368
-  Top = 227
-  Height = 291
-  Width = 514
+  Left = 381
+  Top = 193
+  Height = 397
+  Width = 847
   object sdsOrdemServico_Nota: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
@@ -14,14 +14,14 @@ object DMConsOrdemServico: TDMConsOrdemServico
       'ido_cliente, P2.dtemissao DTPEDIDO,'#13#10'N2.dtemissao DTNOTA, IN2.qt' +
       'd QTD_NOTA, IP2.qtd QTD_PEDIDO, IP2.qtd_restante,'#13#10'cli.nome nome' +
       '_cliente, cli.cnpj_cpf, cli.cidade, cli.uf, O2.num_os, o2.dtemis' +
-      'sao data_os,'#13#10'o2.dtrecebimento'#13#10'from ordemservico_itens i2'#13#10'inne' +
-      'r join ordemservico o2'#13#10'on i2.id = o2.id'#13#10'inner join pessoa cli'#13 +
-      #10'on o2.id_cliente = cli.codigo'#13#10'left join pedido_item ip2'#13#10'on i2' +
-      '.id = ip2.id_os_serv'#13#10'left JOIN PEDIDO P2'#13#10'ON IP2.ID = P2.ID'#13#10'le' +
-      'ft join notafiscal_itens in2'#13#10'on ip2.id = in2.id_pedido'#13#10'and ip2' +
-      '.item = in2.item_pedido'#13#10'left join notafiscal n2'#13#10'on in2.id = n2' +
-      '.id'#13#10'WHERE O2.TP_SIMPLES = '#39'N'#39#13#10'      AND O2.TP_ORCAMENTO = '#39'1'#39#13 +
-      #10#13#10
+      'sao data_os,'#13#10'o2.dtrecebimento, o2.dt_agenda'#13#10'from ordemservico_' +
+      'itens i2'#13#10'inner join ordemservico o2'#13#10'on i2.id = o2.id'#13#10'inner jo' +
+      'in pessoa cli'#13#10'on o2.id_cliente = cli.codigo'#13#10'left join pedido_i' +
+      'tem ip2'#13#10'on i2.id = ip2.id_os_serv'#13#10'left JOIN PEDIDO P2'#13#10'ON IP2.' +
+      'ID = P2.ID'#13#10'left join notafiscal_itens in2'#13#10'on ip2.id = in2.id_p' +
+      'edido'#13#10'and ip2.item = in2.item_pedido'#13#10'left join notafiscal n2'#13#10 +
+      'on in2.id = n2.id'#13#10'WHERE O2.TP_SIMPLES = '#39'N'#39#13#10'      AND O2.TP_OR' +
+      'CAMENTO = '#39'1'#39#13#10#13#10
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
@@ -37,7 +37,7 @@ object DMConsOrdemServico: TDMConsOrdemServico
     Aggregates = <>
     Params = <>
     ProviderName = 'dspOrdemServico_Nota'
-    Left = 130
+    Left = 133
     Top = 23
     object cdsOrdemServico_NotaID: TIntegerField
       FieldName = 'ID'
@@ -110,6 +110,9 @@ object DMConsOrdemServico: TDMConsOrdemServico
     object cdsOrdemServico_NotaQTD_OS: TFloatField
       FieldName = 'QTD_OS'
     end
+    object cdsOrdemServico_NotaDT_AGENDA: TDateField
+      FieldName = 'DT_AGENDA'
+    end
   end
   object dsOrdemServico_Nota: TDataSource
     DataSet = cdsOrdemServico_Nota
@@ -124,12 +127,12 @@ object DMConsOrdemServico: TDMConsOrdemServico
       ' item_pedido,'#13#10'P2.num_pedido, P2.pedido_cliente, P2.dtemissao DT' +
       'PEDIDO,'#13#10'IP2.qtd QTD_PEDIDO, IP2.qtd_restante,'#13#10'cli.nome nome_cl' +
       'iente, cli.cnpj_cpf, cli.cidade, cli.uf, O2.num_os,'#13#10'ip2.qtd_fat' +
-      'urado, o2.dtemissao data_os, o2.dtrecebimento'#13#10'from ordemservico' +
-      '_itens i2'#13#10'inner join ordemservico o2'#13#10'on i2.id = o2.id'#13#10'inner j' +
-      'oin pessoa cli'#13#10'on o2.id_cliente = cli.codigo'#13#10'left join pedido_' +
-      'item ip2'#13#10'on i2.id = ip2.id_os_serv'#13#10'left JOIN PEDIDO P2'#13#10'ON IP2' +
-      '.ID = P2.ID'#13#10'WHERE O2.TP_SIMPLES = '#39'N'#39#13#10'      AND O2.TP_ORCAMENT' +
-      'O = '#39'1'#39#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10
+      'urado, o2.dtemissao data_os, o2.dtrecebimento, o2.dt_agenda'#13#10'fro' +
+      'm ordemservico_itens i2'#13#10'inner join ordemservico o2'#13#10'on i2.id = ' +
+      'o2.id'#13#10'inner join pessoa cli'#13#10'on o2.id_cliente = cli.codigo'#13#10'lef' +
+      't join pedido_item ip2'#13#10'on i2.id = ip2.id_os_serv'#13#10'left JOIN PED' +
+      'IDO P2'#13#10'ON IP2.ID = P2.ID'#13#10'WHERE O2.TP_SIMPLES = '#39'N'#39#13#10'      AND ' +
+      'O2.TP_ORCAMENTO = '#39'1'#39#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
@@ -209,6 +212,9 @@ object DMConsOrdemServico: TDMConsOrdemServico
     object cdsOrdemServico_PedQTD_OS: TFloatField
       FieldName = 'QTD_OS'
     end
+    object cdsOrdemServico_PedDT_AGENDA: TDateField
+      FieldName = 'DT_AGENDA'
+    end
   end
   object dsOrdemServico_Ped: TDataSource
     DataSet = cdsOrdemServico_Ped
@@ -222,18 +228,18 @@ object DMConsOrdemServico: TDMConsOrdemServico
       'select i2.id, i2.item, i2.qtd QTD_OS, SUM(IP2.qtd) QTD_PEDIDO,'#13#10 +
       'SUM(IP2.qtd_restante) qtd_restante, SUM(ip2.qtd_faturado) qtd_fa' +
       'turado,'#13#10'cli.nome nome_cliente, cli.cnpj_cpf, cli.cidade, cli.uf' +
-      ', O2.num_os,'#13#10'o2.dtemissao data_os, o2.dtrecebimento'#13#10'from ordem' +
-      'servico_itens i2'#13#10'inner join ordemservico o2'#13#10'on i2.id = o2.id'#13#10 +
-      'inner join pessoa cli'#13#10'on o2.id_cliente = cli.codigo'#13#10'left join ' +
-      'pedido_item ip2'#13#10'on i2.id = ip2.id_os_serv'#13#10'left JOIN PEDIDO P2'#13 +
-      #10'ON IP2.ID = P2.ID'#13#10'WHERE O2.TP_SIMPLES = '#39'N'#39#13#10'      AND O2.TP_O' +
-      'RCAMENTO = '#39'1'#39#13#10'GROUP BY i2.id, i2.item, i2.qtd, cli.nome, cli.c' +
-      'npj_cpf,'#13#10'cli.cidade, cli.uf, O2.num_os, o2.dtemissao, o2.dtrece' +
-      'bimento'#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10
+      ', O2.num_os,'#13#10'o2.dtemissao data_os, o2.dtrecebimento, o2.dt_agen' +
+      'da'#13#10'from ordemservico_itens i2'#13#10'inner join ordemservico o2'#13#10'on i' +
+      '2.id = o2.id'#13#10'inner join pessoa cli'#13#10'on o2.id_cliente = cli.codi' +
+      'go'#13#10'left join pedido_item ip2'#13#10'on i2.id = ip2.id_os_serv'#13#10'left J' +
+      'OIN PEDIDO P2'#13#10'ON IP2.ID = P2.ID'#13#10'WHERE O2.TP_SIMPLES = '#39'N'#39#13#10'   ' +
+      '   AND O2.TP_ORCAMENTO = '#39'1'#39#13#10'GROUP BY i2.id, i2.item, i2.qtd, c' +
+      'li.nome, cli.cnpj_cpf,'#13#10'cli.cidade, cli.uf, O2.num_os, o2.dtemis' +
+      'sao, o2.dtrecebimento, o2.dt_agenda'#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10#13#10
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
-    Left = 319
+    Left = 318
     Top = 36
   end
   object dspOrdemServico: TDataSetProvider
@@ -291,6 +297,9 @@ object DMConsOrdemServico: TDMConsOrdemServico
     end
     object cdsOrdemServicoQTD_OS: TFloatField
       FieldName = 'QTD_OS'
+    end
+    object cdsOrdemServicoDT_AGENDA: TDateField
+      FieldName = 'DT_AGENDA'
     end
   end
   object dsOrdemServico: TDataSource

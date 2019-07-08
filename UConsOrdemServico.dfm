@@ -18,7 +18,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 912
+    Width = 920
     Height = 114
     Align = alTop
     Color = clSilver
@@ -48,12 +48,12 @@ object frmConsOrdemServico: TfrmConsOrdemServico
       Caption = 'Dt.OS Inicial:'
     end
     object Label4: TLabel
-      Left = 357
+      Left = 327
       Top = 55
-      Width = 42
+      Width = 25
       Height = 13
       Alignment = taRightJustify
-      Caption = 'Dt. Final:'
+      Caption = 'Final:'
     end
     object Label5: TLabel
       Left = 147
@@ -64,15 +64,15 @@ object frmConsOrdemServico: TfrmConsOrdemServico
       Caption = 'Dt.Ped. Inicial:'
     end
     object Label6: TLabel
-      Left = 357
+      Left = 327
       Top = 77
-      Width = 42
+      Width = 25
       Height = 13
       Alignment = taRightJustify
-      Caption = 'Dt. Final:'
+      Caption = 'Final:'
     end
     object Label9: TLabel
-      Left = 147
+      Left = 148
       Top = 99
       Width = 69
       Height = 13
@@ -80,12 +80,28 @@ object frmConsOrdemServico: TfrmConsOrdemServico
       Caption = 'Dt.Rec.OS Ini:'
     end
     object Label10: TLabel
-      Left = 357
+      Left = 327
       Top = 99
-      Width = 42
+      Width = 25
       Height = 13
       Alignment = taRightJustify
-      Caption = 'Dt. Final:'
+      Caption = 'Final:'
+    end
+    object Label11: TLabel
+      Left = 457
+      Top = 52
+      Width = 121
+      Height = 13
+      Alignment = taRightJustify
+      Caption = 'Dt. Prevista Final OS (Ini):'
+    end
+    object Label12: TLabel
+      Left = 686
+      Top = 52
+      Width = 25
+      Height = 13
+      Alignment = taRightJustify
+      Caption = 'Final:'
     end
     object CurrencyEdit1: TCurrencyEdit
       Left = 219
@@ -100,7 +116,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
     object Edit1: TEdit
       Left = 219
       Top = 25
-      Width = 282
+      Width = 235
       Height = 21
       CharCase = ecUpperCase
       TabOrder = 1
@@ -114,7 +130,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
       TabOrder = 2
     end
     object DateEdit2: TDateEdit
-      Left = 401
+      Left = 354
       Top = 47
       Width = 100
       Height = 21
@@ -130,7 +146,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
       TabOrder = 4
     end
     object DateEdit4: TDateEdit
-      Left = 401
+      Left = 354
       Top = 69
       Width = 100
       Height = 21
@@ -234,7 +250,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
       TabOrder = 8
     end
     object DateEdit8: TDateEdit
-      Left = 401
+      Left = 354
       Top = 91
       Width = 100
       Height = 21
@@ -242,7 +258,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
       TabOrder = 9
     end
     object NxButton1: TNxButton
-      Left = 686
+      Left = 678
       Top = 82
       Width = 176
       Height = 30
@@ -315,16 +331,32 @@ object frmConsOrdemServico: TfrmConsOrdemServico
       Transparent = True
       OnClick = NxButton1Click
     end
+    object DateEdit9: TDateEdit
+      Left = 581
+      Top = 44
+      Width = 100
+      Height = 21
+      NumGlyphs = 2
+      TabOrder = 11
+    end
+    object DateEdit10: TDateEdit
+      Left = 713
+      Top = 44
+      Width = 100
+      Height = 21
+      NumGlyphs = 2
+      TabOrder = 12
+    end
   end
   object RzPageControl1: TRzPageControl
     Left = 0
     Top = 114
-    Width = 912
-    Height = 327
-    ActivePage = TS_Detalhada
+    Width = 920
+    Height = 335
+    ActivePage = TS_OS
     ActivePageDefault = TS_Detalhada
     Align = alClient
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 1
     FixedDimension = 19
     object TS_Detalhada: TRzTabSheet
@@ -332,8 +364,8 @@ object frmConsOrdemServico: TfrmConsOrdemServico
       object SMDBGrid1: TSMDBGrid
         Left = 0
         Top = 29
-        Width = 908
-        Height = 275
+        Width = 916
+        Height = 283
         Align = alClient
         Ctl3D = False
         DataSource = DMConsOrdemServico.dsOrdemServico_Nota
@@ -346,6 +378,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         TitleFont.Height = -11
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
+        OnTitleClick = SMDBGrid1TitleClick
         Flat = True
         BandsFont.Charset = DEFAULT_CHARSET
         BandsFont.Color = clWindowText
@@ -364,7 +397,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         WidthOfIndicator = 11
         DefaultRowHeight = 17
         ScrollBars = ssHorizontal
-        ColCount = 19
+        ColCount = 20
         RowCount = 2
         Columns = <
           item
@@ -480,6 +513,15 @@ object frmConsOrdemServico: TfrmConsOrdemServico
           end
           item
             Expanded = False
+            FieldName = 'DT_AGENDA'
+            Title.Alignment = taCenter
+            Title.Caption = 'Dt Prevista Final OS'
+            Title.Color = 8454016
+            Width = 76
+            Visible = True
+          end
+          item
+            Expanded = False
             FieldName = 'NOME_CLIENTE'
             Title.Alignment = taCenter
             Title.Caption = 'Nome Cliente'
@@ -526,7 +568,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
       object Panel2: TPanel
         Left = 0
         Top = 0
-        Width = 908
+        Width = 916
         Height = 29
         Align = alTop
         Color = clSilver
@@ -570,8 +612,8 @@ object frmConsOrdemServico: TfrmConsOrdemServico
       object SMDBGrid2: TSMDBGrid
         Left = 0
         Top = 0
-        Width = 908
-        Height = 304
+        Width = 916
+        Height = 312
         Align = alClient
         Ctl3D = False
         DataSource = DMConsOrdemServico.dsOrdemServico_Ped
@@ -584,6 +626,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         TitleFont.Height = -11
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
+        OnTitleClick = SMDBGrid2TitleClick
         Flat = True
         BandsFont.Charset = DEFAULT_CHARSET
         BandsFont.Color = clWindowText
@@ -602,10 +645,11 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         WidthOfIndicator = 11
         DefaultRowHeight = 17
         ScrollBars = ssHorizontal
-        ColCount = 16
+        ColCount = 17
         RowCount = 2
         Columns = <
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'NUM_OS'
             Title.Alignment = taCenter
@@ -614,6 +658,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'DATA_OS'
             Title.Alignment = taCenter
@@ -640,6 +685,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'ITEM_PEDIDO'
             Title.Alignment = taCenter
@@ -648,6 +694,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'PEDIDO_CLIENTE'
             Title.Alignment = taCenter
@@ -657,6 +704,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'DTPEDIDO'
             Title.Alignment = taCenter
@@ -696,7 +744,6 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'CNPJ / CPF'
             Title.Color = 16777139
-            Width = 64
             Visible = True
           end
           item
@@ -705,15 +752,14 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Cidade'
             Title.Color = 16777139
-            Width = 64
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'UF'
             Title.Alignment = taCenter
             Title.Color = 16777139
-            Width = 64
             Visible = True
           end
           item
@@ -726,12 +772,23 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'DTRECEBIMENTO'
             Title.Alignment = taCenter
             Title.Caption = 'Data Recebimento'
             Title.Color = 16777139
-            Width = 64
+            Width = 78
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'DT_AGENDA'
+            Title.Alignment = taCenter
+            Title.Caption = 'Dt. Prevista Final OS'
+            Title.Color = 16777139
+            Width = 81
             Visible = True
           end>
       end
@@ -741,8 +798,8 @@ object frmConsOrdemServico: TfrmConsOrdemServico
       object SMDBGrid3: TSMDBGrid
         Left = 0
         Top = 0
-        Width = 908
-        Height = 304
+        Width = 916
+        Height = 312
         Align = alClient
         Ctl3D = False
         DataSource = DMConsOrdemServico.dsOrdemServico
@@ -755,6 +812,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         TitleFont.Height = -11
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
+        OnTitleClick = SMDBGrid3TitleClick
         Flat = True
         BandsFont.Charset = DEFAULT_CHARSET
         BandsFont.Color = clWindowText
@@ -773,10 +831,11 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         WidthOfIndicator = 11
         DefaultRowHeight = 17
         ScrollBars = ssHorizontal
-        ColCount = 13
+        ColCount = 14
         RowCount = 2
         Columns = <
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'NUM_OS'
             Title.Alignment = taCenter
@@ -785,6 +844,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'DATA_OS'
             Title.Alignment = taCenter
@@ -833,16 +893,15 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Nome Cliente'
             Title.Color = 8257535
-            Width = 64
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'CNPJ_CPF'
             Title.Alignment = taCenter
             Title.Caption = 'CNPJ / CPF'
             Title.Color = 8257535
-            Width = 64
             Visible = True
           end
           item
@@ -851,15 +910,14 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Cidade'
             Title.Color = 8257535
-            Width = 64
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'UF'
             Title.Alignment = taCenter
             Title.Color = 8257535
-            Width = 64
             Visible = True
           end
           item
@@ -872,12 +930,23 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'DTRECEBIMENTO'
             Title.Alignment = taCenter
             Title.Caption = 'Data Recebimento'
             Title.Color = 8257535
-            Width = 64
+            Width = 73
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'DT_AGENDA'
+            Title.Alignment = taCenter
+            Title.Caption = 'Dt. Prevista Final OS'
+            Title.Color = 8257535
+            Width = 73
             Visible = True
           end>
       end

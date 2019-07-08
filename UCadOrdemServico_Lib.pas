@@ -312,7 +312,7 @@ begin
                                              VlrUnit,
                                              0,0,'',
                                              0,
-                                             '',vGerarCusto,0,0); //ver aqui sobre Lote Controle  04/11/2015
+                                             '',vGerarCusto,0,0,0,0,0); //ver aqui sobre Lote Controle  04/11/2015
   fDMCadOrdemServico.cdsOrdemServico_Lib.Edit;
   fDMCadOrdemServico.cdsOrdemServico_LibID_MOVESTOQUE.AsInteger := vID_Estoque;
   fDMCadOrdemServico.cdsOrdemServico_Lib.Post;

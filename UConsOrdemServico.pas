@@ -41,10 +41,17 @@ type
     TS_OS: TRzTabSheet;
     SMDBGrid3: TSMDBGrid;
     NxButton1: TNxButton;
+    Label11: TLabel;
+    DateEdit9: TDateEdit;
+    Label12: TLabel;
+    DateEdit10: TDateEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure btnConsultarClick(Sender: TObject);
     procedure NxButton1Click(Sender: TObject);
+    procedure SMDBGrid1TitleClick(Column: TColumn);
+    procedure SMDBGrid2TitleClick(Column: TColumn);
+    procedure SMDBGrid3TitleClick(Column: TColumn);
   private
     { Private declarations }
     fDMConsOrdemServico: TDMConsOrdemServico;
@@ -138,6 +145,10 @@ begin
       vComando := vComando + ' AND O2.DTRECEBIMENTO >= ' + QuotedStr(FormatDateTime('MM/DD/YYYY',DateEdit7.Date));
     if DateEdit8.Date > 10 then
       vComando := vComando + ' AND O2.DTRECEBIMENTO <= ' + QuotedStr(FormatDateTime('MM/DD/YYYY',DateEdit8.date));
+    if DateEdit9.Date > 10 then
+      vComando := vComando + ' AND O2.DT_AGENDA >= ' + QuotedStr(FormatDateTime('MM/DD/YYYY',DateEdit9.date));
+    if DateEdit10.Date > 10 then
+      vComando := vComando + ' AND O2.DT_AGENDA <= ' + QuotedStr(FormatDateTime('MM/DD/YYYY',DateEdit10.date));
     if RzPageControl1.ActivePage = TS_Detalhada then
     begin
       if DateEdit5.Date > 10 then
@@ -205,6 +216,30 @@ begin
   finally
     Screen.Cursor := crDefault;
   end;
+end;
+
+procedure TfrmConsOrdemServico.SMDBGrid1TitleClick(Column: TColumn);
+var
+  ColunaOrdenada: String;
+begin
+  ColunaOrdenada := Column.FieldName;
+  fDMConsOrdemServico.cdsOrdemServico_Nota.IndexFieldNames := Column.FieldName;
+end;
+
+procedure TfrmConsOrdemServico.SMDBGrid2TitleClick(Column: TColumn);
+var
+  ColunaOrdenada: String;
+begin
+  ColunaOrdenada := Column.FieldName;
+  fDMConsOrdemServico.cdsOrdemServico_Ped.IndexFieldNames := Column.FieldName;
+end;
+
+procedure TfrmConsOrdemServico.SMDBGrid3TitleClick(Column: TColumn);
+var
+  ColunaOrdenada: String;
+begin
+  ColunaOrdenada := Column.FieldName;
+  fDMConsOrdemServico.cdsOrdemServico.IndexFieldNames := Column.FieldName;
 end;
 
 end.
