@@ -744,6 +744,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'CNPJ / CPF'
             Title.Color = 16777139
+            Width = 64
             Visible = True
           end
           item
@@ -752,6 +753,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Cidade'
             Title.Color = 16777139
+            Width = 64
             Visible = True
           end
           item
@@ -760,6 +762,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             FieldName = 'UF'
             Title.Alignment = taCenter
             Title.Color = 16777139
+            Width = 64
             Visible = True
           end
           item
@@ -885,6 +888,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Qtd. Faturado'
             Title.Color = 8257535
+            Width = 64
             Visible = True
           end
           item
@@ -893,6 +897,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Nome Cliente'
             Title.Color = 8257535
+            Width = 64
             Visible = True
           end
           item
@@ -902,6 +907,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'CNPJ / CPF'
             Title.Color = 8257535
+            Width = 64
             Visible = True
           end
           item
@@ -910,6 +916,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Cidade'
             Title.Color = 8257535
+            Width = 64
             Visible = True
           end
           item

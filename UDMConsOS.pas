@@ -42,6 +42,10 @@ type
     qClienteCNPJ_CPF: TStringField;
     cdsConsProcessoQTD: TFloatField;
     cdsConsProcessoRETRABALHO: TStringField;
+    cdsConsProcessoQTD_RETRABALHO: TFloatField;
+    cdsConsProcessoagQtd_Retrabalho: TAggregateField;
+    cdsConsProcessoagQtd_Total: TAggregateField;
+    cdsConsProcessoagQtd: TAggregateField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

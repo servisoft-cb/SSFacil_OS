@@ -14,13 +14,14 @@ object DMConsOS: TDMConsOS
       'a, OPR.dtconcluido,'#13#10'OPR.hrentrada, OPR.hrconcluido, OPR.num_os,' +
       ' OPR.ordem, OPR.status,'#13#10'CASE'#13#10'  WHEN OPR.STATUS = '#39'I'#39' THEN '#39'Ini' +
       'ciado'#39#13#10'  WHEN OPR.STATUS = '#39'F'#39' THEN '#39'Finalizado'#39#13#10'  WHEN OPR.ST' +
-      'ATUS = '#39'P'#39' THEN '#39'Pausa'#39#13#10'  ELSE '#39#39#13#10'  END DESC_STATUS,'#13#10'P.nome N' +
-      'OME_PROCESSO, S.nome NOME_SERVICO, O.dtemissao, CLI.NOME NOME_CL' +
-      'IENTE,'#13#10'COALESCE(OPR.RETRABALHO,'#39'N'#39') RETRABALHO'#13#10'FROM ordemservi' +
-      'co_proc OPR'#13#10'INNER JOIN ORDEMSERVICO O'#13#10'ON OPR.ID = O.ID'#13#10'left j' +
-      'oin processo p'#13#10'on opr.id_processo = p.id'#13#10'LEFT JOIN servico_os ' +
-      'S'#13#10'ON OPR.id_servico_os = S.ID'#13#10'LEFT JOIN PESSOA CLI'#13#10'ON O.ID_CL' +
-      'IENTE = CLI.CODIGO'#13#10#13#10
+      'ATUS = '#39'P'#39' THEN '#39'Pausa'#39#13#10'  ELSE '#39#39#13#10'  END DESC_STATUS,'#13#10'CASE'#13#10'  ' +
+      'WHEN COALESCE(OPR.RETRABALHO,'#39'N'#39') = '#39'S'#39' then opr.qtd'#13#10'  else 0'#13#10 +
+      '  end qtd_retrabalho,'#13#10#13#10'P.nome NOME_PROCESSO, S.nome NOME_SERVI' +
+      'CO, O.dtemissao, CLI.NOME NOME_CLIENTE,'#13#10'COALESCE(OPR.RETRABALHO' +
+      ','#39'N'#39') RETRABALHO'#13#10'FROM ordemservico_proc OPR'#13#10'INNER JOIN ORDEMSE' +
+      'RVICO O'#13#10'ON OPR.ID = O.ID'#13#10'left join processo p'#13#10'on opr.id_proce' +
+      'sso = p.id'#13#10'LEFT JOIN servico_os S'#13#10'ON OPR.id_servico_os = S.ID'#13 +
+      #10'LEFT JOIN PESSOA CLI'#13#10'ON O.ID_CLIENTE = CLI.CODIGO'#13#10#13#10
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
@@ -34,9 +35,10 @@ object DMConsOS: TDMConsOS
   end
   object cdsConsProcesso: TClientDataSet
     Aggregates = <>
+    AggregatesActive = True
     Params = <>
     ProviderName = 'dspConsProcesso'
-    Left = 222
+    Left = 225
     Top = 21
     object cdsConsProcessoID: TIntegerField
       FieldName = 'ID'
@@ -112,6 +114,27 @@ object DMConsOS: TDMConsOS
     object cdsConsProcessoRETRABALHO: TStringField
       FieldName = 'RETRABALHO'
       Size = 1
+    end
+    object cdsConsProcessoQTD_RETRABALHO: TFloatField
+      FieldName = 'QTD_RETRABALHO'
+    end
+    object cdsConsProcessoagQtd_Retrabalho: TAggregateField
+      FieldName = 'agQtd_Retrabalho'
+      ProviderFlags = []
+      Active = True
+      Expression = 'SUM(QTD_RETRABALHO)'
+    end
+    object cdsConsProcessoagQtd_Total: TAggregateField
+      FieldName = 'agQtd_Total'
+      ProviderFlags = []
+      Active = True
+      Expression = 'SUM(QTD)'
+    end
+    object cdsConsProcessoagQtd: TAggregateField
+      FieldName = 'agQtd'
+      ProviderFlags = []
+      Active = True
+      Expression = 'SUM(QTD - QTD_RETRABALHO)'
     end
   end
   object dsConsProcesso: TDataSource

@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UDMConsOS, DBVGrids, Grids, DBGrids, SMDBGrid, StdCtrls,
   NxCollection, RxLookup, NxEdit, CurrEdit, Mask, ToolEdit, ExtCtrls,
-  RzTabs, DB, Menus;
+  RzTabs, DB, Menus, DBCtrls, ComObj;
 
 type
   TfrmConsProcesso = class(TForm)
@@ -38,6 +38,14 @@ type
     NxLabel4: TNxLabel;
     DateEdit1: TDateEdit;
     DateEdit2: TDateEdit;
+    Panel2: TPanel;
+    Label2: TLabel;
+    DBText1: TDBText;
+    Label3: TLabel;
+    DBText2: TDBText;
+    Label4: TLabel;
+    DBText3: TDBText;
+    btnExcel: TNxButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure btnConsTalaoClick(Sender: TObject);
@@ -52,6 +60,7 @@ type
       Shift: TShiftState);
     procedure Edit3Enter(Sender: TObject);
     procedure Edit3Exit(Sender: TObject);
+    procedure btnExcelClick(Sender: TObject);
   private
     { Private declarations }
     fDMConsOS: TDMConsOS;
@@ -61,6 +70,8 @@ type
     function fnc_Busca_Cliente(ID : Integer) : String;
 
     procedure prc_Consulta;
+
+    procedure prc_CriaExcel(vDados: TDataSource; Grid : TSMDBGrid);
 
   public
     { Public declarations }
@@ -221,6 +232,37 @@ begin
     vComando := vComando + ' AND CLI.NOME LIKE ' + QuotedStr('%'+Edit3.Text+'%');
   fDMConsOS.sdsConsProcesso.CommandText := fDMConsOS.ctConsProcesso + vComando;
   fDMConsOS.cdsConsProcesso.Open;
+end;
+
+procedure TfrmConsProcesso.btnExcelClick(Sender: TObject);
+begin
+  prc_CriaExcel(SMDBGrid1.DataSource, SMDBGrid1)
+end;
+
+procedure TfrmConsProcesso.prc_CriaExcel(vDados: TDataSource; Grid: TSMDBGrid);
+var
+  planilha: variant;
+  vTexto: string;
+begin
+  Screen.Cursor := crHourGlass;
+  vDados.DataSet.First;
+
+  planilha := CreateOleObject('Excel.Application');
+  planilha.WorkBooks.add(1);
+  planilha.caption := 'Exportando dados do tela para o Excel';
+  planilha.visible := true;
+
+  prc_Preencher_Excel2(planilha, vDados, Grid);
+
+  planilha.columns.Autofit;
+  vTexto := ExtractFilePath(Application.ExeName);
+
+  vTexto := vTexto + Name + '_Pessoa_' + Grid.Name + '_' +  Monta_Numero(DateToStr(Date), 0);
+  try
+    planilha.ActiveWorkBook.SaveAs(vTexto);
+  finally
+    Screen.Cursor := crDefault;
+  end;
 end;
 
 end.
