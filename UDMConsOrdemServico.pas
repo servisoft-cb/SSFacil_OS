@@ -74,6 +74,9 @@ type
     cdsOrdemServico_NotaDT_AGENDA: TDateField;
     cdsOrdemServico_PedDT_AGENDA: TDateField;
     cdsOrdemServicoDT_AGENDA: TDateField;
+    cdsOrdemServico_NotaQTD_OS_NOTA: TFloatField;
+    cdsOrdemServico_PedQTD_NOTA: TFloatField;
+    cdsOrdemServicoQTD_NOTA: TFloatField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

@@ -267,6 +267,8 @@ type
     Shape14: TShape;
     Label77: TLabel;
     btnExcluir_Realizado: TNxButton;
+    Label78: TLabel;
+    DBEdit14: TDBEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
@@ -469,6 +471,8 @@ begin
   if (StrToFloat(FormatFloat('0.0000',vQtd_Ant)) <> StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat)))
     or (fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsFloat <= 0) then
     fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsFloat := fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat;
+  if trim(fDMCadOrdemServico.qParametros_SerMOSTRAR_QTD_NOTA.AsString) <> 'S' then
+    fDMCadOrdemServico.cdsOrdemServico_ItensQTD_NOTA.AsFloat := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat));
 
   fDMCadOrdemServico.prc_Gravar;
   vIDAux := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
@@ -577,6 +581,8 @@ begin
     prc_Monta_Grid2;
   end;
   fDMCadOrdemServico.qParametros_Prod.Active := True;
+  Label78.Visible  := (fDMCadOrdemServico.qParametros_SerMOSTRAR_QTD_NOTA.AsString = 'S');
+  DBEdit14.Visible := (fDMCadOrdemServico.qParametros_SerMOSTRAR_QTD_NOTA.AsString = 'S');
 end;
 
 procedure TfrmCadOrdemServico.prc_Consultar(ID: Integer);

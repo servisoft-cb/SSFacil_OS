@@ -155,7 +155,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'ENTREGUE'
             Title.Alignment = taCenter
             Title.Caption = 'Entregue'
-            Width = 64
             Visible = True
           end
           item
@@ -171,7 +170,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'NUM_ORCAMENTO'
             Title.Alignment = taCenter
             Title.Caption = 'N'#186' Or'#231'amento'
-            Width = 64
             Visible = True
           end
           item
@@ -187,7 +185,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'PRODUZIDO'
             Title.Alignment = taCenter
             Title.Caption = 'Produzido'
-            Width = 64
             Visible = True
           end
           item
@@ -1818,6 +1815,20 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               Margin = 0
               OnClick = SpeedButton2Click
             end
+            object Label78: TLabel
+              Left = 445
+              Top = 35
+              Width = 52
+              Height = 13
+              Alignment = taRightJustify
+              Caption = 'Qtde Nota:'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clBlack
+              Font.Height = -11
+              Font.Name = 'MS Sans Serif'
+              Font.Style = []
+              ParentFont = False
+            end
             object DBEdit7: TDBEdit
               Left = 82
               Top = 11
@@ -1869,6 +1880,18 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               ParentCtl3D = False
               TabOrder = 3
             end
+            object DBEdit14: TDBEdit
+              Left = 500
+              Top = 29
+              Width = 103
+              Height = 19
+              CharCase = ecUpperCase
+              Ctl3D = False
+              DataField = 'QTD_NOTA'
+              DataSource = DMCadOrdemServico.dsOrdemServico_Itens
+              ParentCtl3D = False
+              TabOrder = 4
+            end
           end
           object DBEdit11: TDBEdit
             Left = 95
@@ -1896,10 +1919,10 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         Top = 271
         Width = 1035
         Height = 367
-        ActivePage = TS_Realizado
+        ActivePage = TS_CondEntrada
         ActivePageDefault = TS_CondEntrada
         Align = alClient
-        TabIndex = 5
+        TabIndex = 0
         TabOrder = 2
         OnChange = RzPageControl2Change
         FixedDimension = 19
@@ -2441,7 +2464,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
                 Expanded = False
                 FieldName = 'UNIDADE'
                 Title.Caption = 'Unidade'
-                Width = 64
                 Visible = True
               end
               item
@@ -4892,7 +4914,6 @@ object frmCadOrdemServico: TfrmCadOrdemServico
                 Title.Alignment = taCenter
                 Title.Caption = 'Qtd. Faturada'
                 Title.Color = 16763025
-                Width = 64
                 Visible = True
               end>
           end

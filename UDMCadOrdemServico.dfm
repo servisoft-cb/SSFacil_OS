@@ -1146,6 +1146,9 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object sdsOrdemServico_ItensQTD_RESTANTE: TFloatField
       FieldName = 'QTD_RESTANTE'
     end
+    object sdsOrdemServico_ItensQTD_NOTA: TFloatField
+      FieldName = 'QTD_NOTA'
+    end
   end
   object cdsOrdemServico_Itens: TClientDataSet
     Aggregates = <>
@@ -1394,6 +1397,9 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object cdsOrdemServico_ItensQTD_RESTANTE: TFloatField
       FieldName = 'QTD_RESTANTE'
     end
+    object cdsOrdemServico_ItensQTD_NOTA: TFloatField
+      FieldName = 'QTD_NOTA'
+    end
   end
   object dsOrdemServico_Itens: TDataSource
     DataSet = cdsOrdemServico_Itens
@@ -1626,6 +1632,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     Top = 182
   end
   object cdsFuncionario: TClientDataSet
+    Active = True
     Aggregates = <>
     IndexFieldNames = 'NOME'
     Params = <>
@@ -2736,6 +2743,11 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
     object qParametros_SerPRECO_CUSTO_MATERIAL: TStringField
       FieldName = 'PRECO_CUSTO_MATERIAL'
+      FixedChar = True
+      Size = 1
+    end
+    object qParametros_SerMOSTRAR_QTD_NOTA: TStringField
+      FieldName = 'MOSTRAR_QTD_NOTA'
       FixedChar = True
       Size = 1
     end

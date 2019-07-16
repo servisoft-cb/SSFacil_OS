@@ -66,7 +66,9 @@ procedure TfrmCadOrdemServico_Lib.FormShow(Sender: TObject);
 begin
   oDBUtils.SetDataSourceProperties(Self, fDMCadOrdemServico);
 
-  vSaldo_Lib := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat - fDMCadOrdemServico.cdsOrdemServico_ItensQTD_LIBERADA.AsFloat));
+  //16/07/2019 alterado para a qtd_nota
+  //vSaldo_Lib := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat - fDMCadOrdemServico.cdsOrdemServico_ItensQTD_LIBERADA.AsFloat));
+  vSaldo_Lib := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD_NOTA.AsFloat - fDMCadOrdemServico.cdsOrdemServico_ItensQTD_LIBERADA.AsFloat));
 
   Label5.Caption := FormatFloat('0.00##',vSaldo_Lib);
 end;

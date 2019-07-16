@@ -1179,6 +1179,9 @@ type
     cdsBaixa_OS_PausaTOTAL_HORAS: TFloatField;
     cdsBaixa_OS_PausaITEM_PROC: TIntegerField;
     cdsCons_BaixaID: TIntegerField;
+    sdsOrdemServico_ItensQTD_NOTA: TFloatField;
+    cdsOrdemServico_ItensQTD_NOTA: TFloatField;
+    qParametros_SerMOSTRAR_QTD_NOTA: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure dspOrdemServicoUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError;
@@ -1315,6 +1318,9 @@ begin
     vMsgOS := vMsgOS + #13 + '*** Quantidade não informada!';
   if (cdsOrdemServico_Proc.RecordCount <= 0) and (cdsOrdemServicoTP_ORCAMENTO.AsString <> 'R') then
     vMsgOS := vMsgOS + #13 + '*** Não foi informado Processo na OS!';
+  if (qParametros_SerMOSTRAR_QTD_NOTA.AsString = 'S') and (StrToFloat(FormatFloat('0.0000',cdsOrdemServico_ItensQTD_NOTA.AsFloat)) <= 0) then
+    vMsgOS := vMsgOS + #13 + '*** Qtde. da Nota não informada!';
+    
   if vMsgOS <> '' then
     exit;
 
@@ -1513,6 +1519,9 @@ begin
     cdsOrdemServico_ItensID_PRODUTO.Clear;
   if cdsOrdemServico_ItensID_TECNICO.AsInteger <= 0 then
     cdsOrdemServico_ItensID_TECNICO.Clear;
+  if (StrToFloat(FormatFloat('0.0000',cdsOrdemServico_ItensQTD_NOTA.AsFloat)) <= 0) or
+    (trim(qParametros_SerMOSTRAR_QTD_NOTA.AsString) <> 'S') then
+    cdsOrdemServico_ItensQTD_NOTA.AsFloat := StrToFloat(FormatFloat('0.0000',cdsOrdemServico_ItensQTD.AsFloat));
 end;
 
 procedure TDMCadOrdemServico.prc_Inserir_Mat;

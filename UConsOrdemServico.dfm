@@ -397,7 +397,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         WidthOfIndicator = 11
         DefaultRowHeight = 17
         ScrollBars = ssHorizontal
-        ColCount = 20
+        ColCount = 21
         RowCount = 2
         Columns = <
           item
@@ -430,8 +430,18 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Expanded = False
             FieldName = 'QTD_OS'
             Title.Alignment = taCenter
-            Title.Caption = 'Qtd. OS'
+            Title.Caption = 'Qtd. Produ'#231#227'o'
             Title.Color = 8454016
+            Width = 57
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'QTD_NOTA'
+            Title.Alignment = taCenter
+            Title.Caption = 'Qtd. OS (Nota)'
+            Title.Color = 8454016
+            Width = 80
             Visible = True
           end
           item
@@ -645,7 +655,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         WidthOfIndicator = 11
         DefaultRowHeight = 17
         ScrollBars = ssHorizontal
-        ColCount = 17
+        ColCount = 18
         RowCount = 2
         Columns = <
           item
@@ -671,7 +681,15 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Expanded = False
             FieldName = 'QTD_OS'
             Title.Alignment = taCenter
-            Title.Caption = 'Qtd. OS'
+            Title.Caption = 'Qtd. Produ'#231#227'o'
+            Title.Color = 16777139
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'QTD_NOTA'
+            Title.Alignment = taCenter
+            Title.Caption = 'Qtd. OS (Nota)'
             Title.Color = 16777139
             Visible = True
           end
@@ -736,6 +754,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Nome Cliente'
             Title.Color = 16777139
+            Width = 64
             Visible = True
           end
           item
@@ -762,7 +781,6 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             FieldName = 'UF'
             Title.Alignment = taCenter
             Title.Color = 16777139
-            Width = 64
             Visible = True
           end
           item
@@ -834,7 +852,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         WidthOfIndicator = 11
         DefaultRowHeight = 17
         ScrollBars = ssHorizontal
-        ColCount = 14
+        ColCount = 15
         RowCount = 2
         Columns = <
           item
@@ -860,7 +878,15 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Expanded = False
             FieldName = 'QTD_OS'
             Title.Alignment = taCenter
-            Title.Caption = 'Qtd. OS'
+            Title.Caption = 'Qtd. Produ'#231#227'o'
+            Title.Color = 8257535
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'QTD_NOTA'
+            Title.Alignment = taCenter
+            Title.Caption = 'Qtd. OS (Nota)'
             Title.Color = 8257535
             Visible = True
           end
@@ -888,7 +914,6 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Qtd. Faturado'
             Title.Color = 8257535
-            Width = 64
             Visible = True
           end
           item
@@ -925,6 +950,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             FieldName = 'UF'
             Title.Alignment = taCenter
             Title.Color = 8257535
+            Width = 64
             Visible = True
           end
           item
