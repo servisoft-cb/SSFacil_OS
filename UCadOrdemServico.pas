@@ -468,11 +468,11 @@ begin
 
   if not (fDMCadOrdemServico.cdsOrdemServico_Itens.State in [dsEdit,dsInsert]) then
     fDMCadOrdemServico.cdsOrdemServico_Itens.Edit;
-  if (StrToFloat(FormatFloat('0.0000',vQtd_Ant)) <> StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat)))
-    or (fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsFloat <= 0) then
-    fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsFloat := fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat;
   if trim(fDMCadOrdemServico.qParametros_SerMOSTRAR_QTD_NOTA.AsString) <> 'S' then
     fDMCadOrdemServico.cdsOrdemServico_ItensQTD_NOTA.AsFloat := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat));
+  if (StrToFloat(FormatFloat('0.0000',vQtd_Ant)) <> StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat)))
+    or (fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsFloat <= 0) then
+    fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsFloat := fDMCadOrdemServico.cdsOrdemServico_ItensQTD_NOTA.AsFloat;
 
   fDMCadOrdemServico.prc_Gravar;
   vIDAux := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
