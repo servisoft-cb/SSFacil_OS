@@ -7913,6 +7913,12 @@ object fMenu: TfMenu
         CompName = 'btnExcluir_Realizado'
         Caption = 'Excluir o Processo Realizado'
         GroupName = 'Ordem de Servi'#231'o'
+      end
+      item
+        FormName = 'frmCadOrdemServico'
+        CompName = 'btnCancelar_OS'
+        Caption = 'Cancelar OS'
+        GroupName = 'Ordem de Servi'#231'o'
       end>
     LoginMode = lmActive
     UsersProfile.Active = True

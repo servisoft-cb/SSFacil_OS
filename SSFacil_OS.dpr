@@ -93,7 +93,6 @@ uses
   UCadSetor in '..\ssfacil\uCadSetor.pas' {frmCadSetor},
   UCadSetor_Proc in '..\ssfacil\UCadSetor_Proc.pas' {frmCadSetor_Proc},
   uNFeComandos in '..\ssfacil\uNFeComandos.pas',
-  uNFeConsts in '..\nfe 4.00\nfesrv\uNFeConsts.pas',
   UDMAprova_Orc in 'UDMAprova_Orc.pas' {DMAprova_Orc: TDataModule},
   DmdDatabase_NFeBD in '..\ssfacil\DmdDatabase_NFeBD.pas' {dmDatabase_NFeBD: TDataModule},
   UDMConsOS in 'UDMConsOS.pas' {DMConsOS: TDataModule},
@@ -102,7 +101,16 @@ uses
   UConsOrdemServico in 'UConsOrdemServico.pas' {frmConsOrdemServico},
   UDMConsOrdemServico in 'UDMConsOrdemServico.pas' {DMConsOrdemServico: TDataModule},
   UCadMotivo in 'uCadMotivo.pas' {frmCadMotivo},
-  UDMCadMotivo in 'UDMCadMotivo.pas' {DMCadMotivo: TDataModule};
+  UDMCadMotivo in 'UDMCadMotivo.pas' {DMCadMotivo: TDataModule},
+  UDMCanc_OS in 'UDMCanc_OS.pas' {DMCanc_OS: TDataModule},
+  UCancela_OS in 'UCancela_OS.pas' {frmCancela_OS},
+  uNFeConsts in '..\ssfacil\uNFeConsts.pas',
+  UCadPessoa_ProdICMS in '..\ssfacil\UCadPessoa_ProdICMS.pas' {frmCadPessoa_ProdICMS},
+  UDMCadPedido in '..\ssfacil\UDMCadPedido.pas' {DMCadPedido: TDataModule},
+  uCalculo_Pedido in '..\ssfacil\uCalculo_Pedido.pas',
+  UDMAprovacao_Ped in '..\ssfacil\UDMAprovacao_Ped.pas' {DMAprovacao_Ped: TDataModule},
+  ApiDirectcall in '..\ssfacil\DirectCall\ApiDirectcall.pas',
+  uGrava_Pedido in '..\ssfacil\uGrava_Pedido.pas';
 
 {$R *.res}
 

@@ -269,6 +269,7 @@ type
     btnExcluir_Realizado: TNxButton;
     Label78: TLabel;
     DBEdit14: TDBEdit;
+    btnCancelar_OS: TNxButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
@@ -350,6 +351,7 @@ type
     procedure SMDBGrid1KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure btnExcluir_RealizadoClick(Sender: TObject);
+    procedure btnCancelar_OSClick(Sender: TObject);
   private
     { Private declarations }
     vTipoNotaAnt: String;
@@ -405,7 +407,7 @@ implementation
 
 uses DmdDatabase, rsDBUtils, uUtilPadrao, USel_Pessoa, USel_Produto, UDMImpOrdemServico, UCadProduto, UAjustar_OS, USel_Orc,
   UCadOrdemServico_Enc, UDMCopiarOrc, UCadOrdemServico_Lib,
-  UConsOrdemServico;
+  UConsOrdemServico, UCancela_OS;
 
 {$R *.dfm}
 
@@ -2021,6 +2023,26 @@ begin
   fDMCadOrdemServico.sdsPRC_Atualiza_OS.ExecSQL;
 
   btnConsultar_RealizadoClick(Sender);
+end;
+
+procedure TfrmCadOrdemServico.btnCancelar_OSClick(Sender: TObject);
+begin
+  if not(fDMCadOrdemServico.cdsOrdemServico_Consulta.Active) or (fDMCadOrdemServico.cdsOrdemServico_Consulta.IsEmpty) then
+    exit;
+
+  prc_Posiciona_OS;
+  if fDMCadOrdemServico.cdsOrdemServico.IsEmpty then
+    exit;
+
+  frmCancela_OS := TfrmCancela_OS.Create(self);
+  frmCancela_OS.vID_OS_Canc   := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
+  frmCancela_OS.vItem_OS_Canc := fDMCadOrdemServico.cdsOrdemServico_ItensITEM.AsInteger;
+  frmCancela_OS.ShowModal;
+  FreeAndNil(frmCancela_OS);
+
+  fDMCadOrdemServico.sdsPRC_Atualiza_OS.Close;
+  fDMCadOrdemServico.sdsPRC_Atualiza_OS.ParamByName('P_ID').AsInteger := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
+  fDMCadOrdemServico.sdsPRC_Atualiza_OS.ExecSQL;
 end;
 
 end.
