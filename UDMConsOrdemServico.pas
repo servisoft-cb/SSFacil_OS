@@ -78,6 +78,15 @@ type
     cdsOrdemServico_PedQTD_NOTA: TFloatField;
     cdsOrdemServicoQTD_NOTA: TFloatField;
     cdsOrdemServico_NotaDTEMISSAO_NOTA: TDateField;
+    cdsOrdemServico_NotaFATURADO_NOTA: TStringField;
+    cdsOrdemServico_NotaCOPIADO_PEDIDO: TStringField;
+    cdsOrdemServico_NotaPRODUZIDO: TStringField;
+    cdsOrdemServico_PedFATURADO_NOTA: TStringField;
+    cdsOrdemServico_PedCOPIADO_PEDIDO: TStringField;
+    cdsOrdemServico_PedPRODUZIDO: TStringField;
+    cdsOrdemServicoFATURADO_NOTA: TStringField;
+    cdsOrdemServicoCOPIADO_PEDIDO: TStringField;
+    cdsOrdemServicoPRODUZIDO: TStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

@@ -45,6 +45,19 @@ type
     DateEdit9: TDateEdit;
     Label12: TLabel;
     DateEdit10: TDateEdit;
+    Panel4: TPanel;
+    Shape6: TShape;
+    Label31: TLabel;
+    Shape1: TShape;
+    Label13: TLabel;
+    Shape2: TShape;
+    Label26: TLabel;
+    Shape18: TShape;
+    Label68: TLabel;
+    Shape19: TShape;
+    Label66: TLabel;
+    Shape14: TShape;
+    Label77: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure btnConsultarClick(Sender: TObject);
@@ -52,6 +65,12 @@ type
     procedure SMDBGrid1TitleClick(Column: TColumn);
     procedure SMDBGrid2TitleClick(Column: TColumn);
     procedure SMDBGrid3TitleClick(Column: TColumn);
+    procedure SMDBGrid1GetCellParams(Sender: TObject; Field: TField;
+      AFont: TFont; var Background: TColor; Highlight: Boolean);
+    procedure SMDBGrid2GetCellParams(Sender: TObject; Field: TField;
+      AFont: TFont; var Background: TColor; Highlight: Boolean);
+    procedure SMDBGrid3GetCellParams(Sender: TObject; Field: TField;
+      AFont: TFont; var Background: TColor; Highlight: Boolean);
   private
     { Private declarations }
     fDMConsOrdemServico: TDMConsOrdemServico;
@@ -134,9 +153,9 @@ begin
       vComando := vComando + ' AND CLI.NOME LIKE ' + QuotedStr('%'+Edit1.Text+'%');
        
     if DateEdit1.Date > 10 then
-      vComando := vComando + ' AND OS.DTEMISSAO >= ' + QuotedStr(FormatDateTime('MM/DD/YYYY',DateEdit1.Date));
-    if DateEdit1.Date > 10 then
-      vComando := vComando + ' AND OS.DTEMISSAO <= ' + QuotedStr(FormatDateTime('MM/DD/YYYY',DateEdit2.date));
+      vComando := vComando + ' AND O2.DTEMISSAO >= ' + QuotedStr(FormatDateTime('MM/DD/YYYY',DateEdit1.Date));
+    if DateEdit2.Date > 10 then
+      vComando := vComando + ' AND O2.DTEMISSAO <= ' + QuotedStr(FormatDateTime('MM/DD/YYYY',DateEdit2.date));
     if DateEdit3.Date > 10 then
       vComando := vComando + ' AND P2.DTEMISSAO >= ' + QuotedStr(FormatDateTime('MM/DD/YYYY',DateEdit3.Date));
     if DateEdit4.Date > 10 then
@@ -240,6 +259,96 @@ var
 begin
   ColunaOrdenada := Column.FieldName;
   fDMConsOrdemServico.cdsOrdemServico.IndexFieldNames := Column.FieldName;
+end;
+
+procedure TfrmConsOrdemServico.SMDBGrid1GetCellParams(Sender: TObject;
+  Field: TField; AFont: TFont; var Background: TColor; Highlight: Boolean);
+begin
+  if not(fDMConsOrdemServico.cdsOrdemServico_Nota.Active) or (fDMConsOrdemServico.cdsOrdemServico_Nota.IsEmpty) then
+    exit;
+  if fDMConsOrdemServico.cdsOrdemServico_NotaFATURADO_NOTA.AsString = 'S' then
+  begin
+    Background  := clGreen;
+    AFont.Color := clWhite;
+  end
+  else
+  if fDMConsOrdemServico.cdsOrdemServico_NotaFATURADO_NOTA.AsString = 'P' then
+  begin
+    Background  := $00FF7979;
+    AFont.Color := clBlack;
+  end
+  else
+  if fDMConsOrdemServico.cdsOrdemServico_NotaPRODUZIDO.AsString = 'I' then
+    Background := $00FFFF75
+  else
+  if fDMConsOrdemServico.cdsOrdemServico_NotaPRODUZIDO.AsString = 'S' then
+    Background := clMoneyGreen
+  else
+  if fDMConsOrdemServico.cdsOrdemServico_NotaCOPIADO_PEDIDO.AsString = 'S' then
+    Background := $000080FF
+  else
+  if fDMConsOrdemServico.cdsOrdemServico_NotaCOPIADO_PEDIDO.AsString = 'P' then
+    Background := $00A6FFFF;
+end;
+
+procedure TfrmConsOrdemServico.SMDBGrid2GetCellParams(Sender: TObject;
+  Field: TField; AFont: TFont; var Background: TColor; Highlight: Boolean);
+begin
+  if not(fDMConsOrdemServico.cdsOrdemServico_Ped.Active) or (fDMConsOrdemServico.cdsOrdemServico_Ped.IsEmpty) then
+    exit;
+  if fDMConsOrdemServico.cdsOrdemServico_PedFATURADO_NOTA.AsString = 'S' then
+  begin
+    Background  := clGreen;
+    AFont.Color := clWhite;
+  end
+  else
+  if fDMConsOrdemServico.cdsOrdemServico_PedFATURADO_NOTA.AsString = 'P' then
+  begin
+    Background  := $00FF7979;
+    AFont.Color := clBlack;
+  end
+  else
+  if fDMConsOrdemServico.cdsOrdemServico_PedPRODUZIDO.AsString = 'I' then
+    Background := $00FFFF75
+  else
+  if fDMConsOrdemServico.cdsOrdemServico_PedPRODUZIDO.AsString = 'S' then
+    Background := clMoneyGreen
+  else
+  if fDMConsOrdemServico.cdsOrdemServico_PedCOPIADO_PEDIDO.AsString = 'S' then
+    Background := $000080FF
+  else
+  if fDMConsOrdemServico.cdsOrdemServico_PedCOPIADO_PEDIDO.AsString = 'P' then
+    Background := $00A6FFFF;
+end;
+
+procedure TfrmConsOrdemServico.SMDBGrid3GetCellParams(Sender: TObject;
+  Field: TField; AFont: TFont; var Background: TColor; Highlight: Boolean);
+begin
+  if not(fDMConsOrdemServico.cdsOrdemServico.Active) or (fDMConsOrdemServico.cdsOrdemServico.IsEmpty) then
+    exit;
+  if fDMConsOrdemServico.cdsOrdemServicoFATURADO_NOTA.AsString = 'S' then
+  begin
+    Background  := clGreen;
+    AFont.Color := clWhite;
+  end
+  else
+  if fDMConsOrdemServico.cdsOrdemServicoFATURADO_NOTA.AsString = 'P' then
+  begin
+    Background  := $00FF7979;
+    AFont.Color := clBlack;
+  end
+  else
+  if fDMConsOrdemServico.cdsOrdemServicoPRODUZIDO.AsString = 'I' then
+    Background := $00FFFF75
+  else
+  if fDMConsOrdemServico.cdsOrdemServicoPRODUZIDO.AsString = 'S' then
+    Background := clMoneyGreen
+  else
+  if fDMConsOrdemServico.cdsOrdemServicoCOPIADO_PEDIDO.AsString = 'S' then
+    Background := $000080FF
+  else
+  if fDMConsOrdemServico.cdsOrdemServicoCOPIADO_PEDIDO.AsString = 'P' then
+    Background := $00A6FFFF;
 end;
 
 end.

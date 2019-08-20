@@ -1,8 +1,8 @@
 object frmConsOrdemServico: TfrmConsOrdemServico
-  Left = 220
-  Top = 68
+  Left = 181
+  Top = 80
   Width = 928
-  Height = 480
+  Height = 502
   Caption = 'frmConsOrdemServico'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -352,7 +352,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
     Left = 0
     Top = 114
     Width = 920
-    Height = 335
+    Height = 333
     ActivePage = TS_Detalhada
     ActivePageDefault = TS_Detalhada
     Align = alClient
@@ -365,7 +365,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         Left = 0
         Top = 29
         Width = 916
-        Height = 283
+        Height = 281
         Align = alClient
         Ctl3D = False
         DataSource = DMConsOrdemServico.dsOrdemServico_Nota
@@ -392,6 +392,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         TitleHeight.PixelCount = 24
         FooterColor = clBtnFace
         ExOptions = [eoENTERlikeTAB, eoKeepSelection, eoStandardPopup, eoBLOBEditor, eoTitleWordWrap, eoShowFilterBar]
+        OnGetCellParams = SMDBGrid1GetCellParams
         RegistryKey = 'Software\Scalabium'
         RegistrySection = 'SMDBGrid'
         WidthOfIndicator = 11
@@ -633,7 +634,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         Left = 0
         Top = 0
         Width = 916
-        Height = 312
+        Height = 310
         Align = alClient
         Ctl3D = False
         DataSource = DMConsOrdemServico.dsOrdemServico_Ped
@@ -660,6 +661,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         TitleHeight.PixelCount = 24
         FooterColor = clBtnFace
         ExOptions = [eoENTERlikeTAB, eoKeepSelection, eoStandardPopup, eoBLOBEditor, eoTitleWordWrap, eoShowFilterBar]
+        OnGetCellParams = SMDBGrid2GetCellParams
         RegistryKey = 'Software\Scalabium'
         RegistrySection = 'SMDBGrid'
         WidthOfIndicator = 11
@@ -832,7 +834,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         Left = 0
         Top = 0
         Width = 916
-        Height = 312
+        Height = 310
         Align = alClient
         Ctl3D = False
         DataSource = DMConsOrdemServico.dsOrdemServico
@@ -859,6 +861,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         TitleHeight.PixelCount = 24
         FooterColor = clBtnFace
         ExOptions = [eoENTERlikeTAB, eoKeepSelection, eoStandardPopup, eoBLOBEditor, eoTitleWordWrap, eoShowFilterBar]
+        OnGetCellParams = SMDBGrid3GetCellParams
         RegistryKey = 'Software\Scalabium'
         RegistrySection = 'SMDBGrid'
         WidthOfIndicator = 11
@@ -912,7 +915,6 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Qtd. Produ'#231#227'o'
             Title.Color = 8257535
-            Width = 64
             Visible = True
           end
           item
@@ -976,6 +978,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Cidade'
             Title.Color = 8257535
+            Width = 64
             Visible = True
           end
           item
@@ -997,6 +1000,135 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Visible = True
           end>
       end
+    end
+  end
+  object Panel4: TPanel
+    Left = 0
+    Top = 447
+    Width = 920
+    Height = 24
+    Align = alBottom
+    Color = clSilver
+    TabOrder = 2
+    object Shape6: TShape
+      Left = 268
+      Top = 5
+      Width = 30
+      Height = 16
+      Brush.Color = 16742777
+    end
+    object Label31: TLabel
+      Left = 301
+      Top = 8
+      Width = 77
+      Height = 13
+      Caption = 'Faturado Parcial'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Shape1: TShape
+      Left = 12
+      Top = 3
+      Width = 30
+      Height = 16
+      Brush.Color = 16777077
+    end
+    object Label13: TLabel
+      Left = 44
+      Top = 8
+      Width = 64
+      Height = 13
+      Caption = 'Em Produ'#231#227'o'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Shape2: TShape
+      Left = 132
+      Top = 5
+      Width = 30
+      Height = 16
+      Brush.Color = clMoneyGreen
+    end
+    object Label26: TLabel
+      Left = 167
+      Top = 6
+      Width = 47
+      Height = 13
+      Caption = 'Produzido'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Shape18: TShape
+      Left = 571
+      Top = 4
+      Width = 30
+      Height = 16
+      Brush.Color = 33023
+    end
+    object Label68: TLabel
+      Left = 603
+      Top = 7
+      Width = 108
+      Height = 13
+      Caption = 'Copiado para o Pedido'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Shape19: TShape
+      Left = 723
+      Top = 4
+      Width = 30
+      Height = 16
+      Brush.Color = 10944511
+    end
+    object Label66: TLabel
+      Left = 755
+      Top = 7
+      Width = 143
+      Height = 13
+      Caption = 'Copiado para o Pedido Parcial'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Shape14: TShape
+      Left = 420
+      Top = 5
+      Width = 30
+      Height = 16
+      Brush.Color = clGreen
+    end
+    object Label77: TLabel
+      Left = 452
+      Top = 8
+      Width = 42
+      Height = 13
+      Caption = 'Faturado'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
     end
   end
 end
