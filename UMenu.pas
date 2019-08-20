@@ -57,6 +57,7 @@ type
     ConsultaProcesso1: TMenuItem;
     Consultar1: TMenuItem;
     ConsultarOS1: TMenuItem;
+    ConsultarIndicardePrazoEntrega1: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure EfetuarLogoff1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -77,6 +78,7 @@ type
     procedure ToolButton5Click(Sender: TObject);
     procedure ConsultaProcesso1Click(Sender: TObject);
     procedure ConsultarOS1Click(Sender: TObject);
+    procedure ConsultarIndicardePrazoEntrega1Click(Sender: TObject);
   private
     { Private declarations }
     procedure prc_Habilita_Menu;
@@ -100,7 +102,7 @@ implementation
 
 uses DmdDatabase, uUtilPadrao, UCadOrdemServico, UCadProcesso, UCadProcesso_Grupo, UCadServico_OS, UProcesso_ES, uCadParada,
   UBaixa_Mat_OS, UCadProduto, UCadOrc, uCadEnsaio, uCadMotivo,
-  UConsProcesso, UConsOrdemServico;
+  UConsProcesso, UConsOrdemServico, UConsIndPrazoEntrega;
 
 {$R *.dfm}
 
@@ -299,6 +301,11 @@ end;
 procedure TfMenu.ConsultarOS1Click(Sender: TObject);
 begin
   OpenForm(TfrmConsOrdemServico,wsMaximized,'');
+end;
+
+procedure TfMenu.ConsultarIndicardePrazoEntrega1Click(Sender: TObject);
+begin
+  OpenForm(TfrmConsIndPrazoEntrega,wsMaximized,'');
 end;
 
 initialization

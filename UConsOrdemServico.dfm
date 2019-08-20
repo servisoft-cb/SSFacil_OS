@@ -1,6 +1,6 @@
 object frmConsOrdemServico: TfrmConsOrdemServico
-  Left = 211
-  Top = 169
+  Left = 220
+  Top = 68
   Width = 928
   Height = 480
   Caption = 'frmConsOrdemServico'
@@ -353,10 +353,10 @@ object frmConsOrdemServico: TfrmConsOrdemServico
     Top = 114
     Width = 920
     Height = 335
-    ActivePage = TS_OS
+    ActivePage = TS_Detalhada
     ActivePageDefault = TS_Detalhada
     Align = alClient
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 1
     FixedDimension = 19
     object TS_Detalhada: TRzTabSheet
@@ -397,7 +397,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
         WidthOfIndicator = 11
         DefaultRowHeight = 17
         ScrollBars = ssHorizontal
-        ColCount = 21
+        ColCount = 22
         RowCount = 2
         Columns = <
           item
@@ -424,6 +424,16 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Caption = 'Data Recebimento'
             Title.Color = 8454016
             Width = 78
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'DTEMISSAO_NOTA'
+            Title.Alignment = taCenter
+            Title.Caption = 'Dt. Faturamento'
+            Title.Color = 8454016
+            Width = 84
             Visible = True
           end
           item
@@ -691,6 +701,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Qtd. OS (Nota)'
             Title.Color = 16777139
+            Width = 64
             Visible = True
           end
           item
@@ -781,6 +792,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             FieldName = 'UF'
             Title.Alignment = taCenter
             Title.Color = 16777139
+            Width = 64
             Visible = True
           end
           item
@@ -875,11 +887,32 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Visible = True
           end
           item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'DTRECEBIMENTO'
+            Title.Alignment = taCenter
+            Title.Caption = 'Data Recebimento'
+            Title.Color = 8257535
+            Width = 73
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'DT_AGENDA'
+            Title.Alignment = taCenter
+            Title.Caption = 'Dt. Prevista Final OS'
+            Title.Color = 8257535
+            Width = 73
+            Visible = True
+          end
+          item
             Expanded = False
             FieldName = 'QTD_OS'
             Title.Alignment = taCenter
             Title.Caption = 'Qtd. Produ'#231#227'o'
             Title.Color = 8257535
+            Width = 64
             Visible = True
           end
           item
@@ -888,6 +921,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Qtd. OS (Nota)'
             Title.Color = 8257535
+            Width = 64
             Visible = True
           end
           item
@@ -914,6 +948,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Qtd. Faturado'
             Title.Color = 8257535
+            Width = 64
             Visible = True
           end
           item
@@ -922,7 +957,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Nome Cliente'
             Title.Color = 8257535
-            Width = 64
+            Width = 324
             Visible = True
           end
           item
@@ -932,7 +967,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'CNPJ / CPF'
             Title.Color = 8257535
-            Width = 64
+            Width = 159
             Visible = True
           end
           item
@@ -941,7 +976,6 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'Cidade'
             Title.Color = 8257535
-            Width = 64
             Visible = True
           end
           item
@@ -950,7 +984,7 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             FieldName = 'UF'
             Title.Alignment = taCenter
             Title.Color = 8257535
-            Width = 64
+            Width = 33
             Visible = True
           end
           item
@@ -960,26 +994,6 @@ object frmConsOrdemServico: TfrmConsOrdemServico
             Title.Alignment = taCenter
             Title.Caption = 'ID OS'
             Title.Color = 8257535
-            Visible = True
-          end
-          item
-            Alignment = taCenter
-            Expanded = False
-            FieldName = 'DTRECEBIMENTO'
-            Title.Alignment = taCenter
-            Title.Caption = 'Data Recebimento'
-            Title.Color = 8257535
-            Width = 73
-            Visible = True
-          end
-          item
-            Alignment = taCenter
-            Expanded = False
-            FieldName = 'DT_AGENDA'
-            Title.Alignment = taCenter
-            Title.Caption = 'Dt. Prevista Final OS'
-            Title.Color = 8257535
-            Width = 73
             Visible = True
           end>
       end

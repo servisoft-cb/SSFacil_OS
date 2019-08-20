@@ -15,13 +15,14 @@ object DMConsOrdemServico: TDMConsOrdemServico
       'd QTD_NOTA, IP2.qtd QTD_PEDIDO, IP2.qtd_restante,'#13#10'cli.nome nome' +
       '_cliente, cli.cnpj_cpf, cli.cidade, cli.uf, O2.num_os, o2.dtemis' +
       'sao data_os,'#13#10'o2.dtrecebimento, o2.dt_agenda, i2.qtd_nota QTD_OS' +
-      '_NOTA'#13#10'from ordemservico_itens i2'#13#10'inner join ordemservico o2'#13#10'o' +
-      'n i2.id = o2.id'#13#10'inner join pessoa cli'#13#10'on o2.id_cliente = cli.c' +
-      'odigo'#13#10'left join pedido_item ip2'#13#10'on i2.id = ip2.id_os_serv'#13#10'lef' +
-      't JOIN PEDIDO P2'#13#10'ON IP2.ID = P2.ID'#13#10'left join notafiscal_itens ' +
-      'in2'#13#10'on ip2.id = in2.id_pedido'#13#10'and ip2.item = in2.item_pedido'#13#10 +
-      'left join notafiscal n2'#13#10'on in2.id = n2.id'#13#10'WHERE O2.TP_SIMPLES ' +
-      '= '#39'N'#39#13#10'      AND O2.TP_ORCAMENTO = '#39'1'#39#13#10#13#10
+      '_NOTA, N2.dtemissao DTEMISSAO_NOTA'#13#10'from ordemservico_itens i2'#13#10 +
+      'inner join ordemservico o2'#13#10'on i2.id = o2.id'#13#10'inner join pessoa ' +
+      'cli'#13#10'on o2.id_cliente = cli.codigo'#13#10'left join pedido_item ip2'#13#10'o' +
+      'n i2.id = ip2.id_os_serv'#13#10'left JOIN PEDIDO P2'#13#10'ON IP2.ID = P2.ID' +
+      #13#10'left join notafiscal_itens in2'#13#10'on ip2.id = in2.id_pedido'#13#10'and' +
+      ' ip2.item = in2.item_pedido'#13#10'left join notafiscal n2'#13#10'on in2.id ' +
+      '= n2.id'#13#10'WHERE O2.TP_SIMPLES = '#39'N'#39#13#10'      AND O2.TP_ORCAMENTO = ' +
+      #39'1'#39#13#10#13#10
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
@@ -115,6 +116,9 @@ object DMConsOrdemServico: TDMConsOrdemServico
     end
     object cdsOrdemServico_NotaQTD_OS_NOTA: TFloatField
       FieldName = 'QTD_OS_NOTA'
+    end
+    object cdsOrdemServico_NotaDTEMISSAO_NOTA: TDateField
+      FieldName = 'DTEMISSAO_NOTA'
     end
   end
   object dsOrdemServico_Nota: TDataSource
@@ -246,7 +250,7 @@ object DMConsOrdemServico: TDMConsOrdemServico
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
-    Left = 318
+    Left = 319
     Top = 36
   end
   object dspOrdemServico: TDataSetProvider

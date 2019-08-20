@@ -77,6 +77,7 @@ type
     cdsOrdemServico_NotaQTD_OS_NOTA: TFloatField;
     cdsOrdemServico_PedQTD_NOTA: TFloatField;
     cdsOrdemServicoQTD_NOTA: TFloatField;
+    cdsOrdemServico_NotaDTEMISSAO_NOTA: TDateField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -91,7 +92,7 @@ var
 
 implementation
 
-uses DmdDatabase;
+uses DmdDatabase, rsDBUtils;
 
 {$R *.dfm}
 

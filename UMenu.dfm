@@ -337,6 +337,10 @@ object fMenu: TfMenu
         Caption = 'Consultar OS'
         OnClick = ConsultarOS1Click
       end
+      object ConsultarIndicardePrazoEntrega1: TMenuItem
+        Caption = 'Consultar Indicar de Prazo Entrega'
+        OnClick = ConsultarIndicardePrazoEntrega1Click
+      end
     end
     object N19: TMenuItem
       Caption = '|'
@@ -371,7 +375,7 @@ object fMenu: TfMenu
   object UCDBXConn1: TUCDBXConn
     Connection = dmDatabase.scoDados
     Left = 648
-    Top = 248
+    Top = 247
   end
   object UCSettings1: TUCSettings
     AppMessages.MsgsForm_BtNew = '&Nova Mensagem'

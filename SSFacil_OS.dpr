@@ -110,7 +110,9 @@ uses
   uCalculo_Pedido in '..\ssfacil\uCalculo_Pedido.pas',
   UDMAprovacao_Ped in '..\ssfacil\UDMAprovacao_Ped.pas' {DMAprovacao_Ped: TDataModule},
   ApiDirectcall in '..\ssfacil\DirectCall\ApiDirectcall.pas',
-  uGrava_Pedido in '..\ssfacil\uGrava_Pedido.pas';
+  uGrava_Pedido in '..\ssfacil\uGrava_Pedido.pas',
+  UDMIndicador in 'UDMIndicador.pas' {DMIndicador: TDataModule},
+  UConsIndPrazoEntrega in 'UConsIndPrazoEntrega.pas' {frmConsIndPrazoEntrega};
 
 {$R *.res}
 
