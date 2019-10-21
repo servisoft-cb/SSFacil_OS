@@ -476,8 +476,11 @@ begin
     fDMCadOrdemServico.cdsOrdemServico_ItensQTD_NOTA.AsFloat := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat));
     
   if (StrToFloat(FormatFloat('0.0000',vQtdNota_Ant)) <> StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD_NOTA.AsFloat)))
-    or (fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsFloat <= 0) then
-    fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsFloat := fDMCadOrdemServico.cdsOrdemServico_ItensQTD_NOTA.AsFloat;
+    or (fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsFloat <= 0)  then
+  begin
+    if StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD_FATURADO.AsFloat)) <= 0 then
+      fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsFloat := fDMCadOrdemServico.cdsOrdemServico_ItensQTD_NOTA.AsFloat;
+  end;
     
   fDMCadOrdemServico.prc_Gravar;
   vIDAux := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
