@@ -1244,7 +1244,10 @@ type
     procedure prc_Abrir_Baixa_Pedido(ID: Integer; ID_OS, Item_OS, Item_Lib_OS: Integer);
     procedure prc_Monta_qProduto(ID : Integer ; Referencia : String);
 
-    function fnc_Existe_NumOS(Num_OS, ID: Integer): Boolean; 
+    function fnc_Existe_NumOS(Num_OS, ID: Integer): Boolean;
+
+    function fnc_Busca_Pedido : String;
+
   end;
 
 var
@@ -1847,6 +1850,28 @@ begin
     vComando := ' WHERE P.REFERENCIA = ' + QuotedStr(Referencia);
   qProduto.SQL.Text := ctqProduto + vComando;
   qProduto.Open;
+end;
+
+function TDMCadOrdemServico.fnc_Busca_Pedido: String;
+var
+  sds: TSQLDataSet;
+begin
+  Result := '';
+  sds  := TSQLDataSet.Create(nil);
+  try
+    sds.SQLConnection := dmDatabase.scoDados;
+    sds.NoMetadata    := True;
+    sds.GetMetadata   := False;
+    sds.CommandText := 'SELECT P.NUM_PEDIDO, P.PEDIDO_CLIENTE, I.ITEM  FROM PEDIDO_ITEM I '
+                     + 'inner join pedido p on i.id = p.id '
+                     + 'WHERE I.ID_OS_SERV = :ID_OS_SERV ';
+    sds.ParamByName('ID_OS_SERV').AsInteger := cdsOrdemServicoID.AsInteger;
+    sds.Open;
+    if sds.FieldByName('NUM_PEDIDO').AsInteger > 0 then
+      Result := 'Pedido: ' + sds.FieldByName('NUM_PEDIDO').AsString + '  Item: ' + sds.FieldByName('ITEM').AsString;
+  finally
+    FreeAndNil(sds);
+  end;
 end;
 
 end.

@@ -352,11 +352,13 @@ type
       Shift: TShiftState);
     procedure btnExcluir_RealizadoClick(Sender: TObject);
     procedure btnCancelar_OSClick(Sender: TObject);
+    procedure DBEdit14Exit(Sender: TObject);
   private
     { Private declarations }
     vTipoNotaAnt: String;
     vID_Cliente_Ant: Integer;
     vQtd_Ant: Real;
+    vQtdNota_Ant : Real;
 
     fDMCadOrdemServico: TDMCadOrdemServico;
     ffrmEscolhe_Filial: TfrmEscolhe_Filial;
@@ -472,10 +474,11 @@ begin
     fDMCadOrdemServico.cdsOrdemServico_Itens.Edit;
   if trim(fDMCadOrdemServico.qParametros_SerMOSTRAR_QTD_NOTA.AsString) <> 'S' then
     fDMCadOrdemServico.cdsOrdemServico_ItensQTD_NOTA.AsFloat := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat));
-  if (StrToFloat(FormatFloat('0.0000',vQtd_Ant)) <> StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat)))
+    
+  if (StrToFloat(FormatFloat('0.0000',vQtdNota_Ant)) <> StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD_NOTA.AsFloat)))
     or (fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsFloat <= 0) then
     fDMCadOrdemServico.cdsOrdemServico_ItensQTD_RESTANTE.AsFloat := fDMCadOrdemServico.cdsOrdemServico_ItensQTD_NOTA.AsFloat;
-
+    
   fDMCadOrdemServico.prc_Gravar;
   vIDAux := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
   if fDMCadOrdemServico.cdsOrdemServico.State in [dsEdit,dsInsert] then
@@ -530,7 +533,8 @@ begin
 
   fDMCadOrdemServico.prc_Inserir_Itens;
 
-  vQtd_Ant := 0;
+  vQtd_Ant     := 0;
+  vQtdNota_Ant := 0;
 end;
 
 procedure TfrmCadOrdemServico.FormShow(Sender: TObject);
@@ -672,7 +676,8 @@ begin
 
   prc_Posicionar_Cliente;
   //28/06/2018
-  vQtd_Ant := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat));
+  vQtd_Ant     := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat));
+  vQtdNota_Ant := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD_NOTA.AsFloat));
 
   TS_Consulta.TabEnabled := False;
   prc_Habilitar_Campos;
@@ -1846,7 +1851,8 @@ end;
 
 procedure TfrmCadOrdemServico.RzGroupBox2Enter(Sender: TObject);
 begin
-  DBEdit9.ReadOnly := (StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD_FATURADO.AsFloat)) > 0);
+  //Foi tirado 21/10/2019 para deixar alterar a quantidade mesmo depois de copiado para o pedido.
+  //DBEdit9.ReadOnly := (StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD_FATURADO.AsFloat)) > 0);
   //vQtd_Ant         := StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD.AsFloat));
 end;
 
@@ -2043,6 +2049,15 @@ begin
   fDMCadOrdemServico.sdsPRC_Atualiza_OS.Close;
   fDMCadOrdemServico.sdsPRC_Atualiza_OS.ParamByName('P_ID').AsInteger := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
   fDMCadOrdemServico.sdsPRC_Atualiza_OS.ExecSQL;
+end;
+
+procedure TfrmCadOrdemServico.DBEdit14Exit(Sender: TObject);
+begin
+  if (StrToFloat(FormatFloat('0.0000',vQtdNota_Ant)) <> StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD_NOTA.AsFloat)))
+    and (StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD_FATURADO.AsFloat)) > 0) then
+    MessageDlg('*** OS já esta no Pedido ' + #13 +
+               fDMCadOrdemServico.fnc_Busca_Pedido
+               +#13 + #13 + '*** É preciso alterar a qtde e valor no Pedido!',mtInformation, [mbOk], 0);
 end;
 
 end.
