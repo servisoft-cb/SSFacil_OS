@@ -343,9 +343,13 @@ begin
   if fnc_Existe_Fat(0) then
     exit;
 
+  fDMCadOrdemServico.qVerBaixaOS.Close;
+  fDMCadOrdemServico.qVerBaixaOS.ParamByName('ID').AsInteger := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
+  fDMCadOrdemServico.qVerBaixaOS.Open;
+
   if (fDMCadOrdemServico.qVerBaixaOSCONT_BAIXAS.AsInteger > 0) or (fDMCadOrdemServico.qVerBaixaOSCONT_MAT.AsInteger > 0) then
   begin
-    MessageDlg('*** OS não pode ser excluida, pois já possui baixas (Processos ou Materiais)!', mtInformation, [mbOk], 0);
+    MessageDlg('*** OS não pode ser excluía pois já possui baixas (Processos ou Materiais)!', mtInformation, [mbOk], 0);
     exit;
   end;
 
