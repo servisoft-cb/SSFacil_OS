@@ -22,8 +22,8 @@ object frmCadOrc: TfrmCadOrc
   object RzPageControl1: TRzPageControl
     Left = 0
     Top = 0
-    Width = 925
-    Height = 655
+    Width = 917
+    Height = 647
     ActivePage = TS_Consulta
     ActivePageDefault = TS_Consulta
     Align = alClient
@@ -41,8 +41,8 @@ object frmCadOrc: TfrmCadOrc
       object SMDBGrid1: TSMDBGrid
         Left = 0
         Top = 117
-        Width = 921
-        Height = 498
+        Width = 913
+        Height = 490
         Align = alClient
         BorderStyle = bsNone
         Ctl3D = False
@@ -142,7 +142,7 @@ object frmCadOrc: TfrmCadOrc
       object pnlPesquisa: TPanel
         Left = 0
         Top = 30
-        Width = 921
+        Width = 913
         Height = 87
         Align = alTop
         Color = clSilver
@@ -351,8 +351,8 @@ object frmCadOrc: TfrmCadOrc
       end
       object StaticText1: TStaticText
         Left = 0
-        Top = 615
-        Width = 921
+        Top = 607
+        Width = 913
         Height = 17
         Align = alBottom
         BorderStyle = sbsSunken
@@ -368,7 +368,7 @@ object frmCadOrc: TfrmCadOrc
       object Panel11: TPanel
         Left = 0
         Top = 0
-        Width = 921
+        Width = 913
         Height = 30
         Align = alTop
         Color = clSilver
@@ -818,7 +818,7 @@ object frmCadOrc: TfrmCadOrc
       object Panel1: TPanel
         Left = 0
         Top = 0
-        Width = 921
+        Width = 913
         Height = 30
         Align = alTop
         Color = 8404992
@@ -897,7 +897,7 @@ object frmCadOrc: TfrmCadOrc
           OnClick = btnAlterarClick
         end
         object btnConfirmar: TNxButton
-          Left = 307
+          Left = 154
           Top = 1
           Width = 139
           Height = 28
@@ -971,7 +971,7 @@ object frmCadOrc: TfrmCadOrc
           OnClick = btnConfirmarClick
         end
         object btnCancelar: TNxButton
-          Left = 154
+          Left = 293
           Top = 1
           Width = 153
           Height = 28
@@ -1047,7 +1047,7 @@ object frmCadOrc: TfrmCadOrc
       object pnlCadastro: TPanel
         Left = 0
         Top = 30
-        Width = 921
+        Width = 913
         Height = 143
         Align = alTop
         Enabled = False
@@ -1055,7 +1055,7 @@ object frmCadOrc: TfrmCadOrc
         object pnlNota: TPanel
           Left = 1
           Top = 1
-          Width = 919
+          Width = 911
           Height = 28
           Align = alTop
           Color = clSilver
@@ -1104,7 +1104,7 @@ object frmCadOrc: TfrmCadOrc
         object pnlCliente: TPanel
           Left = 1
           Top = 29
-          Width = 919
+          Width = 911
           Height = 113
           Align = alClient
           BevelInner = bvLowered
@@ -1440,8 +1440,8 @@ object frmCadOrc: TfrmCadOrc
       object RzPageControl2: TRzPageControl
         Left = 0
         Top = 173
-        Width = 921
-        Height = 459
+        Width = 913
+        Height = 451
         ActivePage = TS_Produto
         ActivePageDefault = TS_Produto
         Align = alClient
@@ -1454,8 +1454,8 @@ object frmCadOrc: TfrmCadOrc
           object pnlProduto: TPanel
             Left = 0
             Top = 0
-            Width = 917
-            Height = 436
+            Width = 909
+            Height = 428
             Align = alClient
             Color = 16771022
             Enabled = False
@@ -2021,8 +2021,8 @@ object frmCadOrc: TfrmCadOrc
           object Panel10: TPanel
             Left = 0
             Top = 0
-            Width = 917
-            Height = 436
+            Width = 909
+            Height = 428
             Align = alClient
             Color = 16771022
             TabOrder = 0
@@ -2358,7 +2358,7 @@ object frmCadOrc: TfrmCadOrc
           object Panel2: TPanel
             Left = 0
             Top = 0
-            Width = 917
+            Width = 909
             Height = 28
             Align = alTop
             BevelOuter = bvNone
@@ -2412,7 +2412,7 @@ object frmCadOrc: TfrmCadOrc
           object RzDBGrid13: TRzDBGrid
             Left = 0
             Top = 201
-            Width = 917
+            Width = 909
             Height = 208
             Align = alTop
             BorderStyle = bsNone
@@ -2498,7 +2498,7 @@ object frmCadOrc: TfrmCadOrc
           object Panel3: TPanel
             Left = 0
             Top = 173
-            Width = 917
+            Width = 909
             Height = 28
             Align = alTop
             BevelOuter = bvNone
@@ -2543,7 +2543,7 @@ object frmCadOrc: TfrmCadOrc
           object RzDBGrid1: TRzDBGrid
             Left = 0
             Top = 28
-            Width = 917
+            Width = 909
             Height = 145
             Align = alTop
             BorderStyle = bsNone
@@ -2618,7 +2618,7 @@ object frmCadOrc: TfrmCadOrc
           object Panel6: TPanel
             Left = 0
             Top = 0
-            Width = 917
+            Width = 909
             Height = 28
             Align = alTop
             BevelOuter = bvNone
@@ -2900,8 +2900,8 @@ object frmCadOrc: TfrmCadOrc
           object SMDBGrid5: TSMDBGrid
             Left = 0
             Top = 28
-            Width = 917
-            Height = 408
+            Width = 909
+            Height = 400
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Mat
@@ -3023,7 +3023,7 @@ object frmCadOrc: TfrmCadOrc
           object Panel7: TPanel
             Left = 0
             Top = 0
-            Width = 917
+            Width = 909
             Height = 30
             Align = alTop
             BevelOuter = bvNone
@@ -3262,8 +3262,8 @@ object frmCadOrc: TfrmCadOrc
           object SMDBGrid6: TSMDBGrid
             Left = 0
             Top = 30
-            Width = 917
-            Height = 406
+            Width = 909
+            Height = 398
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Terc
@@ -3328,7 +3328,7 @@ object frmCadOrc: TfrmCadOrc
           object Panel4: TPanel
             Left = 0
             Top = 0
-            Width = 917
+            Width = 909
             Height = 32
             Align = alTop
             BevelOuter = bvNone
@@ -3464,8 +3464,8 @@ object frmCadOrc: TfrmCadOrc
           object SMDBGrid2: TSMDBGrid
             Left = 0
             Top = 32
-            Width = 917
-            Height = 404
+            Width = 909
+            Height = 396
             Align = alClient
             Ctl3D = False
             DataSource = DMCadOrdemServico.dsOrdemServico_Ensaio
@@ -3550,7 +3550,7 @@ object frmCadOrc: TfrmCadOrc
           object Panel5: TPanel
             Left = 0
             Top = 0
-            Width = 917
+            Width = 909
             Height = 25
             Align = alTop
             BevelOuter = bvNone
@@ -3573,8 +3573,8 @@ object frmCadOrc: TfrmCadOrc
           object dbMemoEscopo: TDBMemo
             Left = 0
             Top = 25
-            Width = 917
-            Height = 411
+            Width = 909
+            Height = 403
             Align = alClient
             BevelInner = bvNone
             BevelOuter = bvNone
@@ -3592,7 +3592,7 @@ object frmCadOrc: TfrmCadOrc
           object Panel8: TPanel
             Left = 0
             Top = 0
-            Width = 917
+            Width = 909
             Height = 68
             Align = alTop
             BevelOuter = bvNone
@@ -3729,8 +3729,8 @@ object frmCadOrc: TfrmCadOrc
           object DBMemo6: TDBMemo
             Left = 0
             Top = 68
-            Width = 917
-            Height = 171
+            Width = 909
+            Height = 163
             Align = alClient
             BevelInner = bvNone
             BevelOuter = bvNone
@@ -3744,8 +3744,8 @@ object frmCadOrc: TfrmCadOrc
           end
           object Panel9: TPanel
             Left = 0
-            Top = 239
-            Width = 917
+            Top = 231
+            Width = 909
             Height = 31
             Align = alBottom
             BevelOuter = bvNone
@@ -3795,8 +3795,8 @@ object frmCadOrc: TfrmCadOrc
           end
           object SMDBGrid3: TSMDBGrid
             Left = 0
-            Top = 270
-            Width = 917
+            Top = 262
+            Width = 909
             Height = 166
             Align = alBottom
             Ctl3D = False

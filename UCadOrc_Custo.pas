@@ -107,11 +107,9 @@ type
     procedure prc_Mover_Filial_Custo;
     procedure prc_Gravar_OrdemServico_Custo;
     procedure prc_Percentual;
-
   public
     { Public declarations }
     fDMCadOrdemServico: TDMCadOrdemServico;
-    
   end;
 
 var
@@ -119,9 +117,7 @@ var
 
 implementation
 
-uses rsDBUtils, DB, UCadOrdemServico_Mat, USel_Setor_Proc2,
-  UCadOrdemServico_Terc;
-
+uses rsDBUtils, DB, UCadOrdemServico_Mat, USel_Setor_Proc2, UCadOrdemServico_Terc;     
 
 {$R *.dfm}
 
@@ -182,10 +178,10 @@ end;
 
 procedure TfrmCadOrc_Custo.btnCalcular_CustoClick(Sender: TObject);
 var
-  vVlrProcesso : Real;
-  vVlrMaterial : Real;
-  vVlrTerceiro : Real;
-  vVlrSetor    : Real;
+  vVlrProcesso: Real;
+  vVlrMaterial: Real;
+  vVlrTerceiro: Real;
+  vVlrSetor   : Real;
 begin
   vVlrProcesso := 0;
   vVlrMaterial := 0;
@@ -231,10 +227,10 @@ end;
 
 procedure TfrmCadOrc_Custo.prc_Calcular_Custo;
 var
-  vDivPeriodo : Real;
-  vVF : Real;
-  vVlrAux : Real;
-  vCustoFinParcial : Real;
+  vDivPeriodo: Real;
+  vVF: Real;
+  vVlrAux: Real;
+  vCustoFinParcial: Real;
   vv: Currency;
 begin
   //Calculando
@@ -456,7 +452,7 @@ end;
 procedure TfrmCadOrc_Custo.Incluir1Click(Sender: TObject);
 var
   ffrmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat;
-  vCont :  Integer;
+  vCont:  Integer;
 begin
   if not(fDMCadOrdemServico.cdsOrdemServico.State in [dsEdit,dsInsert]) then
     exit;
@@ -476,7 +472,7 @@ end;
 procedure TfrmCadOrc_Custo.Alterar1Click(Sender: TObject);
 var
   ffrmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat;
-  vVlr : Real;
+  vVlr: Real;
 begin
   if not(fDMCadOrdemServico.cdsOrdemServico.State in [dsEdit,dsInsert]) then
     exit;
@@ -501,7 +497,7 @@ end;
 procedure TfrmCadOrc_Custo.RzDBGrid3KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 var
-  VIDSetor : Integer;  
+  VIDSetor: Integer;  
 begin
   if (Key = vk_f2) and (fDMCadOrdemServico.cdsOrdemServico.State in [dsEdit,dsInsert]) then
   begin
@@ -525,7 +521,7 @@ end;
 procedure TfrmCadOrc_Custo.Incluir2Click(Sender: TObject);
 var
   ffrmCadOrdemServico_Terc: TfrmCadOrdemServico_Terc;
-  vCont : Integer;
+  vCont: Integer;
 begin
   if not(fDMCadOrdemServico.cdsOrdemServico.State in [dsEdit,dsInsert]) then
     exit;
@@ -546,7 +542,7 @@ end;
 procedure TfrmCadOrc_Custo.Alterar2Click(Sender: TObject);
 var
   ffrmCadOrdemServico_Terc: TfrmCadOrdemServico_Terc;
-  vVlr : Real;
+  vVlr: Real;
 begin
   if not(fDMCadOrdemServico.cdsOrdemServico.State in [dsEdit,dsInsert]) then
     exit;

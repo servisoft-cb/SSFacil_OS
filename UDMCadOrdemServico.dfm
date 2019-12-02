@@ -1632,7 +1632,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     Top = 182
   end
   object cdsFuncionario: TClientDataSet
-    Active = True
     Aggregates = <>
     IndexFieldNames = 'NOME'
     Params = <>
@@ -1905,7 +1904,6 @@ object DMCadOrdemServico: TDMCadOrdemServico
     Top = 337
   end
   object cdsMaterial: TClientDataSet
-    Active = True
     Aggregates = <>
     IndexFieldNames = 'NOME'
     Params = <>
@@ -2748,6 +2746,11 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
     object qParametros_SerMOSTRAR_QTD_NOTA: TStringField
       FieldName = 'MOSTRAR_QTD_NOTA'
+      FixedChar = True
+      Size = 1
+    end
+    object qParametros_SerUSA_CALC_COMPLETO: TStringField
+      FieldName = 'USA_CALC_COMPLETO'
       FixedChar = True
       Size = 1
     end

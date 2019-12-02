@@ -1236,11 +1236,38 @@ end;
 procedure TfrmCadOrc.btnCustoClick(Sender: TObject);
 var
   ffrmCadOrc_Custo: TfrmCadOrc_Custo;
+  vTotal: Currency;
 begin
-  ffrmCadOrc_Custo := TfrmCadOrc_Custo.Create(self);
-  ffrmCadOrc_Custo.fDMCadOrdemServico := fDMCadOrdemServico;
-  ffrmCadOrc_Custo.ShowModal;
-  FreeAndNil(ffrmCadOrc_Custo);
+  if fDMCadOrdemServico.qParametros_SerUSA_CALC_COMPLETO.AsString = 'S' then
+  begin
+    ffrmCadOrc_Custo := TfrmCadOrc_Custo.Create(self);
+    ffrmCadOrc_Custo.fDMCadOrdemServico := fDMCadOrdemServico;
+    ffrmCadOrc_Custo.ShowModal;
+    FreeAndNil(ffrmCadOrc_Custo);
+    Exit;
+  end
+  else
+  begin
+    {vTotal := 0;
+    fDMCadOrdemServico.cdsOrdemServico_Setor.First;
+    while not fDMCadOrdemServico.cdsOrdemServico_Setor.Eof do
+    begin
+      vTotal := vTotal + fDMCadOrdemServico.cdsOrdemServico_SetorVLR_TOTAL.AsCurrency;
+      fDMCadOrdemServico.cdsOrdemServico_Setor.Next;
+    end;
+    fDMCadOrdemServico.cdsOrdemServico_Mat.First;
+    while not fDMCadOrdemServico.cdsOrdemServico_Mat.Eof do
+    begin
+      vTotal := vTotal + fDMCadOrdemServico.cdsOrdemServico_MatVLR_TOTAL.AsCurrency;
+      fDMCadOrdemServico.cdsOrdemServico_Mat.Next;
+    end;
+    fDMCadOrdemServico.cdsOrdemServico_Terc.First;
+    while not fDMCadOrdemServico.cdsOrdemServico_Terc.Eof do
+    begin
+      vTotal := vTotal + fDMCadOrdemServico.cdsOrdemServico_TercVALOR.AsCurrency;
+      fDMCadOrdemServico.cdsOrdemServico_Terc.Next;
+    end;}
+  end;
 end;
 
 procedure TfrmCadOrc.prc_Opcao_Tipo_Produto;
@@ -1479,12 +1506,12 @@ begin
   end;
   while not fDMCadOrdemServico.cdsOrdemServico_Setor.Eof do
   begin
-    vVlrMat := vVlrMat + fDMCadOrdemServico.cdsOrdemServico_SetorVLR_TOTAL.AsCurrency;
+    vVlrServ := vVlrServ + fDMCadOrdemServico.cdsOrdemServico_SetorVLR_TOTAL.AsCurrency;
     fDMCadOrdemServico.cdsOrdemServico_Setor.Next;
   end;
   while not fDMCadOrdemServico.cdsOrdemServico_Terc.Eof do
   begin
-    vVlrMat := vVlrMat + fDMCadOrdemServico.cdsOrdemServico_TercVALOR.AsCurrency;
+    vVlrTerc := vVlrTerc + fDMCadOrdemServico.cdsOrdemServico_TercVALOR.AsCurrency;
     fDMCadOrdemServico.cdsOrdemServico_Mat.Next;
   end;
 

@@ -1182,6 +1182,7 @@ type
     sdsOrdemServico_ItensQTD_NOTA: TFloatField;
     cdsOrdemServico_ItensQTD_NOTA: TFloatField;
     qParametros_SerMOSTRAR_QTD_NOTA: TStringField;
+    qParametros_SerUSA_CALC_COMPLETO: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure dspOrdemServicoUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError;
