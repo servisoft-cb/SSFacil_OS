@@ -112,7 +112,10 @@ uses
   ApiDirectcall in '..\ssfacil\DirectCall\ApiDirectcall.pas',
   uGrava_Pedido in '..\ssfacil\uGrava_Pedido.pas',
   UDMIndicador in 'UDMIndicador.pas' {DMIndicador: TDataModule},
-  UConsIndPrazoEntrega in 'UConsIndPrazoEntrega.pas' {frmConsIndPrazoEntrega};
+  UConsIndPrazoEntrega in 'UConsIndPrazoEntrega.pas' {frmConsIndPrazoEntrega},
+  USel_CBenef in '..\ssfacil\USel_CBenef.pas' {frmSel_CBenef},
+  UDMGravarFinanceiro in '..\ssfacil\UDMGravarFinanceiro.pas' {DMGravarFinanceiro: TDataModule},
+  uPessoa in '..\ssfacil\Classes\uPessoa.pas';
 
 {$R *.res}
 

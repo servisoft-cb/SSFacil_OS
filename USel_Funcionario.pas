@@ -144,8 +144,6 @@ begin
 end;
 
 procedure TfrmSel_Funcionario.btnConfirmarClick(Sender: TObject);
-var
-  vAux : Real;
 begin
   SMDBGrid1.DisableScroll;
   fDMSel_Setor_Proc.mAuxiliar.First;

@@ -265,7 +265,7 @@ begin
                                                              fDMBaixa_Mat_OS.cdsOrdemServico_MatPRECO_CUSTO.AsFloat,
                                                              0,0,fDMBaixa_Mat_OS.cdsOrdemServico_MatUNIDADE.AsString,
                                                              0,
-                                                             '','N',0,0,0,0,0);
+                                                             '','N',0,0,0,0,0,0,0);
     fDMBaixa_Mat_OS.cdsBaixa_Mat_OS.Post;
     fDMBaixa_Mat_OS.cdsBaixa_Mat_OS.ApplyUpdates(0);
 

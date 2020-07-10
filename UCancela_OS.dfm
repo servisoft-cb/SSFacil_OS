@@ -1,6 +1,6 @@
 object frmCancela_OS: TfrmCancela_OS
-  Left = 278
-  Top = 142
+  Left = 238
+  Top = 107
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'frmCancela_OS'
