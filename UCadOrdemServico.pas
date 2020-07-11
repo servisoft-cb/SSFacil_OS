@@ -2058,9 +2058,13 @@ procedure TfrmCadOrdemServico.DBEdit14Exit(Sender: TObject);
 begin
   if (StrToFloat(FormatFloat('0.0000',vQtdNota_Ant)) <> StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD_NOTA.AsFloat)))
     and (StrToFloat(FormatFloat('0.0000',fDMCadOrdemServico.cdsOrdemServico_ItensQTD_FATURADO.AsFloat)) > 0) then
+  begin
     MessageDlg('*** OS já esta no Pedido ' + #13 +
                fDMCadOrdemServico.fnc_Busca_Pedido
                +#13 + #13 + '*** É preciso alterar a qtde e valor no Pedido!',mtInformation, [mbOk], 0);
+    fDMCadOrdemServico.cdsOrdemServico_ItensQTD_NOTA.AsFloat := StrToFloat(FormatFloat('0.0000',vQtdNota_Ant));
+    DBEdit14.SetFocus;
+  end;
 end;
 
 end.

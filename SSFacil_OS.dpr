@@ -69,8 +69,6 @@ uses
   UConsPessoa_Prod in '..\ssfacil\UConsPessoa_Prod.pas' {frmConsPessoa_Prod},
   UCadPessoa_Servico in '..\ssfacil\UCadPessoa_Servico.pas' {frmCadPessoa_Servico},
   UCadPessoa_Servico_Int in '..\ssfacil\UCadPessoa_Servico_Int.pas' {frmCadPessoa_Servico_Int},
-  UConsCNPJ_ACBR in '..\ssfacil\UConsCNPJ_ACBR.pas' {frmConsCNPJ_ACBR},
-  UConsCPF_ACBR in '..\ssfacil\UConsCPF_ACBR.pas' {frmConsCPF_ACBR},
   URelPessoa in '..\ssfacil\URelPessoa.pas' {fRelPessoa},
   UDMRel in '..\ssfacil\UDMRel.pas' {DMRel: TDataModule},
   SelfPrintDefs in '..\ssfacil\sendmail\SelfPrintDefs.pas',
