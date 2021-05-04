@@ -159,7 +159,7 @@ begin
     prc_Mover_Custo;
   btnCalcular_CustoClick(Sender);
 
-  {CurrencyEdit4.Value  := fDMCadOrdemServico.qFilial_CustoPERC_ICMS.AsFloat;
+  CurrencyEdit4.Value  := fDMCadOrdemServico.qFilial_CustoPERC_ICMS.AsFloat;
   CurrencyEdit7.Value  := fDMCadOrdemServico.qFilial_CustoPERC_MARK_UP.AsFloat;
   CurrencyEdit8.Value  := fDMCadOrdemServico.cdsFilialPERC_PIS.AsFloat + fDMCadOrdemServico.cdsFilialPERC_COFINS.AsFloat;
   CurrencyEdit9.Value  := fDMCadOrdemServico.cdsFilialPERC_ISS.AsFloat;
@@ -168,7 +168,7 @@ begin
   CurrencyEdit12.Value := fDMCadOrdemServico.qFilial_CustoPERC_IR_CONTRSOCIAL.AsFloat;
   CurrencyEdit13.Value := fDMCadOrdemServico.qFilial_CustoPERC_MARGEM_OPE.AsFloat;
 
-  CurrencyEdit17.Value := fDMCadOrdemServico.qFilial_CustoPERC_CUSTO_FINANCEIRO.AsFloat;}
+  CurrencyEdit17.Value := fDMCadOrdemServico.qFilial_CustoPERC_CUSTO_FINANCEIRO.AsFloat;
 
   //btnCalcular_CustoClick(Sender);
 

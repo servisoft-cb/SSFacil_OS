@@ -1309,18 +1309,18 @@ begin
     vMsgOS := vMsgOS + #13 + '*** Data de emissão não informada!';
   if cdsOrdemServicoID_CLIENTE.AsInteger <= 0 then
     vMsgOS := vMsgOS + #13 + '*** Cliente não informado!';
-  if cdsOrdemServicoTP_ORCAMENTO.AsString <> 'R' then
+  if cdsOrdemServicoTP_ORCAMENTO.AsString <> '2' then
   begin
     if (trim(cdsOrdemServicoTIPO_SERVICO.AsString) = '') or (cdsOrdemServicoTIPO_SERVICO.IsNull)  then
       vMsgOS := vMsgOS + #13 + '*** Tipo não informado!';
   end;
-  if (cdsOrdemServico_ItensID_PRODUTO.AsInteger <= 0) and (cdsOrdemServicoTP_ORCAMENTO.AsString <> 'R') then
+  if (cdsOrdemServico_ItensID_PRODUTO.AsInteger <= 0) and (cdsOrdemServicoTP_ORCAMENTO.AsString <> '2') then
     vMsgOS := vMsgOS + #13 + '*** Produto/Peça não informado!';
-  if (trim(cdsOrdemServico_ItensNOME_PRODUTO.AsString) = '') and (cdsOrdemServicoTP_ORCAMENTO.AsString = 'R') then
+  if (trim(cdsOrdemServico_ItensNOME_PRODUTO.AsString) = '') and (cdsOrdemServicoTP_ORCAMENTO.AsString = '2') then
     vMsgOS := vMsgOS + #13 + '*** Produto/Peça não informado!';
   if cdsOrdemServico_ItensQTD.AsFloat <= 0 then
     vMsgOS := vMsgOS + #13 + '*** Quantidade não informada!';
-  if (cdsOrdemServico_Proc.RecordCount <= 0) and (cdsOrdemServicoTP_ORCAMENTO.AsString <> 'R') then
+  if (cdsOrdemServico_Proc.RecordCount <= 0) and (cdsOrdemServicoTP_ORCAMENTO.AsString <> '2') then
     vMsgOS := vMsgOS + #13 + '*** Não foi informado Processo na OS!';
   if (qParametros_SerMOSTRAR_QTD_NOTA.AsString = 'S') and (StrToFloat(FormatFloat('0.0000',cdsOrdemServico_ItensQTD_NOTA.AsFloat)) <= 0) then
     vMsgOS := vMsgOS + #13 + '*** Qtde. da Nota não informada!';

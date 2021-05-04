@@ -377,7 +377,7 @@ var
   ID: TTransactionDesc;
   vVlrTotal: Real;
 begin
-  if (fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsInteger <= 0) and (fDMCadOrdemServico.cdsOrdemServicoTP_ORCAMENTO.AsString = 'R') then
+  if (fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsInteger <= 0) and (fDMCadOrdemServico.cdsOrdemServicoTP_ORCAMENTO.AsString = '2') then
   begin
     fDMCadOrdemServico.qProximo_NumOrc.Close;
     fDMCadOrdemServico.qProximo_NumOrc.Open;
@@ -457,7 +457,6 @@ begin
   fDMCadOrdemServico.cdsOrdemServicoFILIAL.AsInteger    := vFilial;
   fDMCadOrdemServico.cdsOrdemServicoTP_SIMPLES.AsString := 'N';
   fDMCadOrdemServico.cdsOrdemServicoSTATUS.AsString     := '1';
-  fDMCadOrdemServico.cdsOrdemServicoTP_ORCAMENTO.AsString := 'R';
   pnlCliente.Enabled := True;
 
   fDMCadOrdemServico.prc_Inserir_Itens;
@@ -514,7 +513,7 @@ begin
   fDMCadOrdemServico.cdsOrdemServico_Consulta.Close;
   fDMCadOrdemServico.cdsOrdemServico_Consulta.IndexFieldNames := 'NUM_ORCAMENTO';
   fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText     := fDMCadOrdemServico.ctConsulta +
-                                                                 'WHERE OS.TP_ORCAMENTO = ''R''';
+                                                                 'WHERE OS.TP_ORCAMENTO = ''2''';
 
   if ID > 0 then
     fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText +

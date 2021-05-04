@@ -9,7 +9,7 @@ object DMCopiarOrc: TDMCopiarOrc
     GetMetadata = False
     CommandText = 
       'SELECT *'#13#10'FROM ORDEMSERVICO'#13#10'WHERE NUM_ORCAMENTO = :NUM_ORCAMENT' +
-      'O'
+      'O'#13#10'and TP_ORCAMENTO = '#39'2'#39
     MaxBlobSize = -1
     Params = <
       item
@@ -18,10 +18,11 @@ object DMCopiarOrc: TDMCopiarOrc
         ParamType = ptInput
       end>
     SQLConnection = dmDatabase.scoDados
-    Left = 56
-    Top = 8
+    Left = 55
+    Top = 9
     object sdsOrcID: TIntegerField
       FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object sdsOrcNUM_OS: TIntegerField
@@ -200,7 +201,6 @@ object DMCopiarOrc: TDMCopiarOrc
     Top = 8
   end
   object cdsOrc: TClientDataSet
-    Active = True
     Aggregates = <>
     IndexFieldNames = 'ID'
     Params = <>
@@ -209,6 +209,7 @@ object DMCopiarOrc: TDMCopiarOrc
     Top = 8
     object cdsOrcID: TIntegerField
       FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object cdsOrcNUM_OS: TIntegerField
@@ -402,7 +403,7 @@ object DMCopiarOrc: TDMCopiarOrc
       end>
     SQLConnection = dmDatabase.scoDados
     Left = 56
-    Top = 80
+    Top = 81
     object sdsOrc_ItensID: TIntegerField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]

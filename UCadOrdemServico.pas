@@ -1756,6 +1756,10 @@ begin
   fDMCopiarOrc.cdsOrc.Close;
   fDMCopiarOrc.sdsOrc.ParamByName('NUM_ORCAMENTO').AsInteger := fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsInteger;
   fDMCopiarOrc.cdsOrc.Open;
+  fDMCopiarOrc.cdsOrc_Itens.Close;
+  fDMCopiarOrc.cdsOrc_Itens.Open;
+  fDMCopiarOrc.cdsOrc_Mat.Close;
+  fDMCopiarOrc.cdsOrc_Mat.Open;
 
   if fDMCopiarOrc.cdsOrc.IsEmpty then
   begin
@@ -1769,21 +1773,17 @@ begin
     fDMCadOrdemServico.cdsOrdemServicoID_CLIENTE.AsInteger := fDMCopiarOrc.cdsOrcID_CLIENTE.AsInteger;
 
   //Copia os itens
-  if fDMCadOrdemServico.cdsOrdemServico_Itens.IsEmpty then
+  fDMCopiarOrc.cdsOrc_Itens.First;
+  if not fDMCopiarOrc.cdsOrc_Itens.IsEmpty then
   begin
-    fDMCadOrdemServico.cdsOrdemServico_Itens.Insert;
-    for x := 0 to (fDMCopiarOrc.cdsOrc_Itens.FieldCount - 1) do
+    if not fDMCadOrdemServico.cdsOrdemServico_Itens.IsEmpty then
+      fDMCadOrdemServico.cdsOrdemServico_Itens.Edit
+    else
     begin
-      if (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'ID') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'ITEM') and
-         (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Setor') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Terc') and
-         (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Mat') then
-        fDMCadOrdemServico.cdsOrdemServico_Itens.FieldByName(fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName).AsVariant := fDMCopiarOrc.cdsOrc_Itens.Fields[x].Value;
+      fDMCadOrdemServico.cdsOrdemServico_Itens.Insert;
+      fDMCadOrdemServico.cdsOrdemServico_ItensID.AsInteger   := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
+      fDMCadOrdemServico.cdsOrdemServico_ItensITEM.AsInteger := fDMCopiarOrc.cdsOrc_ItensITEM.AsInteger;                      
     end;
-    fDMCadOrdemServico.cdsOrdemServico_Itens.Post;
-  end
-  else
-  begin
-    fDMCadOrdemServico.cdsOrdemServico_Itens.Edit;
     for x := 0 to (fDMCopiarOrc.cdsOrc_Itens.FieldCount - 1) do
     begin
       if (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'ID') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'ITEM') and
@@ -1797,6 +1797,7 @@ begin
   //copia materiais
   if (fDMCadOrdemServico.cdsOrdemServico_Mat.IsEmpty) then
   begin
+    fDMCopiarOrc.cdsOrc_Mat.First;
     while not fDMCopiarOrc.cdsOrc_Mat.Eof do
     begin
       fDMCadOrdemServico.prc_Inserir_Mat;

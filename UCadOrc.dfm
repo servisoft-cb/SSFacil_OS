@@ -24,7 +24,7 @@ object frmCadOrc: TfrmCadOrc
     Top = 0
     Width = 925
     Height = 655
-    ActivePage = TS_Cadastro
+    ActivePage = TS_Consulta
     ActivePageDefault = TS_Consulta
     Align = alClient
     BackgroundColor = 16752448
@@ -32,7 +32,7 @@ object frmCadOrc: TfrmCadOrc
     FlatColor = clGray
     ParentBackgroundColor = False
     TabColors.Shadow = clSilver
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     OnChange = RzPageControl1Change
     FixedDimension = 19
@@ -3365,7 +3365,6 @@ object frmCadOrc: TfrmCadOrc
               ShowHint = True
               TabOrder = 0
               Transparent = True
-              Visible = False
               OnClick = btnSelEnsaioClick
             end
             object btnExcluir_Ensaio: TNxButton
@@ -3386,7 +3385,6 @@ object frmCadOrc: TfrmCadOrc
               ShowHint = True
               TabOrder = 1
               Transparent = True
-              Visible = False
               OnClick = btnExcluir_EnsaioClick
             end
             object btnGerarEnsaio: TNxButton
