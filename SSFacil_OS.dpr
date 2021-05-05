@@ -113,7 +113,8 @@ uses
   UConsIndPrazoEntrega in 'UConsIndPrazoEntrega.pas' {frmConsIndPrazoEntrega},
   USel_CBenef in '..\ssfacil\USel_CBenef.pas' {frmSel_CBenef},
   UDMGravarFinanceiro in '..\ssfacil\UDMGravarFinanceiro.pas' {DMGravarFinanceiro: TDataModule},
-  uPessoa in '..\ssfacil\Classes\uPessoa.pas';
+  uPessoa in '..\ssfacil\Classes\uPessoa.pas',
+  UConsOrdemServico_Canc in 'UConsOrdemServico_Canc.pas' {frmConsOrdemServico_Canc};
 
 {$R *.res}
 

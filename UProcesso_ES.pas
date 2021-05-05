@@ -755,7 +755,9 @@ var
 begin
   if CurrencyEdit3.Value > 0 then
   begin
-    vAux := fnc_Converte_Horas(CurrencyEdit3.Value);
+    //04/05/2021
+    //vAux := fnc_Converte_Horas(CurrencyEdit3.Value);
+    vAux := CurrencyEdit3.Value;
     CurrencyEdit3.Value := vAux;
   end;
 end;

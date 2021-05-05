@@ -337,6 +337,10 @@ object fMenu: TfMenu
         Caption = 'Consultar OS'
         OnClick = ConsultarOS1Click
       end
+      object ConsultaOSCanceladas1: TMenuItem
+        Caption = 'Consulta OS Canceladas'
+        OnClick = ConsultaOSCanceladas1Click
+      end
       object ConsultarIndicardePrazoEntrega1: TMenuItem
         Caption = 'Consultar Indicar de Prazo Entrega'
         OnClick = ConsultarIndicardePrazoEntrega1Click

@@ -87,12 +87,31 @@ type
     cdsOrdemServicoFATURADO_NOTA: TStringField;
     cdsOrdemServicoCOPIADO_PEDIDO: TStringField;
     cdsOrdemServicoPRODUZIDO: TStringField;
+    sdsConsCancelada: TSQLDataSet;
+    dspConsCancelada: TDataSetProvider;
+    cdsConsCancelada: TClientDataSet;
+    dsConsCancelada: TDataSource;
+    cdsConsCanceladaREFERENCIA: TStringField;
+    cdsConsCanceladaID: TIntegerField;
+    cdsConsCanceladaITEM: TIntegerField;
+    cdsConsCanceladaITEM_CANC: TIntegerField;
+    cdsConsCanceladaDATA: TDateField;
+    cdsConsCanceladaDTUSUARIO: TDateField;
+    cdsConsCanceladaHRUSUARIO: TTimeField;
+    cdsConsCanceladaUSUARIO: TStringField;
+    cdsConsCanceladaQTD: TFloatField;
+    cdsConsCanceladaMOTIVO: TStringField;
+    cdsConsCanceladaNOME_CLIENTE: TStringField;
+    cdsConsCanceladaID_PRODUTO: TIntegerField;
+    cdsConsCanceladaNOME_PRODUTO: TStringField;
+    cdsConsCanceladaNUM_OS: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     ctOrdemServico_Nota, ctOrdemServico_Ped, ctOrdemServico : String;
+    ctConsCancelada: String;
     
   end;
 
@@ -110,6 +129,7 @@ begin
   ctOrdemServico_Ped  := sdsOrdemServico_Ped.CommandText;
   ctOrdemServico_Nota := sdsOrdemServico_Nota.CommandText;
   ctOrdemServico      := sdsOrdemServico.CommandText;
+  ctConsCancelada     := sdsConsCancelada.CommandText;
 end;
 
 end.

@@ -283,19 +283,19 @@ object DMConsOrdemServico: TDMConsOrdemServico
     Params = <>
     SQLConnection = dmDatabase.scoDados
     Left = 319
-    Top = 36
+    Top = 28
   end
   object dspOrdemServico: TDataSetProvider
     DataSet = sdsOrdemServico
     Left = 355
-    Top = 34
+    Top = 26
   end
   object cdsOrdemServico: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'dspOrdemServico'
     Left = 394
-    Top = 35
+    Top = 27
     object cdsOrdemServicoQTD_FATURADO: TFloatField
       FieldName = 'QTD_FATURADO'
     end
@@ -366,6 +366,102 @@ object DMConsOrdemServico: TDMConsOrdemServico
   object dsOrdemServico: TDataSource
     DataSet = cdsOrdemServico
     Left = 439
-    Top = 36
+    Top = 28
+  end
+  object sdsConsCancelada: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 
+      'select C.ID, C.ITEM, C.ITEM_CANC, C.DATA, C.DTUSUARIO, C.HRUSUAR' +
+      'IO, C.USUARIO, C.QTD, C.MOTIVO, CLI.NOME NOME_CLIENTE,'#13#10'       I' +
+      '.ID_PRODUTO, I.NOME_PRODUTO, I.REFERENCIA, O.NUM_OS'#13#10'from ORDEMS' +
+      'ERVICO_CANC C'#13#10'inner join ORDEMSERVICO O on C.ID = O.ID'#13#10'inner j' +
+      'oin ORDEMSERVICO_ITENS I on C.ID = I.ID and C.ITEM = I.ITEM'#13#10'inn' +
+      'er join PESSOA CLI on O.ID_CLIENTE = CLI.CODIGO  '#13#10'WHERE O.TP_OR' +
+      'CAMENTO = 1'#13#10
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = dmDatabase.scoDados
+    Left = 322
+    Top = 110
+  end
+  object dspConsCancelada: TDataSetProvider
+    DataSet = sdsConsCancelada
+    Left = 358
+    Top = 108
+  end
+  object cdsConsCancelada: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspConsCancelada'
+    Left = 397
+    Top = 109
+    object cdsConsCanceladaREFERENCIA: TStringField
+      DisplayLabel = 'Refer'#234'ncia'
+      FieldName = 'REFERENCIA'
+    end
+    object cdsConsCanceladaID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object cdsConsCanceladaITEM: TIntegerField
+      DisplayLabel = 'Item'
+      FieldName = 'ITEM'
+      Required = True
+    end
+    object cdsConsCanceladaITEM_CANC: TIntegerField
+      DisplayLabel = 'Item Canc.'
+      FieldName = 'ITEM_CANC'
+      Required = True
+    end
+    object cdsConsCanceladaDATA: TDateField
+      DisplayLabel = 'Dt. Cancelamento'
+      FieldName = 'DATA'
+    end
+    object cdsConsCanceladaDTUSUARIO: TDateField
+      DisplayLabel = 'Dt. Usu'#225'rio'
+      FieldName = 'DTUSUARIO'
+    end
+    object cdsConsCanceladaHRUSUARIO: TTimeField
+      DisplayLabel = 'Hr Usu'#225'rio'
+      FieldName = 'HRUSUARIO'
+    end
+    object cdsConsCanceladaUSUARIO: TStringField
+      DisplayLabel = 'Usu'#225'rio'
+      FieldName = 'USUARIO'
+      Size = 15
+    end
+    object cdsConsCanceladaQTD: TFloatField
+      DisplayLabel = 'Qtd.'
+      FieldName = 'QTD'
+    end
+    object cdsConsCanceladaMOTIVO: TStringField
+      DisplayLabel = 'Motivo'
+      FieldName = 'MOTIVO'
+      Size = 200
+    end
+    object cdsConsCanceladaNOME_CLIENTE: TStringField
+      DisplayLabel = 'Nome Cliente'
+      FieldName = 'NOME_CLIENTE'
+      Size = 60
+    end
+    object cdsConsCanceladaID_PRODUTO: TIntegerField
+      DisplayLabel = 'ID Produto'
+      FieldName = 'ID_PRODUTO'
+    end
+    object cdsConsCanceladaNOME_PRODUTO: TStringField
+      DisplayLabel = 'Nome Produto'
+      FieldName = 'NOME_PRODUTO'
+      Size = 100
+    end
+    object cdsConsCanceladaNUM_OS: TIntegerField
+      DisplayLabel = 'N'#186' OS'
+      FieldName = 'NUM_OS'
+    end
+  end
+  object dsConsCancelada: TDataSource
+    DataSet = cdsConsCancelada
+    Left = 442
+    Top = 110
   end
 end
