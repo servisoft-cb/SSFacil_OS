@@ -30,9 +30,6 @@ type
     Panel11: TPanel;
     lblNome_Filial: TLabel;
     DBText1: TDBText;
-    btnInserir: TNxButton;
-    btnExcluir: TNxButton;
-    btnPesquisar: TNxButton;
     btnConsultar: TNxButton;
     btnAlterar: TNxButton;
     btnConfirmar: TNxButton;
@@ -40,7 +37,6 @@ type
     UCControls1: TUCControls;
     Label9: TLabel;
     DBText2: TDBText;
-    btnImprimir: TNxButton;
     pnlCliente: TPanel;
     Label2: TLabel;
     Label18: TLabel;
@@ -200,6 +196,10 @@ type
     RxDBLookupCombo7: TRxDBLookupCombo;
     Label37: TLabel;
     NxButton1: TNxButton;
+    btnInserir: TNxButton;
+    btnPesquisar: TNxButton;
+    btnExcluir: TNxButton;
+    btnImprimir: TNxButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);

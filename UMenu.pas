@@ -30,7 +30,6 @@ type
     alSaida: TAction;
     alTransportador: TAction;
     alFornecedor: TAction;
-    Image2: TImage;
     alCompras: TAction;
     alPedido: TAction;
     N19: TMenuItem;
@@ -59,6 +58,7 @@ type
     ConsultarOS1: TMenuItem;
     ConsultarIndicardePrazoEntrega1: TMenuItem;
     ConsultaOSCanceladas1: TMenuItem;
+    Image2: TImage;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure EfetuarLogoff1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
