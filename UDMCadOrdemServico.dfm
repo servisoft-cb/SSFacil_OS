@@ -250,6 +250,15 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object sdsOrdemServicoDTINICIO: TDateField
       FieldName = 'DTINICIO'
     end
+    object sdsOrdemServicoANO_ORCAMENTO: TIntegerField
+      FieldName = 'ANO_ORCAMENTO'
+    end
+    object sdsOrdemServicoSEQ_ANO: TIntegerField
+      FieldName = 'SEQ_ANO'
+    end
+    object sdsOrdemServicoID_ORCAMENTO: TIntegerField
+      FieldName = 'ID_ORCAMENTO'
+    end
   end
   object dspOrdemServico: TDataSetProvider
     DataSet = sdsOrdemServico
@@ -264,6 +273,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     IndexFieldNames = 'ID'
     Params = <>
     ProviderName = 'dspOrdemServico'
+    BeforePost = cdsOrdemServicoBeforePost
     OnNewRecord = cdsOrdemServicoNewRecord
     Left = 120
     Top = 7
@@ -519,6 +529,15 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object cdsOrdemServicoDTINICIO: TDateField
       FieldName = 'DTINICIO'
     end
+    object cdsOrdemServicoANO_ORCAMENTO: TIntegerField
+      FieldName = 'ANO_ORCAMENTO'
+    end
+    object cdsOrdemServicoSEQ_ANO: TIntegerField
+      FieldName = 'SEQ_ANO'
+    end
+    object cdsOrdemServicoID_ORCAMENTO: TIntegerField
+      FieldName = 'ID_ORCAMENTO'
+    end
   end
   object dsOrdemServico: TDataSource
     DataSet = cdsOrdemServico
@@ -545,13 +564,15 @@ object DMCadOrdemServico: TDMCadOrdemServico
       'em conserto'#39#13#10'  WHEN OS.STATUS = '#39'8'#39' THEN '#39'Pronto'#39#13#10'  WHEN OS.ST' +
       'ATUS = '#39'9'#39' THEN '#39'Entregue'#39#13#10'  end DESC_STATUS,'#13#10'CASE'#13#10' WHEN AP.T' +
       'IPO = '#39'A'#39' THEN '#39'APROVADO'#39#13#10' WHEN AP.TIPO = '#39'N'#39' THEN '#39'N'#195'O APROVAD' +
-      'O'#39#13#10' ELSE '#39'PENDENTE'#39#13#10' END DESC_TIPO_ORC, OS.faturado_nota'#13#10#13#10#13#10 +
-      'FROM ORDEMSERVICO OS'#13#10'LEFT JOIN PESSOA CLI ON (OS.ID_CLIENTE = C' +
-      'LI.CODIGO)'#13#10'LEFT JOIN ORDEMSERVICO_OTICA OT ON (OS.id = OT.ID)'#13#10 +
-      'LEFT JOIN ORDEMSERVICO_ENC ENC ON (OS.ID = ENC.ID) '#13#10'LEFT JOIN O' +
-      'RDEMSERVICO_APROV AP ON (OS.ID = AP.ID)'#13#10'LEFT JOIN ORDEMSERVICO_' +
-      'CUSTO OC ON (OS.ID = OC.ID)'#13#10'LEFT JOIN PESSOA VEN ON VEN.CODIGO ' +
-      '= OS.ID_VENDEDOR'#13#10
+      'O'#39#13#10' ELSE '#39'PENDENTE'#39#13#10' END DESC_TIPO_ORC, OS.faturado_nota, COP.' +
+      'num_os NUM_OS_ORCAMENTO'#13#10#13#10'                                     ' +
+      '     '#13#10'FROM ORDEMSERVICO OS'#13#10'LEFT JOIN PESSOA CLI ON (OS.ID_CLIE' +
+      'NTE = CLI.CODIGO)'#13#10'LEFT JOIN ORDEMSERVICO_OTICA OT ON (OS.id = O' +
+      'T.ID)'#13#10'LEFT JOIN ORDEMSERVICO_ENC ENC ON (OS.ID = ENC.ID) '#13#10'LEFT' +
+      ' JOIN ORDEMSERVICO_APROV AP ON (OS.ID = AP.ID)'#13#10'LEFT JOIN ORDEMS' +
+      'ERVICO_CUSTO OC ON (OS.ID = OC.ID)'#13#10'left join ORDEMSERVICO COP O' +
+      'N OS.ID = COP.ID_ORCAMENTO'#13#10'LEFT JOIN PESSOA VEN ON VEN.CODIGO =' +
+      ' OS.ID_VENDEDOR'#13#10#13#10
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
@@ -717,6 +738,9 @@ object DMCadOrdemServico: TDMCadOrdemServico
       FieldName = 'FATURADO_NOTA'
       FixedChar = True
       Size = 1
+    end
+    object cdsOrdemServico_ConsultaNUM_OS_ORCAMENTO: TIntegerField
+      FieldName = 'NUM_OS_ORCAMENTO'
     end
   end
   object dsOrdemServico_Consulta: TDataSource
@@ -4497,37 +4521,29 @@ object DMCadOrdemServico: TDMCadOrdemServico
   end
   object qProximo_NumOrc: TSQLQuery
     MaxBlobSize = -1
-    Params = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ANO_ORCAMENTO'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'ANO_ORCAMENTO'
+        ParamType = ptInput
+      end>
     SQL.Strings = (
       'SELECT MAX(NUM_ORCAMENTO) NUM_ORCAMENTO'
       'FROM ORDEMSERVICO'
-      'WHERE TP_ORCAMENTO = '#39'R'#39)
+      'WHERE TP_ORCAMENTO = '#39'2'#39
+      
+        '  and ((ANO_ORCAMENTO = :ANO_ORCAMENTO) or  (:ANO_ORCAMENTO = 0)' +
+        ')')
     SQLConnection = dmDatabase.scoDados
     Left = 760
     Top = 507
     object qProximo_NumOrcNUM_ORCAMENTO: TIntegerField
       FieldName = 'NUM_ORCAMENTO'
-    end
-  end
-  object qVerAprov: TSQLQuery
-    MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftInteger
-        Name = 'ID'
-        ParamType = ptInput
-      end>
-    SQL.Strings = (
-      'select O.TIPO'
-      'from ordemservico_aprov O'
-      'WHERE O.ID = :ID'
-      '  AND (O.TIPO = '#39'A'#39' or O.TIPO = '#39'N'#39')')
-    SQLConnection = dmDatabase.scoDados
-    Left = 752
-    Top = 571
-    object qVerAprovTIPO: TStringField
-      FieldName = 'TIPO'
-      Size = 1
     end
   end
   object qEnsaio: TSQLQuery

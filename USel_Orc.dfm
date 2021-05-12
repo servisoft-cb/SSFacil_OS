@@ -287,11 +287,13 @@ object frmSel_Orc: TfrmSel_Orc
     NoMetadata = True
     GetMetadata = False
     CommandText = 
-      'SELECT O.id,  O.id_cliente, O.nome_contato, O.num_orcamento, O.d' +
-      'temissao, O.vlr_total,'#13#10'O.tp_orcamento, A.tipo, P.NOME NOME_CLIE' +
-      'NTE'#13#10'FROM ORDEMSERVICO O'#13#10'INNER JOIN ordemservico_aprov A'#13#10'ON O.' +
-      'ID = A.ID'#13#10'LEFT JOIN PESSOA P'#13#10'ON O.ID_CLIENTE = P.CODIGO'#13#10'WHERE' +
-      ' O.tp_orcamento = '#39'R'#39#13#10'  AND A.tipo = '#39'A'#39
+      'select O.ID, O.ID_CLIENTE, O.NOME_CONTATO, O.NUM_ORCAMENTO, O.DT' +
+      'EMISSAO, O.VLR_TOTAL, O.TP_ORCAMENTO, A.TIPO,'#13#10'       P.NOME NOM' +
+      'E_CLIENTE, COP.NUM_OS'#13#10'from ORDEMSERVICO O'#13#10'inner join ORDEMSERV' +
+      'ICO_APROV A on O.ID = A.ID'#13#10'left join PESSOA P on O.ID_CLIENTE =' +
+      ' P.CODIGO'#13#10'left join ORDEMSERVICO COP on O.ID = COP.ID_ORCAMENTO' +
+      #13#10'where O.TP_ORCAMENTO = '#39'2'#39' and'#13#10'      A.TIPO = '#39'A'#39' and'#13#10'      ' +
+      'COP.NUM_OS is null   '
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados

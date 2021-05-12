@@ -490,16 +490,14 @@ object fMenu: TfMenu
     ButtonHeight = 68
     ButtonWidth = 73
     Caption = 'ToolBar1'
-    Color = clWhite
-    Ctl3D = False
-    Flat = True
+    Color = clBtnFace
     Images = ImageList1
     ParentColor = False
     ShowCaptions = True
     TabOrder = 0
     object ToolButton2: TToolButton
       Left = 0
-      Top = 0
+      Top = 2
       Caption = 'OS'
       DragCursor = crHandPoint
       ImageIndex = 18
@@ -510,7 +508,7 @@ object fMenu: TfMenu
     end
     object ToolButton1: TToolButton
       Left = 0
-      Top = 68
+      Top = 70
       Caption = 'Baixar OS'
       DragCursor = crHandPoint
       ImageIndex = 16
@@ -519,7 +517,7 @@ object fMenu: TfMenu
     end
     object ToolButton3: TToolButton
       Left = 0
-      Top = 136
+      Top = 138
       Caption = 'Baixar Mat'
       DragCursor = crHandPoint
       ImageIndex = 15
@@ -528,7 +526,7 @@ object fMenu: TfMenu
     end
     object ToolButton4: TToolButton
       Left = 0
-      Top = 204
+      Top = 206
       Caption = 'Or'#231'amento'
       DragCursor = crHandPoint
       ImageIndex = 19
@@ -537,7 +535,7 @@ object fMenu: TfMenu
     end
     object ToolButton5: TToolButton
       Left = 0
-      Top = 272
+      Top = 274
       Caption = 'Prod. / Equip.'
       DragCursor = crHandPoint
       ImageIndex = 20
@@ -921,7 +919,7 @@ object fMenu: TfMenu
     Left = 648
     Top = 376
     Bitmap = {
-      494C010115001800040030003000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
+      494C010115001800040030003000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000C00000002001000001002000000000000060
       0300000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8053,7 +8051,8 @@ object fMenu: TfMenu
       00001FFFFFFD000083FF0000000000001F04000000A7FFE000005FFFFFFD0000
       03FF0000000000000F880000001BFFE000001FFFFFFFFF003FFF000000000000
       3C5200580413FFFF88019FFFFFFFFFE03FFF0000000000000C0000401801FFFF
-      E000FFFFFFFFFF003FFF000000000000}
+      E000FFFFFFFFFF003FFF00000000000000000000000000000000000000000000
+      000000000000}
   end
   object UCControls1: TUCControls
     GroupName = 'Menu'
@@ -8102,36 +8101,6 @@ object fMenu: TfMenu
         GroupName = 'Parada OS'
       end
       item
-        FormName = 'frmCadOrc'
-        CompName = 'btnInserir'
-        Caption = 'Inserir'
-        GroupName = 'Or'#231'. da OS'
-      end
-      item
-        FormName = 'frmCadOrc'
-        CompName = 'btnExcluir'
-        Caption = 'Excluir'
-        GroupName = 'Or'#231'. da OS'
-      end
-      item
-        FormName = 'frmCadOrc'
-        CompName = 'btnAlterar'
-        Caption = 'Alterar'
-        GroupName = 'Or'#231'. da OS'
-      end
-      item
-        FormName = 'frmCadOrc'
-        CompName = 'btnCusto'
-        Caption = 'Custo'
-        GroupName = 'Or'#231'. da OS'
-      end
-      item
-        FormName = 'frmCadOrc'
-        CompName = 'btnAprovar'
-        Caption = 'Aprovar'
-        GroupName = 'Or'#231'. da OS'
-      end
-      item
         FormName = 'frmCadOrdemServico'
         CompName = 'btnInserir'
         Caption = 'Inserir'
@@ -8178,6 +8147,36 @@ object fMenu: TfMenu
         CompName = 'btnCancelar_OS'
         Caption = 'Cancelar OS'
         GroupName = 'Ordem de Servi'#231'o'
+      end
+      item
+        FormName = 'frmCadOrc'
+        CompName = 'btnInserir'
+        Caption = 'Inserir'
+        GroupName = 'Or'#231'. da OS'
+      end
+      item
+        FormName = 'frmCadOrc'
+        CompName = 'btnExcluir'
+        Caption = 'Excluir'
+        GroupName = 'Or'#231'. da OS'
+      end
+      item
+        FormName = 'frmCadOrc'
+        CompName = 'btnAlterar'
+        Caption = 'Alterar'
+        GroupName = 'Or'#231'. da OS'
+      end
+      item
+        FormName = 'frmCadOrc'
+        CompName = 'btnCusto'
+        Caption = 'Custo'
+        GroupName = 'Or'#231'. da OS'
+      end
+      item
+        FormName = 'frmCadOrc'
+        CompName = 'btnAprovar'
+        Caption = 'Aprovar/Reprovar'
+        GroupName = 'Or'#231'. da OS'
       end>
     LoginMode = lmActive
     UsersProfile.Active = True

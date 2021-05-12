@@ -8,8 +8,9 @@ object DMCopiarOrc: TDMCopiarOrc
     NoMetadata = True
     GetMetadata = False
     CommandText = 
-      'SELECT *'#13#10'FROM ORDEMSERVICO'#13#10'WHERE NUM_ORCAMENTO = :NUM_ORCAMENT' +
-      'O'#13#10'and TP_ORCAMENTO = '#39'2'#39
+      'select O.*, A.TIPO TIPO_APROVACAO'#13#10'from ORDEMSERVICO O'#13#10'left joi' +
+      'n ORDEMSERVICO_APROV A on O.ID = A.ID'#13#10'where NUM_ORCAMENTO = :NU' +
+      'M_ORCAMENTO and'#13#10'      TP_ORCAMENTO = '#39'2'#39'   '
     MaxBlobSize = -1
     Params = <
       item
@@ -192,6 +193,16 @@ object DMCopiarOrc: TDMCopiarOrc
       FixedChar = True
       Size = 1
     end
+    object sdsOrcANO_ORCAMENTO: TIntegerField
+      FieldName = 'ANO_ORCAMENTO'
+    end
+    object sdsOrcSEQ_ANO: TIntegerField
+      FieldName = 'SEQ_ANO'
+    end
+    object sdsOrcTIPO_APROVACAO: TStringField
+      FieldName = 'TIPO_APROVACAO'
+      Size = 1
+    end
   end
   object dspOrc: TDataSetProvider
     DataSet = sdsOrc
@@ -205,7 +216,7 @@ object DMCopiarOrc: TDMCopiarOrc
     IndexFieldNames = 'ID'
     Params = <>
     ProviderName = 'dspOrc'
-    Left = 120
+    Left = 119
     Top = 8
     object cdsOrcID: TIntegerField
       FieldName = 'ID'
@@ -381,6 +392,16 @@ object DMCopiarOrc: TDMCopiarOrc
     end
     object cdsOrcsdsOrc_Itens: TDataSetField
       FieldName = 'sdsOrc_Itens'
+    end
+    object cdsOrcANO_ORCAMENTO: TIntegerField
+      FieldName = 'ANO_ORCAMENTO'
+    end
+    object cdsOrcSEQ_ANO: TIntegerField
+      FieldName = 'SEQ_ANO'
+    end
+    object cdsOrcTIPO_APROVACAO: TStringField
+      FieldName = 'TIPO_APROVACAO'
+      Size = 1
     end
   end
   object dsOrc: TDataSource
@@ -627,7 +648,7 @@ object DMCopiarOrc: TDMCopiarOrc
     DataSetField = cdsOrcsdsOrc_Itens
     IndexFieldNames = 'ID;ITEM'
     Params = <>
-    Left = 120
+    Left = 121
     Top = 80
     object cdsOrc_ItensID: TIntegerField
       FieldName = 'ID'
@@ -854,6 +875,9 @@ object DMCopiarOrc: TDMCopiarOrc
     end
     object cdsOrc_ItensQTD_RESTANTE: TFloatField
       FieldName = 'QTD_RESTANTE'
+    end
+    object cdsOrc_ItenssdsOrc_Ensaio: TDataSetField
+      FieldName = 'sdsOrc_Ensaio'
     end
   end
   object dsOrc_Itens: TDataSource
@@ -1315,5 +1339,90 @@ object DMCopiarOrc: TDMCopiarOrc
     DataSet = cdsOrc_Setor_Proc
     Left = 192
     Top = 329
+  end
+  object sdsOrc_Ensaio: TSQLDataSet
+    NoMetadata = True
+    GetMetadata = False
+    CommandText = 
+      'SELECT *'#13#10'FROM ORDEMSERVICO_ENSAIO'#13#10'WHERE ID = :ID'#13#10'  AND ITEM =' +
+      ' :ITEM'
+    DataSource = dsOrcItens_Mestre
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+        Size = 4
+      end
+      item
+        DataType = ftInteger
+        Name = 'ITEM'
+        ParamType = ptInput
+        Size = 4
+      end>
+    SQLConnection = dmDatabase.scoDados
+    Left = 52
+    Top = 385
+    object sdsOrc_EnsaioID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object sdsOrc_EnsaioITEM: TIntegerField
+      FieldName = 'ITEM'
+      Required = True
+    end
+    object sdsOrc_EnsaioITEM_ENSAIO: TIntegerField
+      FieldName = 'ITEM_ENSAIO'
+      Required = True
+    end
+    object sdsOrc_EnsaioID_ENSAIO: TIntegerField
+      FieldName = 'ID_ENSAIO'
+    end
+    object sdsOrc_EnsaioDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 150
+    end
+    object sdsOrc_EnsaioCONFIRMADO: TStringField
+      FieldName = 'CONFIRMADO'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object cdsOrc_Ensaio: TClientDataSet
+    Aggregates = <>
+    DataSetField = cdsOrc_ItenssdsOrc_Ensaio
+    Params = <>
+    Left = 115
+    Top = 384
+    object cdsOrc_EnsaioID: TIntegerField
+      FieldName = 'ID'
+      Required = True
+    end
+    object cdsOrc_EnsaioITEM: TIntegerField
+      FieldName = 'ITEM'
+      Required = True
+    end
+    object cdsOrc_EnsaioITEM_ENSAIO: TIntegerField
+      FieldName = 'ITEM_ENSAIO'
+      Required = True
+    end
+    object cdsOrc_EnsaioID_ENSAIO: TIntegerField
+      FieldName = 'ID_ENSAIO'
+    end
+    object cdsOrc_EnsaioDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 150
+    end
+    object cdsOrc_EnsaioCONFIRMADO: TStringField
+      FieldName = 'CONFIRMADO'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object dsOrc_Ensaio: TDataSource
+    DataSet = cdsOrc_Ensaio
+    Left = 179
+    Top = 384
   end
 end

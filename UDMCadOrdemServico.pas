@@ -883,8 +883,6 @@ type
     cdsOrdemServico_Setor_ProcclPerc_Preco: TFloatField;
     qProximo_NumOrc: TSQLQuery;
     qProximo_NumOrcNUM_ORCAMENTO: TIntegerField;
-    qVerAprov: TSQLQuery;
-    qVerAprovTIPO: TStringField;
     cdsOrdemServico_ConsultaVLR_PROPOSTA: TFloatField;
     cdsOrdemServico_ConsultaPRECO: TFloatField;
     cdsOrdemServico_ConsultaDESC_TIPO_ORC: TStringField;
@@ -1183,6 +1181,13 @@ type
     cdsOrdemServico_ItensQTD_NOTA: TFloatField;
     qParametros_SerMOSTRAR_QTD_NOTA: TStringField;
     qParametros_SerUSA_CALC_COMPLETO: TStringField;
+    sdsOrdemServicoANO_ORCAMENTO: TIntegerField;
+    sdsOrdemServicoSEQ_ANO: TIntegerField;
+    cdsOrdemServicoANO_ORCAMENTO: TIntegerField;
+    cdsOrdemServicoSEQ_ANO: TIntegerField;
+    sdsOrdemServicoID_ORCAMENTO: TIntegerField;
+    cdsOrdemServicoID_ORCAMENTO: TIntegerField;
+    cdsOrdemServico_ConsultaNUM_OS_ORCAMENTO: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
     procedure dspOrdemServicoUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError;
@@ -1201,6 +1206,7 @@ type
     procedure cdsOrdemServico_TercCalcFields(DataSet: TDataSet);
     procedure cdsOrdemServico_AssCalcFields(DataSet: TDataSet);
     procedure cdsProdutoAfterOpen(DataSet: TDataSet);
+    procedure cdsOrdemServicoBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
     procedure DoLogAdditionalValues(ATableName: string; var AValues: TArrayLogData; var UserName: string);
@@ -1246,6 +1252,7 @@ type
     procedure prc_Monta_qProduto(ID : Integer ; Referencia : String);
 
     function fnc_Existe_NumOS(Num_OS, ID: Integer): Boolean;
+    function fnc_Proximo_Num_Orc : String;
 
     function fnc_Busca_Pedido : String;
 
@@ -1256,7 +1263,7 @@ var
 
 implementation
 
-uses DmdDatabase, LogProvider, uUtilPadrao, Math;
+uses DmdDatabase, LogProvider, uUtilPadrao, Math, DateUtils;
 
 {$R *.dfm}
 
@@ -1322,7 +1329,8 @@ begin
     vMsgOS := vMsgOS + #13 + '*** Quantidade não informada!';
   if (cdsOrdemServico_Proc.RecordCount <= 0) and (cdsOrdemServicoTP_ORCAMENTO.AsString <> '2') then
     vMsgOS := vMsgOS + #13 + '*** Não foi informado Processo na OS!';
-  if (qParametros_SerMOSTRAR_QTD_NOTA.AsString = 'S') and (StrToFloat(FormatFloat('0.0000',cdsOrdemServico_ItensQTD_NOTA.AsFloat)) <= 0) then
+  if (qParametros_SerMOSTRAR_QTD_NOTA.AsString = 'S') and (StrToFloat(FormatFloat('0.0000',cdsOrdemServico_ItensQTD_NOTA.AsFloat)) <= 0) and
+     (cdsOrdemServicoTP_ORCAMENTO.AsString = '1') then
     vMsgOS := vMsgOS + #13 + '*** Qtde. da Nota não informada!';
     
   if vMsgOS <> '' then
@@ -1873,6 +1881,44 @@ begin
   finally
     FreeAndNil(sds);
   end;
+end;
+
+function TDMCadOrdemServico.fnc_Proximo_Num_Orc: String;
+var
+  sds: TSQLDataSet;
+  vAno: Integer;
+  Texto1:String;
+  vNum: Integer;
+begin
+  vAno := 0;
+  if SQLLocate('PARAMETROS_SER','ID','ORCAMENTO_ANO','1') = 'S' then
+    vAno := YearOf(Date);
+  Result := '';
+  sds  := TSQLDataSet.Create(nil);
+  try
+    sds.SQLConnection := dmDatabase.scoDados;
+    sds.NoMetadata    := True;
+    sds.GetMetadata   := False;
+    sds.CommandText := 'SELECT MAX( SEQ_ANO) NUM_ORCAMENTO FROM ORDEMSERVICO '
+                     + 'WHERE TP_ORCAMENTO = ' + QuotedStr('2')
+                     + '  and ((ANO_ORCAMENTO = :ANO_ORCAMENTO) or  (:ANO_ORCAMENTO = 0)) ';
+    sds.ParamByName('ANO_ORCAMENTO').AsInteger := vAno;
+    sds.Open;
+    if vAno > 0 then
+      Texto1 := FormatFloat('0000',vAno) + FormatFloat('00000',sds.FieldByName('NUM_ORCAMENTO').AsInteger + 1)
+    else
+      Texto1 := IntToStr(sds.FieldByName('NUM_ORCAMENTO').AsInteger + 1);
+    Result := Texto1;
+  finally
+    FreeAndNil(sds);
+  end;
+  
+end;
+
+procedure TDMCadOrdemServico.cdsOrdemServicoBeforePost(DataSet: TDataSet);
+begin
+  if (cdsOrdemServicoTP_ORCAMENTO.AsString = '1') and (cdsOrdemServicoNUM_ORCAMENTO.AsInteger = 0) then
+    cdsOrdemServicoID_ORCAMENTO.AsInteger := 0;
 end;
 
 end.

@@ -318,6 +318,28 @@ type
     cdsOrc_ItensQTD_LIBERADA: TFloatField;
     cdsOrc_ItensQTD_FATURADO: TFloatField;
     cdsOrc_ItensQTD_RESTANTE: TFloatField;
+    sdsOrcANO_ORCAMENTO: TIntegerField;
+    sdsOrcSEQ_ANO: TIntegerField;
+    cdsOrcANO_ORCAMENTO: TIntegerField;
+    cdsOrcSEQ_ANO: TIntegerField;
+    sdsOrcTIPO_APROVACAO: TStringField;
+    cdsOrcTIPO_APROVACAO: TStringField;
+    sdsOrc_Ensaio: TSQLDataSet;
+    cdsOrc_Ensaio: TClientDataSet;
+    dsOrc_Ensaio: TDataSource;
+    sdsOrc_EnsaioID: TIntegerField;
+    sdsOrc_EnsaioITEM: TIntegerField;
+    sdsOrc_EnsaioITEM_ENSAIO: TIntegerField;
+    sdsOrc_EnsaioID_ENSAIO: TIntegerField;
+    sdsOrc_EnsaioDESCRICAO: TStringField;
+    sdsOrc_EnsaioCONFIRMADO: TStringField;
+    cdsOrc_ItenssdsOrc_Ensaio: TDataSetField;
+    cdsOrc_EnsaioID: TIntegerField;
+    cdsOrc_EnsaioITEM: TIntegerField;
+    cdsOrc_EnsaioITEM_ENSAIO: TIntegerField;
+    cdsOrc_EnsaioID_ENSAIO: TIntegerField;
+    cdsOrc_EnsaioDESCRICAO: TStringField;
+    cdsOrc_EnsaioCONFIRMADO: TStringField;
   private
     { Private declarations }
   public

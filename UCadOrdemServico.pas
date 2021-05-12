@@ -1731,9 +1731,13 @@ begin
   begin
     vNum_Orc_Sel := fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsInteger;
     frmSel_Orc := TfrmSel_Orc.Create(Self);
-    frmSel_Orc.ShowModal;
-    if vNum_Orc_Sel > 0 then
-      fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsInteger := vNum_Orc_Sel;
+    try
+      frmSel_Orc.ShowModal;
+      if vNum_Orc_Sel > 0 then
+        fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsInteger := vNum_Orc_Sel;
+    finally
+      FreeAndNil(frmSel_Orc);
+    end;
   end;
 end;
 
@@ -1766,11 +1770,19 @@ begin
     MessageDlg('*** Orçamento não encontrado!', mtInformation, [mbOk], 0);
     exit;
   end;
+  if trim(fDMCopiarOrc.cdsOrcTIPO_APROVACAO.AsString) <> 'A' then
+  begin
+    MessageDlg('*** Orçamento não esta aprovado!', mtInformation, [mbOk], 0);
+    exit;
+  end;
+
   if not (fDMCadOrdemServico.cdsOrdemServico_Itens.Active) then
     fDMCadOrdemServico.cdsOrdemServico_Itens.Open;
 
   if fDMCadOrdemServico.cdsOrdemServicoID_CLIENTE.IsNull then
     fDMCadOrdemServico.cdsOrdemServicoID_CLIENTE.AsInteger := fDMCopiarOrc.cdsOrcID_CLIENTE.AsInteger;
+
+  fDMCadOrdemServico.cdsOrdemServicoID_ORCAMENTO.AsInteger := fDMCopiarOrc.cdsOrcID.AsInteger;
 
   //Copia os itens
   fDMCopiarOrc.cdsOrc_Itens.First;
@@ -1788,7 +1800,7 @@ begin
     begin
       if (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'ID') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'ITEM') and
          (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Setor') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Terc') and
-         (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Mat') then
+         (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Mat') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Ensaio') then
         fDMCadOrdemServico.cdsOrdemServico_Itens.FieldByName(fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName).AsVariant := fDMCopiarOrc.cdsOrc_Itens.Fields[x].Value;
     end;
     fDMCadOrdemServico.cdsOrdemServico_Itens.Post;

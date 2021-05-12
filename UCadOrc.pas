@@ -195,11 +195,19 @@ type
     DBEdit34: TDBEdit;
     RxDBLookupCombo7: TRxDBLookupCombo;
     Label37: TLabel;
-    NxButton1: TNxButton;
+    btnCopiar: TNxButton;
     btnInserir: TNxButton;
     btnPesquisar: TNxButton;
     btnExcluir: TNxButton;
     btnImprimir: TNxButton;
+    Label56: TLabel;
+    RxDBLookupCombo8: TRxDBLookupCombo;
+    Label57: TLabel;
+    CurrencyEdit2: TCurrencyEdit;
+    cbxAprovado: TNxComboBox;
+    Label58: TLabel;
+    Shape3: TShape;
+    Label59: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
@@ -273,6 +281,7 @@ type
     procedure btBuscaProdutoClick(Sender: TObject);
     procedure DBEdit21KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure btnCopiarClick(Sender: TObject);
   private
     { Private declarations }
     vTipoNotaAnt: String;
@@ -320,7 +329,8 @@ var
 implementation
 
 uses DmdDatabase, rsDBUtils, uUtilPadrao, USel_Pessoa, USel_Produto, UDMImpOrdemServico, UCadProduto, USel_Setor_Proc2,
-  USel_Ensaio, UCadOrc_Custo, UCadOrc_Aprov, USel_Funcionario, uCadPessoa;
+  USel_Ensaio, UCadOrc_Custo, UCadOrc_Aprov, USel_Funcionario, uCadPessoa,
+  UDMCopiarOrc;
 
 {$R *.dfm}
 
@@ -376,12 +386,24 @@ var
   vIDAux: Integer;
   ID: TTransactionDesc;
   vVlrTotal: Real;
+  vNumAno: String;
 begin
   if (fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsInteger <= 0) and (fDMCadOrdemServico.cdsOrdemServicoTP_ORCAMENTO.AsString = '2') then
   begin
+    
     fDMCadOrdemServico.qProximo_NumOrc.Close;
-    fDMCadOrdemServico.qProximo_NumOrc.Open;
-    fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsInteger := fDMCadOrdemServico.qProximo_NumOrcNUM_ORCAMENTO.AsInteger + 1;
+    vNumAno := fDMCadOrdemServico.fnc_Proximo_Num_Orc;
+    if Length(vNumAno) = 9 then
+    begin
+      fDMCadOrdemServico.cdsOrdemServicoANO_ORCAMENTO.AsInteger := YearOf(Date);
+      fDMCadOrdemServico.cdsOrdemServicoSEQ_ANO.AsString        := copy(vNumAno,5,5);
+    end
+    else
+    begin
+      fDMCadOrdemServico.cdsOrdemServicoANO_ORCAMENTO.AsInteger := 0;
+      fDMCadOrdemServico.cdsOrdemServicoSEQ_ANO.AsString        := vNumAno;
+    end;
+    fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsString := vNumAno;
     fDMCadOrdemServico.qProximo_NumOrc.Close;
   end;
 
@@ -470,6 +492,7 @@ procedure TfrmCadOrc.FormShow(Sender: TObject);
 var
   i: Integer;
   vData: TDateTime;
+  vOrcAno:String;
 begin
   fDMCadOrdemServico := TDMCadOrdemServico.Create(Self);
 
@@ -506,6 +529,10 @@ begin
     prc_Monta_Grid;
   end;
   fDMCadOrdemServico.qParametros_Prod.Active := True;
+
+  vOrcAno := SQLLocate('PARAMETROS_SER','ID','ORCAMENTO_ANO','1');
+  Label57.Visible       := (vOrcAno = 'S');
+  CurrencyEdit2.Visible := (vOrcAno = 'S');
 end;
 
 procedure TfrmCadOrc.prc_Consultar(ID: Integer);
@@ -514,7 +541,6 @@ begin
   fDMCadOrdemServico.cdsOrdemServico_Consulta.IndexFieldNames := 'NUM_ORCAMENTO';
   fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText     := fDMCadOrdemServico.ctConsulta +
                                                                  'WHERE OS.TP_ORCAMENTO = ''2''';
-
   if ID > 0 then
     fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText +
                                                                ' AND OS.ID = ' + IntToStr(ID)
@@ -537,6 +563,21 @@ begin
       fDMCadOrdemServico.sdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText
                                       + ' AND ((CLI.NOME LIKE ' + QuotedStr('%'+Edit2.Text+'%') + ')'
                                       + ' OR (CLI.FANTASIA LIKE ' + QuotedStr('%'+Edit2.Text+'%') + '))';
+    if RxDBLookupCombo8.Text <> '' then
+      fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText +
+                                                                 ' AND OS.ID_VENDEDOR = ' + IntToStr(RxDBLookupCombo8.KeyValue);
+
+    if CurrencyEdit2.AsInteger > 0 then
+      fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText +
+                                                                 ' AND OS.SEQ_ANO = ' + IntToStr(CurrencyEdit2.AsInteger);
+    case cbxAprovado.ItemIndex of
+      1 : fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText +
+                                                                     ' AND AP.TIPO IS NULL ';
+      2 : fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText +
+                                                                     ' AND AP.TIPO = ' + QuotedStr('A');
+      3 : fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText := fDMCadOrdemServico.SdsOrdemServico_Consulta.CommandText +
+                                                                     ' AND AP.TIPO = '  + QuotedStr('N');
+    end;
   end;
   fDMCadOrdemServico.cdsOrdemServico_Consulta.Open;
 end;
@@ -571,21 +612,13 @@ var
 begin
   if not fnc_Verifica_Registro then
     exit;
-
-
   if (fDMCadOrdemServico.cdsOrdemServico.IsEmpty) or not(fDMCadOrdemServico.cdsOrdemServico.Active) or
      (fDMCadOrdemServico.cdsOrdemServicoID.AsInteger < 1) then
     exit;
-
-    
-
   fDMCadOrdemServico.qParametros.Close;
   fDMCadOrdemServico.qParametros.Open;
-
   fDMCadOrdemServico.cdsOrdemServico.Edit;
-
   prc_Posicionar_Cliente;
-
   TS_Consulta.TabEnabled := False;
   prc_Habilitar_Campos;
 end;
@@ -655,22 +688,22 @@ begin
 end;
 
 function TfrmCadOrc.fnc_Verifica_Registro: Boolean;
+var
+  vAprov: String;
 begin
   Result := False;
   if not(fDMCadOrdemServico.cdsOrdemServico_Consulta.Active) or (fDMCadOrdemServico.cdsOrdemServico_Consulta.IsEmpty) or
         (fDMCadOrdemServico.cdsOrdemServico_ConsultaID.AsInteger < 1) then
     exit;
 
-  fDMCadOrdemServico.qVerAprov.Close;
-  fDMCadOrdemServico.qVerAprov.ParamByName('ID').AsInteger := fDMCadOrdemServico.cdsOrdemServico_ConsultaID.AsInteger;
-  fDMCadOrdemServico.qVerAprov.Open;
-  if fDMCadOrdemServico.qVerAprovTIPO.AsString = 'A' then
+  vAprov := SQLLocate('ORDEMSERVICO_APROV','ID','TIPO',fDMCadOrdemServico.cdsOrdemServico_ConsultaID.AsString);
+  if vAprov = 'A' then
   begin
     MessageDlg('*** Orçamento já está Aprovado!', mtError, [mbOk], 0);
     exit;
   end
   else
-  if fDMCadOrdemServico.qVerAprovTIPO.AsString = 'N' then
+  if vAprov = 'N' then
   begin
     MessageDlg('*** Orçamento está como Não Aprovado!', mtError, [mbOk], 0);
     exit;
@@ -1290,6 +1323,11 @@ end;
 procedure TfrmCadOrc.SMDBGrid1GetCellParams(Sender: TObject; Field: TField;
   AFont: TFont; var Background: TColor; Highlight: Boolean);
 begin
+  if fDMCadOrdemServico.cdsOrdemServico_ConsultaNUM_OS_ORCAMENTO.AsInteger > 0 then
+  begin
+    Background := $009FCA9F;
+  end
+  else
   if fDMCadOrdemServico.cdsOrdemServico_ConsultaTIPO_APROV_ORC.AsString = 'A' then
   begin
     Background  := $00FFFFB7;
@@ -1311,7 +1349,7 @@ begin
   if not(fDMCadOrdemServico.cdsOrdemServico_Consulta.Active) or (fDMCadOrdemServico.cdsOrdemServico_ConsultaID.AsInteger <= 0) then
     exit;
 
-  vIDAux := fDMCadOrdemServico.cdsOrdemServico_ConsultaID.AsInteger;  
+  vIDAux := fDMCadOrdemServico.cdsOrdemServico_ConsultaID.AsInteger;
   ffrmCadOrc_Aprov := TfrmCadOrc_Aprov.Create(self);
   ffrmCadOrc_Aprov.fDMCadOrdemServico := fDMCadOrdemServico;
   ffrmCadOrc_Aprov.ShowModal;
@@ -1523,6 +1561,147 @@ begin
   fDMCadOrdemServico.cdsOrdemServico_CustoVLR_TERCEIRO.AsCurrency  := vVlrTerc;
   fDMCadOrdemServico.cdsOrdemServico_CustoVLR_SETOR.AsCurrency     := vVlrServ;
   fDMCadOrdemServico.cdsOrdemServico_Custo.Post;
+end;
+
+procedure TfrmCadOrc.btnCopiarClick(Sender: TObject);
+var
+  fDMCopiarOrc: TDMCopiarOrc;
+  x: integer;
+begin
+  if fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsInteger <= 0 then
+    exit;
+  if fDMCadOrdemServico.cdsOrdemServico_ItensID_PRODUTO.AsInteger > 0 then
+  begin
+    MessageDlg('*** OS já possui produto informado!', mtInformation, [mbOk], 0);
+    exit;
+  end;
+  if MessageDlg('Deseja copiar o Orçamento ' + fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsString + ' ?' ,mtConfirmation,[mbYes,mbNo],0) = mrNo then
+    exit;
+
+  fDMCopiarOrc := TDMCopiarOrc.Create(Self);
+  try
+    fDMCopiarOrc.cdsOrc.Close;
+    fDMCopiarOrc.sdsOrc.ParamByName('NUM_ORCAMENTO').AsInteger := fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsInteger;
+    fDMCopiarOrc.cdsOrc.Open;
+    fDMCopiarOrc.cdsOrc_Itens.Close;
+    fDMCopiarOrc.cdsOrc_Itens.Open;
+    fDMCopiarOrc.cdsOrc_Mat.Close;
+    fDMCopiarOrc.cdsOrc_Mat.Open;
+
+    if fDMCopiarOrc.cdsOrc.IsEmpty then
+    begin
+      MessageDlg('*** Orçamento não encontrado!', mtInformation, [mbOk], 0);
+      exit;
+    end;
+    if trim(fDMCopiarOrc.cdsOrcTIPO_APROVACAO.AsString) <> 'A' then
+    begin
+      MessageDlg('*** Orçamento não esta aprovado!', mtInformation, [mbOk], 0);
+      exit;
+    end;
+
+    if not (fDMCadOrdemServico.cdsOrdemServico_Itens.Active) then
+      fDMCadOrdemServico.cdsOrdemServico_Itens.Open;
+
+    if fDMCadOrdemServico.cdsOrdemServicoID_CLIENTE.IsNull then
+      fDMCadOrdemServico.cdsOrdemServicoID_CLIENTE.AsInteger := fDMCopiarOrc.cdsOrcID_CLIENTE.AsInteger;
+
+    //Copia os itens
+    fDMCopiarOrc.cdsOrc_Itens.First;
+    if not fDMCopiarOrc.cdsOrc_Itens.IsEmpty then
+    begin
+      if not fDMCadOrdemServico.cdsOrdemServico_Itens.IsEmpty then
+        fDMCadOrdemServico.cdsOrdemServico_Itens.Edit
+      else
+      begin
+        fDMCadOrdemServico.cdsOrdemServico_Itens.Insert;
+        fDMCadOrdemServico.cdsOrdemServico_ItensID.AsInteger   := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
+        fDMCadOrdemServico.cdsOrdemServico_ItensITEM.AsInteger := fDMCopiarOrc.cdsOrc_ItensITEM.AsInteger;                      
+      end;
+      for x := 0 to (fDMCopiarOrc.cdsOrc_Itens.FieldCount - 1) do
+      begin
+        if (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'ID') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'ITEM') and
+           (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Setor') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Terc') and
+           (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Mat') then
+          fDMCadOrdemServico.cdsOrdemServico_Itens.FieldByName(fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName).AsVariant := fDMCopiarOrc.cdsOrc_Itens.Fields[x].Value;
+      end;
+      fDMCadOrdemServico.cdsOrdemServico_Itens.Post;
+    end;
+
+    //copia materiais
+    if (fDMCadOrdemServico.cdsOrdemServico_Mat.IsEmpty) then
+    begin
+      fDMCopiarOrc.cdsOrc_Mat.First;
+      while not fDMCopiarOrc.cdsOrc_Mat.Eof do
+      begin
+        fDMCadOrdemServico.prc_Inserir_Mat;
+        for x := 0 to (fDMCopiarOrc.cdsOrc_Mat.FieldCount - 1) do
+        begin
+          if (fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName <> 'ID') and (fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName <> 'ITEM') and
+             (fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName <> 'sdsOrc_Setor') and (fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName <> 'sdsOrc_Terc') and
+             (fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName <> 'sdsOrc_Mat') then
+            fDMCadOrdemServico.cdsOrdemServico_Mat.FieldByName(fDMCopiarOrc.cdsOrc_Mat.Fields[x].FieldName).AsVariant := fDMCopiarOrc.cdsOrc_Mat.Fields[x].Value;
+        end;
+        fDMCadOrdemServico.cdsOrdemServico_Mat.Post;
+        fDMCopiarOrc.cdsOrc_Mat.Next;
+      end;
+    end;
+
+    //copia terceiros
+    if (fDMCadOrdemServico.cdsOrdemServico_Terc.IsEmpty) then
+    begin
+      while not fDMCopiarOrc.cdsOrc_Terc.Eof do
+      begin
+          fDMCadOrdemServico.prc_Inserir_Terc;
+        for x := 0 to (fDMCopiarOrc.cdsOrc_Terc.FieldCount - 1) do
+        begin
+          if (fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName <> 'ID') and (fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName <> 'ITEM') and
+             (fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName <> 'sdsOrc_Setor') and (fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName <> 'sdsOrc_Terc') and
+             (fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName <> 'sdsOrc_Mat') then
+            fDMCadOrdemServico.cdsOrdemServico_Terc.FieldByName(fDMCopiarOrc.cdsOrc_Terc.Fields[x].FieldName).AsVariant := fDMCopiarOrc.cdsOrc_Terc.Fields[x].Value;
+        end;
+        fDMCadOrdemServico.cdsOrdemServico_Terc.Post;
+        fDMCopiarOrc.cdsOrc_Terc.Next;
+      end;
+    end;
+
+    //copia processos
+    if (fDMCadOrdemServico.cdsOrdemServico_Proc.IsEmpty) then
+    begin
+      while not fDMCopiarOrc.cdsOrc_Setor.Eof do
+      begin
+        while not fDMCopiarOrc.cdsOrc_Setor_Proc.Eof do
+        begin
+          fDMCadOrdemServico.prc_Inserir_Proc;
+          fDMCadOrdemServico.cdsOrdemServico_ProcID_PROCESSO.AsInteger  := fDMCopiarOrc.cdsOrc_Setor_ProcID_PROCESSO.AsInteger;
+          fDMCadOrdemServico.cdsOrdemServico_ProcNOME_PROCESSO.AsString := fDMCopiarOrc.cdsOrc_Setor_ProcDESCRICAO.AsString;
+          fDMCadOrdemServico.cdsOrdemServico_ProcQTD_HORAS.AsFloat      := fDMCopiarOrc.cdsOrc_Setor_ProcTOTAL_HORA.AsFloat;
+          fDMCadOrdemServico.cdsOrdemServico_ProcID_PROCESSO.AsInteger  := fDMCopiarOrc.cdsOrc_Setor_ProcID_PROCESSO.AsInteger;
+          fDMCadOrdemServico.cdsOrdemServico_Proc.Post;
+          fDMCopiarOrc.cdsOrc_Setor_Proc.Next;
+        end;
+        fDMCopiarOrc.cdsOrc_Setor.Next;
+      end;
+    end;
+
+    //copia ensaio
+    if (fDMCadOrdemServico.cdsOrdemServico_Ensaio.IsEmpty) then
+    begin
+      while not fDMCopiarOrc.cdsOrc_Ensaio.Eof do
+      begin
+        fDMCadOrdemServico.prc_Inserir_Ensaio;
+        fDMCadOrdemServico.cdsOrdemServico_EnsaioITEM.AsInteger        := fDMCopiarOrc.cdsOrc_EnsaioITEM.AsInteger;
+        fDMCadOrdemServico.cdsOrdemServico_EnsaioITEM_ENSAIO.AsInteger := fDMCopiarOrc.cdsOrc_EnsaioITEM_ENSAIO.AsInteger;
+        fDMCadOrdemServico.cdsOrdemServico_EnsaioID_ENSAIO.AsInteger   := fDMCopiarOrc.cdsOrc_EnsaioID_ENSAIO.AsInteger;
+        fDMCadOrdemServico.cdsOrdemServico_EnsaioDESCRICAO.AsString    := fDMCopiarOrc.cdsOrc_EnsaioDESCRICAO.AsString;
+        fDMCadOrdemServico.cdsOrdemServico_EnsaioCONFIRMADO.AsString   := 'N';
+        fDMCadOrdemServico.cdsOrdemServico_Ensaio.Post;
+        fDMCopiarOrc.cdsOrc_Ensaio.Next;
+      end;
+    end;
+
+  finally
+    FreeAndNil(fDMCopiarOrc);
+  end;
 end;
 
 end.
