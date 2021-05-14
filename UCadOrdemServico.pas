@@ -227,7 +227,7 @@ type
     Label64: TLabel;
     CurrencyEdit7: TCurrencyEdit;
     Label65: TLabel;
-    NxButton1: TNxButton;
+    btnCopiarOrcamento: TNxButton;
     Shape18: TShape;
     Label68: TLabel;
     Shape19: TShape;
@@ -339,7 +339,7 @@ type
     procedure btnRetrabalhoClick(Sender: TObject);
     procedure DBEdit11KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure NxButton1Click(Sender: TObject);
+    procedure btnCopiarOrcamentoClick(Sender: TObject);
     procedure RzGroupBox2Enter(Sender: TObject);
     procedure btnLiberarClick(Sender: TObject);
     procedure btBuscaProdutoClick(Sender: TObject);
@@ -1741,7 +1741,7 @@ begin
   end;
 end;
 
-procedure TfrmCadOrdemServico.NxButton1Click(Sender: TObject);
+procedure TfrmCadOrdemServico.btnCopiarOrcamentoClick(Sender: TObject);
 var
   fDMCopiarOrc: TDMCopiarOrc;
   x: integer;
@@ -1770,7 +1770,8 @@ begin
     MessageDlg('*** Orçamento não encontrado!', mtInformation, [mbOk], 0);
     exit;
   end;
-  if trim(fDMCopiarOrc.cdsOrcTIPO_APROVACAO.AsString) <> 'A' then
+
+  if SQLLocate('ORDEMSERVICO_APROV','ID','TIPO',fDMCopiarOrc.cdsOrcID.AsString) <> 'A' then
   begin
     MessageDlg('*** Orçamento não esta aprovado!', mtInformation, [mbOk], 0);
     exit;

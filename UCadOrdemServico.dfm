@@ -24,7 +24,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
     Top = 0
     Width = 1039
     Height = 661
-    ActivePage = TS_Consulta
+    ActivePage = TS_Cadastro
     ActivePageDefault = TS_Consulta
     Align = alClient
     BackgroundColor = 16752448
@@ -32,7 +32,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
     FlatColor = clGray
     ParentBackgroundColor = False
     TabColors.Shadow = clSilver
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     OnChange = RzPageControl1Change
     FixedDimension = 19
@@ -1532,7 +1532,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             Font.Style = []
             ParentFont = False
           end
-          object NxButton1: TNxButton
+          object btnCopiarOrcamento: TNxButton
             Left = 209
             Top = 4
             Width = 29
@@ -1579,7 +1579,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               FFFFF8FDFEFEFFFEFEFDF5000000}
             TabOrder = 1
             TabStop = False
-            OnClick = NxButton1Click
+            OnClick = btnCopiarOrcamentoClick
           end
           object DBDateEdit1: TDBDateEdit
             Left = 95

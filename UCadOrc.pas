@@ -61,7 +61,7 @@ type
     SMDBGrid6: TSMDBGrid;
     TS_CondEntrada: TRzTabSheet;
     Panel8: TPanel;
-    DBMemo6: TDBMemo;
+    dbMemoInfComplementar: TDBMemo;
     Label35: TLabel;
     Label41: TLabel;
     NxDatePicker1: TNxDatePicker;
@@ -149,7 +149,6 @@ type
     Label31: TLabel;
     TS_Escopo: TRzTabSheet;
     Panel5: TPanel;
-    Label33: TLabel;
     dbMemoEscopo: TDBMemo;
     Panel9: TPanel;
     btnSelecionrFunc: TNxButton;
@@ -208,6 +207,8 @@ type
     Label58: TLabel;
     Shape3: TShape;
     Label59: TLabel;
+    Label63: TLabel;
+    Label33: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
@@ -282,6 +283,8 @@ type
     procedure DBEdit21KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure btnCopiarClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     vTipoNotaAnt: String;
@@ -292,7 +295,7 @@ type
     ffrmCadOrdemServico_Mat: TfrmCadOrdemServico_Mat;
     ffrmCadOrdemServico_Terc: TfrmCadOrdemServico_Terc;
 
-    procedure prc_Inserir_Registro;
+    procedure prc_Inserir_Registro(Copiar : Boolean  = False);
     procedure prc_Excluir_Registro;
     procedure prc_Gravar_Registro;
     procedure prc_Consultar(ID: Integer);
@@ -316,6 +319,8 @@ type
     procedure prc_Opcao_Tipo_Produto;
     procedure prc_Gerar_Ass_Usuario;
     procedure prc_Monta_Grid;
+    procedure prc_Sel_Obs(Memo : TDBMemo);
+
   public
     { Public declarations }
     cTXTStream: TMemoryStream;
@@ -330,7 +335,7 @@ implementation
 
 uses DmdDatabase, rsDBUtils, uUtilPadrao, USel_Pessoa, USel_Produto, UDMImpOrdemServico, UCadProduto, USel_Setor_Proc2,
   USel_Ensaio, UCadOrc_Custo, UCadOrc_Aprov, USel_Funcionario, uCadPessoa,
-  UDMCopiarOrc;
+  UDMCopiarOrc, USel_Obs_OS;
 
 {$R *.dfm}
 
@@ -447,22 +452,28 @@ begin
   prc_Consultar(vIDAux);
 end;
 
-procedure TfrmCadOrc.prc_Inserir_Registro;
+procedure TfrmCadOrc.prc_Inserir_Registro(Copiar : Boolean  = False);
 begin
   fDMCadOrdemServico.qParametros.Close;
   fDMCadOrdemServico.qParametros.Open;
-  if fDMCadOrdemServico.cdsFilial.RecordCount > 1 then
+
+  if not Copiar then
   begin
-    ffrmEscolhe_Filial := TfrmEscolhe_Filial.Create(self);
-    ffrmEscolhe_Filial.ShowModal;
-    FreeAndNil(ffrmEscolhe_Filial);
-  end
-  else
-  begin
-    fDMCadOrdemServico.cdsFilial.Last;
-    vFilial      := fDMCadOrdemServico.cdsFilialID.AsInteger;
-    vFilial_Nome := fDMCadOrdemServico.cdsFilialNOME.AsString;
+    if fDMCadOrdemServico.cdsFilial.RecordCount > 1 then
+    begin
+      ffrmEscolhe_Filial := TfrmEscolhe_Filial.Create(self);
+      ffrmEscolhe_Filial.ShowModal;
+      FreeAndNil(ffrmEscolhe_Filial);
+    end
+    else
+    begin
+      fDMCadOrdemServico.cdsFilial.Last;
+      vFilial      := fDMCadOrdemServico.cdsFilialID.AsInteger;
+      vFilial_Nome := fDMCadOrdemServico.cdsFilialNOME.AsString;
+    end;
   end;
+  if Copiar then
+    vFilial := fDMCadOrdemServico.cdsOrdemServico_ConsultaFILIAL.AsInteger;
   if vFilial <= 0 then
   begin
     ShowMessage('Filial não informada!');
@@ -476,9 +487,10 @@ begin
   prc_Habilitar_Campos;
   RzPageControl1.ActivePage := TS_Cadastro;
   TS_Consulta.TabEnabled    := False;
-  fDMCadOrdemServico.cdsOrdemServicoFILIAL.AsInteger    := vFilial;
-  fDMCadOrdemServico.cdsOrdemServicoTP_SIMPLES.AsString := 'N';
-  fDMCadOrdemServico.cdsOrdemServicoSTATUS.AsString     := '1';
+  fDMCadOrdemServico.cdsOrdemServicoFILIAL.AsInteger     := vFilial;
+  fDMCadOrdemServico.cdsOrdemServicoTP_SIMPLES.AsString  := 'N';
+  fDMCadOrdemServico.cdsOrdemServicoSTATUS.AsString      := '1';
+  fDMCadOrdemServico.cdsOrdemServicoDTEMISSAO.AsDateTime := Date;
   pnlCliente.Enabled := True;
 
   fDMCadOrdemServico.prc_Inserir_Itens;
@@ -758,7 +770,7 @@ begin
   btnAlterar_Terc.Enabled := not(btnAlterar_Terc.Enabled);
   btnExcluir_Terc.Enabled := not(btnExcluir_Terc.Enabled);
 
-  DBMemo6.ReadOnly      := not(DBMemo6.ReadOnly);
+  dbMemoInfComplementar.ReadOnly      := not(dbMemoInfComplementar.ReadOnly);
   pnlProduto.Enabled    := not(pnlProduto.Enabled);
   dbMemoEscopo.ReadOnly := not(dbMemoEscopo.ReadOnly);
   rxdbTransp.ReadOnly   := not(rxdbTransp.ReadOnly);
@@ -1568,20 +1580,15 @@ var
   fDMCopiarOrc: TDMCopiarOrc;
   x: integer;
 begin
-  if fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsInteger <= 0 then
+  if fDMCadOrdemServico.cdsOrdemServico_ConsultaNUM_ORCAMENTO.AsInteger <= 0 then
     exit;
-  if fDMCadOrdemServico.cdsOrdemServico_ItensID_PRODUTO.AsInteger > 0 then
-  begin
-    MessageDlg('*** OS já possui produto informado!', mtInformation, [mbOk], 0);
-    exit;
-  end;
-  if MessageDlg('Deseja copiar o Orçamento ' + fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsString + ' ?' ,mtConfirmation,[mbYes,mbNo],0) = mrNo then
+  if MessageDlg('Deseja copiar o Orçamento ' + fDMCadOrdemServico.cdsOrdemServico_ConsultaNUM_ORCAMENTO.AsString + ' ?' ,mtConfirmation,[mbYes,mbNo],0) <> mrYes then
     exit;
 
   fDMCopiarOrc := TDMCopiarOrc.Create(Self);
   try
     fDMCopiarOrc.cdsOrc.Close;
-    fDMCopiarOrc.sdsOrc.ParamByName('NUM_ORCAMENTO').AsInteger := fDMCadOrdemServico.cdsOrdemServicoNUM_ORCAMENTO.AsInteger;
+    fDMCopiarOrc.sdsOrc.ParamByName('NUM_ORCAMENTO').AsInteger := fDMCadOrdemServico.cdsOrdemServico_ConsultaNUM_ORCAMENTO.AsInteger;
     fDMCopiarOrc.cdsOrc.Open;
     fDMCopiarOrc.cdsOrc_Itens.Close;
     fDMCopiarOrc.cdsOrc_Itens.Open;
@@ -1593,17 +1600,15 @@ begin
       MessageDlg('*** Orçamento não encontrado!', mtInformation, [mbOk], 0);
       exit;
     end;
-    if trim(fDMCopiarOrc.cdsOrcTIPO_APROVACAO.AsString) <> 'A' then
+
+    prc_Inserir_Registro;
+    for x := 0 to (fDMCopiarOrc.cdsOrc.FieldCount - 1) do
     begin
-      MessageDlg('*** Orçamento não esta aprovado!', mtInformation, [mbOk], 0);
-      exit;
+      if (fDMCopiarOrc.cdsOrc.Fields[x].FieldName <> 'ID') and (fDMCopiarOrc.cdsOrc.Fields[x].FieldName <> 'sdsOrc_Itens') and
+         (fDMCopiarOrc.cdsOrc.Fields[x].FieldName <> 'TP_SIMPLES') and (fDMCopiarOrc.cdsOrc.Fields[x].FieldName <> 'STATUS') and
+         (fDMCopiarOrc.cdsOrc.Fields[x].FieldName <> 'DTEMISSAO') and (fDMCopiarOrc.cdsOrc.Fields[x].FieldName <> 'NUM_ORCAMENTO') then
+        fDMCadOrdemServico.cdsOrdemServico.FieldByName(fDMCopiarOrc.cdsOrc.Fields[x].FieldName).AsVariant := fDMCopiarOrc.cdsOrc.Fields[x].Value;
     end;
-
-    if not (fDMCadOrdemServico.cdsOrdemServico_Itens.Active) then
-      fDMCadOrdemServico.cdsOrdemServico_Itens.Open;
-
-    if fDMCadOrdemServico.cdsOrdemServicoID_CLIENTE.IsNull then
-      fDMCadOrdemServico.cdsOrdemServicoID_CLIENTE.AsInteger := fDMCopiarOrc.cdsOrcID_CLIENTE.AsInteger;
 
     //Copia os itens
     fDMCopiarOrc.cdsOrc_Itens.First;
@@ -1621,7 +1626,7 @@ begin
       begin
         if (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'ID') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'ITEM') and
            (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Setor') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Terc') and
-           (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Mat') then
+           (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Mat') and (fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName <> 'sdsOrc_Ensaio') then
           fDMCadOrdemServico.cdsOrdemServico_Itens.FieldByName(fDMCopiarOrc.cdsOrc_Itens.Fields[x].FieldName).AsVariant := fDMCopiarOrc.cdsOrc_Itens.Fields[x].Value;
       end;
       fDMCadOrdemServico.cdsOrdemServico_Itens.Post;
@@ -1667,18 +1672,32 @@ begin
     //copia processos
     if (fDMCadOrdemServico.cdsOrdemServico_Proc.IsEmpty) then
     begin
+      fDMCopiarOrc.cdsOrc_Setor.First;
       while not fDMCopiarOrc.cdsOrc_Setor.Eof do
       begin
+        fDMCadOrdemServico.prc_Inserir_Setor;
+        for x := 0 to (fDMCopiarOrc.cdsOrc_Setor.FieldCount - 1) do
+        begin
+          if (fDMCopiarOrc.cdsOrc_Setor.Fields[x].FieldName <> 'ID') and (fDMCopiarOrc.cdsOrc_Setor.Fields[x].FieldName <> 'ITEM') and
+             (fDMCopiarOrc.cdsOrc_Setor.Fields[x].FieldName <> 'ITEM_SETOR') and (fDMCopiarOrc.cdsOrc_Setor.Fields[x].FieldName <> 'sdsOrc_Setor_Proc') then
+            fDMCadOrdemServico.cdsOrdemServico_Setor.FieldByName(fDMCopiarOrc.cdsOrc_Setor.Fields[x].FieldName).AsVariant := fDMCopiarOrc.cdsOrc_Setor.Fields[x].Value;
+        end;
+
+        fDMCopiarOrc.cdsOrc_Setor_Proc.First;
         while not fDMCopiarOrc.cdsOrc_Setor_Proc.Eof do
         begin
-          fDMCadOrdemServico.prc_Inserir_Proc;
-          fDMCadOrdemServico.cdsOrdemServico_ProcID_PROCESSO.AsInteger  := fDMCopiarOrc.cdsOrc_Setor_ProcID_PROCESSO.AsInteger;
-          fDMCadOrdemServico.cdsOrdemServico_ProcNOME_PROCESSO.AsString := fDMCopiarOrc.cdsOrc_Setor_ProcDESCRICAO.AsString;
-          fDMCadOrdemServico.cdsOrdemServico_ProcQTD_HORAS.AsFloat      := fDMCopiarOrc.cdsOrc_Setor_ProcTOTAL_HORA.AsFloat;
-          fDMCadOrdemServico.cdsOrdemServico_ProcID_PROCESSO.AsInteger  := fDMCopiarOrc.cdsOrc_Setor_ProcID_PROCESSO.AsInteger;
-          fDMCadOrdemServico.cdsOrdemServico_Proc.Post;
+          fDMCadOrdemServico.prc_Inserir_Setor_Proc;
+          for x := 0 to (fDMCopiarOrc.cdsOrc_Setor_Proc.FieldCount - 1) do
+          begin
+            if (fDMCopiarOrc.cdsOrc_Setor_Proc.Fields[x].FieldName <> 'ID') and (fDMCopiarOrc.cdsOrc_Setor_Proc.Fields[x].FieldName <> 'ITEM') and
+               (fDMCopiarOrc.cdsOrc_Setor_Proc.Fields[x].FieldName <> 'ITEM_SETOR') and (fDMCopiarOrc.cdsOrc_Setor_Proc.Fields[x].FieldName <> 'ITEM_PROC') then
+              fDMCadOrdemServico.cdsOrdemServico_Setor_Proc.FieldByName(fDMCopiarOrc.cdsOrc_Setor_Proc.Fields[x].FieldName).AsVariant := fDMCopiarOrc.cdsOrc_Setor_Proc.Fields[x].Value;
+          end;
+          fDMCadOrdemServico.cdsOrdemServico_Setor_Proc.Post;
           fDMCopiarOrc.cdsOrc_Setor_Proc.Next;
         end;
+        if fDMCadOrdemServico.cdsOrdemServico_Setor.State in [dsEdit,dsInsert] then
+          fDMCadOrdemServico.cdsOrdemServico_Setor.Post;
         fDMCopiarOrc.cdsOrc_Setor.Next;
       end;
     end;
@@ -1689,8 +1708,6 @@ begin
       while not fDMCopiarOrc.cdsOrc_Ensaio.Eof do
       begin
         fDMCadOrdemServico.prc_Inserir_Ensaio;
-        fDMCadOrdemServico.cdsOrdemServico_EnsaioITEM.AsInteger        := fDMCopiarOrc.cdsOrc_EnsaioITEM.AsInteger;
-        fDMCadOrdemServico.cdsOrdemServico_EnsaioITEM_ENSAIO.AsInteger := fDMCopiarOrc.cdsOrc_EnsaioITEM_ENSAIO.AsInteger;
         fDMCadOrdemServico.cdsOrdemServico_EnsaioID_ENSAIO.AsInteger   := fDMCopiarOrc.cdsOrc_EnsaioID_ENSAIO.AsInteger;
         fDMCadOrdemServico.cdsOrdemServico_EnsaioDESCRICAO.AsString    := fDMCopiarOrc.cdsOrc_EnsaioDESCRICAO.AsString;
         fDMCadOrdemServico.cdsOrdemServico_EnsaioCONFIRMADO.AsString   := 'N';
@@ -1701,6 +1718,36 @@ begin
 
   finally
     FreeAndNil(fDMCopiarOrc);
+  end;
+end;
+
+procedure TfrmCadOrc.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Key = Vk_F2) and (fDMCadOrdemServico.cdsOrdemServico.Active) and (fDMCadOrdemServico.cdsOrdemServico.State in [dsEdit,dsInsert]) then
+  begin
+    if (RzPageControl2.ActivePage = TS_Escopo) then
+      prc_Sel_Obs(dbMemoEscopo)
+    else
+    if (RzPageControl2.ActivePage = TS_CondEntrada) then
+      prc_Sel_Obs(dbMemoInfComplementar);
+  end;
+end;
+
+procedure TfrmCadOrc.prc_Sel_Obs(Memo : TDBMemo);
+begin
+  frmSel_Obs_OS := TfrmSel_Obs_OS.Create(Self);
+  try
+    frmSel_Obs_OS.ShowModal;
+    if frmSel_Obs_OS.ModalResult = mrOk then
+    begin
+      if trim(Memo.Lines.Text) <> '' then
+        Memo.Lines.Text := Memo.Lines.Text + #13 + frmSel_Obs_OS.cdsObs_OSOBS.Value
+      else
+        Memo.Lines.Text := frmSel_Obs_OS.cdsObs_OSOBS.Value
+    end;
+  finally
+    FreeAndNil(frmSel_Obs_OS);
   end;
 end;
 

@@ -59,6 +59,7 @@ type
     ConsultarIndicardePrazoEntrega1: TMenuItem;
     ConsultaOSCanceladas1: TMenuItem;
     Image2: TImage;
+    CadastroOBSOS1: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure EfetuarLogoff1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -81,6 +82,7 @@ type
     procedure ConsultarOS1Click(Sender: TObject);
     procedure ConsultarIndicardePrazoEntrega1Click(Sender: TObject);
     procedure ConsultaOSCanceladas1Click(Sender: TObject);
+    procedure CadastroOBSOS1Click(Sender: TObject);
   private
     { Private declarations }
     procedure prc_Habilita_Menu;
@@ -105,7 +107,7 @@ implementation
 uses DmdDatabase, uUtilPadrao, UCadOrdemServico, UCadProcesso, UCadProcesso_Grupo, UCadServico_OS, UProcesso_ES, uCadParada,
   UBaixa_Mat_OS, UCadProduto, UCadOrc, uCadEnsaio, uCadMotivo,
   UConsProcesso, UConsOrdemServico, UConsIndPrazoEntrega,
-  UConsOrdemServico_Canc;
+  UConsOrdemServico_Canc, uCadObs;
 
 {$R *.dfm}
 
@@ -314,6 +316,11 @@ end;
 procedure TfMenu.ConsultaOSCanceladas1Click(Sender: TObject);
 begin
   OpenForm(TfrmConsOrdemServico_Canc,wsMaximized,'');
+end;
+
+procedure TfMenu.CadastroOBSOS1Click(Sender: TObject);
+begin
+  OpenForm(TfrmCadOBS,wsMaximized,'');
 end;
 
 initialization

@@ -114,7 +114,10 @@ uses
   USel_CBenef in '..\ssfacil\USel_CBenef.pas' {frmSel_CBenef},
   UDMGravarFinanceiro in '..\ssfacil\UDMGravarFinanceiro.pas' {DMGravarFinanceiro: TDataModule},
   uPessoa in '..\ssfacil\Classes\uPessoa.pas',
-  UConsOrdemServico_Canc in 'UConsOrdemServico_Canc.pas' {frmConsOrdemServico_Canc};
+  UConsOrdemServico_Canc in 'UConsOrdemServico_Canc.pas' {frmConsOrdemServico_Canc},
+  UDMCadObs in 'UDMCadObs.pas' {DMCadObs: TDataModule},
+  uCadObs in 'uCadObs.pas' {frmCadOBS},
+  USel_Obs_OS in 'USel_Obs_OS.pas' {frmSel_Obs_OS};
 
 {$R *.res}
 

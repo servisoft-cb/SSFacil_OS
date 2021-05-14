@@ -16,6 +16,7 @@ object frmCadOrc: TfrmCadOrc
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -24,7 +25,7 @@ object frmCadOrc: TfrmCadOrc
     Top = 0
     Width = 925
     Height = 655
-    ActivePage = TS_Consulta
+    ActivePage = TS_Cadastro
     ActivePageDefault = TS_Consulta
     Align = alClient
     BackgroundColor = 16752448
@@ -32,7 +33,7 @@ object frmCadOrc: TfrmCadOrc
     FlatColor = clGray
     ParentBackgroundColor = False
     TabColors.Shadow = clSilver
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     OnChange = RzPageControl1Change
     FixedDimension = 19
@@ -1551,11 +1552,11 @@ object frmCadOrc: TfrmCadOrc
         Top = 173
         Width = 921
         Height = 459
-        ActivePage = TS_Ensaio
+        ActivePage = TS_Produto
         ActivePageDefault = TS_Produto
         Align = alClient
         UseColoredTabs = True
-        TabIndex = 5
+        TabIndex = 0
         TabOrder = 2
         FixedDimension = 19
         object TS_Produto: TRzTabSheet
@@ -3662,20 +3663,20 @@ object frmCadOrc: TfrmCadOrc
             Left = 0
             Top = 0
             Width = 917
-            Height = 25
+            Height = 31
             Align = alTop
             BevelOuter = bvNone
             Color = 16762052
             TabOrder = 0
-            object Label33: TLabel
-              Left = 0
-              Top = 8
-              Width = 116
-              Height = 13
-              Caption = 'Escopo de Servi'#231'os:'
+            object Label63: TLabel
+              Left = 5
+              Top = 9
+              Width = 168
+              Height = 16
+              Caption = 'F2 para Selecionar a OBS'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
-              Font.Height = -11
+              Font.Height = -13
               Font.Name = 'Verdana'
               Font.Style = []
               ParentFont = False
@@ -3683,9 +3684,9 @@ object frmCadOrc: TfrmCadOrc
           end
           object dbMemoEscopo: TDBMemo
             Left = 0
-            Top = 25
+            Top = 31
             Width = 917
-            Height = 411
+            Height = 405
             Align = alClient
             BevelInner = bvNone
             BevelOuter = bvNone
@@ -3798,6 +3799,19 @@ object frmCadOrc: TfrmCadOrc
               Font.Style = []
               ParentFont = False
             end
+            object Label33: TLabel
+              Left = 189
+              Top = 52
+              Width = 168
+              Height = 16
+              Caption = 'F2 para Selecionar a OBS'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -13
+              Font.Name = 'Verdana'
+              Font.Style = []
+              ParentFont = False
+            end
             object rxdbTransp: TRxDBLookupCombo
               Left = 100
               Top = 3
@@ -3837,7 +3851,7 @@ object frmCadOrc: TfrmCadOrc
                 '9')
             end
           end
-          object DBMemo6: TDBMemo
+          object dbMemoInfComplementar: TDBMemo
             Left = 0
             Top = 68
             Width = 917

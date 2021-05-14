@@ -182,7 +182,6 @@ type
     sdsOrcDTRECEBIMENTO: TDateField;
     sdsOrcQTD_DIAS_ENT: TIntegerField;
     sdsOrcNUM_ORCAMENTO: TIntegerField;
-    sdsOrcPRODUZIDO: TStringField;
     sdsOrcNOME_CONTATO: TStringField;
     sdsOrcUSUARIO: TStringField;
     sdsOrcID_TRANSPORTADORA: TIntegerField;
@@ -230,7 +229,6 @@ type
     cdsOrcDTRECEBIMENTO: TDateField;
     cdsOrcQTD_DIAS_ENT: TIntegerField;
     cdsOrcNUM_ORCAMENTO: TIntegerField;
-    cdsOrcPRODUZIDO: TStringField;
     cdsOrcNOME_CONTATO: TStringField;
     cdsOrcUSUARIO: TStringField;
     cdsOrcID_TRANSPORTADORA: TIntegerField;
@@ -322,8 +320,6 @@ type
     sdsOrcSEQ_ANO: TIntegerField;
     cdsOrcANO_ORCAMENTO: TIntegerField;
     cdsOrcSEQ_ANO: TIntegerField;
-    sdsOrcTIPO_APROVACAO: TStringField;
-    cdsOrcTIPO_APROVACAO: TStringField;
     sdsOrc_Ensaio: TSQLDataSet;
     cdsOrc_Ensaio: TClientDataSet;
     dsOrc_Ensaio: TDataSource;

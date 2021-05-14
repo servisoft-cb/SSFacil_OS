@@ -8,9 +8,8 @@ object DMCopiarOrc: TDMCopiarOrc
     NoMetadata = True
     GetMetadata = False
     CommandText = 
-      'select O.*, A.TIPO TIPO_APROVACAO'#13#10'from ORDEMSERVICO O'#13#10'left joi' +
-      'n ORDEMSERVICO_APROV A on O.ID = A.ID'#13#10'where NUM_ORCAMENTO = :NU' +
-      'M_ORCAMENTO and'#13#10'      TP_ORCAMENTO = '#39'2'#39'   '
+      'select O.*'#13#10'from ORDEMSERVICO O'#13#10'where NUM_ORCAMENTO = :NUM_ORCA' +
+      'MENTO and'#13#10'      TP_ORCAMENTO = '#39'2'#39'   '
     MaxBlobSize = -1
     Params = <
       item
@@ -20,7 +19,7 @@ object DMCopiarOrc: TDMCopiarOrc
       end>
     SQLConnection = dmDatabase.scoDados
     Left = 55
-    Top = 9
+    Top = 6
     object sdsOrcID: TIntegerField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -172,11 +171,6 @@ object DMCopiarOrc: TDMCopiarOrc
     object sdsOrcNUM_ORCAMENTO: TIntegerField
       FieldName = 'NUM_ORCAMENTO'
     end
-    object sdsOrcPRODUZIDO: TStringField
-      FieldName = 'PRODUZIDO'
-      FixedChar = True
-      Size = 1
-    end
     object sdsOrcNOME_CONTATO: TStringField
       FieldName = 'NOME_CONTATO'
       Size = 40
@@ -198,10 +192,6 @@ object DMCopiarOrc: TDMCopiarOrc
     end
     object sdsOrcSEQ_ANO: TIntegerField
       FieldName = 'SEQ_ANO'
-    end
-    object sdsOrcTIPO_APROVACAO: TStringField
-      FieldName = 'TIPO_APROVACAO'
-      Size = 1
     end
   end
   object dspOrc: TDataSetProvider
@@ -369,11 +359,6 @@ object DMCopiarOrc: TDMCopiarOrc
     object cdsOrcNUM_ORCAMENTO: TIntegerField
       FieldName = 'NUM_ORCAMENTO'
     end
-    object cdsOrcPRODUZIDO: TStringField
-      FieldName = 'PRODUZIDO'
-      FixedChar = True
-      Size = 1
-    end
     object cdsOrcNOME_CONTATO: TStringField
       FieldName = 'NOME_CONTATO'
       Size = 40
@@ -398,10 +383,6 @@ object DMCopiarOrc: TDMCopiarOrc
     end
     object cdsOrcSEQ_ANO: TIntegerField
       FieldName = 'SEQ_ANO'
-    end
-    object cdsOrcTIPO_APROVACAO: TStringField
-      FieldName = 'TIPO_APROVACAO'
-      Size = 1
     end
   end
   object dsOrc: TDataSource
