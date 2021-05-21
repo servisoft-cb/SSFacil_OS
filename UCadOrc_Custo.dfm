@@ -235,7 +235,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
           Font.Style = []
           ParentFont = False
         end
-        object CurrencyEdit26: TCurrencyEdit
+        object cePercMaterial: TCurrencyEdit
           Left = 561
           Top = 2
           Width = 75
@@ -255,7 +255,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
           ReadOnly = True
           TabOrder = 0
         end
-        object CurrencyEdit3: TCurrencyEdit
+        object ceVlrMaterial: TCurrencyEdit
           Left = 430
           Top = 2
           Width = 129
@@ -390,7 +390,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
           Font.Style = []
           ParentFont = False
         end
-        object CurrencyEdit28: TCurrencyEdit
+        object cePercTerceiro: TCurrencyEdit
           Left = 406
           Top = 2
           Width = 75
@@ -410,7 +410,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
           ReadOnly = True
           TabOrder = 0
         end
-        object CurrencyEdit5: TCurrencyEdit
+        object ceVlrTerceiro: TCurrencyEdit
           Left = 275
           Top = 2
           Width = 129
@@ -595,7 +595,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
     end
     object Label48: TLabel
       Left = 147
-      Top = 273
+      Top = 305
       Width = 116
       Height = 13
       Alignment = taRightJustify
@@ -609,7 +609,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
     end
     object Label50: TLabel
       Left = 187
-      Top = 290
+      Top = 322
       Width = 76
       Height = 13
       Alignment = taRightJustify
@@ -623,7 +623,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
     end
     object Label52: TLabel
       Left = 162
-      Top = 307
+      Top = 339
       Width = 101
       Height = 13
       Alignment = taRightJustify
@@ -637,7 +637,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
     end
     object Label53: TLabel
       Left = 183
-      Top = 337
+      Top = 369
       Width = 80
       Height = 13
       Alignment = taRightJustify
@@ -651,7 +651,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
     end
     object Label55: TLabel
       Left = 216
-      Top = 354
+      Top = 386
       Width = 47
       Height = 13
       Alignment = taRightJustify
@@ -665,7 +665,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
     end
     object Label56: TLabel
       Left = 139
-      Top = 371
+      Top = 403
       Width = 124
       Height = 13
       Alignment = taRightJustify
@@ -679,7 +679,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
     end
     object Label57: TLabel
       Left = 142
-      Top = 388
+      Top = 420
       Width = 121
       Height = 13
       Alignment = taRightJustify
@@ -711,7 +711,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       Width = 563
       Height = 1
     end
-    object CurrencyEdit7: TCurrencyEdit
+    object cePercMarkup: TCurrencyEdit
       Left = 268
       Top = 75
       Width = 113
@@ -727,10 +727,10 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ParentCtl3D = False
       ParentFont = False
       TabOrder = 1
-      OnExit = CurrencyEdit4Exit
-      OnKeyDown = CurrencyEdit17KeyDown
+      OnExit = cePercICMSExit
+      OnKeyDown = cePercCustoFinanceiroKeyDown
     end
-    object CurrencyEdit6: TCurrencyEdit
+    object ceVlrTotalCusto: TCurrencyEdit
       Left = 277
       Top = 5
       Width = 129
@@ -748,7 +748,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ParentFont = False
       TabOrder = 20
     end
-    object CurrencyEdit8: TCurrencyEdit
+    object cePercPisCofins: TCurrencyEdit
       Left = 268
       Top = 92
       Width = 113
@@ -764,10 +764,10 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ParentCtl3D = False
       ParentFont = False
       TabOrder = 2
-      OnExit = CurrencyEdit4Exit
-      OnKeyDown = CurrencyEdit17KeyDown
+      OnExit = cePercICMSExit
+      OnKeyDown = cePercCustoFinanceiroKeyDown
     end
-    object CurrencyEdit9: TCurrencyEdit
+    object cePercISSQN: TCurrencyEdit
       Left = 268
       Top = 109
       Width = 113
@@ -783,10 +783,10 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ParentCtl3D = False
       ParentFont = False
       TabOrder = 3
-      OnExit = CurrencyEdit4Exit
-      OnKeyDown = CurrencyEdit17KeyDown
+      OnExit = cePercICMSExit
+      OnKeyDown = cePercCustoFinanceiroKeyDown
     end
-    object CurrencyEdit10: TCurrencyEdit
+    object cePercComissao: TCurrencyEdit
       Left = 268
       Top = 126
       Width = 113
@@ -802,10 +802,10 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ParentCtl3D = False
       ParentFont = False
       TabOrder = 4
-      OnExit = CurrencyEdit4Exit
-      OnKeyDown = CurrencyEdit17KeyDown
+      OnExit = cePercICMSExit
+      OnKeyDown = cePercCustoFinanceiroKeyDown
     end
-    object CurrencyEdit11: TCurrencyEdit
+    object cePercFrete: TCurrencyEdit
       Left = 268
       Top = 143
       Width = 113
@@ -821,10 +821,10 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ParentCtl3D = False
       ParentFont = False
       TabOrder = 5
-      OnExit = CurrencyEdit4Exit
-      OnKeyDown = CurrencyEdit17KeyDown
+      OnExit = cePercICMSExit
+      OnKeyDown = cePercCustoFinanceiroKeyDown
     end
-    object CurrencyEdit12: TCurrencyEdit
+    object cePercIR: TCurrencyEdit
       Left = 268
       Top = 160
       Width = 113
@@ -840,10 +840,10 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ParentCtl3D = False
       ParentFont = False
       TabOrder = 6
-      OnExit = CurrencyEdit4Exit
-      OnKeyDown = CurrencyEdit17KeyDown
+      OnExit = cePercICMSExit
+      OnKeyDown = cePercCustoFinanceiroKeyDown
     end
-    object CurrencyEdit13: TCurrencyEdit
+    object cePercMargemOpe: TCurrencyEdit
       Left = 268
       Top = 177
       Width = 113
@@ -859,10 +859,10 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ParentCtl3D = False
       ParentFont = False
       TabOrder = 7
-      OnExit = CurrencyEdit4Exit
-      OnKeyDown = CurrencyEdit17KeyDown
+      OnExit = cePercICMSExit
+      OnKeyDown = cePercCustoFinanceiroKeyDown
     end
-    object CurrencyEdit14: TCurrencyEdit
+    object cePreco: TCurrencyEdit
       Left = 268
       Top = 194
       Width = 113
@@ -882,7 +882,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ReadOnly = True
       TabOrder = 8
     end
-    object CurrencyEdit15: TCurrencyEdit
+    object cePrecoSugerido: TCurrencyEdit
       Left = 268
       Top = 219
       Width = 113
@@ -899,16 +899,15 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ParentCtl3D = False
       ParentFont = False
       TabOrder = 9
-      OnExit = CurrencyEdit4Exit
-      OnKeyDown = CurrencyEdit17KeyDown
+      OnKeyDown = cePrecoSugeridoKeyDown
     end
-    object CurrencyEdit16: TCurrencyEdit
+    object cePercMargOpe2: TCurrencyEdit
       Left = 268
       Top = 236
       Width = 113
       Height = 18
       AutoSize = False
-      Color = clSilver
+      Color = 16777041
       Ctl3D = False
       DisplayFormat = '0.00%'
       Font.Charset = DEFAULT_CHARSET
@@ -918,12 +917,12 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       Font.Style = []
       ParentCtl3D = False
       ParentFont = False
-      ReadOnly = True
       TabOrder = 10
+      OnKeyDown = cePercMargOpe2KeyDown
     end
-    object CurrencyEdit17: TCurrencyEdit
+    object cePercCustoFinanceiro: TCurrencyEdit
       Left = 268
-      Top = 268
+      Top = 300
       Width = 113
       Height = 18
       AutoSize = False
@@ -937,12 +936,12 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ParentCtl3D = False
       ParentFont = False
       TabOrder = 11
-      OnExit = CurrencyEdit4Exit
-      OnKeyDown = CurrencyEdit17KeyDown
+      OnExit = cePercICMSExit
+      OnKeyDown = cePercCustoFinanceiroKeyDown
     end
-    object CurrencyEdit18: TCurrencyEdit
+    object cePrazoDias: TCurrencyEdit
       Left = 268
-      Top = 285
+      Top = 317
       Width = 113
       Height = 18
       AutoSize = False
@@ -957,12 +956,12 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ParentCtl3D = False
       ParentFont = False
       TabOrder = 12
-      OnExit = CurrencyEdit4Exit
-      OnKeyDown = CurrencyEdit18KeyDown
+      OnExit = cePercICMSExit
+      OnKeyDown = cePrazoDiasKeyDown
     end
-    object CurrencyEdit19: TCurrencyEdit
+    object cePercCustoPeriodo: TCurrencyEdit
       Left = 268
-      Top = 302
+      Top = 334
       Width = 113
       Height = 18
       TabStop = False
@@ -980,9 +979,9 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ReadOnly = True
       TabOrder = 14
     end
-    object CurrencyEdit20: TCurrencyEdit
+    object ceVlrMargem: TCurrencyEdit
       Left = 268
-      Top = 332
+      Top = 364
       Width = 113
       Height = 18
       TabStop = False
@@ -1000,9 +999,9 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ReadOnly = True
       TabOrder = 15
     end
-    object CurrencyEdit21: TCurrencyEdit
+    object ceVlrIR: TCurrencyEdit
       Left = 268
-      Top = 349
+      Top = 381
       Width = 113
       Height = 18
       TabStop = False
@@ -1020,9 +1019,9 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ReadOnly = True
       TabOrder = 16
     end
-    object CurrencyEdit22: TCurrencyEdit
+    object ceVlrMargemLiquida: TCurrencyEdit
       Left = 268
-      Top = 366
+      Top = 398
       Width = 113
       Height = 18
       TabStop = False
@@ -1040,9 +1039,9 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ReadOnly = True
       TabOrder = 17
     end
-    object CurrencyEdit23: TCurrencyEdit
+    object cePercMargemLiquida: TCurrencyEdit
       Left = 268
-      Top = 383
+      Top = 415
       Width = 113
       Height = 18
       TabStop = False
@@ -1060,9 +1059,9 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ReadOnly = True
       TabOrder = 18
     end
-    object CurrencyEdit25: TCurrencyEdit
+    object cePercPeriodo: TCurrencyEdit
       Left = 380
-      Top = 284
+      Top = 316
       Width = 61
       Height = 19
       TabStop = False
@@ -1082,7 +1081,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       Visible = False
     end
     object btnCalcular_Custo: TNxButton
-      Left = 1
+      Left = 2
       Top = 417
       Width = 118
       Height = 30
@@ -1131,7 +1130,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       Transparent = True
       OnClick = btnCalcular_CustoClick
     end
-    object CurrencyEdit4: TCurrencyEdit
+    object cePercICMS: TCurrencyEdit
       Left = 268
       Top = 58
       Width = 113
@@ -1147,8 +1146,8 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ParentCtl3D = False
       ParentFont = False
       TabOrder = 0
-      OnExit = CurrencyEdit4Exit
-      OnKeyDown = CurrencyEdit17KeyDown
+      OnExit = cePercICMSExit
+      OnKeyDown = cePercCustoFinanceiroKeyDown
     end
     object btnConfirmar: TNxButton
       Left = 5
@@ -1223,7 +1222,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       Visible = False
       OnClick = btnConfirmarClick
     end
-    object CurrencyEdit29: TCurrencyEdit
+    object cePercTotalCusto: TCurrencyEdit
       Left = 408
       Top = 5
       Width = 75
@@ -1241,19 +1240,6 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
       ParentCtl3D = False
       ParentFont = False
       TabOrder = 22
-    end
-    object btnCalcular_Proposta: TNxButton
-      Left = 381
-      Top = 232
-      Width = 111
-      Caption = 'Calcular Vlr. Proposta'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clRed
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 23
     end
   end
   object RzGroupBox3: TRzGroupBox
@@ -1443,7 +1429,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
         Font.Style = []
         ParentFont = False
       end
-      object CurrencyEdit27: TCurrencyEdit
+      object cePercProcesso: TCurrencyEdit
         Left = 58
         Top = 35
         Width = 75
@@ -1463,7 +1449,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
         ReadOnly = True
         TabOrder = 0
       end
-      object CurrencyEdit2: TCurrencyEdit
+      object ceVlrProcesso: TCurrencyEdit
         Left = 4
         Top = 18
         Width = 129

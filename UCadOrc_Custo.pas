@@ -13,7 +13,7 @@ type
     Panel2: TPanel;
     Label23: TLabel;
     Label29: TLabel;
-    CurrencyEdit7: TCurrencyEdit;
+    cePercMarkup: TCurrencyEdit;
     Label31: TLabel;
     Label33: TLabel;
     Label34: TLabel;
@@ -31,24 +31,24 @@ type
     Label56: TLabel;
     Label57: TLabel;
     Label59: TLabel;
-    CurrencyEdit6: TCurrencyEdit;
-    CurrencyEdit8: TCurrencyEdit;
-    CurrencyEdit9: TCurrencyEdit;
-    CurrencyEdit10: TCurrencyEdit;
-    CurrencyEdit11: TCurrencyEdit;
-    CurrencyEdit12: TCurrencyEdit;
-    CurrencyEdit13: TCurrencyEdit;
-    CurrencyEdit14: TCurrencyEdit;
-    CurrencyEdit15: TCurrencyEdit;
-    CurrencyEdit16: TCurrencyEdit;
-    CurrencyEdit17: TCurrencyEdit;
-    CurrencyEdit18: TCurrencyEdit;
-    CurrencyEdit19: TCurrencyEdit;
-    CurrencyEdit20: TCurrencyEdit;
-    CurrencyEdit21: TCurrencyEdit;
-    CurrencyEdit22: TCurrencyEdit;
-    CurrencyEdit23: TCurrencyEdit;
-    CurrencyEdit25: TCurrencyEdit;
+    ceVlrTotalCusto: TCurrencyEdit;
+    cePercPisCofins: TCurrencyEdit;
+    cePercISSQN: TCurrencyEdit;
+    cePercComissao: TCurrencyEdit;
+    cePercFrete: TCurrencyEdit;
+    cePercIR: TCurrencyEdit;
+    cePercMargemOpe: TCurrencyEdit;
+    cePreco: TCurrencyEdit;
+    cePrecoSugerido: TCurrencyEdit;
+    cePercMargOpe2: TCurrencyEdit;
+    cePercCustoFinanceiro: TCurrencyEdit;
+    cePrazoDias: TCurrencyEdit;
+    cePercCustoPeriodo: TCurrencyEdit;
+    ceVlrMargem: TCurrencyEdit;
+    ceVlrIR: TCurrencyEdit;
+    ceVlrMargemLiquida: TCurrencyEdit;
+    cePercMargemLiquida: TCurrencyEdit;
+    cePercPeriodo: TCurrencyEdit;
     RzGroupBox1: TRzGroupBox;
     RzDBGrid1: TRzDBGrid;
     RzGroupBox2: TRzGroupBox;
@@ -57,21 +57,21 @@ type
     RzDBGrid3: TRzDBGrid;
     RzDBGrid13: TRzDBGrid;
     btnCalcular_Custo: TNxButton;
-    CurrencyEdit4: TCurrencyEdit;
+    cePercICMS: TCurrencyEdit;
     btnConfirmar: TNxButton;
     Panel4: TPanel;
     Label2: TLabel;
-    CurrencyEdit27: TCurrencyEdit;
-    CurrencyEdit2: TCurrencyEdit;
+    cePercProcesso: TCurrencyEdit;
+    ceVlrProcesso: TCurrencyEdit;
     Panel5: TPanel;
-    CurrencyEdit26: TCurrencyEdit;
+    cePercMaterial: TCurrencyEdit;
     Label49: TLabel;
-    CurrencyEdit3: TCurrencyEdit;
+    ceVlrMaterial: TCurrencyEdit;
     Panel6: TPanel;
-    CurrencyEdit28: TCurrencyEdit;
+    cePercTerceiro: TCurrencyEdit;
     Label51: TLabel;
-    CurrencyEdit5: TCurrencyEdit;
-    CurrencyEdit29: TCurrencyEdit;
+    ceVlrTerceiro: TCurrencyEdit;
+    cePercTotalCusto: TCurrencyEdit;
     PopupMenu1: TPopupMenu;
     Incluir1: TMenuItem;
     Alterar1: TMenuItem;
@@ -83,13 +83,12 @@ type
     Shape1: TShape;
     Label4: TLabel;
     DBMemo1: TDBMemo;
-    btnCalcular_Proposta: TNxButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure btnCalcular_CustoClick(Sender: TObject);
-    procedure CurrencyEdit17KeyDown(Sender: TObject; var Key: Word;
+    procedure cePercCustoFinanceiroKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure CurrencyEdit18KeyDown(Sender: TObject; var Key: Word;
+    procedure cePrazoDiasKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure btnConfirmarClick(Sender: TObject);
     procedure Incluir1Click(Sender: TObject);
@@ -99,7 +98,11 @@ type
     procedure Incluir2Click(Sender: TObject);
     procedure Alterar2Click(Sender: TObject);
     procedure DBMemo1Exit(Sender: TObject);
-    procedure CurrencyEdit4Exit(Sender: TObject);
+    procedure cePercICMSExit(Sender: TObject);
+    procedure cePrecoSugeridoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure cePercMargOpe2KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     procedure prc_Calcular_Custo;
@@ -107,6 +110,8 @@ type
     procedure prc_Mover_Filial_Custo;
     procedure prc_Gravar_OrdemServico_Custo;
     procedure prc_Percentual;
+    procedure prc_Calcular_Margem(Tipo : String);
+
   public
     { Public declarations }
     fDMCadOrdemServico: TDMCadOrdemServico;
@@ -159,21 +164,21 @@ begin
     prc_Mover_Custo;
   btnCalcular_CustoClick(Sender);
 
-  CurrencyEdit4.Value  := fDMCadOrdemServico.qFilial_CustoPERC_ICMS.AsFloat;
-  CurrencyEdit7.Value  := fDMCadOrdemServico.qFilial_CustoPERC_MARK_UP.AsFloat;
-  CurrencyEdit8.Value  := fDMCadOrdemServico.cdsFilialPERC_PIS.AsFloat + fDMCadOrdemServico.cdsFilialPERC_COFINS.AsFloat;
-  CurrencyEdit9.Value  := fDMCadOrdemServico.cdsFilialPERC_ISS.AsFloat;
-  CurrencyEdit10.Value := fDMCadOrdemServico.qFilial_CustoPERC_COMISSAO.AsFloat;
-  CurrencyEdit11.Value := fDMCadOrdemServico.qFilial_CustoPERC_FRETE.AsFloat;
-  CurrencyEdit12.Value := fDMCadOrdemServico.qFilial_CustoPERC_IR_CONTRSOCIAL.AsFloat;
-  CurrencyEdit13.Value := fDMCadOrdemServico.qFilial_CustoPERC_MARGEM_OPE.AsFloat;
+  cePercICMS.Value  := fDMCadOrdemServico.qFilial_CustoPERC_ICMS.AsFloat;
+  cePercMarkup.Value  := fDMCadOrdemServico.qFilial_CustoPERC_MARK_UP.AsFloat;
+  cePercPisCofins.Value  := fDMCadOrdemServico.cdsFilialPERC_PIS.AsFloat + fDMCadOrdemServico.cdsFilialPERC_COFINS.AsFloat;
+  cePercISSQN.Value  := fDMCadOrdemServico.cdsFilialPERC_ISS.AsFloat;
+  cePercComissao.Value := fDMCadOrdemServico.qFilial_CustoPERC_COMISSAO.AsFloat;
+  cePercFrete.Value := fDMCadOrdemServico.qFilial_CustoPERC_FRETE.AsFloat;
+  cePercIR.Value := fDMCadOrdemServico.qFilial_CustoPERC_IR_CONTRSOCIAL.AsFloat;
+  cePercMargemOpe.Value := fDMCadOrdemServico.qFilial_CustoPERC_MARGEM_OPE.AsFloat;
 
-  CurrencyEdit17.Value := fDMCadOrdemServico.qFilial_CustoPERC_CUSTO_FINANCEIRO.AsFloat;
+  cePercCustoFinanceiro.Value := fDMCadOrdemServico.qFilial_CustoPERC_CUSTO_FINANCEIRO.AsFloat;
 
   //btnCalcular_CustoClick(Sender);
 
   if Panel2.Enabled then
-    CurrencyEdit15.SetFocus;
+    cePrecoSugerido.SetFocus;
 end;
 
 procedure TfrmCadOrc_Custo.btnCalcular_CustoClick(Sender: TObject);
@@ -206,23 +211,23 @@ begin
     fDMCadOrdemServico.cdsOrdemServico_Terc.Next;
   end;
 
-  CurrencyEdit2.Value := vVlrProcesso;
-  CurrencyEdit3.Value := vVlrMaterial;
-  CurrencyEdit5.Value := vVlrTerceiro;
+  ceVlrProcesso.Value := vVlrProcesso;
+  ceVlrMaterial.Value := vVlrMaterial;
+  ceVlrTerceiro.Value := vVlrTerceiro;
 
-  CurrencyEdit6.Value := vVlrProcesso + vVlrMaterial + vVlrTerceiro;
+  ceVlrTotalCusto.Value := vVlrProcesso + vVlrMaterial + vVlrTerceiro;
 
   //if fDMCadOrdemServico.cdsOrdemServico_Custo.RecordCount <= 0 then
     prc_Calcular_Custo;
 
-  if (CurrencyEdit14.Value > 0) and (CurrencyEdit2.Value > 0) then
-    CurrencyEdit27.Value := (CurrencyEdit2.Value / CurrencyEdit14.Value) * 100;
-  if (CurrencyEdit14.Value > 0) and (CurrencyEdit3.Value > 0) then
-    CurrencyEdit26.Value := (CurrencyEdit3.Value / CurrencyEdit14.Value) * 100;
-  if (CurrencyEdit14.Value > 0) and (CurrencyEdit5.Value > 0) then
-    CurrencyEdit28.Value := (CurrencyEdit5.Value / CurrencyEdit14.Value) * 100;
-  if (CurrencyEdit14.Value > 0) and (CurrencyEdit6.Value > 0) then
-    CurrencyEdit29.Value := (CurrencyEdit6.Value / CurrencyEdit14.Value) * 100;
+  if (cePreco.Value > 0) and (ceVlrProcesso.Value > 0) then
+    cePercProcesso.Value := (ceVlrProcesso.Value / cePreco.Value) * 100;
+  if (cePreco.Value > 0) and (ceVlrMaterial.Value > 0) then
+    cePercMaterial.Value := (ceVlrMaterial.Value / cePreco.Value) * 100;
+  if (cePreco.Value > 0) and (ceVlrTerceiro.Value > 0) then
+    cePercTerceiro.Value := (ceVlrTerceiro.Value / cePreco.Value) * 100;
+  if (cePreco.Value > 0) and (ceVlrTotalCusto.Value > 0) then
+    cePercTotalCusto.Value := (ceVlrTotalCusto.Value / cePreco.Value) * 100;
 end;
 
 procedure TfrmCadOrc_Custo.prc_Calcular_Custo;
@@ -234,83 +239,60 @@ var
   vv: Currency;
 begin
   //Calculando
-  if (CurrencyEdit6.Value <= 0) then
+  if (ceVlrTotalCusto.Value <= 0) then
     exit;
   
   vDivPeriodo := 1;
-  if (CurrencyEdit18.Value > 0) then
+  if (cePrazoDias.Value > 0) then
   begin
     if fDMCadOrdemServico.qFilial_CustoPRAZO_BASE.AsInteger > 0 then
-      vDivPeriodo := StrToFloat(FormatFloat('0.00',CurrencyEdit18.Value / fDMCadOrdemServico.qFilial_CustoPRAZO_BASE.AsInteger))
+      vDivPeriodo := StrToFloat(FormatFloat('0.00',cePrazoDias.Value / fDMCadOrdemServico.qFilial_CustoPRAZO_BASE.AsInteger))
     else
-      vDivPeriodo := StrToFloat(FormatFloat('0.00',CurrencyEdit18.Value / 30));
+      vDivPeriodo := StrToFloat(FormatFloat('0.00',cePrazoDias.Value / 30));
   end;
-  CurrencyEdit25.Value := vDivPeriodo;
+  cePercPeriodo.Value := vDivPeriodo;
 
-  vVF := StrToFloat(FormatFloat('0.00',(CurrencyEdit17.Value * vDivPeriodo)  + 100));
-  vCustoFinParcial := StrToFloat(FormatFloat('0.00',CurrencyEdit17.Value * vDivPeriodo));
-  CurrencyEdit19.Value := vCustoFinParcial;
-
+  if (cePercCustoFinanceiro.Value > 0) and (StrToFloat(FormatFloat('0.00',vDivPeriodo)) > 0) then
+  begin
+    vVF := StrToFloat(FormatFloat('0.00',(cePercCustoFinanceiro.Value * vDivPeriodo)  + 100));
+    vCustoFinParcial := StrToFloat(FormatFloat('0.00',cePercCustoFinanceiro.Value * vDivPeriodo));
+    cePercCustoPeriodo.Value := vCustoFinParcial;
+  end
+  else
+  begin
+    vVF                      := StrToFloat(FormatFloat('0.00',0));
+    vCustoFinParcial         := StrToFloat(FormatFloat('0.00',0));
+    cePercCustoPeriodo.Value := 0;
+  end;
   //********
 
   //Cálcular o Preço
-  vVlrAux := StrToFloat(FormatFloat('0.00',CurrencyEdit6.Value / ( 1-(CurrencyEdit4.Value+CurrencyEdit7.Value + CurrencyEdit8.Value + CurrencyEdit9.Value
-                                       + CurrencyEdit10.Value + CurrencyEdit11.Value + CurrencyEdit12.Value + CurrencyEdit3.Value
-                                       + CurrencyEdit19.Value) / 100)));
 
+  {vVlrAux := StrToFloat(FormatFloat('0.00',ceVlrTotalCusto.Value / ( 1-(cePercICMS.Value+cePercMarkup.Value + cePercPisCofins.Value + cePercISSQN.Value
+                                       + cePercComissao.Value + cePercFrete.Value + cePercIR.Value + ceVlrMaterial.Value
+                                       + cePercCustoPeriodo.Value) / 100)));}
 
-  //vVlrAux := CurrencyEdit6.Value / (1-((CurrencyEdit4.Value+CurrencyEdit7.Value+CurrencyEdit8.Value+CurrencyEdit9.Value
-    //                                   +CurrencyEdit10.Value+CurrencyEdit11.Value+CurrencyEdit12.Value+CurrencyEdit3.Value
-      //                                 +CurrencyEdit19.Value)/100));
-  CurrencyEdit14.Value := vVlrAux;
-  if (CurrencyEdit15.Value <= 0) then
-    CurrencyEdit15.Value := CurrencyEdit14.Value;
-  //**************
+  vVlrAux := StrToFloat(FormatFloat('0.00',cePercICMS.Value+cePercMarkup.Value + cePercPisCofins.Value + cePercISSQN.Value
+                                       + cePercComissao.Value + cePercFrete.Value + cePercIR.Value
+                                       + cePercCustoPeriodo.Value));
+
+  vVlrAux := StrToFloat(FormatFloat('0.00',ceVlrTotalCusto.Value / ( 1-(vVlrAux) / 100)));
+
+  cePreco.Value         := vVlrAux;
+  cePrecoSugerido.Value := cePreco.Value;
+
   //Percentual Margem Operacional
-  vVlrAux := StrToFloat(FormatFloat('0.00',((1-(CurrencyEdit6.Value/CurrencyEdit15.Value)) - ((CurrencyEdit4.Value + CurrencyEdit7.Value + CurrencyEdit8.Value
-                                                               +CurrencyEdit9.Value + CurrencyEdit10.Value + CurrencyEdit11.Value
-                                                               +CurrencyEdit19.value)/100))*100));
-  CurrencyEdit16.Value := vVlrAux;
-  //***********************
-
-  //Margem Líquida %
-  if (CurrencyEdit22.Value > 0) and (CurrencyEdit15.Value > 0) then
-    vVlrAux := StrToFloat(FormatFloat('0.00',(CurrencyEdit22.Value / CurrencyEdit15.Value) * 100))
-  else
-    vVlrAux := 0;
-  CurrencyEdit23.Value := vVlrAux;
-  //****************************
-
-  vVlrAux := StrToFloat(FormatFloat('0.00',-CurrencyEdit15.Value * ((CurrencyEdit19.Value + CurrencyEdit4.Value + CurrencyEdit7.Value + CurrencyEdit8.Value
-                                      + CurrencyEdit9.Value + CurrencyEdit10.Value + CurrencyEdit11.Value + CurrencyEdit12.Value)/100)
-                                    + CurrencyEdit15.Value - CurrencyEdit6.Value));
-  CurrencyEdit20.Value := vVlrAux;
-
-   //=-I26*(I31+I17+I18+I19+I20+I21+I22+I23)+I26-I8
-
-  //*****************
-
-  //IR Pessoa Jurídica
-  vVlrAux := StrToFloat(FormatFloat('0.00',(CurrencyEdit20.Value * fDMCadOrdemServico.qFilial_CustoPERC_IR_PJ.AsFloat) / 100));
-  CurrencyEdit21.Value := vVlrAux; 
-  //*************
-
-  //Margem Líquida R$
-  CurrencyEdit22.Value := CurrencyEdit20.Value - CurrencyEdit21.Value;
-  //******************
-  
-  //************
-  btnConfirmarClick(btnConfirmar);
+  prc_Calcular_Margem('V');
 end;
 
-procedure TfrmCadOrc_Custo.CurrencyEdit17KeyDown(Sender: TObject;
+procedure TfrmCadOrc_Custo.cePercCustoFinanceiroKeyDown(Sender: TObject;
   var Key: Word; Shift: TShiftState);
 begin
   if key = VK_RETURN then
     prc_Calcular_Custo;
 end;
 
-procedure TfrmCadOrc_Custo.CurrencyEdit18KeyDown(Sender: TObject;
+procedure TfrmCadOrc_Custo.cePrazoDiasKeyDown(Sender: TObject;
   var Key: Word; Shift: TShiftState);
 begin
   if key = VK_RETURN then
@@ -319,44 +301,44 @@ end;
 
 procedure TfrmCadOrc_Custo.prc_Mover_Custo;
 begin
-  CurrencyEdit4.Value  := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_ICMS.AsFloat;
-  CurrencyEdit7.Value  := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARKUP.AsFloat;
-  CurrencyEdit8.Value  := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_PISCOFINS.AsFloat;
-  CurrencyEdit9.Value  := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_ISSQN.AsFloat;
-  CurrencyEdit10.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_COMISSAO.AsFloat;
-  CurrencyEdit11.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_FRETE.AsFloat;
-  CurrencyEdit12.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_IR_CSOCIAL.AsFloat;
-  CurrencyEdit13.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARG1.AsFloat;
-  CurrencyEdit17.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_CUSTO_FINANCEIRO.AsFloat;
+  cePercICMS.Value  := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_ICMS.AsFloat;
+  cePercMarkup.Value  := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARKUP.AsFloat;
+  cePercPisCofins.Value  := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_PISCOFINS.AsFloat;
+  cePercISSQN.Value  := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_ISSQN.AsFloat;
+  cePercComissao.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_COMISSAO.AsFloat;
+  cePercFrete.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_FRETE.AsFloat;
+  cePercIR.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_IR_CSOCIAL.AsFloat;
+  cePercMargemOpe.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARG1.AsFloat;
+  cePercCustoFinanceiro.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_CUSTO_FINANCEIRO.AsFloat;
 
 
-  CurrencyEdit3.Value := fDMCadOrdemServico.cdsOrdemServico_CustoVLR_MATERIAIS.AsFloat;
-  CurrencyEdit2.Value := fDMCadOrdemServico.cdsOrdemServico_CustoVLR_PROCESSO.AsFloat;
-  CurrencyEdit5.Value := fDMCadOrdemServico.cdsOrdemServico_CustoVLR_TERCEIRO.AsFloat;
-  CurrencyEdit6.Value := fDMCadOrdemServico.cdsOrdemServico_CustoTOTAL_CUSTO.AsFloat;
-  CurrencyEdit16.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARG2.AsFloat;    
-  CurrencyEdit14.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPRECO.AsFloat;
-  CurrencyEdit15.Value := fDMCadOrdemServico.cdsOrdemServico_CustoVLR_PROPOSTA.AsFloat;
-  CurrencyEdit18.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPRAZO_DIAS.AsInteger;
-  CurrencyEdit19.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_CUSTO_PERIODO.AsFloat;
-  CurrencyEdit20.Value := fDMCadOrdemServico.cdsOrdemServico_CustoVLR_MARGEM.AsFloat;
-  CurrencyEdit21.Value := fDMCadOrdemServico.cdsOrdemServico_CustoVLR_IR_PJ.AsFloat;
-  CurrencyEdit22.Value := fDMCadOrdemServico.cdsOrdemServico_CustoVLR_MARGEM_LIQ.AsFloat;
-  CurrencyEdit23.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARGEM_LIQ.AsFloat;
+  ceVlrMaterial.Value := fDMCadOrdemServico.cdsOrdemServico_CustoVLR_MATERIAIS.AsFloat;
+  ceVlrProcesso.Value := fDMCadOrdemServico.cdsOrdemServico_CustoVLR_PROCESSO.AsFloat;
+  ceVlrTerceiro.Value := fDMCadOrdemServico.cdsOrdemServico_CustoVLR_TERCEIRO.AsFloat;
+  ceVlrTotalCusto.Value := fDMCadOrdemServico.cdsOrdemServico_CustoTOTAL_CUSTO.AsFloat;
+  cePercMargOpe2.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARG2.AsFloat;
+  cePreco.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPRECO.AsFloat;
+  cePrecoSugerido.Value := fDMCadOrdemServico.cdsOrdemServico_CustoVLR_PROPOSTA.AsFloat;
+  cePrazoDias.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPRAZO_DIAS.AsInteger;
+  cePercCustoPeriodo.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_CUSTO_PERIODO.AsFloat;
+  ceVlrMargem.Value := fDMCadOrdemServico.cdsOrdemServico_CustoVLR_MARGEM.AsFloat;
+  ceVlrIR.Value := fDMCadOrdemServico.cdsOrdemServico_CustoVLR_IR_PJ.AsFloat;
+  ceVlrMargemLiquida.Value := fDMCadOrdemServico.cdsOrdemServico_CustoVLR_MARGEM_LIQ.AsFloat;
+  cePercMargemLiquida.Value := fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARGEM_LIQ.AsFloat;
   prc_Percentual;
 end;
 
 procedure TfrmCadOrc_Custo.prc_Mover_Filial_Custo;
 begin
-  CurrencyEdit4.Value  := fDMCadOrdemServico.qFilial_CustoPERC_ICMS.AsFloat;
-  CurrencyEdit7.Value  := fDMCadOrdemServico.qFilial_CustoPERC_MARK_UP.AsFloat;
-  CurrencyEdit8.Value  := fDMCadOrdemServico.cdsFilialPERC_PIS.AsFloat + fDMCadOrdemServico.cdsFilialPERC_COFINS.AsFloat;
-  CurrencyEdit9.Value  := fDMCadOrdemServico.cdsFilialPERC_ISS.AsFloat;
-  CurrencyEdit10.Value := fDMCadOrdemServico.qFilial_CustoPERC_COMISSAO.AsFloat;
-  CurrencyEdit11.Value := fDMCadOrdemServico.qFilial_CustoPERC_FRETE.AsFloat;
-  CurrencyEdit12.Value := fDMCadOrdemServico.qFilial_CustoPERC_IR_CONTRSOCIAL.AsFloat;
-  CurrencyEdit13.Value := fDMCadOrdemServico.qFilial_CustoPERC_MARGEM_OPE.AsFloat;
-  CurrencyEdit17.Value := fDMCadOrdemServico.qFilial_CustoPERC_CUSTO_FINANCEIRO.AsFloat;
+  cePercICMS.Value  := fDMCadOrdemServico.qFilial_CustoPERC_ICMS.AsFloat;
+  cePercMarkup.Value  := fDMCadOrdemServico.qFilial_CustoPERC_MARK_UP.AsFloat;
+  cePercPisCofins.Value  := fDMCadOrdemServico.cdsFilialPERC_PIS.AsFloat + fDMCadOrdemServico.cdsFilialPERC_COFINS.AsFloat;
+  cePercISSQN.Value  := fDMCadOrdemServico.cdsFilialPERC_ISS.AsFloat;
+  cePercComissao.Value := fDMCadOrdemServico.qFilial_CustoPERC_COMISSAO.AsFloat;
+  cePercFrete.Value := fDMCadOrdemServico.qFilial_CustoPERC_FRETE.AsFloat;
+  cePercIR.Value := fDMCadOrdemServico.qFilial_CustoPERC_IR_CONTRSOCIAL.AsFloat;
+  cePercMargemOpe.Value := fDMCadOrdemServico.qFilial_CustoPERC_MARGEM_OPE.AsFloat;
+  cePercCustoFinanceiro.Value := fDMCadOrdemServico.qFilial_CustoPERC_CUSTO_FINANCEIRO.AsFloat;
 end;
 
 procedure TfrmCadOrc_Custo.btnConfirmarClick(Sender: TObject);
@@ -410,43 +392,43 @@ begin
     fDMCadOrdemServico.cdsOrdemServico_Custo.Insert;
     fDMCadOrdemServico.cdsOrdemServico_CustoID.AsInteger := fDMCadOrdemServico.cdsOrdemServicoID.AsInteger;
   end;
-  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_ICMS.AsFloat             := CurrencyEdit4.Value;
-  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARKUP.AsFloat           := CurrencyEdit7.Value; 
-  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_PISCOFINS.AsFloat        := CurrencyEdit8.Value; 
-  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_ISSQN.AsFloat            := CurrencyEdit9.Value; 
-  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_COMISSAO.AsFloat         := CurrencyEdit10.Value; 
-  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_FRETE.AsFloat            := CurrencyEdit11.Value; 
-  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_IR_CSOCIAL.AsFloat       := CurrencyEdit12.Value; 
-  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARG1.AsFloat            := CurrencyEdit13.Value; 
-  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_CUSTO_FINANCEIRO.AsFloat := CurrencyEdit17.Value; 
+  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_ICMS.AsFloat             := cePercICMS.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARKUP.AsFloat           := cePercMarkup.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_PISCOFINS.AsFloat        := cePercPisCofins.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_ISSQN.AsFloat            := cePercISSQN.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_COMISSAO.AsFloat         := cePercComissao.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_FRETE.AsFloat            := cePercFrete.Value; 
+  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_IR_CSOCIAL.AsFloat       := cePercIR.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARG1.AsFloat            := cePercMargemOpe.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_CUSTO_FINANCEIRO.AsFloat := cePercCustoFinanceiro.Value; 
 
-  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_MATERIAIS.AsFloat := CurrencyEdit3.Value;
-  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_PROCESSO.AsFloat  := CurrencyEdit2.Value;
-  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_TERCEIRO.AsFloat  := CurrencyEdit5.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_MATERIAIS.AsFloat := ceVlrMaterial.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_PROCESSO.AsFloat  := ceVlrProcesso.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_TERCEIRO.AsFloat  := ceVlrTerceiro.Value;
   fDMCadOrdemServico.cdsOrdemServico_CustoVLR_SETOR.AsFloat     := 0;
-  fDMCadOrdemServico.cdsOrdemServico_CustoTOTAL_CUSTO.AsFloat   := CurrencyEdit6.Value;
-  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARG2.AsFloat    := CurrencyEdit16.Value;
-  fDMCadOrdemServico.cdsOrdemServico_CustoPRECO.AsFloat         := CurrencyEdit14.Value;
-  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_PROPOSTA.AsFloat  := CurrencyEdit15.Value; 
-  fDMCadOrdemServico.cdsOrdemServico_CustoPRAZO_DIAS.AsInteger  := CurrencyEdit18.AsInteger; 
-  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_CUSTO_PERIODO.AsFloat := CurrencyEdit19.Value;  
-  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_MARGEM.AsFloat         := CurrencyEdit20.Value; 
-  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_IR_PJ.AsFloat          := CurrencyEdit21.Value; 
-  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_MARGEM_LIQ.AsFloat     := CurrencyEdit22.Value;
-  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARGEM_LIQ.AsFloat    := CurrencyEdit23.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoTOTAL_CUSTO.AsFloat   := ceVlrTotalCusto.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARG2.AsFloat    := cePercMargOpe2.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoPRECO.AsFloat         := cePreco.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_PROPOSTA.AsFloat  := cePrecoSugerido.Value; 
+  fDMCadOrdemServico.cdsOrdemServico_CustoPRAZO_DIAS.AsInteger  := cePrazoDias.AsInteger; 
+  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_CUSTO_PERIODO.AsFloat := cePercCustoPeriodo.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_MARGEM.AsFloat         := ceVlrMargem.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_IR_PJ.AsFloat          := ceVlrIR.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoVLR_MARGEM_LIQ.AsFloat     := ceVlrMargemLiquida.Value;
+  fDMCadOrdemServico.cdsOrdemServico_CustoPERC_MARGEM_LIQ.AsFloat    := cePercMargemLiquida.Value;
   fDMCadOrdemServico.cdsOrdemServico_Custo.Post;
 end;
 
 procedure TfrmCadOrc_Custo.prc_Percentual;
 begin
-  if (CurrencyEdit14.Value > 0) and (CurrencyEdit2.Value > 0) then
-    CurrencyEdit27.Value := (CurrencyEdit2.Value / CurrencyEdit14.Value) * 100;
-  if (CurrencyEdit14.Value > 0) and (CurrencyEdit3.Value > 0) then
-    CurrencyEdit26.Value := (CurrencyEdit3.Value / CurrencyEdit14.Value) * 100;
-  if (CurrencyEdit14.Value > 0) and (CurrencyEdit5.Value > 0) then
-    CurrencyEdit28.Value := (CurrencyEdit5.Value / CurrencyEdit14.Value) * 100;
-  if (CurrencyEdit14.Value > 0) and (CurrencyEdit6.Value > 0) then
-    CurrencyEdit29.Value := (CurrencyEdit6.Value / CurrencyEdit14.Value) * 100;
+  if (cePreco.Value > 0) and (ceVlrProcesso.Value > 0) then
+    cePercProcesso.Value := (ceVlrProcesso.Value / cePreco.Value) * 100;
+  if (cePreco.Value > 0) and (ceVlrMaterial.Value > 0) then
+    cePercMaterial.Value := (ceVlrMaterial.Value / cePreco.Value) * 100;
+  if (cePreco.Value > 0) and (ceVlrTerceiro.Value > 0) then
+    cePercTerceiro.Value := (ceVlrTerceiro.Value / cePreco.Value) * 100;
+  if (cePreco.Value > 0) and (ceVlrTotalCusto.Value > 0) then
+    cePercTotalCusto.Value := (ceVlrTotalCusto.Value / cePreco.Value) * 100;
 end;
 
 procedure TfrmCadOrc_Custo.Incluir1Click(Sender: TObject);
@@ -464,7 +446,7 @@ begin
   FreeAndNil(ffrmCadOrdemServico_Mat);
   if vCont <> fDMCadOrdemServico.cdsOrdemServico_Mat.RecordCount then
   begin
-    CurrencyEdit15.Value := 0;
+    cePrecoSugerido.Value := 0;
     btnCalcular_CustoClick(Sender);
   end;
 end;
@@ -489,7 +471,7 @@ begin
   FreeAndNil(ffrmCadOrdemServico_Mat);
   if StrToFloat(FormatFloat('0.00',vVlr)) <> StrToFloat(FormatFloat('0.00',fDMCadOrdemServico.cdsOrdemServico_MatVLR_TOTAL.AsFloat)) then
   begin
-    CurrencyEdit15.Value := 0;
+    cePrecoSugerido.Value := 0;
     btnCalcular_CustoClick(Sender);
   end;
 end;
@@ -511,7 +493,7 @@ begin
     fDMCadOrdemServico.prc_Somar_Setor;
     if fDMCadOrdemServico.vConfSelecao then
     begin
-      CurrencyEdit15.Value := 0;
+      cePrecoSugerido.Value := 0;
       btnCalcular_CustoClick(Sender);
     end;
     fDMCadOrdemServico.cdsOrdemServico_Setor.Locate('ID_SETOR',VIDSetor,[loCaseInsensitive]);
@@ -534,7 +516,7 @@ begin
   FreeAndNil(ffrmCadOrdemServico_Terc);
   if vCont <> fDMCadOrdemServico.cdsOrdemServico_Terc.RecordCount then
   begin
-    CurrencyEdit15.Value := 0;
+    cePrecoSugerido.Value := 0;
     btnCalcular_CustoClick(sender);
   end;
 end;
@@ -562,7 +544,7 @@ begin
 
   if StrToFloat(FormatFloat('0.00',vVlr)) <> StrToFloat(FormatFloat('0.00',fDMCadOrdemServico.cdsOrdemServico_TercVALOR.AsFloat)) then
   begin
-    CurrencyEdit15.Value := 0;
+    cePrecoSugerido.Value := 0;
     btnCalcular_CustoClick(sender);
   end;
 end;
@@ -573,9 +555,76 @@ begin
     fDMCadOrdemServico.cdsOrdemServico_Itens.Post;
 end;
 
-procedure TfrmCadOrc_Custo.CurrencyEdit4Exit(Sender: TObject);
+procedure TfrmCadOrc_Custo.cePercICMSExit(Sender: TObject);
 begin
   prc_Calcular_Custo;
+end;
+
+procedure TfrmCadOrc_Custo.prc_Calcular_Margem(Tipo : String);
+var
+  vVlrAux: Real;
+  vSomaAux: Real;
+begin
+  vVlrAux := StrToFloat(FormatFloat('0.00',((1-(ceVlrTotalCusto.Value/cePrecoSugerido.Value)) - ((cePercICMS.Value + cePercMarkup.Value + cePercPisCofins.Value
+                                                               +cePercISSQN.Value + cePercComissao.Value + cePercFrete.Value
+                                                               +cePercCustoPeriodo.value)/100))*100));
+  {vVlrAux  := StrToFloat(FormatFloat('0.00',1-(ceVlrTotalCusto.Value/cePrecoSugerido.Value)));
+  vSomaAux := (cePercICMS.Value + cePercMarkup.Value + cePercPisCofins.Value + cePercISSQN.Value + cePercComissao.Value + cePercFrete.Value + cePercCustoPeriodo.value);
+  vSomaAux := vSomaAux / 100;
+  vVlrAux  := vVlrAux - vSomaAux;
+  //vVlrAux  := vVlrAux / 100;
+  vVlrAux  := vVlrAux * 100;}
+
+  cePercMargOpe2.Value := vVlrAux;
+  //***********************
+
+  //Margem Líquida %
+  if (ceVlrMargemLiquida.Value > 0) and (cePrecoSugerido.Value > 0) then
+    vVlrAux := StrToFloat(FormatFloat('0.00',(ceVlrMargemLiquida.Value / cePrecoSugerido.Value) * 100))
+  else
+    vVlrAux := 0;
+  cePercMargemLiquida.Value := vVlrAux;
+  //****************************
+
+  vVlrAux := StrToFloat(FormatFloat('0.00',-cePrecoSugerido.Value * ((cePercCustoPeriodo.Value + cePercICMS.Value + cePercMarkup.Value + cePercPisCofins.Value
+                                      + cePercISSQN.Value + cePercComissao.Value + cePercFrete.Value + cePercIR.Value)/100)
+                                    + cePrecoSugerido.Value - ceVlrTotalCusto.Value));
+  ceVlrMargem.Value := vVlrAux;
+
+   //=-I26*(I31+I17+I18+I19+I20+I21+I22+I23)+I26-I8
+
+  //*****************
+
+  //IR Pessoa Jurídica
+  vVlrAux := StrToFloat(FormatFloat('0.00',(ceVlrMargem.Value * fDMCadOrdemServico.qFilial_CustoPERC_IR_PJ.AsFloat) / 100));
+  ceVlrIR.Value := vVlrAux;
+  //*************
+
+  //Margem Líquida R$
+  ceVlrMargemLiquida.Value := ceVlrMargem.Value - ceVlrIR.Value;
+  //******************
+
+  btnConfirmarClick(btnConfirmar);
+  //************
+end;
+
+procedure TfrmCadOrc_Custo.cePrecoSugeridoKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if key = VK_RETURN then
+  begin
+    if cePrecoSugerido.Value > 0 then
+      prc_Calcular_Margem('V')
+    else
+      prc_Calcular_Custo;
+  end;
+end;
+
+procedure TfrmCadOrc_Custo.cePercMargOpe2KeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if key = VK_RETURN then
+    prc_Calcular_Margem('P');
 end;
 
 end.
