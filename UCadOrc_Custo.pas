@@ -83,6 +83,7 @@ type
     Shape1: TShape;
     Label4: TLabel;
     DBMemo1: TDBMemo;
+    Label63: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure btnCalcular_CustoClick(Sender: TObject);
@@ -103,6 +104,8 @@ type
       Shift: TShiftState);
     procedure cePercMargOpe2KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure DBMemo1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     procedure prc_Calcular_Custo;
@@ -122,7 +125,8 @@ var
 
 implementation
 
-uses rsDBUtils, DB, UCadOrdemServico_Mat, USel_Setor_Proc2, UCadOrdemServico_Terc;     
+uses rsDBUtils, DB, UCadOrdemServico_Mat, USel_Setor_Proc2, UCadOrdemServico_Terc,
+  USel_Obs_OS;
 
 {$R *.dfm}
 
@@ -625,6 +629,27 @@ procedure TfrmCadOrc_Custo.cePercMargOpe2KeyDown(Sender: TObject;
 begin
   if key = VK_RETURN then
     prc_Calcular_Margem('P');
+end;
+
+procedure TfrmCadOrc_Custo.DBMemo1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Key = Vk_F2) and (fDMCadOrdemServico.cdsOrdemServico.Active) and (fDMCadOrdemServico.cdsOrdemServico.State in [dsEdit,dsInsert]) then
+  begin
+    frmSel_Obs_OS := TfrmSel_Obs_OS.Create(Self);
+    try
+      frmSel_Obs_OS.ShowModal;
+      if frmSel_Obs_OS.ModalResult = mrOk then
+      begin
+        if trim(DBMemo1.Lines.Text) <> '' then
+          DBMemo1.Lines.Text := DBMemo1.Lines.Text + #13 + frmSel_Obs_OS.cdsObs_OSOBS.Value
+        else
+          DBMemo1.Lines.Text := frmSel_Obs_OS.cdsObs_OSOBS.Value
+      end;
+    finally
+      FreeAndNil(frmSel_Obs_OS);
+    end;
+  end;
 end;
 
 end.

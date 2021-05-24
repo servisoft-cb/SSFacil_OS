@@ -1917,8 +1917,8 @@ end;
 
 procedure TDMCadOrdemServico.cdsOrdemServicoBeforePost(DataSet: TDataSet);
 begin
-  if (cdsOrdemServicoTP_ORCAMENTO.AsString = '1') and (cdsOrdemServicoNUM_ORCAMENTO.AsInteger = 0) then
-    cdsOrdemServicoID_ORCAMENTO.AsInteger := 0;
+  if cdsOrdemServicoID_ORCAMENTO.AsInteger <= 0 then
+    cdsOrdemServicoID_ORCAMENTO.Clear;
 end;
 
 end.

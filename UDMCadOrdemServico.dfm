@@ -275,7 +275,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     ProviderName = 'dspOrdemServico'
     BeforePost = cdsOrdemServicoBeforePost
     OnNewRecord = cdsOrdemServicoNewRecord
-    Left = 120
+    Left = 121
     Top = 7
     object cdsOrdemServicoID: TIntegerField
       FieldName = 'ID'

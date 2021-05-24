@@ -19,10 +19,23 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
   TextHeight = 13
   object Label4: TLabel
     Left = 8
-    Top = 528
+    Top = 537
     Width = 39
-    Height = 13
+    Height = 51
     Caption = 'Escopo:'
+  end
+  object Label63: TLabel
+    Left = 51
+    Top = 514
+    Width = 182
+    Height = 16
+    Caption = 'F2 para Selecionar a OBS'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Verdana'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object Panel1: TPanel
     Left = 0
@@ -436,7 +449,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
     Left = 723
     Top = 188
     Width = 514
-    Height = 574
+    Height = 620
     Align = alRight
     TabOrder = 1
     object Label23: TLabel
@@ -1472,9 +1485,9 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
   end
   object DBMemo1: TDBMemo
     Left = 49
-    Top = 524
+    Top = 532
     Width = 655
-    Height = 238
+    Height = 276
     Color = 14286809
     Ctl3D = False
     DataField = 'ESCOPO'
@@ -1484,6 +1497,7 @@ object frmCadOrc_Custo: TfrmCadOrc_Custo
     ScrollBars = ssVertical
     TabOrder = 3
     OnExit = DBMemo1Exit
+    OnKeyDown = DBMemo1KeyDown
   end
   object PopupMenu1: TPopupMenu
     Left = 395
