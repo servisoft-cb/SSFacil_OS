@@ -78,7 +78,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         WidthOfIndicator = 23
         DefaultRowHeight = 17
         ScrollBars = ssHorizontal
-        ColCount = 16
+        ColCount = 17
         RowCount = 2
         Columns = <
           item
@@ -134,6 +134,15 @@ object frmCadOrdemServico: TfrmCadOrdemServico
           item
             Alignment = taCenter
             Expanded = False
+            FieldName = 'DTEMISSAO'
+            Title.Alignment = taCenter
+            Title.Caption = 'Data Cadastro'
+            Width = 65
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
             FieldName = 'FILIAL'
             Title.Alignment = taCenter
             Title.Caption = 'Filial'
@@ -155,6 +164,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'ENTREGUE'
             Title.Alignment = taCenter
             Title.Caption = 'Entregue'
+            Width = 64
             Visible = True
           end
           item
@@ -170,6 +180,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'NUM_ORCAMENTO'
             Title.Alignment = taCenter
             Title.Caption = 'N'#186' Or'#231'amento'
+            Width = 64
             Visible = True
           end
           item
@@ -185,6 +196,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
             FieldName = 'PRODUZIDO'
             Title.Alignment = taCenter
             Title.Caption = 'Produzido'
+            Width = 64
             Visible = True
           end
           item
@@ -2561,6 +2573,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
                 Expanded = False
                 FieldName = 'UNIDADE'
                 Title.Caption = 'Unidade'
+                Width = 64
                 Visible = True
               end
               item
@@ -4527,7 +4540,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
               OnClick = btnCalcular_CustoClick
             end
           end
-          object CurrencyEdit2: TCurrencyEdit
+          object ceVlr_Processos: TCurrencyEdit
             Left = 243
             Top = 51
             Width = 174
@@ -5011,6 +5024,7 @@ object frmCadOrdemServico: TfrmCadOrdemServico
                 Title.Alignment = taCenter
                 Title.Caption = 'Qtd. Faturada'
                 Title.Color = 16763025
+                Width = 64
                 Visible = True
               end>
           end

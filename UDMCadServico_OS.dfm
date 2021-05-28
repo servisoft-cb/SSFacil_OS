@@ -36,6 +36,11 @@ object DMCadServico_OS: TDMCadServico_OS
       FixedChar = True
       Size = 1
     end
+    object sdsServico_OSCALCULAR_DM2: TStringField
+      FieldName = 'CALCULAR_DM2'
+      FixedChar = True
+      Size = 1
+    end
   end
   object dspServico_OS: TDataSetProvider
     DataSet = sdsServico_OS
@@ -72,6 +77,11 @@ object DMCadServico_OS: TDMCadServico_OS
     end
     object cdsServico_OSTERCEIRO: TStringField
       FieldName = 'TERCEIRO'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsServico_OSCALCULAR_DM2: TStringField
+      FieldName = 'CALCULAR_DM2'
       FixedChar = True
       Size = 1
     end

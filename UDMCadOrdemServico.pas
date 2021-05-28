@@ -1188,6 +1188,7 @@ type
     sdsOrdemServicoID_ORCAMENTO: TIntegerField;
     cdsOrdemServicoID_ORCAMENTO: TIntegerField;
     cdsOrdemServico_ConsultaNUM_OS_ORCAMENTO: TIntegerField;
+    cdsServico_OSCALCULAR_DM2: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure dspOrdemServicoUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError;

@@ -315,10 +315,10 @@ begin
           fDMProcesso_ES.cdsBaixa_OSTIPO_BAIXA.AsString := 'A';
           fDMProcesso_ES.cdsBaixa_OSDTSAIDA.AsDateTime  := vData;
           fDMProcesso_ES.cdsBaixa_OSHRSAIDA.AsDateTime  := vHora;
-          fDMProcesso_ES.cdsBaixa_OSTOTAL_HORAS.AsFloat := fnc_Calcular_Hora2(fDMProcesso_ES.cdsBaixa_OSHRENTRADA.AsDateTime,
+          fDMProcesso_ES.cdsBaixa_OSTOTAL_HORAS.AsFloat := StrToFloat(FormatFloat('0.00',fnc_Calcular_Hora2(fDMProcesso_ES.cdsBaixa_OSHRENTRADA.AsDateTime,
                                                                               fDMProcesso_ES.cdsBaixa_OSHRSAIDA.AsDateTime,
                                                                               fDMProcesso_ES.cdsBaixa_OSDTENTRADA.AsDateTime,
-                                                                              fDMProcesso_ES.cdsBaixa_OSDTSAIDA.AsDateTime);
+                                                                              fDMProcesso_ES.cdsBaixa_OSDTSAIDA.AsDateTime)));
         end;
         fDMProcesso_ES.cdsBaixa_OSOBS.AsString := Memo2.Lines.Text;
         if StrToFloat(FormatFloat('0.0000',fDMProcesso_ES.qVerQTD_RESTANTE.AsFloat)) <> CurrencyEdit1.Value then

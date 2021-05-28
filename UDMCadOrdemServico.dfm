@@ -2,8 +2,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Left = 132
-  Top = 12
-  Height = 733
+  Height = 728
   Width = 1145
   object sdsOrdemServico: TSQLDataSet
     NoMetadata = True
@@ -3246,7 +3245,9 @@ object DMCadOrdemServico: TDMCadOrdemServico
   object sdsServico_OS: TSQLDataSet
     NoMetadata = True
     GetMetadata = False
-    CommandText = 'SELECT ID, NOME'#13#10'FROM SERVICO_OS'#13#10'WHERE INATIVO = '#39'N'#39
+    CommandText = 
+      'SELECT ID, NOME, CALCULAR_DM2'#13#10'FROM SERVICO_OS'#13#10'WHERE INATIVO = ' +
+      #39'N'#39
     MaxBlobSize = -1
     Params = <>
     SQLConnection = dmDatabase.scoDados
@@ -3263,7 +3264,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     IndexFieldNames = 'NOME'
     Params = <>
     ProviderName = 'dspServico_OS'
-    Left = 584
+    Left = 585
     Top = 528
     object cdsServico_OSID: TIntegerField
       FieldName = 'ID'
@@ -3272,6 +3273,11 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object cdsServico_OSNOME: TStringField
       FieldName = 'NOME'
       Size = 50
+    end
+    object cdsServico_OSCALCULAR_DM2: TStringField
+      FieldName = 'CALCULAR_DM2'
+      FixedChar = True
+      Size = 1
     end
   end
   object dsServico_OS: TDataSource
@@ -3447,26 +3453,32 @@ object DMCadOrdemServico: TDMCadOrdemServico
     NoMetadata = True
     GetMetadata = False
     CommandText = 
-      'SELECT IT.dm, AUX.*,'#13#10'CASE'#13#10'  WHEN AUX.CALCULA_AREA = '#39'S'#39' THEN (' +
-      '(AUX.TOTAL_HORAS - coalesce(AUX.TOTAL_HORAS_PAUSA,0)) * AUX.VLR_' +
-      'HORA * (aux.qtd * coalesce(IT.DM,1)))'#13#10'  ELSE ((AUX.TOTAL_HORAS ' +
-      '- coalesce(AUX.TOTAL_HORAS_PAUSA,0)) * AUX.VLR_HORA)'#13#10'  END VLR_' +
-      'CUSTO'#13#10'FROM ('#13#10'SELECT B.id_os, B.num_os, B.ordem, B.item_proc, B' +
-      '.dtentrada, B.hrentrada,'#13#10'B.dtsaida, B.hrsaida, B.id_funcionario' +
-      ', B.qtd, B.id_processo,'#13#10'B.id_servico_os, B.total_horas, B.tipo_' +
-      'baixa,'#13#10'f.nome nome_funcionario, f.num_cartao, p.nome nome_proce' +
-      'sso,'#13#10's.nome nome_servico, P.calcula_area, S.vlr_hora, B.OBS, b.' +
-      'retrabalho,'#13#10'(SELECT SUM(BP.total_horas) FROM BAIXA_OS_PAUSA BP'#13 +
-      #10'   WHERE BP.id = B.ID) TOTAL_HORAS_PAUSA,'#13#10'case '#13#10'  when b.tipo' +
-      '_baixa = '#39'M'#39' then null'#13#10'  else b.dtentrada'#13#10'  end dtEntrada2,'#13#10'c' +
-      'ase '#13#10'  when b.tipo_baixa = '#39'M'#39' then null'#13#10'  else b.hrentrada'#13#10' ' +
-      ' end hrEntrada2,'#13#10'case '#13#10'  when b.tipo_baixa = '#39'M'#39' then null'#13#10'  ' +
-      'else b.dtsaida'#13#10'  end dtSaida2,'#13#10'case'#13#10'  when b.tipo_baixa = '#39'M'#39 +
-      ' then null'#13#10'  else b.hrsaida'#13#10'  end hrSaida2, B.ID'#13#10'FROM baixa_o' +
-      's B'#13#10'inner join funcionario f'#13#10'on b.id_funcionario = f.codigo'#13#10'i' +
-      'nner join processo p'#13#10'on b.id_processo = p.id'#13#10'left join servico' +
-      '_os s'#13#10'on b.id_servico_os = s.id'#13#10'WHERE b.id_os = :ID_OS) AUX'#13#10'i' +
-      'nner JOIN ordemservico_itens IT'#13#10'ON AUX.ID_OS = IT.id'#13#10
+      'select IT.DM, AUX.*,'#13#10'       case'#13#10'         when (AUX.CALCULA_AR' +
+      'EA = '#39'S'#39') or (AUX.CALCULAR_DM2 = '#39'S'#39')  then ((AUX.TOTAL_HORAS - ' +
+      'coalesce(AUX.TOTAL_HORAS_PAUSA, 0)) * AUX.VLR_HORA * (AUX.QTD * ' +
+      'coalesce(IT.DM, 1)))'#13#10'         else ((AUX.TOTAL_HORAS - coalesce' +
+      '(AUX.TOTAL_HORAS_PAUSA, 0)) * AUX.VLR_HORA)'#13#10'       end VLR_CUST' +
+      'O'#13#10'from (select B.ID_OS, B.NUM_OS, B.ORDEM, B.ITEM_PROC, B.DTENT' +
+      'RADA, B.HRENTRADA, B.DTSAIDA, B.HRSAIDA, B.ID_FUNCIONARIO,'#13#10'    ' +
+      '         B.QTD, B.ID_PROCESSO, B.ID_SERVICO_OS, B.TOTAL_HORAS, B' +
+      '.TIPO_BAIXA, F.NOME NOME_FUNCIONARIO, F.NUM_CARTAO,'#13#10'           ' +
+      '  P.NOME NOME_PROCESSO, S.NOME NOME_SERVICO, P.CALCULA_AREA, S.V' +
+      'LR_HORA, B.OBS, B.RETRABALHO, S.CALCULAR_DM2,'#13#10'             (sel' +
+      'ect sum(BP.TOTAL_HORAS)'#13#10'              from BAIXA_OS_PAUSA BP'#13#10' ' +
+      '             where BP.ID = B.ID) TOTAL_HORAS_PAUSA,'#13#10'           ' +
+      '  case'#13#10'               when B.TIPO_BAIXA = '#39'M'#39' then null'#13#10'      ' +
+      '         else B.DTENTRADA'#13#10'             end DTENTRADA2,'#13#10'       ' +
+      '      case'#13#10'               when B.TIPO_BAIXA = '#39'M'#39' then null'#13#10'  ' +
+      '             else B.HRENTRADA'#13#10'             end HRENTRADA2,'#13#10'   ' +
+      '          case'#13#10'               when B.TIPO_BAIXA = '#39'M'#39' then null' +
+      #13#10'               else B.DTSAIDA'#13#10'             end DTSAIDA2,'#13#10'   ' +
+      '          case'#13#10'               when B.TIPO_BAIXA = '#39'M'#39' then null' +
+      #13#10'               else B.HRSAIDA'#13#10'             end HRSAIDA2,'#13#10'   ' +
+      '          B.ID'#13#10'      from BAIXA_OS B'#13#10'      inner join FUNCIONA' +
+      'RIO F on B.ID_FUNCIONARIO = F.CODIGO'#13#10'      inner join PROCESSO ' +
+      'P on B.ID_PROCESSO = P.ID'#13#10'      left join SERVICO_OS S on B.ID_' +
+      'SERVICO_OS = S.ID'#13#10'      where B.ID_OS = :ID_OS) AUX'#13#10'inner join' +
+      ' ORDEMSERVICO_ITENS IT on AUX.ID_OS = IT.ID  '#13#10#13#10
     MaxBlobSize = -1
     Params = <
       item

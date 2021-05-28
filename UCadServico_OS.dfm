@@ -72,7 +72,6 @@ object frmCadServico_OS: TfrmCadServico_OS
         WidthOfIndicator = 11
         DefaultRowHeight = 17
         ScrollBars = ssHorizontal
-        ColCount = 4
         RowCount = 2
         Columns = <
           item
@@ -97,6 +96,15 @@ object frmCadServico_OS: TfrmCadServico_OS
             Title.Alignment = taCenter
             Title.Caption = 'Valor Hora'
             Width = 98
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'CALCULAR_DM2'
+            Title.Alignment = taCenter
+            Title.Caption = 'Calcular DM'#178
+            Width = 78
             Visible = True
           end>
       end
@@ -758,6 +766,18 @@ object frmCadServico_OS: TfrmCadServico_OS
           DataField = 'TERCEIRO'
           DataSource = DMCadServico_OS.dsServico_OS
           TabOrder = 3
+          ValueChecked = 'S'
+          ValueUnchecked = 'N'
+        end
+        object DBCheckBox3: TDBCheckBox
+          Left = 96
+          Top = 98
+          Width = 170
+          Height = 17
+          Caption = 'Calcular DM'#178' no Custo:'
+          DataField = 'CALCULAR_DM2'
+          DataSource = DMCadServico_OS.dsServico_OS
+          TabOrder = 5
           ValueChecked = 'S'
           ValueUnchecked = 'N'
         end

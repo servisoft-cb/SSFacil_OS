@@ -21,6 +21,8 @@ type
     cdsServico_OSINATIVO: TStringField;
     sdsServico_OSTERCEIRO: TStringField;
     cdsServico_OSTERCEIRO: TStringField;
+    sdsServico_OSCALCULAR_DM2: TStringField;
+    cdsServico_OSCALCULAR_DM2: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure dspServico_OSUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError;

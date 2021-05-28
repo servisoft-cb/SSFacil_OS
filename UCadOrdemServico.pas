@@ -190,7 +190,7 @@ type
     Panel15: TPanel;
     btnCalcular_Custo: TNxButton;
     Label46: TLabel;
-    CurrencyEdit2: TCurrencyEdit;
+    ceVlr_Processos: TCurrencyEdit;
     Label49: TLabel;
     CurrencyEdit3: TCurrencyEdit;
     Label50: TLabel;
@@ -1561,11 +1561,11 @@ begin
     fDMCadOrdemServico.cdsOrdemServico_Terc.Next;
   end;
 
-  CurrencyEdit2.Value := vVlrProcesso;
-  CurrencyEdit7.Value := vVlrProcesso_Ret;
-  CurrencyEdit3.Value := vVlrMaterial;
-  CurrencyEdit4.Value := vVlrMaterial_Prev;
-  CurrencyEdit5.Value := vVlrTerceiro;
+  ceVlr_Processos.Value := vVlrProcesso;
+  CurrencyEdit7.Value   := vVlrProcesso_Ret;
+  CurrencyEdit3.Value   := vVlrMaterial;
+  CurrencyEdit4.Value   := vVlrMaterial_Prev;
+  CurrencyEdit5.Value   := vVlrTerceiro;
 
   CurrencyEdit6.Value := vVlrProcesso + vVlrMaterial + vVlrTerceiro;
 end;

@@ -35,6 +35,7 @@ type
     DBEdit1: TDBEdit;
     DBCheckBox1: TDBCheckBox;
     DBCheckBox2: TDBCheckBox;
+    DBCheckBox3: TDBCheckBox;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnExcluirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
