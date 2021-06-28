@@ -1,7 +1,8 @@
 object DMCadOrdemServico: TDMCadOrdemServico
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 132
+  Left = 128
+  Top = 8
   Height = 728
   Width = 1145
   object sdsOrdemServico: TSQLDataSet
@@ -257,6 +258,9 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
     object sdsOrdemServicoID_ORCAMENTO: TIntegerField
       FieldName = 'ID_ORCAMENTO'
+    end
+    object sdsOrdemServicoID_CENTROCUSTO: TIntegerField
+      FieldName = 'ID_CENTROCUSTO'
     end
   end
   object dspOrdemServico: TDataSetProvider
@@ -536,6 +540,9 @@ object DMCadOrdemServico: TDMCadOrdemServico
     end
     object cdsOrdemServicoID_ORCAMENTO: TIntegerField
       FieldName = 'ID_ORCAMENTO'
+    end
+    object cdsOrdemServicoID_CENTROCUSTO: TIntegerField
+      FieldName = 'ID_CENTROCUSTO'
     end
   end
   object dsOrdemServico: TDataSource
@@ -1172,6 +1179,9 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object sdsOrdemServico_ItensQTD_NOTA: TFloatField
       FieldName = 'QTD_NOTA'
     end
+    object sdsOrdemServico_ItensID_SERVICO_INT: TIntegerField
+      FieldName = 'ID_SERVICO_INT'
+    end
   end
   object cdsOrdemServico_Itens: TClientDataSet
     Aggregates = <>
@@ -1423,6 +1433,9 @@ object DMCadOrdemServico: TDMCadOrdemServico
     object cdsOrdemServico_ItensQTD_NOTA: TFloatField
       FieldName = 'QTD_NOTA'
     end
+    object cdsOrdemServico_ItensID_SERVICO_INT: TIntegerField
+      FieldName = 'ID_SERVICO_INT'
+    end
   end
   object dsOrdemServico_Itens: TDataSource
     DataSet = cdsOrdemServico_Itens
@@ -1655,6 +1668,7 @@ object DMCadOrdemServico: TDMCadOrdemServico
     Top = 182
   end
   object cdsFuncionario: TClientDataSet
+    Active = True
     Aggregates = <>
     IndexFieldNames = 'NOME'
     Params = <>
@@ -3388,8 +3402,8 @@ object DMCadOrdemServico: TDMCadOrdemServico
       'FROM PROCESSO'
       'WHERE ID = :ID')
     SQLConnection = dmDatabase.scoDados
-    Left = 952
-    Top = 440
+    Left = 1036
+    Top = 505
     object qProcessoID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -3412,8 +3426,8 @@ object DMCadOrdemServico: TDMCadOrdemServico
       'FROM SERVICO_OS'
       'WHERE ID = :ID')
     SQLConnection = dmDatabase.scoDados
-    Left = 952
-    Top = 488
+    Left = 1036
+    Top = 553
     object qServico_OSID: TIntegerField
       FieldName = 'ID'
       Required = True

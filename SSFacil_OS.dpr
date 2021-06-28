@@ -117,7 +117,9 @@ uses
   UConsOrdemServico_Canc in 'UConsOrdemServico_Canc.pas' {frmConsOrdemServico_Canc},
   UDMCadObs in 'UDMCadObs.pas' {DMCadObs: TDataModule},
   uCadObs in 'uCadObs.pas' {frmCadOBS},
-  USel_Obs_OS in 'USel_Obs_OS.pas' {frmSel_Obs_OS};
+  USel_Obs_OS in 'USel_Obs_OS.pas' {frmSel_Obs_OS},
+  UCadOrdemServico2 in 'UCadOrdemServico2.pas' {frmCadOrdemServico2},
+  USel_CentroCusto in '..\ssfacil\USel_CentroCusto.pas' {frmSel_CentroCusto};
 
 {$R *.res}
 
