@@ -2028,10 +2028,10 @@ object frmCadOrdemServico: TfrmCadOrdemServico
         Top = 271
         Width = 1035
         Height = 367
-        ActivePage = TS_CondEntrada
+        ActivePage = TS_Gerador
         ActivePageDefault = TS_CondEntrada
         Align = alClient
-        TabIndex = 0
+        TabIndex = 1
         TabOrder = 2
         OnChange = RzPageControl2Change
         FixedDimension = 19

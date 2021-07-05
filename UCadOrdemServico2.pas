@@ -535,8 +535,6 @@ begin
   if fDMCadOrdemServico.qParametros_ProdGERADORES_ELETRICOS.AsString = 'S' then
   begin
     RzGroupBox2.Visible   := False;
-    TS_Gerador.TabVisible := True;
-    RzPageControl2.ActivePage := TS_Gerador;
     fDMCadOrdemServico.cdsFabricanteGerador.Open;
     fDMCadOrdemServico.cdsMarca_Montadora.Open;
     fDMCadOrdemServico.cdsFabricanteMotor.Open;
@@ -545,6 +543,7 @@ begin
   else
   begin
     RzGroupBox2.Visible   := True;
+
     TS_Gerador.TabVisible := False;
     prc_Monta_Grid2;
   end;

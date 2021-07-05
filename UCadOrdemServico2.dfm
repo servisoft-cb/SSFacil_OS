@@ -164,7 +164,6 @@ object frmCadOrdemServico2: TfrmCadOrdemServico2
             FieldName = 'ENTREGUE'
             Title.Alignment = taCenter
             Title.Caption = 'Entregue'
-            Width = 64
             Visible = True
           end
           item
@@ -180,7 +179,6 @@ object frmCadOrdemServico2: TfrmCadOrdemServico2
             FieldName = 'NUM_ORCAMENTO'
             Title.Alignment = taCenter
             Title.Caption = 'N'#186' Or'#231'amento'
-            Width = 64
             Visible = True
           end
           item
@@ -196,7 +194,6 @@ object frmCadOrdemServico2: TfrmCadOrdemServico2
             FieldName = 'PRODUZIDO'
             Title.Alignment = taCenter
             Title.Caption = 'Produzido'
-            Width = 64
             Visible = True
           end
           item
@@ -1912,10 +1909,10 @@ object frmCadOrdemServico2: TfrmCadOrdemServico2
         Top = 278
         Width = 1035
         Height = 360
-        ActivePage = TS_CondEntrada
+        ActivePage = TS_Materiais
         ActivePageDefault = TS_CondEntrada
         Align = alClient
-        TabIndex = 0
+        TabIndex = 2
         TabOrder = 2
         OnChange = RzPageControl2Change
         FixedDimension = 19
@@ -2087,7 +2084,6 @@ object frmCadOrdemServico2: TfrmCadOrdemServico2
                 Expanded = False
                 FieldName = 'UNIDADE'
                 Title.Caption = 'Unidade'
-                Width = 64
                 Visible = True
               end
               item
@@ -4538,7 +4534,6 @@ object frmCadOrdemServico2: TfrmCadOrdemServico2
                 Title.Alignment = taCenter
                 Title.Caption = 'Qtd. Faturada'
                 Title.Color = 16763025
-                Width = 64
                 Visible = True
               end>
           end
